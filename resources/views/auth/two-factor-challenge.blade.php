@@ -1,57 +1,121 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+@push('styles')
+<style>
+    #left {
+        background-color: #eee;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23e32a2e' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"), linear-gradient(rgba(26, 32, 46, .7), rgba(255, 46, 49, .7)), url('images/backgrounds/bg06.jpg');
+        background-size: auto, contain, cover;
+        background-repeat: repeat, repeat, no-repeat;
+        background-attachment: fixed;
+        background-attachment: fixed;
+    }
+</style>
+@endpush
 
-        <div x-data="{ recovery: false }">
-            <div class="mb-4 text-sm text-gray-600" x-show="! recovery">
-                {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
-            </div>
+@push('scripts')
+<script>
+    const showTab = (tabId)=> {
+            const activeCtrl = document.querySelector('.tab > ul li.active')
+            const activeTab  = document.querySelector('.tab > div:not(.hidden)')
 
-            <div class="mb-4 text-sm text-gray-600" x-show="recovery">
-                {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
-            </div>
+            const ctrlToAct = document.getElementById(tabId)
+            const tabToAct  = document.getElementById(tabId + 'Tab')
 
-            <x-jet-validation-errors class="mb-4" />
+            activeCtrl.classList.remove('active')
+            activeTab.classList.add('hidden')
+            ctrlToAct.classList.add('active')
+            tabToAct.classList.remove('hidden')
 
-            <form method="POST" action="/two-factor-challenge">
-                @csrf
+            console.log(activeCtrl)
+            console.log(activeTab)
+            console.log(ctrlToAct)
+            console.log(tabToAct)
 
-                <div class="mt-4" x-show="! recovery">
-                    <x-jet-label for="code" value="{{ __('Code') }}" />
-                    <x-jet-input id="code" class="block mt-1 w-full" type="text" inputmode="numeric" name="code" autofocus x-ref="code" autocomplete="one-time-code" />
-                </div>
+        }
+</script>
+@endpush
 
-                <div class="mt-4" x-show="recovery">
-                    <x-jet-label for="recovery_code" value="{{ __('Recovery Code') }}" />
-                    <x-jet-input id="recovery_code" class="block mt-1 w-full" type="text" name="recovery_code" x-ref="recovery_code" autocomplete="one-time-code" />
-                </div>
+<x-double-panel>
 
-                <div class="flex items-center justify-end mt-4">
-                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
-                                    x-show="! recovery"
-                                    x-on:click="
-                                        recovery = true;
-                                        $nextTick(() => { $refs.recovery_code.focus() })
-                                    ">
-                        {{ __('Use a recovery code') }}
-                    </button>
+    <x-slot name="left">
 
-                    <button type="button" class="text-sm text-gray-600 hover:text-gray-900 underline cursor-pointer"
-                                    x-show="recovery"
-                                    x-on:click="
-                                        recovery = false;
-                                        $nextTick(() => { $refs.code.focus() })
-                                    ">
-                        {{ __('Use an authentication code') }}
-                    </button>
-
-                    <x-jet-button class="ml-4">
-                        {{ __('Login') }}
-                    </x-jet-button>
-                </div>
-            </form>
+        <div class="fixed top-0 left-0">
+            <h1 class="text-5xl flex m-4">
+                <x-icon-whujo class="w-12 text-primary lg:text-white" />
+            </h1>
         </div>
-    </x-jet-authentication-card>
-</x-guest-layout>
+
+    </x-slot>
+
+
+    <x-slot name="right">
+        <div class="w-full md:w-2/3 h-48 mt-48 mx-auto">
+
+            {{-- TITLE --}}
+            <div class="text-left ">
+                <h1 class="text-secondary font-bold text-3xl">
+                    {{ __('Two Factor Challenge') }}
+                </h1>
+            </div>
+
+            <div class="tab">
+                <ul class="flex gap-6 mb-4">
+                    <li id="recoveryCode" class="p-3 active transition ease-in-out duration-500">
+                        <a onclick="showTab('recoveryCode')" type="button"
+                            class=" text-gray-600 hover:text-primary cursor-pointer focus:border-none">
+                            {{ __('Use a recovery code') }}
+                        </a>
+                    </li>
+
+                    <li id="authCode" class="p-3 transition ease-in-out duration-500">
+                        <a onclick="showTab('authCode')" type="button"
+                            class=" text-gray-600 hover:text-primary cursor-pointer">
+                            {{ __('Use an authentication code') }}
+                        </a>
+                    </li>
+                </ul>
+
+                {{-- TAB1 --}}
+                <div id="recoveryCodeTab" class="p-4 transition ease-in-out duration-500">
+                    <div class="mb-4 text-secondary" x-show="recovery">
+                        {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+                    </div>
+
+                    <form method="POST" action="/two-factor-challenge">
+                        @csrf
+                        <div class="my-4">
+                            <x-jet-input id="recovery_code" class="block w-full focus:shadow-outline-gray py-4 transition ease-in-out duration-500" type="text" name="recovery_code"
+                                autocomplete="one-time-code" placeholder="{{ __('Recovery Code') }}" />
+                        </div>
+
+                        <x-jet-button class="float-right bg-primary transition ease-in-out duration-500">
+                            {{ __('Login') }}
+                        </x-jet-button>
+                    </form>
+                </div>
+
+                {{-- TAB2 --}}
+                <div id="authCodeTab" class="hidden p-4 ">
+                    <div class="mb-4 text-secondary" x-show="! recovery">
+                        {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
+                    </div>
+                    <form method="POST" action="/two-factor-challenge">
+                        @csrf
+
+                        <div class="my-4">
+                            <x-jet-label for="code" value="" />
+                            <x-jet-input id="code" class="block w-full focus:shadow-outline-gray py-4 transition ease-in-out duration-500" type="text" inputmode="numeric" name="code"
+                                autofocus placeholder="{{ __('Authentication Code') }}" autocomplete="one-time-code" />
+                        </div>
+
+                        <x-jet-button class="float-right bg-primary transition ease-in-out duration-500">
+                            {{ __('Login') }}
+                        </x-jet-button>
+                    </form>
+
+                </div>
+
+            </div>
+
+    </x-slot>
+
+</x-double-panel>
