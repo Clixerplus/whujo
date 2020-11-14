@@ -8,6 +8,10 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
+        <link rel="icon" href="favicon.png" type="image/png" sizes="500x500"/>
+        <meta name="msapplication-TileImage" content="{{ asset('favicon.png') }} />
+
+        <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
