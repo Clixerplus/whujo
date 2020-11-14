@@ -1,80 +1,68 @@
-<x-double-panel>
+<x-guest-layout>
+    <div class="flex h-screen overflow-hidden">
 
-    <x-slot name="left">
+        <div class="lside w-1/3 hidden md:flex md:flex-col bg-white opacity-50">
 
-        <div class="fixed top-0 left-0">
-            <h1 class="text-5xl flex m-4">
-                <x-icon-whujo class="w-12 text-primary lg:text-white" />
-            </h1>
+            {{ $slot }}
+
         </div>
 
-        {{ $left ?? '' }}
+        <div class="rside w-full md:w-2/3 flex flex-col justify-between overflow-y-auto bg-gray-200">
 
-    </x-slot>
+            <div class="md:absolute inset-0 h-20">
+                <div class="flex justify-between px-8 py-4">
 
-    <x-slot name="right">
+                    <div class=" w-12 h-12">
+                        <a href="/">
+                            <x-icon-whujo class="w-3/4 text-primary" />
+                        </a>
+                    </div>
 
-        {{-- TOP LINK --}}
-        <div class="mt-6 px-4 text-sm text-right">
-            {{ $links ?? '' }}
-        </div>
+                    <div class="flex flex-col items-end gap-x-4 gap-y-2 md:flex-row  md:items-center text-sm">
+                        {{ $link }}
+                    </div>
 
-        <div class="w-full md:w-2/3 m-auto">
-
-            {{-- TITLE --}}
-            <div class="text-left px-4 mt-8">
-                <h1 class="text-secondary font-bold text-3xl">
-                    {{ $title }}
-                </h1>
+                </div>
             </div>
 
-            {{-- VALIDATION --}}
-            <div class="px-4">
-                <x-jet-validation-errors />
-            </div>
+            <div class="my-auto w-5/6 md:w-3/4 lg:w-3/5 mx-auto pt-12 lg:pt-24 pb-8 lg:pb-0">
 
-            {{-- SESSION STATUS --}}
-            @if (session('status'))
-            <div class=" font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-            @endif
+                <div class="mb-8 ">
 
-            {{-- FORM --}}
-            <div>
-                {{ $form ?? '' }}
-            </div>
+                    <h1 class="text-secondary font-bold text-3xl">
+                        {{ $title }}
+                    </h1>
 
-            {{-- BUTTONS SOCIALAUTH --}}
-            <div>
+                    <div class="px-4">
+                        <x-jet-validation-errors />
+                    </div>
 
-                <div class="text-center my-8">- O continua con -</div>
+                    {{-- SESSION STATUS --}}
+                    @if (session('status'))
+                    <div class=" font-medium text-sm text-green-600">
+                        {{ session('status') }}
+                    </div>
+                    @endif
 
-                <div>
-                    {{ $socialAuth ?? '' }}
+                </div>
+
+                <div class="mb-8">
+
+                    {{ $form }}
+
                 </div>
 
             </div>
 
-            {{-- LEGAL LINKS --}}
-            <div class="mt-6 mb-4">
-                <ul class="flex justify-center text-sm text-secondary">
-                    <li>
-                        <a class="hover:text-blue-600 hover:underline transition ease-in-out duration-500" href="#">
-                            {{ __('Terms of Service') }}
-                        </a>
-                    </li>
-                    <li class="mx-2">|</li>
-                    <li>
-                        <a class="hover:text-blue-600 hover:underline transition ease-in-out duration-500" href="#">
-                            {{ __('Privacy Policy') }}
-                        </a>
-                    </li>
-                </ul>
+            <div class="md:absolute inset-x-0 bottom-0 h-10 px-8 text-sm bg-gray-200 md:bg-transparent">
+                <div class="text-center md:text-left py-2 text-cool-gray-600">
+                    <span class="font-wujo">Whujo&reg;</span>
+                    <span> - </span>
+                    <span>Todos los derechos reservados&copy;</span>
+                </div>
             </div>
 
         </div>
 
-    </x-slot>
-
-</x-double-panel>
+    </div>
+</x-guest-layout>
