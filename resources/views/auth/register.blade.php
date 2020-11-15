@@ -1,16 +1,3 @@
-@push('styles')
-<style>
-    .lside {
-        background-color: #eee;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23e32a2e' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"), linear-gradient(rgba(26, 32, 46, .7), rgba(255, 46, 49, .7)), url('images/backgrounds/bg06.jpg');
-        background-size: auto, contain, cover;
-        background-repeat: repeat, repeat, no-repeat;
-        background-attachment: fixed;
-        background-attachment: fixed;
-    }
-</style>
-@endpush
-
 <x-auth>
 
     <x-slot name="link">
@@ -27,7 +14,7 @@
         {{ __('Sign up for an account') }} <span class="text-primary font-whujo">Whujo</span>
     </x-slot>
 
-    <x-slot name="form">
+    <x-slot name="body">
         <form method="POST" action="{{ route('register') }}" class="flex flex-col gap-4">
             @csrf
 

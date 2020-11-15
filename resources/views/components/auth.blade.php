@@ -1,3 +1,14 @@
+@push('styles')
+<style>
+    .lside {
+        background-color: #eee;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23e32a2e' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"), linear-gradient(rgba(26, 32, 46, .7), rgba(255, 46, 49, .7)), url('images/backgrounds/bg06.jpg');
+        background-repeat: repeat, repeat, no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+@endpush
 <x-guest-layout>
     <div class="flex h-screen overflow-hidden">
 
@@ -19,7 +30,7 @@
                     </div>
 
                     <div class="flex flex-col items-end gap-x-4 gap-y-2 md:flex-row  md:items-center text-sm">
-                        {{ $link }}
+                        {{ $link ?? '' }}
                     </div>
 
                 </div>
@@ -30,25 +41,18 @@
                 <div class="mb-8 ">
 
                     <h1 class="text-secondary font-bold text-3xl">
-                        {{ $title }}
+                        {{ $title ?? '' }}
                     </h1>
 
                     <div class="px-4">
                         <x-jet-validation-errors />
                     </div>
 
-                    {{-- SESSION STATUS --}}
-                    @if (session('status'))
-                    <div class=" font-medium text-sm text-green-600">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
                 </div>
 
                 <div class="mb-8">
 
-                    {{ $form }}
+                    {{ $body ?? '' }}
 
                 </div>
 

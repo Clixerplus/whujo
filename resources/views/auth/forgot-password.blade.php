@@ -1,67 +1,32 @@
-@push('styles')
-<style>
-    #left {
-        background-color: #eee;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23e32a2e' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"), linear-gradient(rgba(26, 32, 46, .7), rgba(255, 46, 49, .7)), url('images/backgrounds/bg06.jpg');
-        background-size: auto, contain, cover;
-        background-repeat: repeat, repeat, no-repeat;
-        background-attachment: fixed;
-        background-attachment: fixed;
-    }
-</style>
-@endpush
+<x-auth>
 
-<x-double-panel>
+    {{-- TITLE --}}
+    <x-slot name="title">
+        {{__('Forgot your password?')}}
+        <p class="mt-4 text-cool-gray-700 text-sm font-normal">
+            {{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        </p>
+    </x-slot>
 
-    <x-slot name="left">
+    <x-slot name="body">
+        <form method="POST" action="{{ route('password.email') }}">
+            @csrf
 
-        <div class="fixed top-0 left-0">
-            <h1 class="text-5xl flex m-4">
-                <x-icon-whujo class="w-12 text-primary lg:text-white" />
-            </h1>
-        </div>
+            <div class="block">
+                <x-jet-input id="email"
+                    class="block w-full focus:shadow-outline-gray py-4 transition ease-in-out duration-500" type="email"
+                    name="email" :value="old('email')" required autofocus
+                    placeholder="{{ __('Enter your email address') }}" />
+            </div>
 
+            <div class="flex mt-4">
+                <x-jet-button
+                    class="mx-auto p-4 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-secondary focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-500">
+                    {{ __('Send Password Reset Link') }}
+                </x-jet-button>
+            </div>
+        </form>
     </x-slot>
 
 
-    <x-slot name="right">
-        <div class="w-full md:w-2/3 px-4 h-48 mt-48 mx-auto">
-
-
-            {{-- TITLE --}}
-            <div class="text-left ">
-                <h1 class="text-secondary font-bold text-3xl">
-                    {{__('Forgot your password?')}}
-                </h1>
-            </div>
-
-            <div class="my-4 ">
-                {{ __('No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-            </div>
-
-            @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-            @endif
-
-            <x-jet-validation-errors class="mb-4" />
-
-            <form method="POST" action="{{ route('password.email') }}">
-                @csrf
-
-                <div class="block">
-                    <x-jet-input id="email" class="block w-full focus:shadow-outline-gray py-4 transition ease-in-out duration-500" type="email" name="email" :value="old('email')"
-                        required autofocus placeholder="{{ __('Enter your email address') }}" />
-                </div>
-
-                <div class="flex mt-4">
-                    <x-jet-button class="mx-auto p-4 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-secondary focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-500">
-                        {{ __('Send Password Reset Link') }}
-                    </x-jet-button>
-                </div>
-            </form>
-        </div>
-    </x-slot>
-
-</x-double-panel>
+</x-auth>
