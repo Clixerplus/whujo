@@ -44,16 +44,20 @@
     "No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.": "No hay problema. Simplemente introduce tu email y te enviaremos un enlace de restablecimiento de contraseña que puedas elegir una nueva.",
     "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.": "¡Gracias por registrarte! Antes de empezar, ¿podría verificar su dirección de correo electrónico haciendo clic en el enlace que acabamos de enviarle por correo electrónico? Si usted no ha recibido el correo electrónico, con mucho gusto le enviaremos otro.",
     "Resend Verification Email": "Reenviar verificación de email",
-    "See how better opportunities are created":"Vea como se crean mejores oportunidades",
-    "Don’t have an account?":"No tienes una cuenta?",
-    "Get started":"Comencemos",
-    "Enter your details below":"Ingrese sus datos a continuación",
+    "See how better opportunities are created": "Vea como se crean mejores oportunidades",
+    "Don’t have an account?": "No tienes una cuenta?",
+    "Get started": "Comencemos",
+    "Enter your details below": "Ingrese sus datos a continuación",
     "Two Factor Challenge": "Desafío de Autenticación",
     "Use a recovery code": "Usar código de recuperación",
     "Use an authentication code": "Usar código de autenticación",
-    "Please confirm access to your account by entering one of your emergency recovery codes.":"Confirme el acceso a su cuenta introduciendo uno de sus códigos de recuperación de emergencia.",
-    "Please confirm access to your account by entering the authentication code provided by your authenticator application":"Confirme el acceso a su cuenta introduciendo el código de autenticación proporcionado por su aplicación de autenticador.",
+    "Please confirm access to your account by entering one of your emergency recovery codes.": "Confirme el acceso a su cuenta introduciendo uno de sus códigos de recuperación de emergencia.",
+    "Please confirm access to your account by entering the authentication code provided by your authenticator application": "Confirme el acceso a su cuenta introduciendo el código de autenticación proporcionado por su aplicación de autenticador.",
     "Authentication Code": "Código de Autenticación",
-    "Recovery Code": "Código de Recuperación"
-
+    "Recovery Code": "Código de Recuperación",
+    "Close": "Cerrar",
+    "Next": "Siguiente",
+    "Previous": "Anterior",
+    "Back": "Volver",
+    "Continue": "Continuar"
 }
