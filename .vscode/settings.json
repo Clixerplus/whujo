@@ -1,7 +1,8 @@
 {
     "conventionalCommits.scopes": [
         "Auth",
-        "UI"
+        "UI",
+        "wizard"
     ],
     "files.autoSave": "afterDelay",
     "tailwindCSS.colorDecorators": "on",
