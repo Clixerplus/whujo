@@ -26,8 +26,14 @@ class CreateExperiencesTable extends Migration
             $table->string('photos')->nullable();
 
             $table->string('minimum_age')->nullable();
-            $table->tinyInteger('skill_level')->nullable();
-            $table->tinyInteger('activity_level')->nullable();
+
+            $table->enum('skill_level', config('product.skill_levels'))
+                ->nullable()
+                ->default(config('product.skill_levels')[0]);
+
+            $table->enum('activity_level', config('product.activity_levels'))
+                ->nullable()
+                ->default(config('product.activity_levels')[0]);
 
             $table->text('to_know')->nullable();
 
