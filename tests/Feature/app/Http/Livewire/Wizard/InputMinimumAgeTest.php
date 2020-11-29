@@ -37,9 +37,9 @@ class InputMinimumAgeTest extends TestCase
     /** @test  */
     function minimum_age_must_be_numeric()
     {
-        Livewire::test(InputMinimumAge::class, ['minimumAge' => 'a'])
-            ->call('updatedMinimumAge', 'a')
-            ->assertHasErrors(['minimumAge' => 'numeric']);
+        Livewire::test(InputMinimumAge::class, ['minimumAge' => 2.5])
+            ->call('updatedMinimumAge', 2.5)
+            ->assertHasErrors(['minimumAge' => 'integer']);
     }
 
     /** @test  */
