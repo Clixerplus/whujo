@@ -14,4 +14,8 @@ return [
         'Exigente',
         'Extrema',
     ],
+
+    'price' => [
+        'min' => '2500'
+    ]
 ];
