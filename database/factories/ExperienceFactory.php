@@ -3,9 +3,10 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Category;
 use App\Models\Experience;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExperienceFactory extends Factory
 {
@@ -25,6 +26,7 @@ class ExperienceFactory extends Factory
     {
         return [
             'user_id'        => User::factory(),
+            'category_id'    => Category::factory(),
             'name'           => $this->faker->sentence(),
             // 'location'      => $this->faker->address,
             'todo'           => $this->faker->paragraph(5),

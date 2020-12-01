@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Experience;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -21,5 +22,8 @@ class DatabaseSeeder extends Seeder
                 'name' => 'User Test',
                 'email' => 'usuario@email.test'
             ]);
+
+        Category::factory(3)
+            ->create();
     }
 }
