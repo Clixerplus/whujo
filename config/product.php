@@ -17,5 +17,8 @@ return [
 
     'price' => [
         'min' => '2500'
-    ]
+    ],
+
+    'max_group_size' => '10',
+
 ];
