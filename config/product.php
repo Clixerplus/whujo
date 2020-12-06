@@ -21,4 +21,6 @@ return [
 
     'max_group_size' => '10',
 
+    'MAX_LONG_TEXT' => '1400'
+
 ];
