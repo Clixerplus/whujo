@@ -11,11 +11,15 @@ class Experience extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'name', 'location', 'todo', 'to_provide',
+        'user_id', 'name', 'location', 'todo', 'toProvide',
         'to_bring', 'photos', 'minimum_age', 'skill_level',
         'activity_level', 'to_know', 'group_size', 'duration',
         'starting', 'price', 'private_group', 'price_private_group',
         'reservation_limit_time', 'status',
+    ];
+
+    protected $casts = [
+        'toProvide' => 'array'
     ];
 
 
