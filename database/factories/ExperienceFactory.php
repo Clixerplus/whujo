@@ -30,8 +30,15 @@ class ExperienceFactory extends Factory
             'name'           => $this->faker->sentence(),
             // 'location'      => $this->faker->address,
             'todo'           => $this->faker->paragraph(5),
-            'toProvide'      => [$this->faker->sentence()],
-            'to_bring'       => $this->faker->sentence(),
+            'toProvide'      => [
+                $this->faker->sentence(8),
+                $this->faker->sentence(12)
+            ],
+            'toBring'        => [
+                $this->faker->sentence(3),
+                $this->faker->sentence(4),
+                $this->faker->sentence(2)
+            ],
             'photos'         => $this->faker->imageUrl(300, 300),
             'minimum_age'    => 18,
             'skill_level'    => config('product.skill_levels')[0],
@@ -61,7 +68,7 @@ class ExperienceFactory extends Factory
                 'location'       => null,
                 'todo'           => null,
                 'toProvide'      => [],
-                'to_bring'       => null,
+                'toBring'        => [],
                 'photos'         => null,
                 'minimum_age'    => null,
                 'skill_level'    => null,

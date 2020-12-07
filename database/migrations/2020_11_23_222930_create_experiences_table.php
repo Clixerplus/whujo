@@ -23,7 +23,7 @@ class CreateExperiencesTable extends Migration
             $table->jsonb('location')->nullable();
             $table->text('todo')->nullable();
             $table->jsonb('toProvide')->nullable();
-            $table->text('to_bring')->nullable();
+            $table->jsonb('toBring')->nullable();
             $table->string('photos')->nullable();
 
             $table->string('minimum_age')->nullable();
