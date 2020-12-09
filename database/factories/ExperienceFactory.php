@@ -49,8 +49,10 @@ class ExperienceFactory extends Factory
             'starting'       => $this->faker->time(),
             'price'          => 2500,
             'private_group'  => true,
-            'price_private_group' => 15000,
-            'reservation_limit_time' => $this->faker->time(),
+            'price_private_group'  => 15000,
+            'reservationLimitTime' => $this->faker->randomElement(
+                [0, 1, 2, 3, 4, 5, 6, 12, 24, 48, 72]
+            ),
             'status'        => true,
         ];
     }
@@ -80,8 +82,8 @@ class ExperienceFactory extends Factory
                 'price'          => null,
                 'private_group'  => false,
                 'status'         => false,
-                'price_private_group' => null,
-                'reservation_limit_time' => null,
+                'price_private_group'  => null,
+                'reservationLimitTime' => 0,
             ];
         });
     }

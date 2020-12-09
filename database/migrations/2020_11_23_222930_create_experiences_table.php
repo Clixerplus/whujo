@@ -48,7 +48,7 @@ class CreateExperiencesTable extends Migration
             $table->boolean('private_group')->default(false);
             $table->decimal('price_private_group')->nullable();
 
-            $table->time('reservation_limit_time')->nullable();
+            $table->unsignedSmallInteger('reservationLimitTime')->default(0);
 
             $table->boolean('status')->default(false);
             $table->timestamps();

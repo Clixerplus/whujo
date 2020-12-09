@@ -15,7 +15,7 @@ class Experience extends Model
         'toBring', 'photos', 'minimum_age', 'skill_level',
         'activity_level', 'to_know', 'group_size', 'duration',
         'starting', 'price', 'private_group', 'price_private_group',
-        'reservation_limit_time', 'status',
+        'reservationLimitTime', 'status',
     ];
 
     protected $casts = [
