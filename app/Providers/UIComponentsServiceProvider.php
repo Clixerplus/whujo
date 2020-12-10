@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\UI\Error;
 use App\View\Components\UI\Input;
 use App\View\Components\UI\Button;
 use App\View\Components\UI\Select;
@@ -33,5 +34,6 @@ class UIComponentsServiceProvider extends ServiceProvider
         Blade::component('select', Select::class);
         Blade::component('switch', SwitchButton::class);
         Blade::component('textarea', TextArea::class);
+        Blade::component('error', Error::class);
     }
 }
