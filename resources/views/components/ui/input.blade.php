@@ -1,4 +1,3 @@
-@props(['name'])
 <div class="relative h-auto">
 
     <input
