@@ -21,32 +21,32 @@ class CreateExperiencesTable extends Migration
 
             $table->string('name')->nullable();
             $table->jsonb('location')->nullable();
-            $table->text('todo')->nullable();
+            $table->text('toDo')->nullable();
             $table->jsonb('toProvide')->nullable();
             $table->jsonb('toBring')->nullable();
             $table->string('photos')->nullable();
 
-            $table->string('minimum_age')->nullable();
+            $table->string('minimumAge')->nullable();
 
-            $table->enum('skill_level', config('product.skill_levels'))
+            $table->enum('skillLevel', config('product.skill_levels'))
                 ->nullable()
                 ->default(config('product.skill_levels')[0]);
 
-            $table->enum('activity_level', config('product.activity_levels'))
+            $table->enum('activityLevel', config('product.activity_levels'))
                 ->nullable()
                 ->default(config('product.activity_levels')[0]);
 
-            $table->text('to_know')->nullable();
+            $table->text('toKnow')->nullable();
 
-            $table->string('group_size')->nullable();
-            $table->time('duration')->nullable();
+            $table->string('groupSize')->nullable();
+            $table->time('duration')->default(0);
 
             $table->time('starting')->nullable();
 
             $table->decimal('price')->nullable();
 
-            $table->boolean('private_group')->default(false);
-            $table->decimal('price_private_group')->nullable();
+            $table->boolean('privateGroup')->default(false);
+            $table->decimal('pricePrivateGroup')->nullable();
 
             $table->unsignedSmallInteger('reservationLimitTime')->default(0);
 
