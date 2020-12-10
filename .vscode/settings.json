@@ -3,7 +3,8 @@
         "Auth",
         "UI",
         "wizard",
-        "composer"
+        "composer",
+        "lang"
     ],
     "files.autoSave": "afterDelay",
     "tailwindCSS.colorDecorators": "on",
