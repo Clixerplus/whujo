@@ -1,18 +1,21 @@
-<div class="relative h-auto">
+@props([
+    'class' =>'w-full rounded-md p-4 pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none '
+])
 
-    <input
-        {{
-    $attributes->merge([
-            'class' => 'w-full rounded-md p-4 pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none' ,
-            'name'  => $name ?? ''
-    ])
-    }}
-    >
+@php
+    if ($errors->has($name))
+        $class .= 'ring ring-danger focus:ring-danger ring-opacity-75';
+@endphp
 
-    <span class="ml-2 text-danger text-xs ">
+
+<div class="relative my-2">
+
+    <input {{ $attributes->merge([ 'class' => $class, 'name'  => $name]) }}>
+
+    @if ($name)
         @error($name)
-        {{ $message }}
-        <x-icon-alert-circle-outline class="absolute inset-0 w-10 h-10 mt-2 mr-2 ml-auto opacity-75" />
+            <x-icon-alert-circle-outline class="absolute inset-0 my-auto text-danger w-10 h-10 mr-4 ml-auto" />
         @enderror
-    </span>
+    @endif
+
 </div>
