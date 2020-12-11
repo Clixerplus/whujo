@@ -6,20 +6,16 @@ use Illuminate\View\Component;
 
 class Error extends Component
 {
-    public $name;
-
-    public $icon;
+    public $key;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($name, $icon = false)
+    public function __construct($key)
     {
-        $this->name = $name;
-
-        $this->icon = $icon;
+        $this->key = $key;
     }
 
     /**

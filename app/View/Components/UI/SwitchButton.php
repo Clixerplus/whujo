@@ -6,11 +6,11 @@ use Illuminate\View\Component;
 
 class SwitchButton extends Component
 {
-    public $name;
+    public $key;
 
-    public function __construct($name)
+    public function __construct($key)
     {
-        $this->name = $name ?? '';
+        $this->key = $key ?? '';
     }
 
     /**
