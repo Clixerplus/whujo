@@ -23,33 +23,33 @@ class InputReservationLimitTimeTest extends TestCase
     function it_set_limit_time_attribute()
     {
         Livewire::test(InputReservationLimitTime::class, [$this->intervals[1]])
-            ->assertSet('limitTime', $this->intervals[1]);
+            ->assertSet('reservationLimitTime', $this->intervals[1]);
     }
 
     /** @test  */
-    function it_emit_addAttribute_event_on_updated()
+    function it_emit_saveAttribute_event_on_updated()
     {
         Livewire::test(InputReservationLimitTime::class)
-            ->set('limitTime', $this->intervals[1])
-            ->call('saveInterval')
-            ->assertEmitted('addAttribute', ['reservationLimitTime' => $this->intervals[1]]);
+            ->set('reservationLimitTime', $this->intervals[1])
+            ->call('save')
+            ->assertEmitted('saveAttribute', ['reservationLimitTime' => $this->intervals[1]]);
     }
 
     /** @test  */
     function it_must_exist_in_intervals()
     {
         Livewire::test(InputReservationLimitTime::class)
-            ->set('limitTime', 900)
-            ->call('saveInterval')
-            ->assertHasErrors(['limitTime']);
+            ->set('reservationLimitTime', 900)
+            ->call('save')
+            ->assertHasErrors(['reservationLimitTime']);
     }
 
     /** @test  */
     function skill_level_is_required()
     {
         Livewire::test(InputReservationLimitTime::class)
-            ->set('limitTime', null)
-            ->call('saveInterval')
-            ->assertHasErrors(['limitTime' => 'required']);
+            ->set('reservationLimitTime', null)
+            ->call('save')
+            ->assertHasErrors(['reservationLimitTime' => 'required']);
     }
 }

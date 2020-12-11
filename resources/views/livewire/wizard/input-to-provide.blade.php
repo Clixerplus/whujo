@@ -8,11 +8,14 @@
     </p>
 
     <div class="mt-8">
-        <label for="item" class="font-semibold px-1">Describe brevemente tu actividad</label>
+        <label for="item" class="font-semibold px-1">Elabora tu listado de requerimientos</label>
         <div class="relative mt-2 h-14 w-full">
-            <x-ui.input wire:model="item" class="h-full" id="item" name="item"
-                placeholder="Agrega los items a proveer" />
-            <button wire:click="addItem" class="block absolute inset-y-0 right-4 p-1 m-auto h-10 w-10 rounded-full outline-none hover:shadow-w1 transition ease-in-out text-white bg-success">
+
+            <x-input id="item" :key="'item'" wire:model="item" class="h-full" placeholder="Agrega los items que proveerás para la actividad" />
+
+            <button wire:click="addItem" class="block absolute inset-y-0 right-4 p-1 m-auto h-10 w-10 rounded-full outline-none hover:shadow-w1 transition ease-in-out text-white bg-success"
+                    title="Agregar">
+
                 <x-icon-add-outline />
             </button>
         </div>

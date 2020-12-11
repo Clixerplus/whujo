@@ -9,8 +9,9 @@
 
     <div>
         <label for="toKnow" class="font-semibold px-1">Describe brevemente tu actividad</label>
-        <x-ui.textarea wire:model="toKnow" class="resize-none mt-1 text-sm" id="toKnow" name="toKnow"
-            placeholder="Describe aqui tu actividad" cols="30" rows="8" max="{{$maxChars}}" />
+        <x-textarea id="toKnow" :key="'toKnow'" wire:model="toKnow"
+                    placeholder="Describe aqui tu actividad" cols="30" rows="8" max="{{$maxChars}}" />
+        <x-error :key="'toKnow'"/>
     </div>
 
     <h2 class="font-semibold text-xl">Lorem ipsum dolor sit.</h2>

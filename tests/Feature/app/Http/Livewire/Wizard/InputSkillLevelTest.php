@@ -15,33 +15,36 @@ class InputSkillLevelTest extends TestCase
     {
         $level = config('product.skill_levels');
 
-        Livewire::test(InputSkillLevel::class, ['skillLevel' => $level[0]])
+        Livewire::test(InputSkillLevel::class, [$level[0]])
             ->assertSet('skillLevel', $level[0]);
     }
 
     /** @test  */
-    function it_emit_addAttribute_event_on_updated()
+    function it_emit_saveAttribute_event_on_updated()
     {
         $level = config('product.skill_levels');
 
-        Livewire::test(InputSkillLevel::class, ['skillLevel' => $level[0]])
-            ->call('updatedSkillLevel', $level[0])
-            ->assertEmitted('addAttribute', ['skill_level' => $level[0]]);
+        Livewire::test(InputSkillLevel::class)
+            ->set('skillLevel', $level[0])
+            ->call('save')
+            ->assertEmitted('saveAttribute', ['skillLevel' => $level[0]]);
     }
 
     /** @test  */
     function skill_level_must_exist_in_enum()
     {
-        Livewire::test(InputSkillLevel::class, ['skillLevel' => 'WrongOption'])
-            ->call('updatedSkillLevel', 'WrongOption')
+        Livewire::test(InputSkillLevel::class)
+            ->set('skillLevel', ['WrongOption'])
+            ->call('save')
             ->assertHasErrors(['skillLevel']);
     }
 
     /** @test  */
     function skill_level_is_required()
     {
-        Livewire::test(InputSkillLevel::class, ['skillLevel' => null])
-        ->call('updatedSkillLevel', null)
-        ->assertHasErrors(['skillLevel']);
+        Livewire::test(InputSkillLevel::class)
+            ->set('skillLevel', [null])
+            ->call('save')
+            ->assertHasErrors(['skillLevel']);
     }
 }

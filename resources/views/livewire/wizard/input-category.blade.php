@@ -9,16 +9,19 @@
     </p>
 
 
-    <div class="w-2/4">
+    <div class="w-3/5">
 
         <label for="category" class="font-semibold px-1">Elige una opción</label>
-        <x-ui.select wire:model="category" class="mt-1 text-sm" id="category" placeholder="Describe aqui tu actividad">
 
-            @foreach ($categories as $categoryLoop)
-            <option @if ($category==$categoryLoop->id) selected @endif
-                value="{{ $categoryLoop->id }}">{{ $categoryLoop->name }}</option>
+        <x-select id="category" :key="'category'" wire:model="category">
+            @foreach ($categories as $categoryItem)
+            <option {{isSelected($category, $categoryItem->id)}} value="{{ $categoryItem->id }}">
+                {{ $categoryItem->name }}
+            </option>
             @endforeach
-        </x-ui.select>
+        </x-select>
+
+        <x-error :key="'category'" />
 
     </div>
 

@@ -10,20 +10,24 @@ class InputActivityLevel extends Component
 
     public $activityLevel;
 
-    public function mount($activityLevel)
+    public function mount($activityLevel = null)
     {
-        $this->activityLevel = $activityLevel ?? '';
+        $this->activityLevel = $activityLevel;
     }
 
     public function updatedActivityLevel($value)
     {
+        $this->save();
+    }
 
+    public function save()
+    {
         $this->validate([
             'activityLevel' => 'required|' . Rule::in(config('product.activity_levels'))
         ]);
 
-        $this->emitUp('addAttribute', [
-            'activity_level' => $this->activityLevel
+        $this->emitUp('saveAttribute', [
+            'activityLevel' => $this->activityLevel
         ]);
     }
 

@@ -15,41 +15,47 @@ class InputTodoTest extends TestCase
     /** @test  */
     function it_set_todo_attribute()
     {
-        $todo = Str::random(400);
-        Livewire::test(InputTodo::class, ['todo' => $todo])
-            ->assertSet('todo', $todo);
+        $toDo = Str::random(400);
+
+        Livewire::test(InputTodo::class, [$toDo])
+            ->assertSet('toDo', $toDo);
     }
 
     /** @test  */
-    function it_emit_addAttribute_event_on_updated()
+    function it_emit_saveAttribute_event_on_updated()
     {
-        $todo = Str::random(400);
-        Livewire::test(InputTodo::class, ['todo' => $todo])
-            ->call('updatedTodo', $todo)
-            ->assertEmitted('addAttribute', ['todo' => $todo]);
+        $toDo = Str::random(400);
+
+        Livewire::test(InputTodo::class)
+            ->set('toDo', $toDo)
+            ->call('save')
+            ->assertEmitted('saveAttribute', ['toDo' => $toDo]);
     }
 
     /** @test  */
     function todo_is_required()
     {
-        Livewire::test(InputTodo::class, ['todo' => ''])
-            ->call('updatedTodo', '')
-            ->assertHasErrors(['todo' => 'required']);
+        Livewire::test(InputTodo::class)
+            ->set('toDo', '')
+            ->call('save')
+            ->assertHasErrors(['toDo' => 'required']);
     }
 
     /** @test  */
     function todo_must_have_a_minimun_chars()
     {
-        Livewire::test(InputTodo::class, ['todo' => Str::random(299)])
-            ->call('updatedTodo', '')
-            ->assertHasErrors(['todo' => 'between']);
+        Livewire::test(InputTodo::class)
+            ->set('toDo', Str::random(299))
+            ->call('save')
+            ->assertHasErrors(['toDo' => 'between']);
     }
 
     /** @test  */
     function todo_must_have_a_maximum_chars()
     {
-        Livewire::test(InputTodo::class, ['todo' => Str::random(1201)])
-            ->call('updatedTodo', '')
-            ->assertHasErrors(['todo' => 'between']);
+        Livewire::test(InputTodo::class)
+            ->set('toDo', Str::random(config('product.MAX_LONG_TEXT') + 1))
+            ->call('save')
+            ->assertHasErrors(['toDo' => 'between']);
     }
 }

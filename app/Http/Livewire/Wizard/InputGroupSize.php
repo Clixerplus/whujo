@@ -15,12 +15,20 @@ class InputGroupSize extends Component
 
     public function updatedGroupSize($value)
     {
+        $this->save();
+    }
+
+    public function save()
+    {
         $this->validate([
             'groupSize' => 'required|numeric|between:1,' . config('product.max_group_size')
         ]);
 
-        $this->emitUp('addAttribute', ['group_size' => $this->groupSize]);
+        $this->emitUp('saveAttribute', [
+            'groupSize' => $this->groupSize
+        ]);
     }
+
     public function render()
     {
         return view(

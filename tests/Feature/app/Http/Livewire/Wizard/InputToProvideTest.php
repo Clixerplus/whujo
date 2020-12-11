@@ -28,7 +28,7 @@ class InputToProvideTest extends TestCase
         Livewire::test(InputToProvide::class)
             ->set('item', $toProvide)
             ->call('addItem')
-            ->assertEmitted('addAttribute', ['toProvide' => [$toProvide]])
+            ->assertEmitted('saveAttribute', ['toProvide' => [$toProvide]])
             ->assertSet('item', null);
     }
 
@@ -37,7 +37,7 @@ class InputToProvideTest extends TestCase
     {
         Livewire::test(InputToProvide::class)
             ->call('addItem')
-            ->assertNotEmitted('addAttribute');
+            ->assertNotEmitted('saveAttribute');
     }
 
     /** @test  */
@@ -47,6 +47,6 @@ class InputToProvideTest extends TestCase
 
         Livewire::test(InputToProvide::class, [$toProvide])
             ->call('deleteItem', 0)
-            ->assertEmitted('addAttribute', ['toProvide' => []]);
+            ->assertEmitted('saveAttribute', ['toProvide' => []]);
     }
 }

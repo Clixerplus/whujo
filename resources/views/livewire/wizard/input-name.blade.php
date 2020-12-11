@@ -5,9 +5,15 @@
         blanditiis optio dolorem.
     </p>
 
-    <label class="font-semibold">¿Como llamarás a tu experiencia?</label>
-    <x-ui.input id="name" name="name" wire:model="name" placeholder="Dale un titulo a tu experiencia" minlength="5"
-    maxlength="50" class="mt-2" />
+    <div class="my-4">
+
+        <label for="name" class="font-semibold"> Titulo de la experiencia</label>
+
+        <x-input id="name" :key="'name'" wire:model="name" placeholder="Escribe aqui" minlength="5" maxlength="151" />
+
+        <x-error :key="'name'"/>
+
+    </div>
 
     <h2 class="font-semibold text-xl">Lorem ipsum dolor sit.</h2>
     <p class="text-sm mb-4">

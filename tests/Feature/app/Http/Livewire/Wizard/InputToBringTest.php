@@ -26,7 +26,7 @@ class InputToBringTest extends TestCase
         Livewire::test(InputToBring::class)
             ->set('item', $toBring)
             ->call('addItem')
-            ->assertEmitted('addAttribute', ['toBring' => [$toBring]])
+            ->assertEmitted('saveAttribute', ['toBring' => [$toBring]])
             ->assertSet('item', null);
     }
 
@@ -35,7 +35,7 @@ class InputToBringTest extends TestCase
     {
         Livewire::test(InputToBring::class)
             ->call('addItem')
-            ->assertNotEmitted('addAttribute');
+            ->assertNotEmitted('saveAttribute');
     }
 
     /** @test  */
@@ -45,6 +45,6 @@ class InputToBringTest extends TestCase
 
         Livewire::test(InputToBring::class, [$toBring])
             ->call('deleteItem', 0)
-            ->assertEmitted('addAttribute', ['toBring' => []]);
+            ->assertEmitted('saveAttribute', ['toBring' => []]);
     }
 }

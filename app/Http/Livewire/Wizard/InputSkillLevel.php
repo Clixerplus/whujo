@@ -9,20 +9,23 @@ class InputSkillLevel extends Component
 {
     public $skillLevel;
 
-    public function mount($skillLevel)
+    public function mount($skillLevel = null)
     {
-        $this->skillLevel = $skillLevel ?? '';
+        $this->skillLevel = $skillLevel;
     }
 
     public function updatedSkillLevel($value)
     {
+        $this->save();
+    }
 
+    public function save()
+    {
         $this->validate([
             'skillLevel' => 'required|' . Rule::in(config('product.skill_levels'))
         ]);
-
-        $this->emitUp('addAttribute', [
-            'skill_level' => $this->skillLevel
+        $this->emitUp('saveAttribute', [
+            'skillLevel' => $this->skillLevel
         ]);
     }
 

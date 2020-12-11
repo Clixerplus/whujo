@@ -25,7 +25,7 @@ class InputToBring extends Component
 
             $this->intitializeItem();
 
-            $this->addAttribute();
+            $this->save();
         }
     }
 
@@ -34,13 +34,13 @@ class InputToBring extends Component
 
         unset($this->toBring[$index]);
 
-        $this->addAttribute();
+        $this->save();
     }
 
-    private function addAttribute()
+    private function save()
     {
 
-        $this->emitUp('addAttribute', [
+        $this->emitUp('saveAttribute', [
             'toBring' => $this->toBring
         ]);
     }

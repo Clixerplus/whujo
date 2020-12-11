@@ -15,12 +15,17 @@ class InputToKnow extends Component
 
     public function updatedToKnow($value)
     {
+        $this->save();
+    }
+
+    public function save()
+    {
         $this->validate([
             'toKnow' => 'string|max:' . config('product.MAX_LONG_TEXT')
         ]);
 
-        $this->emitUp('addAttribute', [
-            'to_know' => $this->toKnow
+        $this->emitUp('saveAttribute', [
+            'toKnow' => $this->toKnow
         ]);
     }
 

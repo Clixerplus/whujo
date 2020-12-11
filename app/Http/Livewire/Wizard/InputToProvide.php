@@ -26,7 +26,7 @@ class InputToProvide extends Component
 
             $this->intitializeItem();
 
-            $this->addAttribute();
+            $this->save();
         }
     }
 
@@ -35,13 +35,13 @@ class InputToProvide extends Component
 
         unset($this->toProvide[$index]);
 
-        $this->addAttribute();
+        $this->save();
     }
 
-    private function addAttribute()
+    private function save()
     {
 
-        $this->emitUp('addAttribute', [
+        $this->emitUp('saveAttribute', [
             'toProvide' => $this->toProvide
         ]);
     }

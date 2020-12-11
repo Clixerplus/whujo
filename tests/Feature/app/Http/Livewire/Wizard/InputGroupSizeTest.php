@@ -20,47 +20,52 @@ class InputGroupSizeTest extends TestCase
     /** @test  */
     function it_set_group_size_attribute()
     {
-        Livewire::test(InputGroupSize::class, ['groupSize' => 5])
+        Livewire::test(InputGroupSize::class, [5])
             ->assertSet('groupSize', 5);
     }
 
     /** @test  */
-    function it_emit_addAttribute_event_on_updated()
+    function it_emit_saveAttribute_event_on_updated()
     {
-        Livewire::test(InputGroupSize::class, ['groupSize' => 5])
-            ->call('updatedGroupSize', 5)
-            ->assertEmitted('addAttribute', ['groupSize' => 5]);
+        Livewire::test(InputGroupSize::class)
+            ->set('groupSize',  5)
+            ->call('save')
+            ->assertEmitted('saveAttribute', ['groupSize' => 5]);
     }
 
     /** @test  */
     function group_size_is_required()
     {
-        Livewire::test(InputGroupSize::class, ['groupSize' => null])
-            ->call('updatedGroupSize', null)
+        Livewire::test(InputGroupSize::class)
+            ->set('groupSize',  null)
+            ->call('save')
             ->assertHasErrors(['groupSize' => 'required']);
     }
 
     /** @test  */
     function group_size_must_be_numeric()
     {
-        Livewire::test(InputGroupSize::class, ['groupSize' => 'a'])
-            ->call('updatedGroupSize', 'a')
+        Livewire::test(InputGroupSize::class)
+            ->set('groupSize', 'a')
+            ->call('save')
             ->assertHasErrors(['groupSize' => 'numeric']);
     }
 
     /** @test  */
     function group_size_must_have_a_minimum()
     {
-        Livewire::test(InputGroupSize::class, ['groupSize' => 0])
-            ->call('updatedGroupSize', 0)
+        Livewire::test(InputGroupSize::class)
+            ->set('groupSize',  0)
+            ->call('save')
             ->assertHasErrors(['groupSize' => 'between']);
     }
 
     /** @test  */
     function group_size_must_have_a_maximum()
     {
-        Livewire::test(InputGroupSize::class, ['groupSize' => $this->maxSize + 1])
-            ->call('updatedGroupSize', $this->maxSize + 1)
+        Livewire::test(InputGroupSize::class)
+            ->set('groupSize',  $this->maxSize + 1)
+            ->call('save')
             ->assertHasErrors(['groupSize' => 'between']);
     }
 }

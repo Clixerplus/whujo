@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class InputTodo extends Component
 {
-    public $todo;
+    public $toDo;
 
     public $counter;
 
@@ -16,36 +16,42 @@ class InputTodo extends Component
     const MIN_CHARS = 300;
 
     protected $rules = [
-        'todo' => 'required|string|between:' . self::MIN_CHARS . ',' . self::MAX_CHARS
+        'toDo' => 'required|string|between:' . self::MIN_CHARS . ',' . self::MAX_CHARS
     ];
 
-    public function mount($todo)
+    public function mount($toDo = null)
     {
-        $this->$todo = $todo ?? '';
+        $this->toDo = $toDo;
+
         $this->counterChars();
     }
 
     public function counterChars()
     {
-        $this->counter = Str::length($this->todo);
+        $this->counter = Str::length($this->toDo);
     }
 
     public function updatedTodo($value)
     {
         $this->counterChars();
 
+        $this->save();
+    }
+
+    public function save()
+    {
         $this->validate();
 
-        $this->emitUp('addAttribute', [
-            'todo' => $this->todo
+        $this->emitUp('saveAttribute', [
+            'toDo' => $this->toDo
         ]);
     }
 
     public function render()
     {
-        return view('livewire.wizard.input-todo', [
+        return view('livewire.wizard.input-toDo', [
             'maxChars' => self::MAX_CHARS,
-            'minChars' => self::MIN_CHARS
+            'minChars' => self::MIN_CHARS,
         ]);
     }
 }

@@ -12,14 +12,16 @@
     <div class="w-2/4">
 
         <label for="groupSize" class="font-semibold px-1">Elige una opción</label>
-        <x-ui.select wire:model="groupSize" class="mt-1 text-sm" id="groupSize"
-            placeholder="Describe aqui tu actividad">
+
+        <x-select id="groupSize" :key="'groupSize'" wire:model="groupSize">
             @for ($i= 1; $i<=$groupMaxSize; $i++ )
-                <option @if ($groupSize==$i) selected @endif>
+                <option {{ isSelected($groupSize, $i) }} value="{{ $i }}">
                     {{ $i }}
                 </option>
-                @endfor
-        </x-ui.select>
+            @endfor
+        </x-select>
+
+        <x-error :key="'groupSize'" />
 
     </div>
 

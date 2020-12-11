@@ -5,8 +5,17 @@
         blanditiis optio dolorem.
     </p>
 
-    <label class="font-semibold">Monto individual</label>
-<x-ui.input id="price" name="price" wire:model="price" placeholder="0.00" min="{{ $minPrice }}" class="mt-2" />
+
+    <div class="my-4">
+
+        <label for="price" class="font-semibold">Precio individual porparticipar</label>
+
+        <x-input id="price" :key="'price'" wire:model="price" placeholder="0.00" min="{{ $minPrice }}" />
+
+        <x-error :key="'price'" />
+
+    </div>
+
 
     <h2 class="font-semibold text-xl">Lorem ipsum dolor sit.</h2>
     <p class="text-sm mb-4">

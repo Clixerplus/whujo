@@ -25,23 +25,24 @@ class InputCategoryTest extends TestCase
     /** @test  */
     function it_set_category_attribute()
     {
-        Livewire::test(InputCategory::class, ['category' => 1])
+        Livewire::test(InputCategory::class, [1])
             ->assertSet('category', 1);
     }
 
     /** @test  */
-    function it_emit_addAttribute_event_on_updated()
+    function it_emit_saveAttribute_event_on_updated()
     {
-        Livewire::test(InputCategory::class, ['category' => 1])
-            ->call('updatedCategory', 1)
-            ->assertEmitted('addAttribute', ['category_id' => 1]);
+        Livewire::test(InputCategory::class, [1])
+            ->call('save')
+            ->assertEmitted('saveAttribute', ['category_id' => 1]);
     }
 
     /** @test  */
     function category_must_exist()
     {
-        Livewire::test(InputCategory::class, ['category' => 2])
-            ->call('updatedCategory', 2)
+        Livewire::test(InputCategory::class)
+            ->set('category', 2)
+            ->call('save')
             ->assertHasErrors(['category']);
     }
 }

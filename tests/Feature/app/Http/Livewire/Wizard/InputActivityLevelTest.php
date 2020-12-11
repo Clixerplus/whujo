@@ -14,33 +14,33 @@ class InputActivityLevelTest extends TestCase
     {
         $level = config('product.activity_levels');
 
-        Livewire::test(InputActivityLevel::class, ['activityLevel' => $level[0]])
+        Livewire::test(InputActivityLevel::class, [$level[0]])
             ->assertSet('activityLevel', $level[0]);
     }
 
     /** @test  */
-    function it_emit_addAttribute_event_on_updated()
+    function it_emit_saveAttribute_event_on_updated()
     {
         $level = config('product.activity_levels');
 
-        Livewire::test(InputActivityLevel::class, ['activityLevel' => $level[0]])
-            ->call('updatedActivityLevel', $level[0])
-            ->assertEmitted('addAttribute', ['activity_level' => $level[0]]);
+        Livewire::test(InputActivityLevel::class, [$level[0]])
+            ->call('save')
+            ->assertEmitted('saveAttribute', ['activityLevel' => $level[0]]);
     }
 
     /** @test  */
     function activity_level_must_exist_in_enum()
     {
-        Livewire::test(InputActivityLevel::class, ['activityLevel' => 'WrongOption'])
-            ->call('updatedActivityLevel', 'WrongOption')
-            ->assertHasErrors(['activityLevel']);
+        Livewire::test(InputActivityLevel::class, ['WrongOption'])
+            ->call('save')
+            ->assertHasErrors(['activityLevel' => 'in']);
     }
 
     /** @test  */
     function activity_level_is_required()
     {
-        Livewire::test(InputActivityLevel::class, ['activityLevel' => null])
-            ->call('updatedActivityLevel', null)
-            ->assertHasErrors(['activityLevel']);
+        Livewire::test(InputActivityLevel::class, [null])
+            ->call('save')
+            ->assertHasErrors(['activityLevel' => 'required']);
     }
 }

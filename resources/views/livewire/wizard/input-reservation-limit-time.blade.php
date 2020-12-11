@@ -11,11 +11,11 @@
 
     <div class="w-3/5">
 
-        <label for="limitTime" class="font-semibold px-1">Elige una opción</label>
-        <x-ui.select wire:model="limitTime" class="mt-2 text-sm" id="limitTime"
-            placeholder="Describe aqui tu actividad">
+        <label for="reservationLimitTime" class="font-semibold px-1">Elige una opción</label>
+
+        <x-select id="reservationLimitTime" :key="'reservationLimitTime'" wire:model="reservationLimitTime" >
             @foreach ($intervals as $interval)
-                <option @if ($limitTime == $interval) selected @endif value="{{ $interval }}">
+                <option  {{ isSelected($reservationLimitTime , $interval) }} value="{{ $interval }}">
                     @if ($loop->first)
                         Sin Límite
                     @else
@@ -23,8 +23,9 @@
                     @endif
                 </option>
             @endforeach
-        </x-ui.select>
+        </x-select>
 
+        <x-error :key="'reservationLimitTime'"/>
     </div>
 
 </div>

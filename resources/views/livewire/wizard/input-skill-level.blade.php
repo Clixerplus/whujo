@@ -12,13 +12,14 @@
     <div class="w-2/4">
 
         <label for="skillLevel" class="font-semibold px-1">Elige una opción</label>
-        <x-ui.select wire:model="skillLevel" class="mt-1 text-sm" id="skillLevel"
-            placeholder="Describe aqui tu actividad">
-            @foreach ($levelOptions as $option)
-            <option @if ($skillLevel==$option) selected @endif>{{ $option }}</option>
-            @endforeach
-        </x-ui.select>
 
+        <x-select id="skillLevel" :key="'skillLevel'" wire:model="skillLevel">
+            @foreach ($levelOptions as $option)
+                <option {{ isSelected($skillLevel,$option) }}>{{ $option }}</option>
+            @endforeach
+        </x-select>
+
+        <x-error :key="'skillLevel'"/>
     </div>
 
 </div>

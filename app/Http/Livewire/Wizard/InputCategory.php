@@ -16,12 +16,16 @@ class InputCategory extends Component
 
     public function updatedCategory($value)
     {
+        $this->save();
+    }
 
+    public function save()
+    {
         $this->validate([
             'category' => 'exists:categories,id'
         ]);
 
-        $this->emitUp('addAttribute', [
+        $this->emitUp('saveAttribute', [
             'category_id' => $this->category
         ]);
     }

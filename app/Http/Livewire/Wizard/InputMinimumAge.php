@@ -17,18 +17,22 @@ class InputMinimumAge extends Component
         'minimumAge' => 'required|integer|min:' . self::MIN_AGE . '|max:' . self::MAX_AGE
     ];
 
-    public function mount($minimumAge)
+    public function mount($minimumAge = 0)
     {
         $this->minimumAge = $minimumAge;
     }
 
     public function updatedMinimumAge($value)
     {
+        $this->save();
+    }
 
+    public function save()
+    {
         $this->validate();
 
-        $this->emitUp('addAttribute', [
-            'minimum_age' => $this->minimumAge
+        $this->emitUp('saveAttribute', [
+            'minimumAge' => $this->minimumAge
         ]);
     }
 

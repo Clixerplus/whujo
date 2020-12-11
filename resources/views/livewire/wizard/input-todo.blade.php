@@ -9,13 +9,17 @@
     </p>
 
 
-    <div>
-
-        <label for="todo" class="font-semibold px-1">Describe brevemente tu actividad</label>
-        <x-ui.textarea wire:model="todo" class="resize-none mt-1 text-sm" id="todo" name="todo"
-            placeholder="Describe aqui tu actividad" cols="30" rows="8" min="{{$minChars}}" max="{{$maxChars}}" />
+    <div class="my-6">
+        <label for="toDo" class="font-semibold px-1">Describe brevemente tu actividad</label>
+        <x-textarea id="toDo" :key="'toDo'" wire:model="toDo"
+                    placeholder="Describe aqui tu actividad"
+                    cols="30" rows="8" min="{{$minChars}}" max="{{$maxChars}}">
+    
+        </x-textarea>
         <span class="text-xs float-right px-1 mt-2 " wire:model="counter">{{ $counter }}/{{ $maxChars }}</span>
+        <x-error :key="'toDo'"/>
     </div>
+
 
     <h2 class="font-semibold text-xl">Lorem ipsum dolor sit.</h2>
     <div class="px-1">

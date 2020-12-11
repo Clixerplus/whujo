@@ -9,15 +9,18 @@
     </p>
 
 
-    <div class="w-2/4">
+    <div class="my-4 w-3/5">
 
         <label for="minimumAge" class="font-semibold px-1">Edad mínima</label>
-        <x-ui.select wire:model="minimumAge" class="mt-1 text-sm" id="minimumAge"
-            placeholder="Describe aqui tu actividad" min="{{$minAge}}" max="{{$maxAge}}">
+
+        <x-select id="minimumAge" :key="'minimumAge'" wire:model="minimumAge">
             @for ($i = $minAge; $i <= $maxAge; $i++)
-                <option>{{$i}}</option>
+                <option {{ isSelected($minimumAge, $i) }} value="{{ $i }}">{{ $i }}</option>
             @endfor
-        </x-ui.select>
+        </x-select>
+
+        <x-error :key="'minimumAge'"/>
+
     </div>
 
     <h2 class="font-semibold text-xl">Lorem ipsum dolor sit.</h2>

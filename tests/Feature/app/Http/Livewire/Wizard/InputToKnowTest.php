@@ -16,16 +16,17 @@ class InputToKnowTest extends TestCase
     {
         $toKnow = Str::random(400);
 
-        Livewire::test(InputToKnow::class, ['toKnow' => $toKnow])
+        Livewire::test(InputToKnow::class, [$toKnow])
             ->assertSet('toKnow', $toKnow);
     }
 
     /** @test  */
-    function it_emit_addAttribute_event_on_updated()
+    function it_emit_saveAttribute_event_on_updated()
     {
-        Livewire::test(InputToKnow::class, ['toKnow' => ''])
-            ->call('updatedToKnow', '')
-            ->assertEmitted('addAttribute', ['toKnow' => '']);
+        Livewire::test(InputToKnow::class)
+            ->set('toKnow',  '')
+            ->call('save')
+            ->assertEmitted('saveAttribute', ['toKnow' => '']);
     }
 
     /** @test  */
@@ -33,8 +34,9 @@ class InputToKnowTest extends TestCase
     {
         $maxChars = config('product.MAX_LONG_TEXT');
 
-        Livewire::test(InputToKnow::class, ['toKnow' => Str::random($maxChars + 1)])
-            ->call('updatedToKnow', '')
+        Livewire::test(InputToKnow::class)
+            ->set('toKnow',  Str::random($maxChars + 1))
+            ->call('save')
             ->assertHasErrors(['toKnow' => 'max']);
     }
 }

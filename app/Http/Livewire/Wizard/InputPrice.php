@@ -8,7 +8,7 @@ class InputPrice extends Component
 {
     public $price;
 
-    public function mount(string $price = null)
+    public function mount($price = 0)
     {
         $this->price = $price;
     }
@@ -16,14 +16,18 @@ class InputPrice extends Component
 
     public function updatedPrice($value)
     {
+        $this->save();
+    }
 
-
+    public function save()
+    {
         $this->validate([
             'price' => 'required|numeric|min:' . config('product.price.min')
         ]);
-           
-        $this->emitUp('addAttribute', ['price' => $this->price]);
+
+        $this->emitUp('saveAttribute', ['price' => $this->price]);
     }
+
     public function render()
     {
         return view(
