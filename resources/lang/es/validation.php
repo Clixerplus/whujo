@@ -146,6 +146,25 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name'                 => 'nombre',
+        'toDo'                 => 'descripción',
+        'toProvide'            => 'provisiones',
+        'toBring'              => 'requerimientos',
+        'photos'               => 'fotos',
+        'minimumAge'           => 'edad mínima',
+        'skillLevel'           => 'nivel de habilidad',
+        'activityLevel'        => 'Nivel de Actividad',
+        'toKnow'               => 'recomendaciones',
+        'groupSize'            => 'tamaño de grupo',
+        'duration'             => 'tiempo de actividad',
+        'starting'             => 'hora de inicio',
+        'price'                => 'precio',
+        'privateGroup'         => 'grupos privados',
+        'pricePrivateGroup'    => 'precio por grupo',
+        'reservationLimitTime' => 'Limite para reservaciones',
+        'hour'                 => 'horas',
+        'minute'               => 'minutos'
+    ],
 
 ];
