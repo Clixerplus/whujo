@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\View\Components\UI\Callout;
 use App\View\Components\UI\Error;
 use App\View\Components\UI\Input;
 use App\View\Components\UI\Button;
@@ -35,5 +36,6 @@ class UIComponentsServiceProvider extends ServiceProvider
         Blade::component('switch', SwitchButton::class);
         Blade::component('textarea', TextArea::class);
         Blade::component('error', Error::class);
+        Blade::component('callout', Callout::class);
     }
 }
