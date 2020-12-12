@@ -6,8 +6,8 @@
         $class .= 'ring ring-danger focus:ring-danger ring-opacity-75';
 @endphp
 <div class="relative my-2">
-    <div class="absolute inset-0 ml-auto border-l z-0 py-4  rounded-r  w-10">
-        <x-icon-code-outline class="w-6 h-6 m-auto z-0 transform rotate-90 text-gray-500"             />
+    <div class="border-l pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-600">
+        <x-icon-caret-down-circle-outline class="fill-current w-6 h-6"             />
     </div>
 
     <select {{ $attributes->merge([ 'class' => $class, 'name'  => $key])}}>
