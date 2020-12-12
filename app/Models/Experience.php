@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Casts\TimeCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -20,7 +21,9 @@ class Experience extends Model
 
     protected $casts = [
         'toProvide' => 'array',
-        'toBring'   => 'array'
+        'toBring'   => 'array',
+        'duration'  => TimeCast::class,
+        'starting'  => TimeCast::class,
     ];
 
 

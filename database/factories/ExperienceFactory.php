@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Experience;
-use Illuminate\Support\Carbon;
+use App\ValueObjcets\TimeVO;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExperienceFactory extends Factory
@@ -24,6 +25,10 @@ class ExperienceFactory extends Factory
      */
     public function definition()
     {
+        $duration = new TimeVO(rand(0, 16));
+
+        $duration = new TimeVO(rand(8, 18), 30);
+
         return [
             'user_id'        => User::factory(),
             'category_id'    => Category::factory(),
@@ -45,7 +50,7 @@ class ExperienceFactory extends Factory
             'activityLevel' => config('product.activity_levels')[0],
             'toKnow'        => $this->faker->paragraph(5),
             'groupSize'     => 10,
-            'duration'      => $this->faker->time,
+            'duration'      => $duration->toArray(),
             'starting'      => $this->faker->time(),
             'price'         => 2500,
             'privateGroup'  => true,
@@ -64,7 +69,11 @@ class ExperienceFactory extends Factory
      */
     public function blank()
     {
-        return $this->state(function (array $attributes) {
+        $duration = new TimeVO();
+
+        $starting = new TimeVO(8, 30);
+
+        return $this->state(function (array $attributes) use ($duration, $starting) {
             return [
                 'name'           => null,
                 'location'       => null,
@@ -77,8 +86,8 @@ class ExperienceFactory extends Factory
                 'activityLevel'  => null,
                 'toKnow'         => null,
                 'groupSize'      => null,
-                'duration'       => 0,
-                'starting'       => null,
+                'duration'       => $duration,
+                'starting'       => $starting,
                 'price'          => null,
                 'privateGroup'   => false,
                 'status'         => false,

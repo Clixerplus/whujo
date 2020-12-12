@@ -39,9 +39,9 @@ class CreateExperiencesTable extends Migration
             $table->text('toKnow')->nullable();
 
             $table->string('groupSize')->nullable();
-            $table->time('duration')->default(0);
+            $table->jsonb('duration')->nullable();
 
-            $table->time('starting')->nullable();
+            $table->jsonb('starting')->nullable();
 
             $table->decimal('price')->nullable();
 
