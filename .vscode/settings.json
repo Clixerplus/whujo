@@ -4,7 +4,8 @@
         "UI",
         "wizard",
         "composer",
-        "lang"
+        "lang",
+        "npm"
     ],
     "files.autoSave": "afterDelay",
     "tailwindCSS.colorDecorators": "on",
