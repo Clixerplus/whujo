@@ -45,6 +45,9 @@ module.exports = {
     },
 
     variants: {
+        extend: {
+            translate: ["group-hover"],
+        },
         opacity: ["responsive", "hover", "focus", "disabled"],
     },
     plugins: [require("tailwindcss-brand-colors")],
