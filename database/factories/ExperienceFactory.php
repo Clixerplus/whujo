@@ -53,6 +53,7 @@ class ExperienceFactory extends Factory
                 $this->faker->sentence(2)
             ],
 
+<<<<<<< HEAD
             'photos'         => $this->faker->randomElement([
                     "https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
                     "https://images.pexels.com/photos/5414000/pexels-photo-5414000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
@@ -72,6 +73,28 @@ class ExperienceFactory extends Factory
             'status'         => true,
 
             'pricePrivateGroup'    => 15000,
+=======
+            'photos'        => [
+                'portrait' => $this->faker->randomElement([
+                    'https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                    'https://images.pexels.com/photos/5414000/pexels-photo-5414000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                    'https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+                    'https://images.pexels.com/photos/2040189/pexels-photo-2040189.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                ]),
+
+                'portfolio' => [],
+            ],
+            'minimumAge'    => 18,
+            'skillLevel'    => config('product.skill_levels')[0],
+            'activityLevel' => config('product.activity_levels')[0],
+            'toKnow'        => $this->faker->paragraph(5),
+            'groupSize'     => 10,
+            'duration'      => $duration->toArray(),
+            'starting'      => $this->faker->time(),
+            'price'         => 2500,
+            'privateGroup'  => true,
+            'pricePrivateGroup'  => 15000,
+>>>>>>> 58093c688040086689882c79276a6225d764890e
             'reservationLimitTime' => $this->faker->randomElement(
                 [0, 1, 2, 3, 4, 5, 6, 12, 24, 48, 72]
             ),
