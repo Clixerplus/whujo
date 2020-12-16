@@ -1,9 +1,9 @@
 <div>
-    <x-button {{ $attributes->merge(['class'=>'text-lg']) }}>
+    <x-button {{ $attributes }}>
 
-        <x-dynamic-component :component="$icon" class="h-5 w-5 fill-current" />
+        <x-dynamic-component :component="$icon" class="h-auto w-4 fill-current" />
 
-        <span class="mx-4">{{ $slot }}</span>
+        <span class="mx-2">{{ $slot }}</span>
 
     </x-button>
 </div>
