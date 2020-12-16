@@ -20,11 +20,10 @@ class CreateExperiencesTable extends Migration
             $table->foreignId('category_id')->constrained();
 
             $table->string('name')->nullable();
-            $table->jsonb('location')->nullable();
             $table->text('toDo')->nullable();
             $table->jsonb('toProvide')->nullable();
             $table->jsonb('toBring')->nullable();
-            $table->string('photos')->nullable();
+            $table->jsonb('photos')->nullable();
 
             $table->string('minimumAge')->nullable();
 

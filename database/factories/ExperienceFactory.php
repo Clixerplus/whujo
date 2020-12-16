@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\City;
+use App\Models\Departament;
 use App\Models\Experience;
+use App\Models\Locality;
 use App\ValueObjcets\TimeVO;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -32,19 +34,35 @@ class ExperienceFactory extends Factory
         return [
             'user_id'        => User::factory(),
             'category_id'    => Category::factory(),
+
+            'city_id'        => City::factory(),
+            'departament_id' => Departament::factory(),
+            'locality_id'    => Locality::factory(),
+            'address'        => $this->faker->address,
+
             'name'           => $this->faker->sentence(),
-            // 'location'      => $this->faker->address,
             'toDo'           => $this->faker->paragraph(5),
             'toProvide'      => [
                 $this->faker->sentence(8),
                 $this->faker->sentence(12)
             ],
+
             'toBring'        => [
                 $this->faker->sentence(3),
                 $this->faker->sentence(4),
                 $this->faker->sentence(2)
             ],
-            'photos'        => $this->faker->imageUrl(300, 300),
+
+            'photos'        => [
+                'portrait' => $this->faker->randomElement([
+                    'https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                    'https://images.pexels.com/photos/5414000/pexels-photo-5414000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                    'https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+                    'https://images.pexels.com/photos/2040189/pexels-photo-2040189.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                ]),
+
+                'portfolio' => [],
+            ],
             'minimumAge'    => 18,
             'skillLevel'    => config('product.skill_levels')[0],
             'activityLevel' => config('product.activity_levels')[0],
@@ -71,12 +89,15 @@ class ExperienceFactory extends Factory
     {
         $duration = new TimeVO();
 
-        $starting = new TimeVO(8, 30);
+        $starting = new TimeVO();
 
         return $this->state(function (array $attributes) use ($duration, $starting) {
             return [
                 'name'           => null,
-                'location'       => null,
+                'city_id'        => null,
+                'departament_id' => null,
+                'locality_id'    => null,
+                'address'        => null,
                 'toDo'           => null,
                 'toProvide'      => [],
                 'toBring'        => [],

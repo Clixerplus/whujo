@@ -16,12 +16,14 @@ class Experience extends Model
         'toBring', 'photos', 'minimumAge', 'skillLevel',
         'activityLevel', 'toKnow', 'groupSize', 'duration',
         'starting', 'price', 'privateGroup', 'pricePrivateGroup',
-        'reservationLimitTime', 'status',
+        'reservationLimitTime', 'status', 'city_id', 'departament_id',
+        'locality_id', 'address'
     ];
 
     protected $casts = [
         'toProvide' => 'array',
         'toBring'   => 'array',
+        'photos'   => 'array',
         'duration'  => TimeCast::class,
         'starting'  => TimeCast::class,
     ];
