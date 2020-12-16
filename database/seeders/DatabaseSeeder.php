@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(3)
             ->create();
+
+        Experience::factory(10)->create();
     }
 }

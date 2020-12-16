@@ -105,23 +105,30 @@
         </div>
     </div>
     <section class="relative py-20 max-w-screen bg-gray-50 -mt-0.5">
-
         <div class="container mx-auto px-4 ">
             <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-                <div class="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
-                    <x-card-v01>
-                        <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
-                        class="object-cover w-full h-64" alt="" />
-                    </x-card-v01>
-                    <x-card-v01>
-                       <img src="https://images.pexels.com/photos/447592/pexels-photo-447592.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                        class="object-cover w-full h-64" alt="" />
-                    </x-card-v01>
-                    <x-card-v01>
-                        <img src="https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-                            class="object-cover w-full h-64" alt="" />
-                    </x-card-v01>
+                <div class="flex flex-col mb-6 lg:justify-between lg:flex-row md:mb-8">
+                    <h2 class="max-w-lg mb-5 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-5 md:mb-6 group">
+                        <span class="inline-block mb-1 sm:mb-4">
+                            Los mejores profesionales <br class="hidden md:block" />
+                            todos a tu disposición
+                        </span>
+                        <div class="h-1 ml-auto duration-300 origin-left transform bg-primary rounded-full scale-x-30 group-hover:scale-x-100"></div>
+                    </h2>
+                    <p class="text-gray-700 lg:text-sm lg:max-w-md">
+                        "Sed ut perspiciatis unde omnis iste natus error sit iste voluptatem accusantium doloremque rem aperiam, ipsa eaque quae. Sed ut perspiciatis unde omnis iste."
+                    </p>
                 </div>
+                <div class="w-full mb-8">
+
+                    @php
+                        $model = DB::table('experiences')->where('user_id','>', 1)->get();
+                    @endphp
+
+                    <x-embla-carousel :model="$model"/>
+
+                </div>
+
             </div>
         </div>
     </section>

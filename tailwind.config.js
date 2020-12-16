@@ -38,7 +38,7 @@ module.exports = {
                     "0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
             },
             fontFamily: {
-                sans: ["Quicksand", ...defaultTheme.fontFamily.sans],
+                sans: ["Inter", ...defaultTheme.fontFamily.sans],
                 whujo: ["arial"],
             },
         },

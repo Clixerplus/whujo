@@ -16,12 +16,14 @@ class Experience extends Model
         'toBring', 'photos', 'minimumAge', 'skillLevel',
         'activityLevel', 'toKnow', 'groupSize', 'duration',
         'starting', 'price', 'privateGroup', 'pricePrivateGroup',
-        'reservationLimitTime', 'status',
+        'reservationLimitTime', 'status', 'city_id', 'departament_id',
+        'locality_id', 'address'
     ];
 
     protected $casts = [
         'toProvide' => 'array',
         'toBring'   => 'array',
+        //'photos'   => 'array',
         'duration'  => TimeCast::class,
         'starting'  => TimeCast::class,
     ];
@@ -35,5 +37,20 @@ class Experience extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    public function departament()
+    {
+        return $this->belongsTo(Departament::class);
+    }
+
+    public function locality()
+    {
+        return $this->belongsTo(Locality::class);
     }
 }
