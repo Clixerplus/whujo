@@ -1,16 +1,15 @@
-@props([
-    'class' =>'w-full rounded-md p-4 pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none '
-])
-
 @php
-    if ($errors->has($key))
-        $class .= 'ring ring-danger focus:ring-danger ring-opacity-75';
+    $class= ($errors->has($key))
+        ? 'ring ring-danger focus:ring-danger ring-opacity-75'
+        : '';
 @endphp
-
 
 <div class="relative my-2">
 
-    <input {{ $attributes->merge([ 'class' => $class, 'name'  => $key]) }}>
+    <input {{ $attributes->merge([
+        'class' => 'w-full rounded-md p-4 pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none ' . $class,
+        'name'  => $key])
+    }}>
 
     @if ($key)
         @error($key)

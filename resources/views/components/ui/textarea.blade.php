@@ -1,16 +1,17 @@
-@props([
-    'class'=> 'w-full rounded-md p-4 pr-16 my-2 outline-none placeholder-gray-500
-               border focus:ring focus:ring-gray-200 resize-none text-sm'
-])
 
 @php
-    if ($errors->has($key))
-        $class .= 'ring ring-danger focus:ring-danger ring-opacity-75';
+    $class = ($errors->has($key))
+         ? 'ring ring-danger focus:ring-danger ring-opacity-75'
+         : '';
 @endphp
 
-<div class="relative    ">
+<div class="relative">
 
-    <textarea {{ $attributes->merge(['class' => $class,'name'  => $key]) }}></textarea>
+    <textarea {{ $attributes->merge([
+        'class' => 'w-full rounded-md p-4 pr-16 my-2 outline-none placeholder-gray-500
+                    border focus:ring focus:ring-gray-200 resize-none text-sm',
+        'name'  => $key])
+    }}></textarea>
 
     @if ($key)
         @error($key)

@@ -1,4 +1,4 @@
-<div id="alert" class="w-full p-2 transform  transition-all ease-out duration-300">
+<div id="{{$id}}" class="w-full p-2 transform  transition-all ease-out duration-300">
     <div class="relative flex justify-between bg-white rounded overflow-hidden p-2 space-x-1">
         <div class="absolute inset-0 border-l-4 border-{{$color}}-400"></div>
         <div class="flex items-baseline">
@@ -10,7 +10,7 @@
             {{ $slot }}
         </div>
         <div class="z-10">
-            <button type="button" class=" bg-indigo-300 bg-opacity-25 text-gray-700 rounded overflow-hidden p-1 lg:p-2 focus:outline-none" onclick="closeAlert()">
+            <button type="button" class="transform bg-indigo-300 bg-opacity-25 text-gray-700 rounded overflow-hidden p-1 lg:p-2 focus:outline-none" onclick="document.getElementById('{{ $id }}').classList.add('scale-x-0', '-translate-x-full')">
                 <x-icon-close-outline class="h-4 w-auto" />
             </button>
         </div>

@@ -24,16 +24,20 @@ class Alert extends Component
 
     public string $icon;
 
+    public string $id;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $type = "default")
+    public function __construct(string $type = "default", $id = 'alert')
     {
         $this->color  = self::COLOR[$type];
 
         $this->icon   = self::ICON[$type];
+
+        $this->id     = $id;
     }
 
     /**
