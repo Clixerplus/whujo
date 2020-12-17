@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\WizardCreator;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+Route::view('/', 'index')->name('index');
+Route::view('/2', 'index2')->name('index2');
+
+Route::get('/creator', function () {
+    return view('creator');
+});
+
+
+Route::get('/creator2', function () {
+    return view('profile.creator');
 });
 
 Route::get('/product/{id}', function () {
@@ -24,3 +33,4 @@ Route::get('/product/{id}', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+

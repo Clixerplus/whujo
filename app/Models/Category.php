@@ -18,4 +18,9 @@ class Category extends Model
     {
         $this->hasMany(Experience::class);
     }
+
+    public function services()
+    {
+        $this->hasMany(Service::class);
+    }
 }

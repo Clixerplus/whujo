@@ -23,7 +23,6 @@ class Experience extends Model
     protected $casts = [
         'toProvide' => 'array',
         'toBring'   => 'array',
-        'photos'   => 'array',
         'duration'  => TimeCast::class,
         'starting'  => TimeCast::class,
     ];

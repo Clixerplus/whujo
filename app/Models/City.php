@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class City extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function experiences()
+    {
+        $this->hasMany(Experience::class);
+    }
+
+    public function services()
+    {
+        $this->hasMany(Service::class);
+    }
 }

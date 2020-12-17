@@ -19,16 +19,8 @@ class CreateExperiencesTable extends Migration
             $table->foreignId('user_id')
                   ->constrained();
 
-<<<<<<< HEAD
             $table->foreignId('category_id')
                   ->constrained();
-=======
-            $table->string('name')->nullable();
-            $table->text('toDo')->nullable();
-            $table->jsonb('toProvide')->nullable();
-            $table->jsonb('toBring')->nullable();
-            $table->jsonb('photos')->nullable();
->>>>>>> 58093c688040086689882c79276a6225d764890e
 
             $table->string('name')
                   ->nullable();
