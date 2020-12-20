@@ -15,6 +15,11 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         @stack('styles')
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
 
     </head>
 

@@ -41,6 +41,9 @@ module.exports = {
                 sans: ["Inter", ...defaultTheme.fontFamily.sans],
                 whujo: ["arial"],
             },
+            maxHeight: {
+                modal: "35rem",
+            },
         },
     },
 

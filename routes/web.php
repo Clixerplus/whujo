@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'index')->name('index');
 Route::view('/2', 'index2')->name('index2');
 
+Route::view('/experience', 'pages.experience')->name('experience');
+Route::view('/service   ', 'pages.service')->name('service    ');
+
 Route::get('/creator', function () {
     return view('creator');
 });

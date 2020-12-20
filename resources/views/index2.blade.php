@@ -13,7 +13,8 @@
                                 d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                             <path fill-rule="evenodd"
                                 d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z" />
-                            <path fill-rule="evenodd" d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z" />
+                            <path fill-rule="evenodd"
+                                d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z" />
                         </svg>
                     </button>
                     <button class="p-1">
@@ -23,7 +24,8 @@
                                 d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                             <path fill-rule="evenodd"
                                 d="M7.646 11.354a.5.5 0 0 1 0-.708L10.293 8 7.646 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0z" />
-                            <path fill-rule="evenodd" d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z" />
+                            <path fill-rule="evenodd"
+                                d="M4.5 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z" />
                         </svg>
                     </button>
                 </div>
@@ -464,162 +466,164 @@
             </table>
         </div>
     </div>
-<!-- component -->
-<div class="w-full relative mt-4 shadow-2xl rounded my-24 overflow-hidden">
-    <div class="top h-64 w-full bg-blue-600 overflow-hidden relative">
-        <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-            alt="" class="bg w-full h-full object-cover object-center absolute z-0">
-        <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                class="h-24 w-24 object-cover rounded-full">
-            <h1 class="text-2xl font-semibold">Antonia Howell</h1>
-            <h4 class="text-sm font-semibold">Joined Since '19</h4>
-        </div>
-    </div>
-    <div class="grid grid-cols-12 bg-white ">
-
-        <div
-            class="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
-
-            <a href="#" class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Basic Information</a>
-
-            <a href="#"
-                class="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200">Another
-                Information</a>
-
-            <a href="#"
-                class="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200">Another
-                Something</a>
-
-        </div>
-
-        <div
-            class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
-            <div class="px-4 pt-4">
-                <form action="#" class="flex flex-col space-y-8">
-
-                    <div>
-                        <h3 class="text-2xl font-semibold">Basic Information</h3>
-                        <hr>
-                    </div>
-
-                    <div class="form-item">
-                        <label class="text-xl ">Full Name</label>
-                        <input type="text" value="Antonia P. Howell"
-                            class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
-                            disabled>
-                    </div>
-
-                    <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
-
-                        <div class="form-item w-full">
-                            <label class="text-xl ">Username</label>
-                            <input type="text" value="antonia"
-                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                                disabled>
-                        </div>
-
-                        <div class="form-item w-full">
-                            <label class="text-xl ">Email</label>
-                            <input type="text" value="antoniaph@gmail.com"
-                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                                disabled>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-semibold ">More About Me</h3>
-                        <hr>
-                    </div>
-
-                    <div class="form-item w-full">
-                        <label class="text-xl ">Biography</label>
-                        <textarea cols="30" rows="10"
-                            class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                            disabled>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem natus nobis odio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, eveniet fugiat? Explicabo assumenda dignissimos quisquam perspiciatis corporis sint commodi cumque rem tempora!</textarea>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-semibold">My Social Media</h3>
-                        <hr>
-                    </div>
-
-                    <div class="form-item">
-                        <label class="text-xl ">Instagram</label>
-                        <input type="text" value="https://instagram.com/"
-                            class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                            disabled>
-                    </div>
-                    <div class="form-item">
-                        <label class="text-xl ">Facebook</label>
-                        <input type="text" value="https://facebook.com/"
-                            class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
-                            disabled>
-                    </div>
-                    <div class="form-item">
-                        <label class="text-xl ">Twitter</label>
-                        <input type="text" value="https://twitter.com/"
-                            class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
-                            disabled>
-                    </div>
-
-                </form>
+    <!-- component -->
+    <div class="w-full relative mt-4 shadow-2xl rounded my-24 overflow-hidden">
+        <div class="top h-64 w-full bg-blue-600 overflow-hidden relative">
+            <img src="https://images.unsplash.com/photo-1503264116251-35a269479413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                alt="" class="bg w-full h-full object-cover object-center absolute z-0">
+            <div class="flex flex-col justify-center items-center relative h-full bg-black bg-opacity-50 text-white">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+                    class="h-24 w-24 object-cover rounded-full">
+                <h1 class="text-2xl font-semibold">Antonia Howell</h1>
+                <h4 class="text-sm font-semibold">Joined Since '19</h4>
             </div>
         </div>
+        <div class="grid grid-cols-12 bg-white ">
+
+            <div
+                class="col-span-12 w-full px-3 py-6 justify-center flex space-x-4 border-b border-solid md:space-x-0 md:space-y-4 md:flex-col md:col-span-2 md:justify-start ">
+
+                <a href="#" class="text-sm p-2 bg-indigo-900 text-white text-center rounded font-bold">Basic
+                    Information</a>
+
+                <a href="#"
+                    class="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200">Another
+                    Information</a>
+
+                <a href="#"
+                    class="text-sm p-2 bg-indigo-200 text-center rounded font-semibold hover:bg-indigo-700 hover:text-gray-200">Another
+                    Something</a>
+
+            </div>
+
+            <div
+                class="col-span-12 md:border-solid md:border-l md:border-black md:border-opacity-25 h-full pb-12 md:col-span-10">
+                <div class="px-4 pt-4">
+                    <form action="#" class="flex flex-col space-y-8">
+
+                        <div>
+                            <h3 class="text-2xl font-semibold">Basic Information</h3>
+                            <hr>
+                        </div>
+
+                        <div class="form-item">
+                            <label class="text-xl ">Full Name</label>
+                            <input type="text" value="Antonia P. Howell"
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200"
+                                disabled>
+                        </div>
+
+                        <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
+
+                            <div class="form-item w-full">
+                                <label class="text-xl ">Username</label>
+                                <input type="text" value="antonia"
+                                    class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                    disabled>
+                            </div>
+
+                            <div class="form-item w-full">
+                                <label class="text-xl ">Email</label>
+                                <input type="text" value="antoniaph@gmail.com"
+                                    class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                    disabled>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-semibold ">More About Me</h3>
+                            <hr>
+                        </div>
+
+                        <div class="form-item w-full">
+                            <label class="text-xl ">Biography</label>
+                            <textarea cols="30" rows="10"
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                disabled>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem natus nobis odio. Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, eveniet fugiat? Explicabo assumenda dignissimos quisquam perspiciatis corporis sint commodi cumque rem tempora!</textarea>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-semibold">My Social Media</h3>
+                            <hr>
+                        </div>
+
+                        <div class="form-item">
+                            <label class="text-xl ">Instagram</label>
+                            <input type="text" value="https://instagram.com/"
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                disabled>
+                        </div>
+                        <div class="form-item">
+                            <label class="text-xl ">Facebook</label>
+                            <input type="text" value="https://facebook.com/"
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2 mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200 text-opacity-25 "
+                                disabled>
+                        </div>
+                        <div class="form-item">
+                            <label class="text-xl ">Twitter</label>
+                            <input type="text" value="https://twitter.com/"
+                                class="w-full appearance-none text-black text-opacity-50 rounded shadow py-1 px-2  mr-2 focus:outline-none focus:shadow-outline focus:border-blue-200  "
+                                disabled>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
 
 
-    </div>
-</div>
-<div class="relative">
-    <!-- Dropdown toggle button -->
-    <button class="relative z-10 block rounded-md bg-white p-2 focus:outline-none">
-        <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-            <path
-                d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-        </svg>
-    </button>
-
-    <!-- Dropdown menu -->
-    <div class="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
-        <div class="py-2">
-            <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
-                <img class="h-8 w-8 rounded-full object-cover mx-1"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                    alt="avatar">
-                <p class="text-gray-600 text-sm mx-2">
-                    <span class="font-bold" href="#">Sara Salah</span> replied on the <span
-                        class="font-bold text-blue-500" href="#">Upload Image</span> artical . 2m
-                </p>
-            </a>
-            <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
-                <img class="h-8 w-8 rounded-full object-cover mx-1"
-                    src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
-                    alt="avatar">
-                <p class="text-gray-600 text-sm mx-2">
-                    <span class="font-bold" href="#">Slick Net</span> start following you . 45m
-                </p>
-            </a>
-            <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
-                <img class="h-8 w-8 rounded-full object-cover mx-1"
-                    src="https://images.unsplash.com/photo-1450297350677-623de575f31c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                    alt="avatar">
-                <p class="text-gray-600 text-sm mx-2">
-                    <span class="font-bold" href="#">Jane Doe</span> Like Your reply on <span
-                        class="font-bold text-blue-500" href="#">Test with TDD</span> artical . 1h
-                </p>
-            </a>
-            <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-100 -mx-2">
-                <img class="h-8 w-8 rounded-full object-cover mx-1"
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=398&q=80"
-                    alt="avatar">
-                <p class="text-gray-600 text-sm mx-2">
-                    <span class="font-bold" href="#">Abigail Bennett</span> start following you . 3h
-                </p>
-            </a>
         </div>
-        <a href="#" class="block bg-gray-800 text-white text-center font-bold py-2">See all notifications</a>
     </div>
-</div>
+    <div class="relative">
+        <!-- Dropdown toggle button -->
+        <button class="relative z-10 block rounded-md bg-white p-2 focus:outline-none">
+            <svg class="h-5 w-5 text-gray-800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                fill="currentColor">
+                <path
+                    d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+            </svg>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div class="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg overflow-hidden z-20" style="width:20rem;">
+            <div class="py-2">
+                <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                    <img class="h-8 w-8 rounded-full object-cover mx-1"
+                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                        alt="avatar">
+                    <p class="text-gray-600 text-sm mx-2">
+                        <span class="font-bold" href="#">Sara Salah</span> replied on the <span
+                            class="font-bold text-blue-500" href="#">Upload Image</span> artical . 2m
+                    </p>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                    <img class="h-8 w-8 rounded-full object-cover mx-1"
+                        src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                        alt="avatar">
+                    <p class="text-gray-600 text-sm mx-2">
+                        <span class="font-bold" href="#">Slick Net</span> start following you . 45m
+                    </p>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                    <img class="h-8 w-8 rounded-full object-cover mx-1"
+                        src="https://images.unsplash.com/photo-1450297350677-623de575f31c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                        alt="avatar">
+                    <p class="text-gray-600 text-sm mx-2">
+                        <span class="font-bold" href="#">Jane Doe</span> Like Your reply on <span
+                            class="font-bold text-blue-500" href="#">Test with TDD</span> artical . 1h
+                    </p>
+                </a>
+                <a href="#" class="flex items-center px-4 py-3 hover:bg-gray-100 -mx-2">
+                    <img class="h-8 w-8 rounded-full object-cover mx-1"
+                        src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=398&q=80"
+                        alt="avatar">
+                    <p class="text-gray-600 text-sm mx-2">
+                        <span class="font-bold" href="#">Abigail Bennett</span> start following you . 3h
+                    </p>
+                </a>
+            </div>
+            <a href="#" class="block bg-gray-800 text-white text-center font-bold py-2">See all notifications</a>
+        </div>
+    </div>
     <section class="text-gray-700 body-font">
         <div class="container px-5 py-24 mx-auto flex flex-wrap">
             <div class="flex w-full mb-20 flex-wrap">
@@ -667,7 +671,7 @@
         <x-button-icon icon="search" class="ml-8 bg-primary hover:bg-blue-400">buscar</x-button-icon>
     </div>
 
-    <x-datepicker/>
+    <x-datepicker />
 
     <x-alert type="info">
         <p class="leading-tight text-xs md:text-sm">
@@ -677,9 +681,7 @@
             <div class="text-twitter">Hello World</div>, numquam accusamus doloribus reprehenderit optio velit ipsum?
             Veritatis eveniet non itaque
             sunt nemo expedita sequi quos vero laborum.
-            <img class="w-16 h-16 object-cover rounded-full"
-                src="//images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-                alt="Avatar of Tailwind CSS Design" />
+
         </p>
     </x-alert>
     <div class="bg-white shadow p-4 flex">
@@ -1459,6 +1461,33 @@
                 </div>
             </div>
         </section>
+        <section class="min-h-screen relative block py-24 lg:pt-0 bg-white">
+            <div class=" h-96 w-64 bg-gray-100 flex flex-col justify-center p-10">
+                <div class="relative w-full  max-w-full lg:max-w-6xl xl:max-w-screen-2xl mx-auto bg-green-400">
+                    <div
+                        class="absolute inset-0 -mr-3.5 bg-gradient-to-r from-red-100 to-purple-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:rotate-3 sm:rounded-3xl">
+                    </div>
+                    <div class="relative bg-black shadow-lg sm:rounded-3xl">
+
+
+
+                        <div class="py-6">
+
+
+
+                            <!-- hero section -->
+
+                            <div class="mt-12 lg:mt-32 lg:ml-20 text-left">
+
+                            </div>
+
+                            <!-- /hero section -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="relative block py-24 lg:pt-0 bg-gray-900">
             <div class="container mx-auto px-4">
                 <div class="flex flex-wrap justify-center lg:-mt-64 -mt-48">
@@ -1502,6 +1531,245 @@
                 </div>
             </div>
         </section>
+        <section class="relative block py-24">
+<!-- component -->
+<div class="flex justify-center my-6">
+    <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+        <div class="flex-1">
+            <table class="w-full text-sm lg:text-base" cellspacing="0">
+                <thead>
+                    <tr class="h-12 uppercase">
+                        <th class="hidden md:table-cell"></th>
+                        <th class="text-left">Product</th>
+                        <th class="lg:text-right text-left pl-5 lg:pl-0">
+                            <span class="lg:hidden" title="Quantity">Qtd</span>
+                            <span class="hidden lg:inline">Quantity</span>
+                        </th>
+                        <th class="hidden text-right md:table-cell">Unit price</th>
+                        <th class="text-right">Total price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="hidden pb-4 md:table-cell">
+                            <a href="#">
+                                <img src="https://limg.app/i/Calm-Cormorant-Catholic-Pinball-Blaster-yM4oub.jpeg"
+                                    class="w-20 rounded" alt="Thumbnail">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#">
+                                <p class="mb-2 md:ml-4">Earphone</p>
+                                <form action="" method="POST">
+                                    <button type="submit" class="text-gray-700 md:ml-4">
+                                        <small>(Remove item)</small>
+                                    </button>
+                                </form>
+                            </a>
+                        </td>
+                        <td class="justify-center md:justify-end md:flex mt-6">
+                            <div class="w-20 h-10">
+                                <div class="relative flex flex-row w-full h-8">
+                                    <input type="number" value="2"
+                                        class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                                </div>
+                            </div>
+                        </td>
+                        <td class="hidden text-right md:table-cell">
+                            <span class="text-sm lg:text-base font-medium">
+                                10.00€
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            <span class="text-sm lg:text-base font-medium">
+                                20.00€
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="hidden pb-4 md:table-cell">
+                            <a href="#">
+                                <img src="https://limg.app/i/Cute-Constrictor-Super-Sexy-Military-Enforcer-W7mvBp.png"
+                                    class="w-20 rounded" alt="Thumbnail">
+                            </a>
+                        </td>
+                        <td>
+                            <p class="mb-2 md:ml-4">Tesla Model 3</p>
+                            <form action="" method="POST">
+                                <button type="submit" class="text-gray-700 md:ml-4">
+                                    <small>(Remove item)</small>
+                                </button>
+                            </form>
+                        </td>
+                        <td class="justify-center md:justify-end md:flex md:mt-4">
+                            <div class="w-20 h-10">
+                                <div class="relative flex flex-row w-full h-8">
+                                    <input type="number" value="3"
+                                        class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                                </div>
+                            </div>
+                        </td>
+                        <td class="hidden text-right md:table-cell">
+                            <span class="text-sm lg:text-base font-medium">
+                                49,600.01€
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            <span class="text-sm lg:text-base font-medium">
+                                148,800.03€
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="hidden pb-4 md:table-cell">
+                            <a href="#">
+                                <img src="https://limg.app/i/Successful-Spider-Biblical-Mutant---Total-War-lKoE7D.jpeg"
+                                    class="w-20 rounded" alt="Thumbnail">
+                            </a>
+                        </td>
+                        <td>
+                            <p class="mb-2 md:ml-4">Bic 4 colour pen</p>
+                            <form action="" method="POST">
+                                <button type="submit" class="text-gray-700 md:ml-4">
+                                    <small>(Remove item)</small>
+                                </button>
+                            </form>
+                        </td>
+                        <td class="justify-center md:justify-end md:flex md:mt-8">
+                            <div class="w-20 h-10">
+                                <div class="relative flex flex-row w-full h-8">
+                                    <input type="number" value="5"
+                                        class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                                </div>
+                            </div>
+
+                        </td>
+                        <td class="hidden text-right md:table-cell">
+                            <span class="text-sm lg:text-base font-medium">
+                                1.50€
+                            </span>
+                        </td>
+                        <td class="text-right">
+                            <span class="text-sm lg:text-base font-medium">
+                                7.50€
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr class="pb-6 mt-6">
+            <div class="my-4 mt-6 -mx-2 lg:flex">
+                <div class="lg:px-2 lg:w-1/2">
+                    <div class="p-4 bg-gray-100 rounded-full">
+                        <h1 class="ml-2 font-bold uppercase">Coupon Code</h1>
+                    </div>
+                    <div class="p-4">
+                        <p class="mb-4 italic">If you have a coupon code, please enter it in the box below</p>
+                        <div class="justify-center md:flex">
+                            <form action="" method="POST">
+                                <div
+                                    class="flex items-center w-full h-13 pl-3 bg-white bg-gray-100 border rounded-full">
+                                    <input type="coupon" name="code" id="coupon" placeholder="Apply coupon"
+                                        value="90off"
+                                        class="w-full bg-gray-100 outline-none appearance-none focus:outline-none active:outline-none" />
+                                    <button type="submit"
+                                        class="text-sm flex items-center px-3 py-1 text-white bg-gray-800 rounded-full outline-none md:px-4 hover:bg-gray-700 focus:outline-none active:outline-none">
+                                        <svg aria-hidden="true" data-prefix="fas" data-icon="gift" class="w-8"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                            <path fill="currentColor"
+                                                d="M32 448c0 17.7 14.3 32 32 32h160V320H32v128zm256 32h160c17.7 0 32-14.3 32-32V320H288v160zm192-320h-42.1c6.2-12.1 10.1-25.5 10.1-40 0-48.5-39.5-88-88-88-41.6 0-68.5 21.3-103 68.3-34.5-47-61.4-68.3-103-68.3-48.5 0-88 39.5-88 88 0 14.5 3.8 27.9 10.1 40H32c-17.7 0-32 14.3-32 32v80c0 8.8 7.2 16 16 16h480c8.8 0 16-7.2 16-16v-80c0-17.7-14.3-32-32-32zm-326.1 0c-22.1 0-40-17.9-40-40s17.9-40 40-40c19.9 0 34.6 3.3 86.1 80h-86.1zm206.1 0h-86.1c51.4-76.5 65.7-80 86.1-80 22.1 0 40 17.9 40 40s-17.9 40-40 40z" />
+                                            </svg>
+                                        <span class="font-medium">Apply coupon</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="p-4 mt-6 bg-gray-100 rounded-full">
+                        <h1 class="ml-2 font-bold uppercase">Instruction for seller</h1>
+                    </div>
+                    <div class="p-4">
+                        <p class="mb-4 italic">If you have some information for the seller you can leave them in the box
+                            below</p>
+                        <textarea class="w-full h-24 p-2 bg-gray-100 rounded"></textarea>
+                    </div>
+                </div>
+                <div class="lg:px-2 lg:w-1/2">
+                    <div class="p-4 bg-gray-100 rounded-full">
+                        <h1 class="ml-2 font-bold uppercase">Order Details</h1>
+                    </div>
+                    <div class="p-4">
+                        <p class="mb-6 italic">Shipping and additionnal costs are calculated based on values you have
+                            entered</p>
+                        <div class="flex justify-between border-b">
+                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                                Subtotal
+                            </div>
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                                148,827.53€
+                            </div>
+                        </div>
+                        <div class="flex justify-between pt-4 border-b">
+                            <div class="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800">
+                                <form action="" method="POST">
+                                    <button type="submit" class="mr-2 mt-1 lg:mt-2">
+                                        <svg aria-hidden="true" data-prefix="far" data-icon="trash-alt"
+                                            class="w-4 text-red-600 hover:text-red-800"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                            <path fill="currentColor"
+                                                d="M268 416h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12zM432 80h-82.41l-34-56.7A48 48 0 00274.41 0H173.59a48 48 0 00-41.16 23.3L98.41 80H16A16 16 0 000 96v16a16 16 0 0016 16h16v336a48 48 0 0048 48h288a48 48 0 0048-48V128h16a16 16 0 0016-16V96a16 16 0 00-16-16zM171.84 50.91A6 6 0 01177 48h94a6 6 0 015.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0012-12V188a12 12 0 00-12-12h-24a12 12 0 00-12 12v216a12 12 0 0012 12z" />
+                                            </svg>
+                                    </button>
+                                </form>
+                                Coupon "90off"
+                            </div>
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
+                                -133,944.77€
+                            </div>
+                        </div>
+                        <div class="flex justify-between pt-4 border-b">
+                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                                New Subtotal
+                            </div>
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                                14,882.75€
+                            </div>
+                        </div>
+                        <div class="flex justify-between pt-4 border-b">
+                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                                Tax
+                            </div>
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                                2,976.55€
+                            </div>
+                        </div>
+                        <div class="flex justify-between pt-4 border-b">
+                            <div class="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                                Total
+                            </div>
+                            <div class="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                                17,859.3€
+                            </div>
+                        </div>
+                        <a href="#">
+                            <button
+                                class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none">
+                                <svg aria-hidden="true" data-prefix="far" data-icon="credit-card" class="w-8"
+                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                    <path fill="currentColor"
+                                        d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z" />
+                                    </svg>
+                                <span class="ml-2 mt-5px">Procceed to checkout</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </section>
+
     </main>
     <footer class="relative bg-gray-300 pt-8 pb-6">
         <div class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
