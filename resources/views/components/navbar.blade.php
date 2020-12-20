@@ -1,17 +1,10 @@
-<div class="z-30 fixed w-full  text-primary md:text-white bg-white  md:bg-transparent">
+<div id="navbar" class="fixed z-30 w-full lg:h-18 text-primary lg:text-white bg-white  lg:bg-transparent">
     <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div class="relative flex items-center justify-between">
 
             <a href="/" aria-label="Whujo" title="Whujo" class="inline-flex items-center">
-                <svg class="w-8" viewBox="0 0 24 24" stroke-linejoin="round" stroke-width="2" stroke-linecap="round"
-                    stroke-miterlimit="10" stroke="currentColor" fill="none">
-                    <rect x="3" y="1" width="7" height="12"></rect>
-                    <rect x="3" y="17" width="7" height="6"></rect>
-                    <rect x="14" y="1" width="7" height="6"></rect>
-                    <rect x="14" y="11" width="7" height="12"></rect>
-                </svg>
                 <span
-                    class="ml-2 text-xl font-whujo font-bold tracking-wide text-gray-800 md:text-primary uppercase">Whujo</span>
+                    class="ml-2 text-3xl font-whujo font-bold tracking-wide text-gray-800 md:text-primary">whujo</span>
             </a>
 
             <ul class="items-center hidden space-x-8 lg:flex">
@@ -27,15 +20,16 @@
             </ul>
 
             <ul class="items-center hidden space-x-8 lg:flex">
-                <li><a href="{{ route('login') }}"
-                        class="inline-flex items-center justify-center h-8 px-6 text-sm font-medium tracking-wide text-white border border-white rounded-full transition duration-200 shadow-md hover:bg-white hover:text-secondary focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up" title="Sign up">Sign up </a>
+                <li><a id="btnNavbar"
+                       href="{{ route('login') }}"
+                       class="inline-flex items-center justify-center h-8 px-6 text-sm font-medium tracking-wide text-white border border-white rounded-full transition duration-200 shadow-md hover:bg-white hover:text-secondary focus:shadow-outline focus:outline-none"
+                       aria-label="Sign up" title="Sign up">Sign up </a>
                 </li>
             </ul>
 
             <!-- Mobile menu -->
             <div class="lg:hidden text-primary">
-                <button aria-label="Open Menu" title="Open Menu"
+                <button  aria-label="Open Menu" title="Open Menu"
                     class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline pt-4 border focus:bg-opacity-50">
                     <svg class="w-5" viewBox="0 0 24 24">
                         <path fill="currentColor"

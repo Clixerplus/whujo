@@ -1,4 +1,4 @@
-<div class="embla" id="embla">
+<div class="embla py-2" id="embla">
     <div class="embla__container ">
         @foreach ($items as $item)
             <div class="flex-grow bg-transparent mx-2 w-auto mr-4" >
