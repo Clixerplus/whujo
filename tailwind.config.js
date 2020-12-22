@@ -50,6 +50,7 @@ module.exports = {
     variants: {
         extend: {
             translate: ["group-hover"],
+            backgroundColor: ["active"],
         },
         opacity: ["responsive", "hover", "focus", "disabled"],
     },
