@@ -1,23 +1,94 @@
 <x-guest-layout>
-    <section role="main" class="my-20 bg-gray-200">
+    <div class="fixed bottom-0 px-4 z-20 bg-gray-200" >
+        <div class="flex items-center h-16" onclick="document.getElementById('filters').classList.remove('translate-y-full')">
+            <x-input key="search" class="h-12 flex-1 mr-2 bg-white" placeholder="Buscar" />
+            <x-button class="w-12 h-12 initial rounded-full bg-primary text-white ml-1 shadow-w2">
+                <x-icon-search class="w-6 h-auto" />
+            </x-button>
+        </div>
+    </div>
+
+    <div class="fixed top-0 bg-white w-full h-20 px-8 z-10 shadow-sm">
+        <div class=" container mx-auto flex items-center h-full  px-4 ">
+            <h1 class="font-whujo text-2xl font-bold  text-primary">whujo</h1>
+            <div class="ml-auto flex items-center">
+                <a href="{{route('login')}}" class="flex mr-4">
+                    Entrar
+                    <x-icon-enter-outline class="w-6 h-auto ml-1" />
+                </a>
+                <a href="{{route('register')}}"
+                    class="px-5 leading-7 text-sm rounded-full border border-primary  text-primary hover:text-white hover:bg-primary transition-colors ease-in-out duration-300">Registrar</a>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section role="main" class="bg-white top-24 relative">
+        <div id="filters"
+            class="fixed top-0 h-screen px-4 py-6 transform translate-y-full transition-transform ease-out duration-500 bg-white md:h-24 md:sticky z-20">
+
+
+
+            <div class="flex items-center justify-between h-10">
+                <h2 class="leading-5 text-lg">Buscar</h2>
+                <button class="leading-5 text-2xl"
+                    onclick="document.getElementById('filters').classList.add('translate-y-full')">x</button>
+            </div>
+
+            <form method="get" action="/search"
+                class="flex flex-col mt-4 transform  md:flex-row items-center w-full mb-8 justify-center md:px-8 text-lg">
+
+                <div class="flex-1 md:mx-1">
+                    <x-input key="search" placeholder="Que estas buscando?" class="h-12 placeholder-secondary" />
+                </div>
+
+                <div class="flex-1 md:mx-1">
+                    <x-input key="location" placeholder="Que estas buscando?" class="h-12 placeholder-secondary" />
+                </div>
+
+                <div class="w-full flex-1 md:mx-1">
+                    <x-select key="type" placeholder="Que estas buscando?" class="w-full h-12 text-sm">
+                        <option disabled selected value="" class="text-gray-400">Productos</option>
+                        <option value="1">Servicios</option>
+                        <option value="2">Experiencias</option>
+                    </x-select>
+                </div>
+
+                <div class="w-full flex-1 md:mx-1">
+                    <x-select key="category" placeholder="Que estas buscando?" class="h-12 text-sm">
+                        <option disabled selected value="" class="text-gray-400">Categorías</option>
+                        @foreach (App\Models\Category::all(['id', 'name']) as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </x-select>
+                </div>
+
+
+                <x-button type="button" class="w-full h-12 m-1 border boder-gray-400">
+                    <x-icon-options class="w-5 h-auto" />
+                    <span class="text-secondary ml-4">Filtros</span>
+                </x-button>
+
+                <x-button type="submit"
+                    class="w-full h-12 mt-6 text-sm  bg-primary hover:bg-secondary active:bg-primary-light">
+                    Buscar
+                </x-button>
+
+
+            </form>
+        </div>
+
         <div class="container mx-auto py-4">
 
-            <div class="breadcrumb text-md text-gray-500 mb-4 px-4 z-0">
-                <ul class="flex gap-1">
-                    <li><a href="#" class="text-primary">Inicio</a></li>
-                    <li> > </li>
-                    <li>Busqueda</li>
-                </ul>
-            </div>
-
-            <div class="px-4 mb-8 4 z-0">
+            <div class="px-4 py-4 my-4 4 border-b z-0">
                 <h1 class="text-3xl font-semibold">Búsqueda</h1>
                 <h2 class="mb-3">Listado de Servicios y Experiencias</h2>
-                <hr>
             </div>
 
-            <div class="flex gap-4">
-                <aside class="hidden w-full min-h-screen top-0 right-0 bg-secondary bg-opacity-75 lg:flex lg:w-1/3">
+            <div class="flex my-8 relative">
+                <aside
+                    class="hidden sticky w-full min-h-screen top-0 right-0 bg-secondary bg-opacity-75 lg:flex lg:w-1/3">
                     <div class="w-3/4 bg-gray-200 lg:bg-gray-300 lg:w-full">
                         <h1 class="text-xl font-semibold mb-4 p-4 bg-primary text-white">Filtros</h1>
                         <form action="" class="flex flex-col gap-4">
