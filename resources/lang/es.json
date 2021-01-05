@@ -60,5 +60,8 @@
     "Previous": "Anterior",
     "Back": "Volver",
     "Continue": "Continuar",
-    "Choose an option": "Escoge una opción"
+    "Choose an option": "Escoge una opción",
+    "No results for your search": "No se encontraron resultados para su búsqueda",
+    "You can try a new search or modify the filters used": "Puede intentar una nueva búsqueda o modificar los filtros utilizados"
+
 }
