@@ -68,7 +68,7 @@ class ExperienceFactory extends Factory
             'groupSize'      => 10,
             'duration'       => $duration->toArray(),
             'starting'       => $this->faker->time(),
-            'price'          => 2500,
+            'price'          => $this->faker->randomFloat(2, 2500, 50000),
             'privateGroup'   => true,
             'pricePrivateGroup'    => 15000,
             'reservationLimitTime' => $this->faker->randomElement(
