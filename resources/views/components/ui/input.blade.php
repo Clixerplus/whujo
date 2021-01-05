@@ -7,7 +7,7 @@
 <div class="relative my-2">
 
     <input {{ $attributes->merge([
-        'class' => 'w-full rounded-md p-4 pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none ' . $class,
+        'class' => 'rounded-md p-4 pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none ' . $class,
         'name'  => $key])
     }}>
 
