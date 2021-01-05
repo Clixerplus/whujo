@@ -45,14 +45,21 @@ module.exports = {
                 modal: "35rem",
             },
         },
+        borderColor: (theme) => ({
+            ...theme("colors"),
+            DEFAULT: theme("colors.gray.300", "currentColor"),
+        }),
     },
 
     variants: {
         extend: {
             translate: ["group-hover"],
             backgroundColor: ["active"],
+            borderWidth: ["hover", "focus"],
+            fontWeight: ["hover"],
+            ringOpacity: ["hover"],
         },
-        opacity: ["responsive", "hover", "focus", "disabled"],
+        opacity: ["responsive", "hover", "focus", "disabled", "active"],
     },
     plugins: [require("tailwindcss-brand-colors")],
     // plugins: [require("@tailwindcss/ui")]
