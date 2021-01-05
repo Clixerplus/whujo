@@ -5,9 +5,9 @@ namespace App\Http\Livewire\Wizard;
 use Livewire\Component;
 use Illuminate\Support\Str;
 
-class InputTodo extends Component
+class InputDescription extends Component
 {
-    public $toDo;
+    public $description;
 
     public $counter;
 
@@ -16,22 +16,22 @@ class InputTodo extends Component
     const MIN_CHARS = 300;
 
     protected $rules = [
-        'toDo' => 'required|string|between:' . self::MIN_CHARS . ',' . self::MAX_CHARS
+        'description' => 'required|string|between:' . self::MIN_CHARS . ',' . self::MAX_CHARS
     ];
 
-    public function mount($toDo = null)
+    public function mount($description = null)
     {
-        $this->toDo = $toDo;
+        $this->description = $description;
 
         $this->counterChars();
     }
 
     public function counterChars()
     {
-        $this->counter = Str::length($this->toDo);
+        $this->counter = Str::length($this->description);
     }
 
-    public function updatedTodo($value)
+    public function updatedDescription($value)
     {
         $this->counterChars();
 
@@ -43,13 +43,13 @@ class InputTodo extends Component
         $this->validate();
 
         $this->emitUp('saveAttribute', [
-            'toDo' => $this->toDo
+            'description' => $this->description
         ]);
     }
 
     public function render()
     {
-        return view('livewire.wizard.input-toDo', [
+        return view('livewire.wizard.input-description', [
             'maxChars' => self::MAX_CHARS,
             'minChars' => self::MIN_CHARS,
         ]);

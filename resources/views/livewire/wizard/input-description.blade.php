@@ -10,14 +10,14 @@
 
 
     <div class="my-6">
-        <label for="toDo" class="font-semibold px-1">Describe brevemente tu actividad</label>
-        <x-textarea id="toDo" :key="'toDo'" wire:model="toDo"
+        <label for="description" class="font-semibold px-1">Describe brevemente tu actividad</label>
+        <x-textarea id="description" :key="'description'" wire:model="description"
                     placeholder="Describe aqui tu actividad"
                     cols="30" rows="8" min="{{$minChars}}" max="{{$maxChars}}">
-    
+
         </x-textarea>
         <span class="text-xs float-right px-1 mt-2 " wire:model="counter">{{ $counter }}/{{ $maxChars }}</span>
-        <x-error :key="'toDo'"/>
+        <x-error :key="'description'"/>
     </div>
 
 

@@ -41,7 +41,7 @@ class ExperienceFactory extends Factory
             'address'        => $this->faker->address,
 
             'name'           => $this->faker->sentence(),
-            'toDo'           => $this->faker->paragraph(5),
+            'description'           => $this->faker->paragraph(5),
 
             'toProvide'      => [
                 $this->faker->sentence(8),
@@ -95,7 +95,7 @@ class ExperienceFactory extends Factory
                 'departament_id' => null,
                 'locality_id'    => null,
                 'address'        => null,
-                'toDo'           => null,
+                'description'           => null,
                 'toProvide'      => [],
                 'toBring'        => [],
                 'photos'         => null,

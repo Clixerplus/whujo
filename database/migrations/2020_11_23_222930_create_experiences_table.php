@@ -25,7 +25,7 @@ class CreateExperiencesTable extends Migration
             $table->string('name')
                   ->nullable();
 
-            $table->text('toDo')
+            $table->text('description')
                   ->nullable();
 
             $table->jsonb('toProvide')
