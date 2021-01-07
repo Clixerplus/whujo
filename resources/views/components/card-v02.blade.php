@@ -1,4 +1,4 @@
-<div class="relative h-full shadow-lg">
+<div class="relative h-80 lg:h-64 shadow-lg">
     <img class="absolute inset-0 object-cover w-full h-full rounded-md"
         src="{{ $product->photos ?? 'https://images.pexels.com/photos/1813346/pexels-photo-1813346.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}}" />
 
@@ -41,7 +41,7 @@
                 <h1 class="text-lg font-bold leading-5 text-white mt-2">{{ $product->name }}</h1>
 
                 {{-- Ubicacion --}}
-                <div class="text-sm mt-4 text-gray-400">{{ $product->city->name }} - {{ $product->departament->name }}
+                <div class="text-sm mt-4 text-gray-400">{{ $product->state->name }} - {{ $product->city->name }}
                 </div>
             </div>
 

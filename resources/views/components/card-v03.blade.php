@@ -28,8 +28,8 @@
             {{ Illuminate\Support\Str::limit($product->name, 50) }}
         </h1>
         <h2 class="px-4 text-sm mt-2 text-gray-500">
-            {{ $product->city->name }} - {{ $product->departament->name }}</h2>
-        <p class="px-4 text-sm mt-2 leading-5 h-28 text-primary-light">
+            {{ $product->state->name }} - {{ $product->city->name }}</h2>
+        <p class="px-4 text-lg lg:text-sm mt-2 leading-7 h-28 ">
             {{ Illuminate\Support\Str::limit($product->description, 160) }}
         </p>
 
