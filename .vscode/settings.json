@@ -12,4 +12,9 @@
     "tailwindCSS.emmetCompletions": true,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
+    "emmet.triggerExpansionOnTab": true,
+    "blade.format.enable": true,
+    "[blade]": {
+        "editor.autoClosingBrackets": "always"
+    },
 }
