@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\City;
+use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CityFactory extends Factory
@@ -22,7 +23,9 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->state,
+            'id'   => 'P' . rand(100, 999),
+            'state_id' => State::all()->random()->id,
+            'name' => $this->faker->city,
         ];
     }
 }

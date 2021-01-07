@@ -2,21 +2,26 @@
 
 namespace App\Models;
 
-use App\Models\User;
+
 use App\Casts\TimeCast;
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Experience extends Model
 {
-    use HasFactory;
+    use HasFactory, HasSlug;
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
 
     protected $fillable = [
         'user_id', 'name', 'location', 'toDo', 'toProvide',
         'toBring', 'photos', 'minimumAge', 'skillLevel',
         'activityLevel', 'toKnow', 'groupSize', 'duration',
         'starting', 'price', 'privateGroup', 'pricePrivateGroup',
-        'reservationLimitTime', 'status', 'city_id', 'departament_id',
+        'reservationLimitTime', 'status', 'state_id', 'city_id',
         'locality_id', 'address'
     ];
 
@@ -38,18 +43,23 @@ class Experience extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function state()
+    {
+        return $this->belongsTo(State::class);
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class);
     }
 
-    public function departament()
-    {
-        return $this->belongsTo(Departament::class);
-    }
-
     public function locality()
     {
         return $this->belongsTo(Locality::class);
+    }
+
+    public function getTypeAttribute()
+    {
+        return config('product.TYPE_EXPERIENCE');
     }
 }

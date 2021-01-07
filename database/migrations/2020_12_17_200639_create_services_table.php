@@ -22,14 +22,21 @@ class CreateServicesTable extends Migration
             $table->foreignId('category_id')
                   ->constrained();
 
-            $table->foreignId('city_id')
-                  ->constrained();
+            $table->string('state_id')
+                  ->references('id')
+                  ->on('states')
+                  ->default('');
 
-            $table->foreignId('departament_id')
-                  ->constrained();
 
-            $table->foreignId('locality_id')
-                  ->constrained();
+            $table->string('city_id')
+                  ->references('id')
+                  ->on('cities')
+                  ->default('');
+
+            $table->string('locality_id')
+                  ->references('id')
+                  ->on('localities')
+                  ->default('');
 
             $table->string('name')
                   ->nullable();
@@ -50,6 +57,7 @@ class CreateServicesTable extends Migration
                   ->nullable();
 
             $table->timestamps();
+
         });
     }
 

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\City;
 use App\Models\Locality;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,6 +23,8 @@ class LocalityFactory extends Factory
     public function definition()
     {
         return [
+            'id'   => 'P' . rand(100, 999),
+            'city_id' => City::all()->random()->id,
             'name' => $this->faker->streetName,
         ];
     }

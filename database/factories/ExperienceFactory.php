@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\City;
-use App\Models\Departament;
+use App\Models\State;
 use App\Models\Experience;
 use App\Models\Locality;
 use App\ValueObjcets\TimeVO;
@@ -29,19 +29,20 @@ class ExperienceFactory extends Factory
     {
         $duration = new TimeVO(rand(0, 16));
 
-        $duration = new TimeVO(rand(8, 18), 30);
+        $starting = new TimeVO(rand(8, 18), 30);
+        
 
         return [
             'user_id'        => User::factory(),
-            'category_id'    => Category::factory(),
+            'category_id'    => Category::all()->random()->id,
 
-            'city_id'        => City::factory(),
-            'departament_id' => Departament::factory(),
-            'locality_id'    => Locality::factory(),
+            'state_id'       => State::all()->random()->id,
+            'city_id'        => City::all()->random()->id,
+            'locality_id'    => Locality::all()->random()->id,
             'address'        => $this->faker->address,
 
             'name'           => $this->faker->sentence(),
-            'description'           => $this->faker->paragraph(5),
+            'description'    => $this->faker->paragraph(5),
 
             'toProvide'      => [
                 $this->faker->sentence(8),
@@ -67,7 +68,7 @@ class ExperienceFactory extends Factory
             'toKnow'         => $this->faker->paragraph(5),
             'groupSize'      => 10,
             'duration'       => $duration->toArray(),
-            'starting'       => $this->faker->time(),
+            'starting'       => $starting->toArray(),
             'price'          => $this->faker->randomFloat(2, 2500, 50000),
             'privateGroup'   => true,
             'pricePrivateGroup'    => 15000,
@@ -90,26 +91,26 @@ class ExperienceFactory extends Factory
 
         return $this->state(function (array $attributes) use ($duration, $starting) {
             return [
-                'name'           => null,
-                'city_id'        => null,
-                'departament_id' => null,
-                'locality_id'    => null,
-                'address'        => null,
-                'description'           => null,
-                'toProvide'      => [],
-                'toBring'        => [],
-                'photos'         => null,
-                'minimumAge'     => null,
-                'skillLevel'     => null,
-                'activityLevel'  => null,
-                'toKnow'         => null,
-                'groupSize'      => null,
-                'duration'       => $duration,
-                'starting'       => $starting,
-                'price'          => null,
-                'privateGroup'   => false,
-                'status'         => false,
-                'pricePrivateGroup'  => null,
+                'name'          => null,
+                'state_id'      => null,
+                'city_id'       => null,
+                'locality_id'   => null,
+                'address'       => null,
+                'description'   => null,
+                'toProvide'     => [],
+                'toBring'       => [],
+                'photos'        => null,
+                'minimumAge'    => null,
+                'skillLevel'    => null,
+                'activityLevel' => null,
+                'toKnow'        => null,
+                'groupSize'     => null,
+                'duration'      => $duration,
+                'starting'      => $starting,
+                'price'         => null,
+                'privateGroup'  => false,
+                'status'        => false,
+                'pricePrivateGroup'    => null,
                 'reservationLimitTime' => 0,
             ];
         });

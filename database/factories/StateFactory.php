@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Departament;
+use App\Models\State;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DepartamentFactory extends Factory
+class StateFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Departament::class;
+    protected $model = State::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,8 @@ class DepartamentFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->city,
+            'id'   => 'P'. rand(100,999),
+            'name' => $this->faker->state,
         ];
     }
 }

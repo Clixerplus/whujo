@@ -11,6 +11,15 @@ class City extends Model
 
     protected $fillable = ['name'];
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    public function state()
+    {
+        $this->belongsTo(State::class);
+    }
+    
     public function experiences()
     {
         $this->hasMany(Experience::class);
@@ -19,5 +28,10 @@ class City extends Model
     public function services()
     {
         $this->hasMany(Service::class);
+    }
+
+    public function localities()
+    {
+        $this->hasMany(Locality::class);
     }
 }

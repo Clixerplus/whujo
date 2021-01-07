@@ -11,6 +11,15 @@ class Locality extends Model
 
     protected $fillable = ['name'];
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    public function city()
+    {
+        $this->belongsTo(City::class);
+    }
+
     public function experiences()
     {
         $this->hasMany(Experience::class);

@@ -14,17 +14,18 @@ class AddLocationFieldsToExperienceProduct extends Migration
     public function up()
     {
         Schema::table('experiences', function (Blueprint $table) {
-            $table->foreignId('city_id')
-                  ->nullable()
-                  ->constrained();
 
-            $table->foreignId('departament_id')
-                  ->nullable()
-                  ->constrained();
+            $table->string('state_id')
+                  ->references('id')
+                  ->on('states')->default('');
 
-            $table->foreignId('locality_id')
-                  ->nullable()
-                  ->constrained();
+            $table->string('city_id')
+                  ->references('id')
+                  ->on('cities')->default('');
+
+            $table->string('locality_id')
+                  ->references('id')
+                  ->on('localities')->default('');
 
             $table->string('address')
                   ->nullable();
@@ -39,9 +40,9 @@ class AddLocationFieldsToExperienceProduct extends Migration
     public function down()
     {
         Schema::table('experiences', function (Blueprint $table) {
-            $table->dropForeign(['city_id']);
-            $table->dropForeign(['departament_id']);
-            $table->dropForeign(['locality_id']);
+            $table->dropColumn('city_id');
+            $table->dropColumn('state_id');
+            $table->dropColumn('locality_id');
             $table->dropColumn('address');
         });
     }

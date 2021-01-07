@@ -14,8 +14,15 @@ class CreateLocalitiesTable extends Migration
     public function up()
     {
         Schema::create('localities', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')
+                  ->primary();
+
             $table->string('name');
+
+            $table->string('city_id')
+                  ->references('id')
+                  ->on('cities');
+
             $table->timestamps();
         });
     }

@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Service;
 use App\Models\Category;
 use App\Models\Experience;
-use App\Models\Microservice;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,14 +18,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::factory()
-            ->has(Experience::factory()->blank())
             ->create([
                 'name' => 'User Test',
                 'email' => 'usuario@email.test'
             ]);
 
+        $this->call([
+            StateSeeder::class,
+            CitySeeder::class,
+            LocalitySeeder::class,
+        ]);
+
         Category::factory(3)
-            ->create();
+                ->create();
 
         Experience::factory(10)->create();
 
