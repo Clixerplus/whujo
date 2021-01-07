@@ -7,16 +7,16 @@ use Illuminate\View\Component;
 
 class CardV01 extends Component
 {
-    public $model;
+    public $product;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($model)
+    public function __construct($product)
     {
-        $this->model = $model;
+        $this->product = $product;
     }
 
     /**
