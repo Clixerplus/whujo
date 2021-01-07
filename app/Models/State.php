@@ -11,6 +11,10 @@ class State extends Model
 
     protected $fillable = ['name'];
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     public function cities()
     {
         $this->hasMany(City::class);
