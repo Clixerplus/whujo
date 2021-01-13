@@ -14,18 +14,19 @@ module.exports = {
         extend: {
             colors: {
                 primary: {
-                    light: "#ff2e31",
-                    DEFAULT: "#E32a2e",
-                    dark: "#bd2225",
+                    light: "var(--color-primary-light)",
+                    DEFAULT: "var(--color-primary)",
+                    dark: "var(--color-primary-dark)",
                 },
                 secondary: {
-                    light: "#1E293B",
-                    DEFAULT: "#0F172A",
+                    light: "var(--color-secondary-light)",
+                    DEFAULT: "var(--color-secondary)",
                 },
-                success: "#00B74A",
-                info: "#1266F1",
-                danger: "#D50000 ",
-                warning: "#FFA900",
+                success: "var(--color-success)",
+                info: "var(--color-info)",
+                danger: "var(--color-danger)",
+                warning: "var(--color-warning)",
+                useful: "var(--color-useful)",
             },
             boxShadow: {
                 w1:
@@ -55,6 +56,7 @@ module.exports = {
         extend: {
             translate: ["group-hover"],
             backgroundColor: ["active"],
+            textColor: ["active"],
             borderWidth: ["hover", "focus"],
             fontWeight: ["hover"],
             ringOpacity: ["hover"],
