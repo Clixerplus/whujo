@@ -1,35 +1,70 @@
-<div id="navbar" class="fixed z-30 w-full lg:h-18 text-primary lg:text-white bg-white  lg:bg-transparent">
+<div id="navbar" class="fixed w-full h-20 navbar-transparent transition-500 z-20">
     <div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <div class="relative flex items-center justify-between">
 
             <a href="/" aria-label="Whujo" title="Whujo" class="inline-flex items-center">
-                <span
-                    class="ml-2 text-3xl font-whujo font-bold tracking-wide text-gray-800 md:text-primary">whujo</span>
+                <span class="ml-2 text-3xl font-whujo
+                             font-bold tracking-wide text-gray-800 md:text-primary">whujo</span>
             </a>
 
             <ul class="items-center hidden space-x-8 lg:flex">
-                <li><a href="/" aria-label="Our product" title="Our product"
-                        class="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400">Landing
-                        Page 2</a></li>
-                <li><a href="/" aria-label="Product pricing" title="Product pricing"
-                        class="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400">Landing
-                        Page 3</a></li>
-                <li><a href="/" aria-label="Our product" title="Our product"
-                        class="font-medium tracking-wide  transition-colors duration-200 hover:text-deep-purple-accent-400">Landing
-                        Page 1</a></li>
+                <li>
+                    <a href="/"
+                       aria-label="Landing Pages 1"
+                       title="Our product"
+                       class="font-medium tracking-wide
+                              transition-colors duration-200
+                              hover:text-gray-700">
+
+                        Landing Page 2
+                    </a>
+                </li>
+                <li>
+                    <a href="/"
+                       aria-label="Landing Pages 2"
+                       title="Product pricing"
+                       class="font-medium tracking-wide
+                              transition-colors duration-200
+                              hover:text-gray-700">
+
+                        Landing Page 3
+                    </a>
+                </li>
+                <li>
+                    <a href="/"
+                       aria-label="Landing Pages 3"
+                       title="Our product"
+                       class="font-medium tracking-wide
+                              transition-colors duration-200
+                              hover:text-gray-700">
+
+                        Landing Page 1
+                    </a>
+                </li>
             </ul>
 
             <ul class="items-center hidden space-x-8 lg:flex">
-                <li><a id="btnNavbar"
-                       href="{{ route('login') }}"
-                       class="inline-flex items-center justify-center h-8 px-6 text-sm font-medium tracking-wide text-white border border-white rounded-full transition duration-200 shadow-md hover:bg-white hover:text-secondary focus:shadow-outline focus:outline-none"
-                       aria-label="Sign up" title="Sign up">Sign up </a>
+                <li>
+                    <a class="flex items-center space-x-2
+                            hover:text-gray-600 tracking-wide
+                              outline-none"
+                        href="{{ route('login') }}">
+                        <span>Entrar</span>
+                        <x-icon-enter-outline class="w-4 h-4" />
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('register') }}"
+                       aria-label="Sign up"
+                       title="Sign up"
+                       class="btn-sign-up">
+                        Regístrate </a>
                 </li>
             </ul>
 
             <!-- Mobile menu -->
-            <div class="lg:hidden text-primary">
-                <button  aria-label="Open Menu" title="Open Menu"
+            <div class="lg:hidden text-secondary">
+                <button aria-label="Open Menu" title="Open Menu"
                     class="p-2 -mr-1 transition duration-200 rounded focus:outline-none focus:shadow-outline pt-4 border focus:bg-opacity-50">
                     <svg class="w-5" viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -88,3 +123,24 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    const navbar = document.getElementById('navbar')
+    window.onscroll = function() {
+        console.log("scroll " + window.scrollY)
+        console.log("Outer" + outerWidth)
+        if (window.outerWidth >= 1024){
+            if (window.scrollY > 80 ){
+                navbar.classList.remove('navbar-transparent')
+                navbar.classList.add('navbar-dark')
+
+            } else {
+                navbar.classList.remove('navbar-dark')
+                navbar.classList.add('navbar-transparent')
+            }
+        }
+    };
+</script>
+
+@endpush
