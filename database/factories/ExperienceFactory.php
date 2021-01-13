@@ -30,7 +30,7 @@ class ExperienceFactory extends Factory
         $duration = new TimeVO(rand(0, 16));
 
         $starting = new TimeVO(rand(8, 18), 30);
-        
+
 
         return [
             'user_id'        => User::factory(),
@@ -63,8 +63,8 @@ class ExperienceFactory extends Factory
                 ]),
 
             'minimumAge'     => 18,
-            'skillLevel'     => config('product.skill_levels')[0],
-            'activityLevel'  => config('product.activity_levels')[0],
+            'skillLevel'     => SKILL_LVL_BEGINNER,
+            'activityLevel'  => ACTIVITY_LVL_LIGHT,
             'toKnow'         => $this->faker->paragraph(5),
             'groupSize'      => 10,
             'duration'       => $duration->toArray(),
@@ -92,24 +92,24 @@ class ExperienceFactory extends Factory
         return $this->state(function (array $attributes) use ($duration, $starting) {
             return [
                 'name'          => null,
-                'state_id'      => null,
-                'city_id'       => null,
-                'locality_id'   => null,
+                'state_id'      => '',
+                'city_id'       => '',
+                'locality_id'   => '',
                 'address'       => null,
                 'description'   => null,
                 'toProvide'     => [],
                 'toBring'       => [],
                 'photos'        => null,
                 'minimumAge'    => null,
-                'skillLevel'    => null,
-                'activityLevel' => null,
+                'skillLevel'    => SKILL_LVL_EXPERT,
+                'activityLevel' => ACTIVITY_LVL_MODERATE,
                 'toKnow'        => null,
                 'groupSize'     => null,
                 'duration'      => $duration,
                 'starting'      => $starting,
                 'price'         => null,
                 'privateGroup'  => false,
-                'status'        => false,
+                'status'        => STATUS_INCOMPLETE,
                 'pricePrivateGroup'    => null,
                 'reservationLimitTime' => 0,
             ];

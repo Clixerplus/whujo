@@ -44,6 +44,7 @@ class ServiceFactory extends Factory
                              ],
             'price'        => $this->faker->randomFloat(2, 2500, 50000),
             'published_at' => $this->faker->dateTime(),
+            'status'       => STATUS_INCOMPLETE,
         ];
     }
 

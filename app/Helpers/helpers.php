@@ -19,6 +19,9 @@ const ACTIVITY_LVL_MODERATE  = 'Moderada';
 const ACTIVITY_LVL_DEMANDING = 'Exigente';
 const ACTIVITY_LVL_EXTREME   = 'Extrema';
 
+const TYPE_SERVICE    = 'services';
+const TYPE_EXPERIENCE = 'experiences';
+
 
 function isActiveRoute($path)
 {

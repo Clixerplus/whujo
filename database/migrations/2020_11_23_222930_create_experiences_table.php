@@ -41,12 +41,10 @@ class CreateExperiencesTable extends Migration
                   ->nullable();
 
             $table->enum('skillLevel', config('product.skill_levels'))
-                  ->nullable()
-                  ->default(config('product.skill_levels')[0]);
+                  ->default(SKILL_LVL_BEGINNER);
 
             $table->enum('activityLevel', config('product.activity_levels'))
-                  ->nullable()
-                  ->default(config('product.activity_levels')[0]);
+                  ->default(ACTIVITY_LVL_LIGHT);
 
             $table->text('toKnow')
                   ->nullable();
@@ -64,16 +62,16 @@ class CreateExperiencesTable extends Migration
                   ->nullable();
 
             $table->boolean('privateGroup')
-                  ->default(false);
+                  ->nullable();
 
             $table->decimal('pricePrivateGroup')
                   ->nullable();
 
             $table->unsignedSmallInteger('reservationLimitTime')
-                  ->default(0);
+                  ->nullable();
 
-            $table->boolean('status')
-                  ->default(false);
+            $table->enum('status', config('product.status'))
+                  ->default(STATUS_INCOMPLETE);
 
             $table->timestamps();
         });
