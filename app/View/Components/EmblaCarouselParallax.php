@@ -2,12 +2,10 @@
 
 namespace App\View\Components;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\View\Component;
 
-class EmblaCarousel extends Component
+class EmblaCarouselParallax extends Component
 {
-
     /**
      * @var Collection
      */
@@ -24,25 +22,19 @@ class EmblaCarousel extends Component
     public $cardType;
 
     /**
-     * @var String
-     */
-    public $height;
-
-    /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($items, $type, $cardType, $height ="24rem")
+    public function __construct($items, $type, $cardType)
     {
         $this->items = $items;
 
         $this->type  = $type;
 
-        $this->cardType = 'card-'. $cardType;
-
-        $this->height = $height;
+        $this->cardType = 'card-' . $cardType;
     }
+
 
     /**
      * Get the view / contents that represent the component.
@@ -51,6 +43,6 @@ class EmblaCarousel extends Component
      */
     public function render()
     {
-        return view('components.embla-carousel');
+        return view('components.embla-carousel-parallax');
     }
 }

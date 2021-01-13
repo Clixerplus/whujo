@@ -11,9 +11,7 @@
                 <div class="embla__slide__inner">
                     <div class="embla__slide__parallax">
                         <div class="embla__slide__card_container flex-shrink-0">
-                            <a href="{{ route('product', [$item->type, $item->id, $item->slug ]) }}">
-                                <x-dynamic-component :component="$cardType" :product="$item" />
-                            </a>
+                            <x-dynamic-component :component="$cardType" class="h-96" :product="$item" />
                         </div>
                     </div>
                 </div>
