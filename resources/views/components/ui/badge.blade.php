@@ -1,11 +1,8 @@
-<span {{ $attributes->merge([ 'class' => 'flex items-center h-8 p-1 rounded-full text-xs shadow-w1'])}}>
+<div {{ $attributes->merge([ 'class' => 'flex p-1 pr-4 mr-2 items-center rounded-full bg-white bg-opacity-90']) }}>
 
-    @isset ($icon)
-    <span class="flex items-center h-full w-auto p-1.5 rounded-full bg-black bg-opacity-30 @if ($iconSide == "right") order-2 @endif">
-        <x-dynamic-component :component="$icon" class="h-full w-full" />
+    <span class="w-6 h-6 flex justify-center items-center rounded-full bg-black bg-opacity-30 ">
+        <x-dynamic-component :component="$icon" class="w-3 h-auto text-white" />
     </span>
-    @endisset
+    <span class="text-xs ml-2 text-white">{{ $slot }}</span>
 
-    <span class="mx-2 font-bold">{{ $slot }}</span>
-
-</span>
+</div>
