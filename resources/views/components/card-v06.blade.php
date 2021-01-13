@@ -7,14 +7,14 @@
                 aria-label="Category" title="Próximo">Próximo</a>
             <span class="text-gray-600">— 28 Dec 2020</span>
         </p>
-        <a href="{{ route('product', [$product->id, 'experiencias'])}}" aria-label="Category"
+        <a href="{{ route('product', [$product->type, $product->id, $product->slug ])}}" aria-label="Category"
            class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-primary">
            {{ $product->name }}
         </a>
         <p class="mb-2 text-gray-700 h-18  mt-6">
             {{ $product->description }}
         </p>
-        <a href="{{ route('product', [$product->id, 'experiencias'])}}"
+        <a href="{{ route('product', [$product->type, $product->id, $product->slug ])}}"
            class="w-full bg-primary text-white rounded-md
                   py-2 mt-4 inline-flex items-center justify-center
                   font-semibold transition-colors duration-200 hover:bg-secondary">

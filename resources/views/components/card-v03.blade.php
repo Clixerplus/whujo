@@ -17,14 +17,14 @@
             <div>
                 <img class="w-10 h-10 object-cover rounded-full ring ring-white"
                     src="//images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-                    alt="Avatar of Tailwind CSS Design" />
+                    alt="" />
             </div>
         </div>
 
     </div>
 
     <div class="">
-        <h1 class="text-md font-bold leading-1 h-16 py-2 px-4 round-b-md bg-secondary text-white">
+        <h1 class="text-md font-bold leading-1 h-16 py-2 px-4 round-b-md bg-secondary text-white" style="text-overflow: ellipsis;">
             {{ Illuminate\Support\Str::limit($product->name, 50) }}
         </h1>
         <h2 class="px-4 text-sm mt-2 text-gray-500">

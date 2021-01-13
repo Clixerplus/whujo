@@ -1,9 +1,9 @@
 <div class="relative overflow-hidden duration-300 bg-primary w-72 shadow-w1" style="border-radius: 50px 0 50px 0;">
     <div class="group">
-        <img src="{{ $product->photos }}" class="object-cover w-full h-64" alt="" />
+        <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" class="object-cover w-full h-64" alt="" />
         <div
             class="absolute inset-0 h-64 bg-secondary bg-opacity-60 flex items-center justify-center transition transform -translate-y-64 group-hover:translate-y-0 duration-300">
-            <a href="{{ route('product', $product->id) }}"
+            <a href="{{ route('product', [$product->type, $product->id, $product->slug]) }}"
                 class="bg-primary leading-6 px-4 py-2 rounded-md text-white ">Contratar</a>
         </div>
     </div>
