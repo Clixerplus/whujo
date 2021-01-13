@@ -1,4 +1,4 @@
-<x-app-nonav-layout>
+<x-guest-layout>
 
     {{-- Imagenes --}}
     <div class="min-w-screen bg-secondary">
@@ -26,26 +26,29 @@
     <div class="flex flex-col lg:flex-row bg-white border-b pb-8">
 
         {{--Panel Izquierdo--}}
-        <div class="w-full lg:w-3/5 min-h-screen p-4 md:p-12">
+        <div class="w-full lg:w-3/5 p-4 md:p-12">
             <div class="w-full h-full bg-white">
 
                 {{--Contenedor Titulo, Ubicacion y Verificacion--}}
                 <div class="mb-4">
+
                     {{-- Titulo --}}
                     <h1 class="leading-7 pr-6 font-bold text-2xl mb-2">
-                        {{ $model->name ?? 'Lorem ipsum dolor sit amet consectetur' }}
+                        {{ $product->name }}
                     </h1>
 
                     {{-- Ubicacion --}}
                     <h2 class="flex leading-2 text-sm pr-6 text-gray-400 mb-8">
                         <x-icon-location class="w-4 h-auto text-gray-400" />
-                        Ubicacion ({{ $model->city ?? 'Ciudad de Ubicacion'}})
+                        Ubicacion ({{ $product->state->name }})
                     </h2>
-                    {{-- Verificacion de Usuario--}}
+
+                    {{-- Verificacion de Usuario
                     <div class="flex flex-col items-center justify-start">
                         <x-icon-shield-checkmark class="w-12 h-auto text-success" />
                         <span class="font-bold text-sm">Verificado</span>
-                    </div>
+                    </div>--}}
+
                 </div>
 
 
@@ -63,42 +66,32 @@
                     <div class="w-1/2 md:w-1/4 flex flex-col justify-center items-center p-4 border border-gray-300">
                         <x-icon-time class="w-6 h-auto" />
                         <span class="my-2">Duración</span>
-                        <span class="font-semibold">{{ $model->durationString ?? '1h 30min'}}</span>
+                        <span class="font-semibold">{{ $product->durationString ?? '1h 30min'}}</span>
                     </div>
                     <div class="w-1/2 md:w-1/4 flex flex-col justify-center items-center p-4 border border-gray-300">
                         <x-icon-speedometer class="w-6 h-auto" />
                         <span class="my-2">Nivel</span>
-                        <span class="font-semibold">{{ $model->activityLevel ?? 'Principiante'}}</span>
+                        <span class="font-semibold">{{ $product->activityLevel ?? 'Principiante'}}</span>
                     </div>
                     <div class="w-1/2 md:w-1/4 flex flex-col justify-center items-center p-4 border border-gray-300">
                         <x-icon-pricetag class="w-6 h-auto" />
                         <span class="my-2">Precio</span>
-                        <span class="font-semibold">$ {{ $model->price ?? '2.500,00'}}</span>
+                        <span class="font-semibold">$ {{ $product->price ?? '2.500,00'}}</span>
                     </div>
                     <div class="w-1/2 md:w-1/4 flex flex-col justify-center items-center p-4 border border-gray-300">
                         <x-icon-people-circle class="w-6 h-auto" />
                         <span class="my-2">Grupos</span>
-                        <span class="font-semibold">{{ $model->groupSize ?? rand(1,15) }} personas</span>
+                        <span class="font-semibold">{{ $product->groupSize ?? rand(1,15) }} personas</span>
                     </div>
                 </div>
 
                 {{-- Descripcion --}}
                 <section class="mt-12">
-                    <h1 class="font-semibold text-xl mb-8">Acerca de lo que harás</h1>
+                    <h1 class="font-semibold text-xl mb-8">
+                        Acerca de lo que harás
+                    </h1>
                     <p>
-                        {{ $model->toDo ?? 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, dolorem facere eaque
-                                            necessitatibus repellendus saepe, consequuntur suscipit nam veniam perspiciatis itaque! Eius
-                                            nesciunt exercitationem quibusdam, aliquam rem sint alias culpa itaque doloribus fugiat? Cum ex
-                                            tempore, amet accusamus natus nesciunt odio in aut quidem magnam eligendi est, aperiam ipsam
-                                            dolorem esse doloribus nobis assumenda. Corrupti id dicta, quos beatae veritatis nisi officiis
-                                            veniam eligendi? Dolor, rem. Dolor saepe quod hic possimus esse dolorum tenetur odio ad error
-                                            iure tempore aperiam, quaerat iusto assumenda aliquid recusandae reiciendis fugiat magni cum
-                                            deleniti nesciunt similique perspiciatis! Quos sequi, similique suscipit, esse ipsam et a
-                                            repellendus doloribus perferendis quo consequatur? Animi corporis consequatur omnis repellendus
-                                            aperiam atque repellat eligendi mollitia iure laudantium commodi ex quisquam, officiis
-                                            consequuntur provident deserunt eum, qui vitae facilis praesentium, minus tenetur saepe autem
-                                            voluptas. Magnam itaque repellendus enim officiis voluptatum. Dolorum ex sapiente impedit
-                                            aspernatur quod necessitatibus, veritatis totam.'}}
+                        {{ $product->description }}
                     </p>
                 </section>
 
@@ -157,7 +150,9 @@
 
                 {{-- Requerimientos --}}
                 <section class="flex flex-wrap  justify-between mt-12 pt-12 border-t">
-                    <h1 class="md:w-2/5 font-semibold text-xl mb-8">Que necesitas</h1>
+                    <h1 class="md:w-2/5 font-semibold text-xl mb-8">
+                        Que necesitas
+                    </h1>
                     <div class="md:w-3/5">
                         <div class="flex items-start mb-4">
                             <div>
@@ -208,45 +203,125 @@
                     </div>
                 </section>
 
-                {{--Reseñas--}}
-                <section class="mt-12 pt-12 border-t">
-                    <h1 class="font-semibold text-xl mb-8 w-2/5">Reseñas</h1>
-
-                    <div class="px-12">
-                        <div class="flex flex-col md:flex-row">
-                            <div class="flex-none w-full md:w-28 p-4">
-                                <img class="w-32 h-32 md:w-16 md:h-16 object-cover rounded-full mx-auto"
-                                    src="//images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" />
-                            </div>
-                            <div class="flex-grow">
-                                <div class="flex justify-between border-b py-4">
-
-                                    <div>
-                                        <div class="font-semibold text-lg">Nombre de Usuario</div>
-                                        <div class="text-sm">Fecha: 17/12/2020</div>
-                                    </div>
+                {{-- Requerimientos --}}
+                <section class="flex flex-wrap  justify-between mt-12 pt-12 border-t">
+                    <h1 class="md:w-2/5 font-semibold text-xl mb-8">
+                        Calificaciones y Reviews
+                    </h1>
+                    <div class="md:w-3/5">
+                        <div class="flex-grow">
+                            <div class="flex justify-start items-center border-b py-4">
+                                <div class="flex-none w-full md:w-28 p-4">
+                                    <img class="w-32 h-32 md:w-16 md:h-16 object-cover rounded-full mx-auto"
+                                        src="//images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" />
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-lg">Nombre de Usuario</div>
+                                    <div class="text-sm">Fecha: 17/12/2020</div>
                                     <div class="flex items-center font-bold leading-6 text-xl mr-6">
                                         <x-icon-star class="text-yellow-400 fill-current h-auto w-6 mr-2" />
                                         {{ rand(1,4)}}.{{ rand(0,9)}}
                                     </div>
                                 </div>
-                                <div class="py-4">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. In eaque, quae libero
-                                    aspernatur
-                                    officia
-                                    sint. A saepe quasi magni laborum accusamus. Commodi minima at quis ullam, autem
-                                    voluptates
-                                    perferendis? Ipsam blanditiis quisquam deserunt natus necessitatibus deleniti, esse
-                                    aliquid,
-                                    harum
-                                    autem sunt dicta nemo culpa facere earum unde quaerat animi molestiae?
-                                </div>
+
+                            </div>
+                            <div class="py-4">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In eaque, quae libero
+                                aspernatur
+                                officia
+                                sint. A saepe quasi magni laborum accusamus. Commodi minima at quis ullam, autem
+                                voluptates
+                                perferendis? Ipsam blanditiis quisquam deserunt natus necessitatibus deleniti, esse
+                                aliquid,
+                                harum
+                                autem sunt dicta nemo culpa facere earum unde quaerat animi molestiae?
                             </div>
                         </div>
+
+                    </div>
+                </section>
+
+                {{--Reseñas--}}
+                <section class="mt-12 pt-12 border-t">
+                    <h1 class="font-semibold text-xl mb-8 w-2/5">
+                        Reseñas
+                    </h1>
+
+                    <div class="px-12">
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center border-b">
+                                <div class="flex items-center">
+                                    <div class="flex-none w-full md:w-28 p-4">
+                                        <img class="w-32 h-32 md:w-16 md:h-16 object-cover rounded-full mx-auto"
+                                            src="//images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" />
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-lg">Nombre de Usuario</div>
+                                        <div class="text-sm">Fecha: 17/12/2020</div>
+
+                                    </div>
+                                </div>
+                                <div class="flex items-center font-bold leading-6 text-3xl pr-8 space-x-2">
+                                    <x-icon-star class="text-yellow-400 fill-current h-auto w-8" />
+                                    <span>{{ rand(1,4)}}.{{ rand(0,9)}}</span>
+                                </div>
+
+                            </div>
+                            <div class="py-4">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In eaque, quae libero
+                                aspernatur
+                                officia
+                                sint. A saepe quasi magni laborum accusamus. Commodi minima at quis ullam, autem
+                                voluptates
+                                perferendis? Ipsam blanditiis quisquam deserunt natus necessitatibus deleniti, esse
+                                aliquid,
+                                harum
+                                autem sunt dicta nemo culpa facere earum unde quaerat animi molestiae?
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="flex justify-between items-center border-b">
+                                <div class="flex items-center">
+                                    <div class="flex-none w-full md:w-28 p-4">
+                                        <img class="w-32 h-32 md:w-16 md:h-16 object-cover rounded-full mx-auto"
+                                            src="//images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" />
+                                    </div>
+                                    <div>
+                                        <div class="font-semibold text-lg">Nombre de Usuario</div>
+                                        <div class="text-sm">Fecha: 17/12/2020</div>
+
+                                    </div>
+                                </div>
+                                <div class="flex items-center font-bold leading-6 text-3xl pr-8 space-x-2">
+                                    <x-icon-star class="text-yellow-400 fill-current h-auto w-8" />
+                                    <span>{{ rand(1,4)}}.{{ rand(0,9)}}</span>
+                                </div>
+
+                            </div>
+                            <div class="py-4">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. In eaque, quae libero
+                                aspernatur
+                                officia
+                                sint. A saepe quasi magni laborum accusamus. Commodi minima at quis ullam, autem
+                                voluptates
+                                perferendis? Ipsam blanditiis quisquam deserunt natus necessitatibus deleniti, esse
+                                aliquid,
+                                harum
+                                autem sunt dicta nemo culpa facere earum unde quaerat animi molestiae?
+                            </div>
+                        </div>
+
                     </div>
 
-                    <a class="block w-24 text-center mx-auto hover:text-info text-primary active:outline-none cursor-pointer"
-                        onclick="document.getElementById('modal').classList.remove('hidden','opacity-0')">Ver Todas</a>
+                    <div class="text-center">
+                        <x-button
+                            class="text-center mx-auto  text-primary active:outline-none cursor-pointer rounded-full px-8 py-1 border border-transparent hover:border-primary transition-500"
+                            onclick="document.getElementById('modal').classList.remove('hidden','opacity-0')">Ver Todas
+                        </x-button>
+                    </div>
+
+                    {{-- Modal de Comentarios --}}
                     <x-modal button="Cerrar" class="w-full">
                         <x-slot name="title">Reseñas</x-slot>
                         <ul class="px-4 md:px-12 text-sm">
@@ -381,7 +456,9 @@
 
                 {{-- Legal --}}
                 <section class="mt-12 pt-12 border-t">
-                    <h1 class="font-semibold text-xl mb-8">Aspectos legales</h1>
+                    <h1 class="font-semibold text-xl mb-8">
+                        Aspectos legales
+                    </h1>
 
                     <div class="flex">
                         <div class="w-1/2">
@@ -414,35 +491,34 @@
             </div>
         </div>
 
-
         {{--Panel Derecho--}}
-        <div class="w-full lg:w-2/5 min-h-screen md:px-12">
-            <div class="w-full h-full">
+        <div class="w-full lg:w-2/5 md:px-12">
+            <div class="w-full h-auto sticky top-24 left-0">
 
                 {{--Reservaciones--}}
-                <div class="bg-gray-300 rounded-md py-8 mt-8">
+                <div class="bg-gray-200 rounded-md py-8 mt-8">
                     <h1
                         class="flex items-center justify-center p-4 border-b  text-secondary text-xl font-bold leading-1">
                         <x-icon-calendar class="w-8 h-auto mr-2 " />
                         <span>Reservaciones</span>
                     </h1>
 
-                    <form action="" class="p-4">
+                    <form action="" class="p-4 px-8">
                         <label for="">Fecha</label>
-                        <x-input type="date" key="date" />
+                        <x-input type="date" key="date" class="w-full" />
 
                         <label for="">Hora</label>
-                        <x-input type="time" key="time" placeholder="Horario" />
+                        <x-input type="time" key="time" placeholder="Horario" class="w-full" />
 
                         <label for="">Personas</label>
                         <x-input type="number" key="groupSize" placeholder="Min 1 - Max 15" min="1" max="15"
-                            class="appearance-none" />
+                            class="appearance-none w-full" />
                         <x-button type="submit" class="w-full py-4 justify-center mt-4 bg-primary">Reservar</x-button>
                     </form>
                 </div>
 
                 {{--Proximas Actividades--}}
-                <div class="bg-gray-300 rounded-md py-8 mt-8">
+                <div class="bg-gray-200 rounded-md py-8 mt-8">
                     <h1
                         class="flex items-center justify-center p-4 border-b  text-secondary text-xl font-bold leading-1">
                         <x-icon-calendar class="w-8 h-auto mr-2 " />
@@ -480,11 +556,11 @@
                 </div>
 
                 {{-- Contacto Afitrion --}}
-                <div class="bg-gray-300 rounded-md py-8 mt-8">
+                <div class="bg-gray-200 rounded-md py-8 mt-8">
                     <div class="flex border-b pb-4">
                         <div class="px-8 w-3/4">
                             <div class="mb-2">Anfitrion</div>
-                            <div class="font-bold text-xl">Johan Tovar</div>
+                            <div class="font-bold text-xl">{{ $product->user->name}}</div>
                         </div>
                         <div class="w-1/4">
                             <img class="w-16 h-16 object-cover rounded-full"
@@ -531,16 +607,9 @@
 
     </div>
 
-
     {{--Sugerencias--}}
-    <div class="w-full my-8">
-
-        @php
-        $model = DB::table('experiences')->where('user_id','>', 1)->get();
-        @endphp
-
-        <x-embla-carousel :model="$model" />
-
+    <div class="w-full">
+        <x-embla-carousel id="expeCarousel" :items="App\Models\Experience::all()" :type="'experiencias'" :cardType="'V05'" />
     </div>
 
-</x-app-nonav-layout>
+</x-guest-layout>
