@@ -27,21 +27,26 @@ html {
 .navbar-transparent {
     @apply bg-white text-primary shadow-w1 lg:bg-transparent lg:text-white lg:shadow-none
 }
+
+.navbar-transparent ul li,
+.navbar-transparent .btn-login {
+    @apply lg:text-white;
+}
+.navbar-transparent .btn-login {
+    @apply lg:border-white;
+}
+
 .navbar-dark {
-    @apply bg-secondary text-secondary shadow-w1
-}
-.btn-sign-up {
-    @apply inline-flex items-center text-center h-8 px-6 text-sm font-medium tracking-wide rounded-full transition-200 shadow-md focus:outline-none
+    @apply lg:bg-white lg:text-secondary lg:shadow-w1;
 }
 
-.navbar-transparent .btn-sign-up {
-    @apply bg-white text-primary border border-primary hover:bg-primary hover:text-white lg:bg-transparent lg:text-blue-500 lg:border-white lg:hover:bg-white lg:hover:text-primary
+.navbar-dark ul li,
+.navbar-dark .btn-login {
+    @apply lg:text-secondary;
 }
-
-.navbar-dark .btn-sign-up {
-    @apply bg-white text-primary border border-primary hover:bg-primary hover:text-white
+.navbar-dark .btn-login {
+    @apply lg:border-secondary;
 }
-
 
 
 
