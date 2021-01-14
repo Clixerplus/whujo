@@ -20,9 +20,7 @@ return [
         ACTIVITY_LVL_EXTREME,
     ],
 
-    'price' => [
-        'min' => '2500'
-    ],
+    'MIN_PRICE' => '2500',
 
     'max_group_size' => '10',
 
