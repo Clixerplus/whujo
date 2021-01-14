@@ -30,6 +30,11 @@ class Service extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function state()
     {
         return $this->belongsTo(State::class);
