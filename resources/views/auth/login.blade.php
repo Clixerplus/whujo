@@ -1,57 +1,65 @@
-<x-auth>
+@extends('auth.auth-screen-layout')
 
-    <x-slot name="link">
-        <span>
-            {{ __('Don’t have an account?') }}
-        </span>
-        <a href="{{ route('register') }}"
-            class="rounded-full px-4 py-2 border border-primary text-primary hover:bg-primary hover:text-white  transition ease-in-out duration-500">
-            {{ __('Get started') }}
-            <x-icon-chevron-forward-outline class="inline w-4" />
-        </a>
-    </x-slot>
+@section('background-image', 'https://images.pexels.com/photos/3184423/pexels-photo-3184423.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')
 
+@section('form')
+    <h1 class="text-4xl  text-secondary mb-4">
+        {{ __('Sign in') }}
+    </h1>
 
-    <x-slot name="title">
-        {{ __('Sign in to') }} <span class="text-primary font-whujo">Whujo</span>
-    </x-slot>
+    <div class="px-4 mb-4">
+        <x-jet-validation-errors />
+    </div>
 
-    <x-slot name="body">
-        <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-4">
-            @csrf
-            <div>
-                <x-jet-input id="email"
-                    class="block w-full focus:shadow-outline-gray py-4 transition ease-in-out duration-500" type="email"
-                    name="email" :value="old('email')" placeholder="{{ __('Enter your email address') }}" required
-                    autofocus />
-            </div>
-            <div>
-                <x-jet-input id="password"
-                    class="block w-full focus:shadow-outline-gray py-4 transition ease-in-out duration-500"
-                    type="password" name="password" placeholder="{{ __('Enter your password') }}" required
-                    autocomplete="current-password" />
-            </div>
-            <div class="flex justify-between my-4">
-                <label for="remember_me" class="flex items-center cursor-pointer">
-                    <input id="remember_me" type="checkbox" class="form-checkbox cursor-pointer duration-500"
-                        name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember Me') }}</span>
-                </label>
+    <form method="POST" action="{{ route('login') }}" class="flex flex-col space-y-3">
+        @csrf
+        <div>
+            <label for="email" class="font-light text-sm">Correo electrónico</label>
+            <x-jet-input id="email"
+                class="block w-full focus:shadow-outline-gray border border-gray-300 p-3 mt-1 transition-500" type="email"
+                name="email" :value="old('email')" placeholder="{{ __('Enter your email address') }}" required autofocus />
+        </div>
+        <div>
+            <label for="email" class="font-light text-sm">Contraseña</label>
+            <x-jet-input id="password"
+                class="block w-full focus:shadow-outline-gray border border-gray-300 p-3 mt-1 transition-500"
+                type="password" name="password" placeholder="{{ __('Enter your password') }}" required
+                autocomplete="current-password" />
+        </div>
+        <div class="flex justify-between py-4">
+            <label for="remember_me" class="flex items-center cursor-pointer">
+                <x-checkbox :key="'remember'" :caption="__('Remember Me')" />
+            </label>
 
-                @if (Route::has('password.request'))
-                <a class="text-sm  text-blue-600 hover:text-gray-900 transition ease-in-out duration-500"
-                    href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-                @endif
-            </div>
-            <div>
-                <button type="submit"
-                    class="block w-full lg:w-3/4 mx-auto py-4 bg-primary border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-secondary focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-500">
-                    {{ __('Login') }}
-                </button>
-            </div>
-        </form>
-    </x-slot>
+            @if (Route::has('password.request'))
+            <a class="text-sm  text-blue-600 hover:text-gray-900 transition ease-in-out duration-500"
+                href="{{ route('password.request') }}">
+                {{ __('Forgot your password?') }}
+            </a>
+            @endif
+        </div>
+        <div>
+            <button type="submit" class="block w-full lg:w-3/4 mx-auto py-4
+                                        bg-primary-dark hover:bg-primary-light
+                                        border border-transparent rounded-md
+                                        font-semibold text-xs text-white tracking-widest
+                                        active:bg-primary-dark focus:outline-none
+                                        focus:border-secondary focus:shadow-outline-gray
+                                        disabled:opacity-25 transition-500">
+                {{ __('Login') }}
+            </button>
+        </div>
+    </form>
+@endsection
 
-</x-auth>
+@section('call-to-action')
+    <span>
+        {{ __('Don’t have an account?') }}
+    </span>
+    <a href="{{ route('register') }}"
+        class="rounded-md p-2
+                                border border-gray-400 font-light   text-secondary hover:bg-primary hover:text-white active:bg-primary active:text-white transition-500">
+        <span>{{ __('Get started') }}</span>
+        <x-icon-arrow-forward class="w-4 inline" />
+    </a>
+@endsection
