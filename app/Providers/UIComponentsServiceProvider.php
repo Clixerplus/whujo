@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+
 use App\View\Components\UI\Alert;
 use App\View\Components\UI\Badge;
 use App\View\Components\UI\Error;
 use App\View\Components\UI\Input;
 use App\View\Components\UI\Modal;
+use App\View\Components\UI\Checkbox;
 use App\View\Components\UI\Button;
 use App\View\Components\UI\Select;
 use App\View\Components\UI\Callout;
@@ -47,6 +49,8 @@ class UIComponentsServiceProvider extends ServiceProvider
         Blade::component('button-icon', ButtonIcon::class);
         Blade::component('datepicker', Datepicker::class);
         Blade::component('badge', Badge::class);
+        Blade::component('checkbox', Checkbox::class);
+        Blade::component('button', Button::class);
     }
 }
 
