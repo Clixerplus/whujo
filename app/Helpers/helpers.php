@@ -22,6 +22,8 @@ const ACTIVITY_LVL_EXTREME   = 'Extrema';
 const TYPE_SERVICE    = 'services';
 const TYPE_EXPERIENCE = 'experiences';
 
+const MIN_PRICE = 2500;
+
 
 function isActiveRoute($path)
 {
