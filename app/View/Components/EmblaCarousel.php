@@ -33,7 +33,7 @@ class EmblaCarousel extends Component
      *
      * @return void
      */
-    public function __construct($items, $type, $cardType, $height ="24rem")
+    public function __construct($items, $type, $cardType, $height ="20rem")
     {
         $this->items = $items;
 

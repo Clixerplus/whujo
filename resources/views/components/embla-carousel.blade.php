@@ -1,14 +1,11 @@
-@push('styles')
-<link rel="stylesheet" href="{{ asset('css/embla.css') }}">
-@endpush
-<div class="embla__parallax">
+<div {{ $attributes }} class="embla__parallax">
     <div class="embla__viewport">
         <div class="embla__container ">
 
             @foreach ($items as $item)
             {{-- Slide --}}
             <div class="embla__slide w-full md:w-1/2 lg:w-1/4 flex-shrink-0 relative">
-                <div class="embla__slide__inner">
+                <div class="embla__slide__inner" style="min-height: {{ $height }};">
                     <div class="embla__slide__parallax">
                         <div class="embla__slide__card_container flex-shrink-0">
                             <a href="{{ route('product', [$item->type, $item->id, $item->slug ]) }}">

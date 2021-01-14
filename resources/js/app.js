@@ -19,19 +19,58 @@ import { setupPrevNextBtns, disablePrevNextBtns } from "./prevAndNextButtons";
 import { parallax } from "./parallax";
 import "../css/embla.css";
 
-const wrap = document.querySelector(".embla__parallax");
-const viewPort = wrap.querySelector(".embla__viewport");
-const prevBtn = wrap.querySelector(".embla__button--prev");
-const nextBtn = wrap.querySelector(".embla__button--next");
-const embla = EmblaCarousel(viewPort, {
-    align:'start',
+const servCarouselWrap = document.querySelector(
+    "#servCarousel.embla__parallax"
+);
+const servCarouselViewPort = servCarouselWrap.querySelector(
+    "#servCarousel.embla__parallax .embla__viewport"
+);
+const servCarouselPrevBtn = servCarouselWrap.querySelector(
+    "#servCarousel.embla__parallax .embla__button--prev"
+);
+const servCarouselNextBtn = servCarouselWrap.querySelector(
+    "#servCarousel.embla__parallax .embla__button--next"
+);
+const servCarouselEmbla = EmblaCarousel(servCarouselViewPort, {
+    align: "start",
     containScroll: "trimSnaps",
 });
 
-const disablePrevAndNextBtns = disablePrevNextBtns(prevBtn, nextBtn, embla);
-setupPrevNextBtns(prevBtn, nextBtn, embla);
-embla.on("init", disablePrevAndNextBtns);
-embla.on("select", disablePrevAndNextBtns);
+const servCarouselDisablePrevAndNextBtns = disablePrevNextBtns(
+    servCarouselPrevBtn,
+    servCarouselNextBtn,
+    servCarouselEmbla
+);
+setupPrevNextBtns(servCarouselPrevBtn, servCarouselNextBtn, servCarouselEmbla);
+servCarouselEmbla.on("init", servCarouselDisablePrevAndNextBtns);
+servCarouselEmbla.on("select", servCarouselDisablePrevAndNextBtns);
+
+
+const expeCarouselWrap = document.querySelector(
+    "#expeCarousel.embla__parallax"
+);
+const expeCarouselViewPort = expeCarouselWrap.querySelector(
+    "#expeCarousel.embla__parallax .embla__viewport"
+);
+const expeCarouselPrevBtn = expeCarouselWrap.querySelector(
+    "#expeCarousel.embla__parallax .embla__button--prev"
+);
+const expeCarouselNextBtn = expeCarouselWrap.querySelector(
+    "#expeCarousel.embla__parallax .embla__button--next"
+);
+const expeCarouselEmbla = EmblaCarousel(expeCarouselViewPort, {
+    align: "start",
+    containScroll: "trimSnaps",
+});
+
+const expeCarouselDisablePrevAndNextBtns = disablePrevNextBtns(
+    expeCarouselPrevBtn,
+    expeCarouselNextBtn,
+    expeCarouselEmbla
+);
+setupPrevNextBtns(expeCarouselPrevBtn, expeCarouselNextBtn, expeCarouselEmbla);
+expeCarouselEmbla.on("init", expeCarouselDisablePrevAndNextBtns);
+expeCarouselEmbla.on("select", expeCarouselDisablePrevAndNextBtns);
 
 /** End Embla */
 
@@ -42,42 +81,4 @@ const closeAlert = () => {
 const narvbar = {
     state: false,
     el: document.getElementById("navbar"),
-};
-const btnNavbar = document.getElementById("btnNavbar");
-
-window.onscroll = function () {
-    if (window.scrollY > 50) {
-        navbar.state = false;
-        navbar.classList.remove("lg:bg-transparent", "lg:text-white");
-        navbar.classList.add("lg:bg-white", "lg:text-primary", "shadow-w1");
-        btnNavbar.classList.remove(
-            "border-white",
-            "text-white",
-            "hover:bg-white",
-            "hover:text-secondary"
-        );
-        btnNavbar.classList.add(
-            "border-primary",
-            "text-primary",
-            "hover:bg-primary",
-            "hover:text-white"
-        );
-    } else {
-        navbar.state = false;
-        navbar.classList.remove("lg:bg-white", "lg:text-primary", "shadow-w1");
-        navbar.classList.add("lg:bg-transparent", "lg:text-white");
-        btnNavbar.classList.remove(
-            "border-primary",
-            "text-primary",
-            "hover:bg-primary",
-            "hover:text-white",
-            "shadow-w1"
-        );
-        btnNavbar.classList.add(
-            "border-white",
-            "text-white",
-            "hover:bg-white",
-            "hover:text-secondary"
-        );
-    }
 };
