@@ -1,4 +1,4 @@
-<div class="shadow rounded-md pb-2">
+<div class="shadow-w1 border rounded-md pb-2 bg-gray-100">
 
     <div class="relative h-56">
 
@@ -29,7 +29,7 @@
         </h1>
         <h2 class="px-4 text-sm mt-2 text-gray-500">
             {{ $product->state->name }} - {{ $product->city->name }}</h2>
-        <p class="px-4 text-lg lg:text-sm mt-2 leading-7 h-28 ">
+        <p class="px-4 md:text-sm mt-2 h-28 ">
             {{ Illuminate\Support\Str::limit($product->description, 160) }}
         </p>
 
@@ -40,7 +40,9 @@
             </div>
             <div>
                 <button
-                    class="group flex items-center justify-center w-10 h-10 rounded-full border  hover:border-primary transition-color ease-out duration-300">
+                    class="group flex items-center justify-center
+                           w-10 h-10 rounded-full border  hover:border-primary
+                           transition-color ease-out duration-300">
                     <x-icon-heart
                         class="w-5 h-auto text-gray-300 group-hover:text-primary transition-color ease-out duration-300"
                         title="Agregar a favoritos" />
