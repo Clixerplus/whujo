@@ -20,23 +20,24 @@ class CreateServicesTable extends Migration
                   ->constrained();
 
             $table->foreignId('category_id')
+                  ->nullable()
                   ->constrained();
 
             $table->string('state_id')
                   ->references('id')
                   ->on('states')
-                  ->default('');
+                  ->nullable();
 
 
             $table->string('city_id')
                   ->references('id')
                   ->on('cities')
-                  ->default('');
+                  ->nullable();
 
             $table->string('locality_id')
                   ->references('id')
                   ->on('localities')
-                  ->default('');
+                  ->nullable();
 
             $table->string('name')
                   ->nullable();
