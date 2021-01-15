@@ -1795,14 +1795,57 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var embla_carousel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! embla-carousel */ "./node_modules/embla-carousel/embla-carousel.esm.js");
+/* harmony import */ var embla_carousel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! embla-carousel */ "./node_modules/embla-carousel/embla-carousel.esm.js");
+/* harmony import */ var _prevAndNextButtons__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./prevAndNextButtons */ "./resources/js/prevAndNextButtons.js");
+/* harmony import */ var _parallax__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./parallax */ "./resources/js/parallax.js");
+/* harmony import */ var _css_embla_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/embla.css */ "./resources/css/embla.css");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/*import EmblaCarousel from "embla-carousel";
+const servNode = document.getElementById("servCarousel");
+const expeNode = document.getElementById("expeCarousel");
 
-
-var emblaNode = document.getElementById("embla");
-var embla = (0,embla_carousel__WEBPACK_IMPORTED_MODULE_0__.default)(emblaNode, {
-  align: "start"
+const servCarousel = EmblaCarousel(servNode, {
+    align: "start",
+    loop: true,
 });
+
+const expeCarousel = EmblaCarousel(expeNode, {
+    align: "start",
+    loop: true,
+});*/
+
+/** Begin Embla */
+
+
+
+
+
+
+var servCarouselWrap = document.querySelector("#servCarousel.embla__parallax");
+var servCarouselViewPort = servCarouselWrap.querySelector("#servCarousel.embla__parallax .embla__viewport");
+var servCarouselPrevBtn = servCarouselWrap.querySelector("#servCarousel.embla__parallax .embla__button--prev");
+var servCarouselNextBtn = servCarouselWrap.querySelector("#servCarousel.embla__parallax .embla__button--next");
+var servCarouselEmbla = (0,embla_carousel__WEBPACK_IMPORTED_MODULE_3__.default)(servCarouselViewPort, {
+  align: "start",
+  containScroll: "trimSnaps"
+});
+var servCarouselDisablePrevAndNextBtns = (0,_prevAndNextButtons__WEBPACK_IMPORTED_MODULE_0__.disablePrevNextBtns)(servCarouselPrevBtn, servCarouselNextBtn, servCarouselEmbla);
+(0,_prevAndNextButtons__WEBPACK_IMPORTED_MODULE_0__.setupPrevNextBtns)(servCarouselPrevBtn, servCarouselNextBtn, servCarouselEmbla);
+servCarouselEmbla.on("init", servCarouselDisablePrevAndNextBtns);
+servCarouselEmbla.on("select", servCarouselDisablePrevAndNextBtns);
+var expeCarouselWrap = document.querySelector("#expeCarousel.embla__parallax");
+var expeCarouselViewPort = expeCarouselWrap.querySelector("#expeCarousel.embla__parallax .embla__viewport");
+var expeCarouselPrevBtn = expeCarouselWrap.querySelector("#expeCarousel.embla__parallax .embla__button--prev");
+var expeCarouselNextBtn = expeCarouselWrap.querySelector("#expeCarousel.embla__parallax .embla__button--next");
+var expeCarouselEmbla = (0,embla_carousel__WEBPACK_IMPORTED_MODULE_3__.default)(expeCarouselViewPort, {
+  align: "start",
+  containScroll: "trimSnaps"
+});
+var expeCarouselDisablePrevAndNextBtns = (0,_prevAndNextButtons__WEBPACK_IMPORTED_MODULE_0__.disablePrevNextBtns)(expeCarouselPrevBtn, expeCarouselNextBtn, expeCarouselEmbla);
+(0,_prevAndNextButtons__WEBPACK_IMPORTED_MODULE_0__.setupPrevNextBtns)(expeCarouselPrevBtn, expeCarouselNextBtn, expeCarouselEmbla);
+expeCarouselEmbla.on("init", expeCarouselDisablePrevAndNextBtns);
+expeCarouselEmbla.on("select", expeCarouselDisablePrevAndNextBtns);
+/** End Embla */
 
 var closeAlert = function closeAlert() {
   var alert = document.getElementById("alert");
@@ -1812,23 +1855,6 @@ var closeAlert = function closeAlert() {
 var narvbar = {
   state: false,
   el: document.getElementById("navbar")
-};
-var btnNavbar = document.getElementById("btnNavbar");
-
-window.onscroll = function () {
-  if (window.scrollY > 50) {
-    navbar.state = false;
-    navbar.classList.remove("lg:bg-transparent", "lg:text-white");
-    navbar.classList.add("lg:bg-white", "lg:text-primary", "shadow-w1");
-    btnNavbar.classList.remove("border-white", "text-white", "hover:bg-white", "hover:text-secondary");
-    btnNavbar.classList.add("border-primary", "text-primary", "hover:bg-primary", "hover:text-white");
-  } else {
-    navbar.state = false;
-    navbar.classList.remove("lg:bg-white", "lg:text-primary", "shadow-w1");
-    navbar.classList.add("lg:bg-transparent", "lg:text-white");
-    btnNavbar.classList.remove("border-primary", "text-primary", "hover:bg-primary", "hover:text-white", "shadow-w1");
-    btnNavbar.classList.add("border-white", "text-white", "hover:bg-white", "hover:text-secondary");
-  }
 };
 
 /***/ }),
@@ -1861,6 +1887,63 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/parallax.js":
+/*!**********************************!*\
+  !*** ./resources/js/parallax.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "parallax": () => /* binding */ parallax
+/* harmony export */ });
+var PARALLAX_FACTOR = 1.2;
+var parallax = function parallax(embla) {
+  var scrollSnaps = embla.scrollSnapList();
+  var slides = embla.slideNodes();
+  var layers = slides.map(function (node) {
+    return node.querySelector(".embla__slide__parallax");
+  });
+
+  var applyParallaxStyles = function applyParallaxStyles() {
+    scrollSnaps.forEach(function (scrollSnap, index) {
+      var diffToTarget = scrollSnap - embla.scrollProgress();
+      var x = diffToTarget * (-1 / PARALLAX_FACTOR) * 100;
+      layers[index].style.transform = "translateX(".concat(x, "%)");
+    });
+  };
+
+  return applyParallaxStyles;
+};
+
+/***/ }),
+
+/***/ "./resources/js/prevAndNextButtons.js":
+/*!********************************************!*\
+  !*** ./resources/js/prevAndNextButtons.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setupPrevNextBtns": () => /* binding */ setupPrevNextBtns,
+/* harmony export */   "disablePrevNextBtns": () => /* binding */ disablePrevNextBtns
+/* harmony export */ });
+var setupPrevNextBtns = function setupPrevNextBtns(prevBtn, nextBtn, embla) {
+  prevBtn.addEventListener("click", embla.scrollPrev, false);
+  nextBtn.addEventListener("click", embla.scrollNext, false);
+};
+var disablePrevNextBtns = function disablePrevNextBtns(prevBtn, nextBtn, embla) {
+  return function () {
+    if (embla.canScrollPrev()) prevBtn.removeAttribute("disabled");else prevBtn.setAttribute("disabled", "disabled");
+    if (embla.canScrollNext()) nextBtn.removeAttribute("disabled");else nextBtn.setAttribute("disabled", "disabled");
+  };
+};
 
 /***/ }),
 
@@ -3293,32 +3376,27 @@ function Engine(root, container, slides, options, events) {
 }
 
 function EventEmitter() {
-  var listeners = {
-    destroy: [],
-    pointerDown: [],
-    pointerUp: [],
-    init: [],
-    reInit: [],
-    resize: [],
-    scroll: [],
-    select: [],
-    settle: []
-  };
+  var listeners = {};
+
+  function getListeners(evt) {
+    var eventListeners = listeners[evt];
+    return eventListeners || [];
+  }
 
   function emit(evt) {
-    listeners[evt].forEach(function (e) {
+    getListeners(evt).forEach(function (e) {
       return e(evt);
     });
     return self;
   }
 
   function on(evt, cb) {
-    listeners[evt] = listeners[evt].concat([cb]);
+    listeners[evt] = getListeners(evt).concat([cb]);
     return self;
   }
 
   function off(evt, cb) {
-    listeners[evt] = listeners[evt].filter(function (e) {
+    listeners[evt] = getListeners(evt).filter(function (e) {
       return e !== cb;
     });
     return self;
@@ -20760,6 +20838,19 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
+/***/ }),
+
+/***/ "./resources/css/embla.css":
+/*!*********************************!*\
+  !*** ./resources/css/embla.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
 /***/ })
 
 /******/ 	});
@@ -20859,7 +20950,8 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		
 /******/ 		var deferredModules = [
 /******/ 			["./resources/js/app.js"],
-/******/ 			["./resources/css/app.css"]
+/******/ 			["./resources/css/app.css"],
+/******/ 			["./resources/css/embla.css"]
 /******/ 		];
 /******/ 		// no chunk on demand loading
 /******/ 		
