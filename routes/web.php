@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Storage;
 */
 
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return view('index', [
         'services' => App\Models\Service::where('status', STATUS_PUBLISHED)->GET(),
         'experiences' => App\Models\Experience::where('status', STATUS_PUBLISHED)->GET()
