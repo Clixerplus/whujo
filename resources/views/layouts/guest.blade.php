@@ -13,6 +13,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/embla.css') }}">
 
         @stack('styles')
         <style>
@@ -24,11 +25,16 @@
     </head>
 
     <body>
+        <x-navbar />
         <div class="antialiased relative">
             {{ $slot }}
         </div>
 
+        <x-footer />
+
         @stack('scripts')
+        <script src="{{ asset('js/app.js') }}"></script>
+
     </body>
 
 </html>
