@@ -23,9 +23,23 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            'id'   => 'P' . rand(100, 999),
-            'state_id' => State::all()->random()->id,
+            'id'   => $this->faker->randomElement(['A', 'B', 'C']) . rand(1000, 9999),
+            'state_id' => State::factory(),
             'name' => $this->faker->city,
         ];
+    }
+
+    /**
+     * Define the model's related state.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function related()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'state_id' => State::all()->random()->id,
+            ];
+        });
     }
 }

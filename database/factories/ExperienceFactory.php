@@ -34,11 +34,11 @@ class ExperienceFactory extends Factory
 
         return [
             'user_id'        => User::factory(),
-            'category_id'    => Category::all()->random()->id,
+            'category_id'    => Category::factory(),
 
-            'state_id'       => State::all()->random()->id,
-            'city_id'        => City::all()->random()->id,
-            'locality_id'    => Locality::all()->random()->id,
+            'state_id'       => State::factory(),
+            'city_id'        => City::factory(),
+            'locality_id'    => Locality::factory(),
             'address'        => $this->faker->address,
 
             'name'           => $this->faker->sentence(),
@@ -56,11 +56,11 @@ class ExperienceFactory extends Factory
             ],
 
             'photos'         =>  $this->faker->randomElement([
-                    'https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-                    'https://images.pexels.com/photos/5414000/pexels-photo-5414000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-                    'https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
-                    'https://images.pexels.com/photos/2040189/pexels-photo-2040189.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-                ]),
+                'https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                'https://images.pexels.com/photos/5414000/pexels-photo-5414000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+                'https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
+                'https://images.pexels.com/photos/2040189/pexels-photo-2040189.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
+            ]),
 
             'minimumAge'     => 18,
             'skillLevel'     => SKILL_LVL_BEGINNER,
@@ -113,6 +113,23 @@ class ExperienceFactory extends Factory
                 'status'        => STATUS_INCOMPLETE,
                 'pricePrivateGroup'    => null,
                 'reservationLimitTime' => 0,
+            ];
+        });
+    }
+
+    /**
+     * Define the model's related state.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function related()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'category_id'    => Category::all()->random()->id,
+                'state_id'       => State::all()->random()->id,
+                'city_id'        => City::all()->random()->id,
+                'locality_id'    => Locality::all()->random()->id,
             ];
         });
     }

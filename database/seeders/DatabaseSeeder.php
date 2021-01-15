@@ -30,25 +30,32 @@ class DatabaseSeeder extends Seeder
                 'email' => 'usuario@email.test'
             ]);
 
-      /*  $this->call([
+        /*  $this->call([
             StateSeeder::class,
             CitySeeder::class,
             LocalitySeeder::class,
         ]);*/
+        Category::factory(3)
+            ->create();
 
-        State::factory(10)->create();
+        State::factory(10)
+            ->create();
 
-        City::factory(10)->create();
+        City::factory(10)
+            ->related()
+            ->create();
 
-        Locality::factory(10)->create();
+        Locality::factory(10)
+            ->related()
+            ->create();
 
-        Category::factory(3)->create();
+        Experience::factory(10)
+            ->related()
+            ->create();
 
-        Experience::factory(10)->create();
-
-        Service::factory(10)->hasMicroservices(5)->create();
-
-
+        Service::factory(10)
+            ->related()
+            ->hasMicroservices(5)
+            ->create();
     }
 }
-

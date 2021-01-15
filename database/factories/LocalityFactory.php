@@ -23,9 +23,23 @@ class LocalityFactory extends Factory
     public function definition()
     {
         return [
-            'id'   => 'P' . rand(100, 999),
-            'city_id' => City::all()->random()->id,
+            'id'   => $this->faker->randomElement(['A','B','C']) . rand(1000, 9999),
+            'city_id' => City::factory(),
             'name' => $this->faker->streetName,
         ];
+    }
+
+    /**
+     * Define the model's related state.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function related()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'city_id' => City::all()->random()->id,
+            ];
+        });
     }
 }

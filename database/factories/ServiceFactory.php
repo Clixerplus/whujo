@@ -28,20 +28,20 @@ class ServiceFactory extends Factory
     {
         return [
             'user_id'      => User::factory(),
-            'category_id'  => Category::all()->random()->id,
+            'category_id'  => Category::factory(),
 
-            'state_id'     => State::all()->random()->id,
-            'city_id'      => City::all()->random()->id,
-            'locality_id'  => Locality::all()->random()->id,
+            'state_id'     => State::factory(),
+            'city_id'      => City::factory(),
+            'locality_id'  => Locality::factory(),
             'address'      => $this->faker->address,
 
             'name'         => $this->faker->sentence(),
             'description'  => $this->faker->paragraph(5),
             'features'     => [
-                                $this->faker->sentence(3),
-                                $this->faker->sentence(4),
-                                $this->faker->sentence(2)
-                             ],
+                $this->faker->sentence(3),
+                $this->faker->sentence(4),
+                $this->faker->sentence(2)
+            ],
             'price'        => $this->faker->randomFloat(2, 2500, 50000),
             'published_at' => $this->faker->dateTime(),
             'status'       => STATUS_PUBLISHED,
@@ -49,7 +49,7 @@ class ServiceFactory extends Factory
     }
 
     /**
-     * Indicate that the user is suspended.
+     * Define the model's blank state.
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
@@ -67,6 +67,24 @@ class ServiceFactory extends Factory
                 'features'       => null,
                 'price'          => null,
                 'published_at'   => null,
+                'status'       => STATUS_INCOMPLETE,
+            ];
+        });
+    }
+
+    /**
+     * Define the model's related state.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function related()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'category_id'  => Category::all()->random()->id,
+                'state_id'     => State::all()->random()->id,
+                'city_id'      => City::all()->random()->id,
+                'locality_id'  => Locality::all()->random()->id,
             ];
         });
     }

@@ -29,4 +29,18 @@ class MicroserviceFactory extends Factory
             'price' => $this->faker->randomFloat(2, 2500, 50000),
         ];
     }
+
+    /**
+     * Define the model's related state.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function related()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'service_id' => Service::all()->random()->id,
+            ];
+        });
+    }
 }
