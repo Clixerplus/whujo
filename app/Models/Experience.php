@@ -20,7 +20,7 @@ class Experience extends Model
         'user_id', 'name', 'location', 'toDo', 'toProvide',
         'toBring', 'photos', 'minimumAge', 'skillLevel',
         'activityLevel', 'toKnow', 'groupSize', 'duration',
-        'starting', 'price', 'privateGroup', 'pricePrivateGroup',
+        'starting', 'price', 'privateGroup', 'privateGroupPrice',
         'reservationLimitTime', 'status', 'state_id', 'city_id',
         'locality_id', 'address'
     ];

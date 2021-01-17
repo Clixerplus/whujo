@@ -64,7 +64,7 @@ class CreateExperiencesTable extends Migration
             $table->boolean('privateGroup')
                   ->nullable();
 
-            $table->decimal('pricePrivateGroup')
+            $table->decimal('privateGroupPrice')
                   ->nullable();
 
             $table->unsignedSmallInteger('reservationLimitTime')
