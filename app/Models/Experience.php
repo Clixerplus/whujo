@@ -12,17 +12,12 @@ class Experience extends Model
 {
     use HasFactory, HasSlug;
 
-    public $incrementing = false;
-
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'user_id', 'name', 'location', 'toDo', 'toProvide',
-        'toBring', 'photos', 'minimumAge', 'skillLevel',
-        'activityLevel', 'toKnow', 'groupSize', 'duration',
-        'starting', 'price', 'privateGroup', 'privateGroupPrice',
-        'reservationLimitTime', 'status', 'state_id', 'city_id',
-        'locality_id', 'address'
+        'user_id', 'category_id', 'name', 'location', 'description',
+        'toProvide', 'toBring', 'photos', 'minimumAge', 'skillLevel',
+        'activityLevel', 'toKnow', 'groupSize', 'duration', 'starting',
+        'price', 'privateGroup', 'privateGroupPrice', 'reservationLimitTime',
+        'status', 'state_id', 'city_id', 'locality_id', 'address',
     ];
 
     protected $casts = [
