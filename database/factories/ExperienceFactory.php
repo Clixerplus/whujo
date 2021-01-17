@@ -2,12 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use App\Models\Category;
 use App\Models\City;
+use App\Models\User;
 use App\Models\State;
-use App\Models\Experience;
+use App\Models\Category;
 use App\Models\Locality;
+use App\Models\Experience;
 use App\ValueObjcets\TimeVO;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,11 +27,6 @@ class ExperienceFactory extends Factory
      */
     public function definition()
     {
-        $duration = new TimeVO(rand(0, 16));
-
-        $starting = new TimeVO(rand(8, 18), 30);
-
-
         return [
             'user_id'        => User::factory(),
             'category_id'    => Category::factory(),
@@ -67,8 +62,8 @@ class ExperienceFactory extends Factory
             'activityLevel'  => ACTIVITY_LVL_LIGHT,
             'toKnow'         => $this->faker->paragraph(5),
             'groupSize'      => 10,
-            'duration'       => $duration->toArray(),
-            'starting'       => $starting->toArray(),
+            'duration'       => new TimeVO(rand(0, 16)),
+            'starting'       => new TimeVO(rand(8, 18), 30),
             'price'          => $this->faker->randomFloat(2, 2500, 50000),
             'privateGroup'   => true,
             'status'         => STATUS_PUBLISHED,
@@ -86,11 +81,7 @@ class ExperienceFactory extends Factory
      */
     public function blank()
     {
-        $duration = new TimeVO();
-
-        $starting = new TimeVO();
-
-        return $this->state(function (array $attributes) use ($duration, $starting) {
+        return $this->state(function (array $attributes) {
             return [
                 'name'          => null,
                 'state_id'      => '',
@@ -106,8 +97,8 @@ class ExperienceFactory extends Factory
                 'activityLevel' => ACTIVITY_LVL_MODERATE,
                 'toKnow'        => null,
                 'groupSize'     => null,
-                'duration'      => $duration,
-                'starting'      => $starting,
+                'duration'      => new TimeVO(),
+                'starting'      => new TimeVO(),
                 'price'         => null,
                 'privateGroup'  => false,
                 'status'        => STATUS_INCOMPLETE,
