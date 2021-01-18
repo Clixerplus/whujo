@@ -2,41 +2,64 @@
 
 namespace Tests\Feature\app\http\livewire\wizard;
 
-use App\Http\Livewire\Wizard\InputToKnow;
 use Tests\TestCase;
 use Livewire\Livewire;
+use App\Models\Experience;
 use Illuminate\Support\Str;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Http\Livewire\Wizard\InputToKnow;
+use Tests\Feature\MockClass\ProductModelTest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class InputToKnowTest extends TestCase
 {
-    /** @test  */
-    function it_set_to_know_attribute()
-    {
-        $toKnow = Str::random(400);
+    use RefreshDatabase;
 
-        Livewire::test(InputToKnow::class, [$toKnow])
-            ->assertSet('toKnow', $toKnow);
+    /** @test  */
+    function it_set_incoming_model()
+    {
+        $model = new ProductModelTest;
+        $model->toKnow = 'Text to Know';
+
+        Livewire::test(InputToKnow::class, ['model' => $model])
+            ->assertSet('product', $model)
+            ->assertSet('product.toKnow', $model->toKnow);
     }
 
     /** @test  */
-    function it_emit_saveAttribute_event_on_updated()
+    function it_toKnow_length_less_than_maximum_allowed()
     {
-        Livewire::test(InputToKnow::class)
-            ->set('toKnow',  '')
-            ->call('save')
-            ->assertEmitted('saveAttribute', ['toKnow' => '']);
+        Livewire::test(InputToKnow::class, ['model' => new ProductModelTest])
+            ->set('product.toKnow', Str::random(InputToKnow::MAX_TEXT_LENGTH + 1))
+            ->call('validateData')
+            ->assertHasErrors(['product.toKnow' => 'max']);
     }
 
     /** @test  */
-    function to_know_must_have_a_maximum_chars()
+    function it_toKnow_save_on_experience_model()
     {
-        $maxChars = config('product.MAX_LONG_TEXT');
+        $experience = Experience::factory()->create()
+            ->first(['id', 'toKnow']);
+        $newtoKnow = Str::random(InputToKnow::MAX_TEXT_LENGTH);
 
-        Livewire::test(InputToKnow::class)
-            ->set('toKnow',  Str::random($maxChars + 1))
+        Livewire::test(InputToKnow::class, ['model' => $experience])
+            ->set('product.toKnow', $newtoKnow)
             ->call('save')
-            ->assertHasErrors(['toKnow' => 'max']);
+            ->assertHasNoErrors('product.toKnow');
+
+        $this->assertDatabaseHas(
+            'experiences',
+            [
+                'id' => $experience->id,
+                'toKnow' => $newtoKnow
+            ]
+        );
+    }
+
+    /** @test  */
+    function it_has_view_with_required_elements()
+    {
+        Livewire::test(InputToKnow::class, ['model' => new ProductModelTest])
+            ->assertSeeHtml('wire:model.debounce.500ms="product.toKnow"')
+            ->assertViewHas('max_length');
     }
 }

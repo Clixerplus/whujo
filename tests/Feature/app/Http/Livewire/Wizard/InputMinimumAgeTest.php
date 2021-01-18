@@ -4,62 +4,92 @@ namespace Tests\Feature\app\Http\Livewire\Wizard;
 
 use Tests\TestCase;
 use Livewire\Livewire;
+use App\Models\Experience;
 use App\Http\Livewire\Wizard\InputMinimumAge;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\MockClass\ProductModelTest;
 
 class InputMinimumAgeTest extends TestCase
 {
-    private $minimumAge = 18;
+
+    use RefreshDatabase;
 
     /** @test  */
-    function it_set_minimum_age_attribute()
+    function it_set_incoming_model()
     {
+        $model = new ProductModelTest;
+        $model->minimumAge = InputMinimumAge::MINIMUM_AGE;
 
-        Livewire::test(InputMinimumAge::class, [$this->minimumAge])
-            ->assertSet('minimumAge', $this->minimumAge);
+        Livewire::test(InputMinimumAge::class, ['model' => $model])
+            ->assertSet('product', $model)
+            ->assertSet('product.minimumAge', InputMinimumAge::MINIMUM_AGE);
     }
 
     /** @test  */
-    function it_emit_saveAttribute_event_on_updated()
+    function it_minimumAge_has_no_errors_with_a_valid_entry()
     {
-        Livewire::test(InputMinimumAge::class)
-            ->set('minimumAge', $this->minimumAge)
-            ->call('save')
-            ->assertEmitted('saveAttribute', ['minimumAge' => $this->minimumAge]);
+        Livewire::test(InputMinimumAge::class, ['model' => new ProductModelTest])
+            ->set('product.minimumAge', InputMinimumAge::MINIMUM_AGE)
+            ->call('validateData')
+            ->assertHasNoErrors();
     }
 
     /** @test  */
-    function minimum_age_is_required()
+    function it_minimumAge_is_required()
     {
-        Livewire::test(InputMinimumAge::class)
-            ->set('minimumAge', null)
-            ->call('save')
-            ->assertHasErrors(['minimumAge' => 'required']);
+        Livewire::test(InputMinimumAge::class, ['model' => new ProductModelTest])
+            ->set('product.minimumAge', null)
+            ->call('validateData')
+            ->assertHasErrors(['product.minimumAge' => 'required']);
     }
 
     /** @test  */
-    function minimum_age_must_be_numeric()
+    function it_minimumAge_must_be_integer()
     {
-        Livewire::test(InputMinimumAge::class)
-            ->set('minimumAge', 2.5)
-            ->call('save')
-            ->assertHasErrors(['minimumAge' => 'integer']);
+        Livewire::test(InputMinimumAge::class, ['model' => new ProductModelTest])
+            ->set('product.minimumAge', 2.5)
+            ->call('validateData')
+            ->assertHasErrors(['product.minimumAge' => 'integer']);
     }
 
     /** @test  */
-    function minimum_age_must_have_a_minimun()
+    function it_minimumAge_must_be_between_a_valid_range()
     {
-        Livewire::test(InputMinimumAge::class)
-            ->set('minimumAge', 1)
+        Livewire::test(InputMinimumAge::class, ['model' => new ProductModelTest])
+            ->set('product.minimumAge', InputMinimumAge::MINIMUM_AGE - 1)
             ->call('save')
-            ->assertHasErrors(['minimumAge' => 'min']);
+            ->assertHasErrors(['product.minimumAge' => 'between'])
+            ->set('product.minimumAge', InputMinimumAge::MAXIMUM_AGE + 1)
+            ->call('save')
+            ->assertHasErrors(['product.minimumAge' => 'between']);
     }
 
     /** @test  */
-    function minimum_age_must_have_a_maximum()
+    function it_minimumAge_save_on_experience_model()
     {
-        Livewire::test(InputMinimumAge::class)
-            ->set('minimumAge', InputMinimumAge::MAX_AGE + 1)
+        Experience::factory()->create(['minimumAge' => InputMinimumAge::MINIMUM_AGE]);
+        $experience = Experience::first(['id', 'minimumAge']);
+        $newMinimumAge = InputMinimumAge::MAXIMUM_AGE;
+
+        Livewire::test(InputMinimumAge::class, ['model' => $experience])
+            ->set('product.minimumAge', $newMinimumAge)
             ->call('save')
-            ->assertHasErrors(['minimumAge' => 'max']);
+            ->assertHasNoErrors('product.minimumAge');
+
+        $this->assertDatabaseHas(
+            'experiences',
+            [
+                'id' => $experience->id,
+                'minimumAge' => $newMinimumAge
+            ]
+        );
+    }
+
+    /** @test  */
+    function it_have_a_view_with_required_elements()
+    {
+        Livewire::test(InputMinimumAge::class, ['model' => new ProductModelTest])
+            ->assertSeeHtml('name="product.minimumAge"')
+            ->assertSeeHtml('wire:model.debounce.500ms="product.minimumAge"');
     }
 }

@@ -4,52 +4,83 @@ namespace Tests\Feature\app\http\livewire\wizard;
 
 use Tests\TestCase;
 use Livewire\Livewire;
+use App\Models\Experience;
 use Illuminate\Foundation\Testing\WithFaker;
+use Tests\Feature\MockClass\ProductModelTest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Http\Livewire\Wizard\InputReservationLimitTime;
 
 class InputReservationLimitTimeTest extends TestCase
 {
-    public $intervals;
+    use RefreshDatabase;
 
-    public function setup(): void
+    /** @test  */
+    function it_set_incoming_model()
     {
-        parent::setup();
+        $model = new ProductModelTest;
+        $model->reservationLimitTime = InputReservationLimitTime::INTERVALS[1];
 
-        $this->intervals = InputReservationLimitTime::INTERVALS;
+        Livewire::test(InputReservationLimitTime::class, ['model' => $model])
+            ->assertSet('product', $model)
+            ->assertSet('product.reservationLimitTime', $model->reservationLimitTime);
+    }
+
+    /** @test */
+    function it_reservationLimitTime_has_no_errors_when_input_is_valid()
+    {
+        Livewire::test(InputReservationLimitTime::class, ['model' => new ProductModelTest])
+            ->set('product.reservationLimitTime', InputReservationLimitTime::INTERVALS[1])
+            ->call('validateData')
+            ->assertHasNoErrors();
+    }
+
+    /** @test */
+    function it_reservationLimitTime_is_required()
+    {
+        Livewire::test(InputReservationLimitTime::class, ['model' => new ProductModelTest])
+            ->set('product.reservationLimitTime', '')
+            ->call('validateData')
+            ->assertHasErrors(['product.reservationLimitTime' => 'required']);
+    }
+
+
+    /** @test  */
+    function it_reservationLimitTime_is_in_intervals()
+    {
+        Livewire::test(InputReservationLimitTime::class, ['model' => new ProductModelTest])
+            ->set('product.reservationLimitTime', '900')
+            ->call('validateData')
+            ->assertHasErrors(['product.reservationLimitTime' => 'in']);
     }
 
     /** @test  */
-    function it_set_limit_time_attribute()
+    function it_reservationLimitTime_save_on_experience_model()
     {
-        Livewire::test(InputReservationLimitTime::class, [$this->intervals[1]])
-            ->assertSet('reservationLimitTime', $this->intervals[1]);
+        Experience::factory()->create([
+            'reservationLimitTime' => InputReservationLimitTime::INTERVALS[0]
+        ]);
+        $experience = Experience::first(['id', 'reservationLimitTime']);
+        $newReservationLimitTime = InputReservationLimitTime::INTERVALS[1];
+
+        Livewire::test(InputReservationLimitTime::class, ['model' => $experience])
+            ->set('product.reservationLimitTime', $newReservationLimitTime)
+            ->call('save');
+
+        $this->assertDatabaseHas(
+            'experiences',
+            [
+                'id' => $experience->id,
+                'reservationLimitTime' => $newReservationLimitTime
+            ]
+        );
     }
 
     /** @test  */
-    function it_emit_saveAttribute_event_on_updated()
+    function it_have_a_view_with_required_elements()
     {
-        Livewire::test(InputReservationLimitTime::class)
-            ->set('reservationLimitTime', $this->intervals[1])
-            ->call('save')
-            ->assertEmitted('saveAttribute', ['reservationLimitTime' => $this->intervals[1]]);
-    }
-
-    /** @test  */
-    function it_must_exist_in_intervals()
-    {
-        Livewire::test(InputReservationLimitTime::class)
-            ->set('reservationLimitTime', 900)
-            ->call('save')
-            ->assertHasErrors(['reservationLimitTime']);
-    }
-
-    /** @test  */
-    function skill_level_is_required()
-    {
-        Livewire::test(InputReservationLimitTime::class)
-            ->set('reservationLimitTime', null)
-            ->call('save')
-            ->assertHasErrors(['reservationLimitTime' => 'required']);
+        Livewire::test(InputReservationLimitTime::class, ['model' => new ProductModelTest])
+            ->assertSeeHtml('name="product.reservationLimitTime"')
+            ->assertSeeHtml('wire:model="product.reservationLimitTime"')
+            ->assertViewHas('intervals');
     }
 }

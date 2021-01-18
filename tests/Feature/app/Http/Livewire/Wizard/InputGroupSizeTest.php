@@ -4,68 +4,97 @@ namespace Tests\Feature\app\http\livewire\wizrad;
 
 use Tests\TestCase;
 use Livewire\Livewire;
+use App\Models\Experience;
 use App\Http\Livewire\Wizard\InputGroupSize;
-use Illuminate\Foundation\Testing\WithFaker;
+use Tests\Feature\MockClass\ProductModelTest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class InputGroupSizeTest extends TestCase
 {
-    function setUp(): void
-    {
-        parent::setup();
 
-        $this->maxSize = config('product.max_group_size');
+    use RefreshDatabase;
+
+    /** @test  */
+    function it_set_incoming_model()
+    {
+        $model = new ProductModelTest;
+        $model->groupSize = InputGroupSize::MINIMUM_SIZE;
+
+        Livewire::test(InputGroupSize::class, ['model' => $model])
+            ->assertSet('product', $model)
+            ->assertSet('product.groupSize', $model->groupSize);
     }
 
     /** @test  */
-    function it_set_group_size_attribute()
+    function it_groupSize_has_not_error_with_valid_data()
     {
-        Livewire::test(InputGroupSize::class, [5])
-            ->assertSet('groupSize', 5);
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->set('product.groupSize',  InputGroupSize::MINIMUM_SIZE)
+            ->call('validateData')
+            ->assertHasNoErrors();
     }
 
     /** @test  */
-    function it_emit_saveAttribute_event_on_updated()
+    function it_groupSize_is_required()
     {
-        Livewire::test(InputGroupSize::class)
-            ->set('groupSize',  5)
-            ->call('save')
-            ->assertEmitted('saveAttribute', ['groupSize' => 5]);
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->set('product.groupSize',  null)
+            ->call('validateData')
+            ->assertHasErrors(['product.groupSize' => 'required']);
     }
 
     /** @test  */
-    function group_size_is_required()
+    function it_groupSize_must_be_numeric()
     {
-        Livewire::test(InputGroupSize::class)
-            ->set('groupSize',  null)
-            ->call('save')
-            ->assertHasErrors(['groupSize' => 'required']);
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->set('product.groupSize', 'a')
+            ->call('validateData')
+            ->assertHasErrors(['product.groupSize' => 'numeric']);
     }
 
     /** @test  */
-    function group_size_must_be_numeric()
+    function it_groupSize_must_have_a_minimum()
     {
-        Livewire::test(InputGroupSize::class)
-            ->set('groupSize', 'a')
-            ->call('save')
-            ->assertHasErrors(['groupSize' => 'numeric']);
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->set('product.groupSize',  InputGroupSize::MINIMUM_SIZE - 1)
+            ->call('validateData')
+            ->assertHasErrors(['product.groupSize' => 'between']);
     }
 
     /** @test  */
-    function group_size_must_have_a_minimum()
+    function it_groupSize_must_have_a_maximum()
     {
-        Livewire::test(InputGroupSize::class)
-            ->set('groupSize',  0)
-            ->call('save')
-            ->assertHasErrors(['groupSize' => 'between']);
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->set('product.groupSize',  InputGroupSize::MAXIMUM_SIZE + 1)
+            ->call('validateData')
+            ->assertHasErrors(['product.groupSize' => 'between']);
     }
 
     /** @test  */
-    function group_size_must_have_a_maximum()
+    function it_groupSize_save_on_experience_model()
     {
-        Livewire::test(InputGroupSize::class)
-            ->set('groupSize',  $this->maxSize + 1)
-            ->call('save')
-            ->assertHasErrors(['groupSize' => 'between']);
+        Experience::factory()->create(['groupSize' => InputGroupSize::MINIMUM_SIZE]);
+        $experience = Experience::first(['id', 'groupSize']);
+        $newGroupSize = InputGroupSize::MAXIMUM_SIZE;
+
+        Livewire::test(InputGroupSize::class, ['model' => $experience])
+            ->set('product.groupSize', $newGroupSize)
+            ->call('save');
+
+        $this->assertDatabaseHas(
+            'experiences',
+            [
+                'id' => $experience->id,
+                'groupSize' => $newGroupSize
+            ]
+        );
+    }
+
+    /** @test  */
+    function it_have_a_view_with_required_elements()
+    {
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->assertSeeHtml('name="product.groupSize"')
+            ->assertSeeHtml('wire:model="product.groupSize"');
     }
 }

@@ -5,42 +5,79 @@ namespace Tests\Feature\App\http\livewire\wizard;
 
 use Tests\TestCase;
 use Livewire\Livewire;
+use App\Models\Experience;
+use Tests\Feature\MockClass\ProductModelTest;
 use App\Http\Livewire\Wizard\InputActivityLevel;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class InputActivityLevelTest extends TestCase
 {
-    /** @test  */
-    function it_set_activity_level_attribute()
-    {
-        $level = config('product.activity_levels');
+    use RefreshDatabase;
 
-        Livewire::test(InputActivityLevel::class, [$level[0]])
-            ->assertSet('activityLevel', $level[0]);
+    /** @test  */
+    function it_set_incoming_model()
+    {
+        $model = new ProductModelTest;
+        $model->activityLevel = ACTIVITY_LVL_LIGHT;
+
+        Livewire::test(InputActivityLevel::class, ['model' => $model])
+            ->assertSet('product', $model)
+            ->assertSet('product.activityLevel', $model->activityLevel);
+    }
+
+    /** @test */
+    function it_no_errors_with_valid_data()
+    {
+        Livewire::test(InputActivityLevel::class, ['model' => new ProductModelTest])
+            ->set('product.activityLevel', ACTIVITY_LVL_LIGHT)
+            ->assertSet('product.activityLevel', ACTIVITY_LVL_LIGHT)
+            ->call('validateData')
+            ->assertHasNoErrors('product.activityLevel');
     }
 
     /** @test  */
-    function it_emit_saveAttribute_event_on_updated()
+    function it_activityLevel_must_exist_in_enum()
     {
-        $level = config('product.activity_levels');
-
-        Livewire::test(InputActivityLevel::class, [$level[0]])
-            ->call('save')
-            ->assertEmitted('saveAttribute', ['activityLevel' => $level[0]]);
+        Livewire::test(InputActivityLevel::class, ['model' => new ProductModelTest])
+            ->set('product.activityLevel', 'abc')
+            ->call('validateData')
+            ->assertHasErrors(['product.activityLevel' => 'in']);
     }
 
     /** @test  */
-    function activity_level_must_exist_in_enum()
+    function it_activityLevel_is_required()
     {
-        Livewire::test(InputActivityLevel::class, ['WrongOption'])
-            ->call('save')
-            ->assertHasErrors(['activityLevel' => 'in']);
+        Livewire::test(InputActivityLevel::class, ['model' => new ProductModelTest])
+            ->set('product.activityLevel', '')
+            ->call('validateData')
+            ->assertHasErrors(['product.activityLevel' => 'required']);
     }
 
     /** @test  */
-    function activity_level_is_required()
+    function it_name_can_be_save_on_experience_model()
     {
-        Livewire::test(InputActivityLevel::class, [null])
-            ->call('save')
-            ->assertHasErrors(['activityLevel' => 'required']);
+        Experience::factory()->create(['activityLevel' => ACTIVITY_LVL_LIGHT]);
+        $experience = Experience::first(['id', 'activityLevel']);
+        $newLevel = ACTIVITY_LVL_EXTREME;
+
+        Livewire::test(InputActivityLevel::class, ['model' => $experience])
+            ->set('product.activityLevel', $newLevel)
+            ->call('save');
+
+        $this->assertDatabaseHas(
+            'experiences',
+            [
+                'id' => $experience->id,
+                'activityLevel' => $newLevel
+            ]
+        );
+    }
+
+    /** @test  */
+    function it_have_a_view_with_required_elements()
+    {
+        Livewire::test(InputActivityLevel::class, ['model' => new ProductModelTest])
+            ->assertSeeHtml('name="product.activityLevel"')
+            ->assertSeeHtml('wire:model="product.activityLevel"');
     }
 }
