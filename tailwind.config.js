@@ -60,7 +60,8 @@ module.exports = {
             borderWidth: ["hover", "focus"],
             fontWeight: ["hover"],
             ringOpacity: ["hover"],
-            opacity: ["disabled"]
+            opacity: ["disabled"],
+            display: ["group-hover"],
         },
         opacity: ["responsive", "hover", "focus", "disabled", "active"],
     },
