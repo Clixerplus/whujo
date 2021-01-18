@@ -17,21 +17,21 @@ class City extends Model
 
     public function state()
     {
-        $this->belongsTo(State::class);
+        return $this->belongsTo(State::class);
     }
-    
+
     public function experiences()
     {
-        $this->hasMany(Experience::class);
+        return $this->hasMany(Experience::class);
     }
 
     public function services()
     {
-        $this->hasMany(Service::class);
+        return $this->hasMany(Service::class);
     }
 
     public function localities()
     {
-        $this->hasMany(Locality::class);
+        return $this->hasMany(Locality::class);
     }
 }

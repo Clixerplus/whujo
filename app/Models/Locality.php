@@ -17,16 +17,16 @@ class Locality extends Model
 
     public function city()
     {
-        $this->belongsTo(City::class);
+        return $this->belongsTo(City::class);
     }
 
     public function experiences()
     {
-        $this->hasMany(Experience::class);
+        return $this->hasMany(Experience::class);
     }
 
     public function services()
     {
-        $this->hasMany(Service::class);
+        return $this->hasMany(Service::class);
     }
 }

@@ -22,11 +22,11 @@ class State extends Model
 
     public function experiences()
     {
-        $this->hasMany(Experience::class);
+        return $this->hasMany(Experience::class);
     }
 
     public function services()
     {
-        $this->hasMany(Service::class);
+        return $this->hasMany(Service::class);
     }
 }
