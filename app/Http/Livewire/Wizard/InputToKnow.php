@@ -2,37 +2,25 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Livewire\Component;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputToKnow extends Component
+class InputToKnow extends StepBuilderWizard
 {
-    public $toKnow;
+    const MAX_TEXT_LENGTH = 1400;
 
-    public function mount($toKnow = '')
+    protected $rules;
+
+    protected  function setValidationRules(): void
     {
-        $this->toKnow = $toKnow;
-    }
-
-    public function updatedToKnow($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'toKnow' => 'string|max:' . config('product.MAX_LONG_TEXT')
-        ]);
-
-        $this->emitUp('saveAttribute', [
-            'toKnow' => $this->toKnow
-        ]);
+        $this->rules = [
+            'product.toKnow' => sprintf('string|max:%s', self::MAX_TEXT_LENGTH)
+        ];
     }
 
     public function render()
     {
         return view('livewire.wizard.input-to-know', [
-            'maxChars' => config('MAX_LONG_TEXT'),
+            'max_length' => self::MAX_TEXT_LENGTH,
         ]);
     }
 }

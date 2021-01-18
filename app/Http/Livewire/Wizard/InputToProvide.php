@@ -3,56 +3,58 @@
 namespace App\Http\Livewire\Wizard;
 
 use Livewire\Component;
+use App\Models\Experience;
 
 class InputToProvide extends Component
 {
 
-    public array $toProvide;
+    const MIN_TEXT_LENGTH = 5;
 
-    public $item;
+    public Experience $experience;
 
-    public function mount(array $toProvide = [])
+    public $provision;
+
+    protected $rules = [
+        'provision' => 'required|string|min:' . self::MIN_TEXT_LENGTH
+    ];
+
+    public function mount(Experience $experience)
     {
-        $this->toProvide = $toProvide;
-
-        $this->intitializeItem();
+        $this->experience = $experience;
     }
 
-    public function addItem()
+    public function addProvisionToList()
     {
-        if ($this->item <> '') {
+        $this->validate();
 
-            $this->toProvide[] = $this->item;
+        $tempToProvide = $this->experience->toProvide;
 
-            $this->intitializeItem();
+        $this->experience->toProvide = array_merge(
+            $tempToProvide,
+            [$this->provision]
+        );
 
-            $this->save();
-        }
+        $this->experience->save();
+
+        $this->reset('provision');
     }
 
-    public function deleteItem(int $index)
+    public function removeProvisionFromList($index)
     {
+        $tempToProvide = $this->experience->toProvide;
 
-        unset($this->toProvide[$index]);
+        unset($tempToProvide[$index]);
 
-        $this->save();
-    }
+        $this->experience->toProvide = $tempToProvide;
 
-    private function save()
-    {
-
-        $this->emitUp('saveAttribute', [
-            'toProvide' => $this->toProvide
-        ]);
-    }
-
-    private function intitializeItem()
-    {
-        $this->item = null;
+        $this->experience->save();
     }
 
     public function render()
     {
-        return view('livewire.wizard.input-to-provide');
+        return view(
+            'livewire.wizard.input-to-provide',
+            ['min_length' => self::MIN_TEXT_LENGTH]
+        );
     }
 }

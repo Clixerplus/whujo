@@ -3,32 +3,22 @@
 namespace App\Http\Livewire\Wizard;
 
 use Livewire\Component;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputGroupSize extends Component
+class InputGroupSize extends StepBuilderWizard
 {
-    public $groupSize;
+    const MINIMUM_SIZE = 1;
 
-    public function mount($groupSize = 1)
+    const MAXIMUM_SIZE = 15;
+
+    protected function setValidationRules(): void
     {
-        $this->groupSize = $groupSize;
+        $rule = sprintf('required|numeric|between:%s,%s', self::MINIMUM_SIZE, self::MAXIMUM_SIZE);
+
+        $this->rules = [
+            'product.groupSize' => $rule
+        ];
     }
-
-    public function updatedGroupSize($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'groupSize' => 'required|numeric|between:1,' . config('product.max_group_size')
-        ]);
-
-        $this->emitUp('saveAttribute', [
-            'groupSize' => $this->groupSize
-        ]);
-    }
-
     public function render()
     {
         return view(

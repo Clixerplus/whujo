@@ -2,32 +2,18 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Livewire\Component;
 use App\Models\Category;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputCategory extends Component
+class InputCategory extends StepBuilderWizard
 {
-    public $category;
+    protected $rules;
 
-    public function mount($category = null)
+    protected function setValidationRules(): void
     {
-        $this->category = $category;
-    }
-
-    public function updatedCategory($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'category' => 'exists:categories,id'
-        ]);
-
-        $this->emitUp('saveAttribute', [
-            'category_id' => $this->category
-        ]);
+        $this->rules = [
+            'product.category_id' => 'exists:categories,id'
+        ];
     }
 
     public function render()

@@ -2,49 +2,25 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Livewire\Component;
-use Illuminate\Support\Str;
 
-class InputDescription extends Component
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
+
+class InputDescription extends StepBuilderWizard
 {
-    public $description;
 
-    public $counter;
-
-    public const MAX_CHARS = 1400;
+    const MAX_CHARS = 1400;
 
     const MIN_CHARS = 300;
 
-    protected $rules = [
-        'description' => 'required|string|between:' . self::MIN_CHARS . ',' . self::MAX_CHARS
-    ];
+    protected $rules;
 
-    public function mount($description = null)
+    protected function setValidationRules(): void
     {
-        $this->description = $description;
+        $rule = sprintf('required|string|between:%s,%s', self::MIN_CHARS, self::MAX_CHARS);
 
-        $this->counterChars();
-    }
-
-    public function counterChars()
-    {
-        $this->counter = Str::length($this->description);
-    }
-
-    public function updatedDescription($value)
-    {
-        $this->counterChars();
-
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate();
-
-        $this->emitUp('saveAttribute', [
-            'description' => $this->description
-        ]);
+        $this->rules = [
+            'product.description' => $rule
+        ];
     }
 
     public function render()

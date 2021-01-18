@@ -2,37 +2,23 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Illuminate\Database\Eloquent\Model;
-use Livewire\Component;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputName extends Component
+class InputName extends StepBuilderWizard
 {
-    public $name;
+    const MIN_NAME_LENGTH = 5;
 
-    public $validate;
+    const MAX_NAME_LENGTH = 150;
 
-    protected $rules = [
-        'name' => 'required|string|between:5,150'
-    ];
+    protected $rules;
 
-    public function mount(string $name = null)
+    protected function setValidationRules(): void
     {
-        $this->name = $name;
-    }
+        $rule = sprintf('required|string|between:%s,%s', self::MIN_NAME_LENGTH, self::MAX_NAME_LENGTH);
 
-
-    public function updatedName($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate();
-
-        $this->emitUp('saveAttribute', [
-            'name' => $this->name
-        ]);
+        $this->rules = [
+            'product.name' => $rule
+        ];
     }
 
     public function render()

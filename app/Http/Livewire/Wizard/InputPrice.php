@@ -2,37 +2,28 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Livewire\Component;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputPrice extends Component
+class InputPrice extends StepBuilderWizard
 {
-    public $price;
+    const MIN_PRICE_ALLOWED = 2500;
 
-    public function mount($price = 0)
+    protected $rules;
+
+    protected function setValidationRules(): void
     {
-        $this->price = $price;
-    }
-
-
-    public function updatedPrice($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'price' => 'required|numeric|min:' . config('product.price.min')
-        ]);
-
-        $this->emitUp('saveAttribute', ['price' => $this->price]);
+        $this->rules = [
+            'product.price' => sprintf('required|numeric|min:%s', self::MIN_PRICE_ALLOWED)
+        ];
     }
 
     public function render()
     {
         return view(
             'livewire.wizard.input-price',
-            ['minPrice' => config('product.price.min')]
+            [
+                'minPrice' => config('product.price.min')
+            ]
         );
     }
 }

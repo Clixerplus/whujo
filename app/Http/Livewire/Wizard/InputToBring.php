@@ -3,51 +3,48 @@
 namespace App\Http\Livewire\Wizard;
 
 use Livewire\Component;
+use App\Models\Experience;
 
 class InputToBring extends Component
 {
-    public array $toBring;
+    public Experience $experience;
 
-    public $item;
+    public $requeriment;
 
-    public function mount(array $toBring = [])
+    protected $rules = [
+        'requeriment' => 'required|string|min:5'
+    ];
+
+    public function mount(Experience $experience)
     {
-        $this->toBring = $toBring;
-
-        $this->intitializeItem();
+        $this->experience = $experience;
     }
 
-    public function addItem()
+    public function addRequerimentToList()
     {
-        if ($this->item <> '') {
+        $this->validate();
 
-            $this->toBring[] = $this->item;
+        $tempToBting = $this->experience->toBring;
 
-            $this->intitializeItem();
+        $this->experience->toBring = array_merge(
+            $tempToBting,
+            [$this->requeriment]
+        );
 
-            $this->save();
-        }
+        $this->experience->save();
+
+        $this->reset('requeriment');
     }
 
-    public function deleteItem(int $index)
+    public function removeRequerimentFromList($index)
     {
+        $tempToBring = $this->experience->toBring;
 
-        unset($this->toBring[$index]);
+        unset($tempToBring[$index]);
 
-        $this->save();
-    }
+        $this->experience->toBring = $tempToBring;
 
-    private function save()
-    {
-
-        $this->emitUp('saveAttribute', [
-            'toBring' => $this->toBring
-        ]);
-    }
-
-    private function intitializeItem()
-    {
-        $this->item = null;
+        $this->experience->save();
     }
 
     public function render()

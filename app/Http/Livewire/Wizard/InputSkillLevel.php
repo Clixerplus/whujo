@@ -2,37 +2,26 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Livewire\Component;
-use Illuminate\Validation\Rule;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputSkillLevel extends Component
+class InputSkillLevel extends StepBuilderWizard
 {
-    public $skillLevel;
+    protected $rules;
 
-    public function mount($skillLevel = null)
+    protected function setValidationRules(): void
     {
-        $this->skillLevel = $skillLevel;
-    }
-
-    public function updatedSkillLevel($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'skillLevel' => 'required|' . Rule::in(config('product.skill_levels'))
-        ]);
-        $this->emitUp('saveAttribute', [
-            'skillLevel' => $this->skillLevel
-        ]);
+        $this->rules = [
+            'product.skillLevel' => sprintf('required|in:%s', SKILL_LVL_LIST)
+        ];
     }
 
     public function render()
     {
         return view('livewire.wizard.input-skill-level', [
-            'levelOptions' => config('product.skill_levels'),
+            'levelOptions' => [
+                SKILL_LVL_BEGINNER, SKILL_LVL_MEDIUM,
+                SKILL_LVL_ADVANCED, SKILL_LVL_EXPERT
+            ],
         ]);
     }
 }

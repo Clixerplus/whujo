@@ -2,45 +2,45 @@
 
 namespace App\Http\Livewire\Wizard;
 
+
 use Livewire\Component;
 use App\ValueObjcets\TimeVO;
-use Illuminate\Validation\Rule;
+use Illuminate\Database\Eloquent\Model as ProductModel;
 
 class InputDuration extends Component
 {
-    public $hour;
+    public $product;
 
-    public $minute;
+    public $product_hour;
 
-    public function mount(TimeVO $time = null)
+    public $product_minute;
+
+    protected $rules = [
+        'product_hour' => 'required|numeric|between:0,16',
+        'product_minute' => 'required|in:0,15,30,45',
+    ];
+
+    public function mount(ProductModel $model = null)
     {
+        $this->product = $model;
 
-        $this->hour = $time->hour;
+        $this->product_hour = $model->duration->hour;
 
-        $this->minute = $time->minute;
-    }
-
-
-    public function updated($key, $value)
-    {
-        $this->save();
+        $this->product_minute = $model->duration->minute;
     }
 
     public function save()
     {
-        $this->validate([
-            'hour'   => 'required|numeric|between:0,16',
-            'minute' => 'required|' . Rule::in([0, 15, 30, 45])
-        ]);
+        $this->validate();
 
-        $this->emitUp('saveAttribute', [
-            'duration' => $this->getTime()
+        $this->product->update([
+            'duration' => $this->getDuration()
         ]);
     }
 
-    private function getTime()
+    private function getDuration(): TimeVO
     {
-        return new TimeVO($this->hour, $this->minute);
+        return new TimeVO($this->product_hour, $this->product_minute);
     }
 
     public function render()

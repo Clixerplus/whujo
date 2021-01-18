@@ -2,39 +2,28 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Livewire\Component;
+
 use Illuminate\Validation\Rule;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputActivityLevel extends Component
+class InputActivityLevel extends StepBuilderWizard
 {
+    protected $rules;
 
-    public $activityLevel;
-
-    public function mount($activityLevel = null)
+    protected function setValidationRules(): void
     {
-        $this->activityLevel = $activityLevel;
-    }
-
-    public function updatedActivityLevel($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate([
-            'activityLevel' => 'required|' . Rule::in(config('product.activity_levels'))
-        ]);
-
-        $this->emitUp('saveAttribute', [
-            'activityLevel' => $this->activityLevel
-        ]);
+        $this->rules = [
+            'product.activityLevel' => 'required|in:' . ACTIVITY_LVL_LIST
+        ];
     }
 
     public function render()
     {
         return view('livewire.wizard.input-activity-level', [
-            'levelOptions' => config('product.activity_levels'),
+            'levelOptions' => [
+                ACTIVITY_LVL_LIGHT, ACTIVITY_LVL_MODERATE,
+                ACTIVITY_LVL_EXTREME, ACTIVITY_LVL_DEMANDING
+            ]
         ]);
     }
 }

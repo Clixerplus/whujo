@@ -3,44 +3,32 @@
 namespace App\Http\Livewire\Wizard;
 
 use Livewire\Component;
-use Illuminate\Support\Str;
+use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
-class InputMinimumAge extends Component
+class InputMinimumAge extends StepBuilderWizard
 {
-    public $minimumAge;
+    const MINIMUM_AGE = 0;
 
-    const MIN_AGE = 2;
+    const MAXIMUM_AGE = 100;
 
-    const MAX_AGE = 25;
-
-    protected $rules = [
-        'minimumAge' => 'required|integer|min:' . self::MIN_AGE . '|max:' . self::MAX_AGE
-    ];
-
-    public function mount($minimumAge = 0)
+    protected function setValidationRules(): void
     {
-        $this->minimumAge = $minimumAge;
-    }
+        $rule = sprintf('required|integer|between:%s,%s', self::MINIMUM_AGE, self::MAXIMUM_AGE);
 
-    public function updatedMinimumAge($value)
-    {
-        $this->save();
-    }
-
-    public function save()
-    {
-        $this->validate();
-
-        $this->emitUp('saveAttribute', [
-            'minimumAge' => $this->minimumAge
-        ]);
+        $this->rules =
+            [
+                'product.minimumAge' => $rule
+            ];
     }
 
     public function render()
     {
         return view(
             'livewire.wizard.input-minimum-age',
-            ['minAge' => self::MIN_AGE, 'maxAge' => self::MAX_AGE]
+            [
+                'minAge' => self::MINIMUM_AGE,
+                'maxAge' => self::MAXIMUM_AGE
+            ]
         );
     }
 }
