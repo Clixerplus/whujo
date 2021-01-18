@@ -17,7 +17,7 @@ class State extends Model
 
     public function cities()
     {
-        $this->hasMany(City::class);
+        return $this->hasMany(City::class);
     }
 
     public function experiences()
