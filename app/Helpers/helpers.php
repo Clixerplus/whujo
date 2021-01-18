@@ -3,21 +3,24 @@
 const UNASSIGNED = 'unassigned';
 
 /** Status Constant */
-const STATUS_INCOMPLETE  = 'incomplete';
-const STATUS_UNPUBLISHED = 'unpublished';
-const STATUS_PUBLISHED   = 'published';
+const STATUS_INCOMPLETE  = 'INCOMPLETE';
+const STATUS_UNPUBLISHED = 'UNPUBLISHED';
+const STATUS_PUBLISHED   = 'PUBLISHED';
+const STATUS_LIST        = 'INCOMPLETE,UNPUBLISHED,PUBLISHED';
 
 /** Skill Levels Constant */
-const SKILL_LVL_BEGINNER = 'Principiante';
-const SKILL_LVL_MEDIUM   = 'Intermedio';
-const SKILL_LVL_ADVANCED = 'Avanzado';
-const SKILL_LVL_EXPERT   = 'Experto';
+const SKILL_LVL_BEGINNER = 'BEGINNER';
+const SKILL_LVL_MEDIUM   = 'MEDIUM';
+const SKILL_LVL_ADVANCED = 'ADVANCED';
+const SKILL_LVL_EXPERT   = 'EXPERT';
+const SKILL_LVL_LIST     = "BEGINNER,MEDIUM,ADVANCED,EXPERT";
 
 /** Skill Levels Constant */
-const ACTIVITY_LVL_LIGHT     = 'Leve';
-const ACTIVITY_LVL_MODERATE  = 'Moderada';
-const ACTIVITY_LVL_DEMANDING = 'Exigente';
-const ACTIVITY_LVL_EXTREME   = 'Extrema';
+const ACTIVITY_LVL_LIGHT     = 'MILD';
+const ACTIVITY_LVL_MODERATE  = 'MODERATE';
+const ACTIVITY_LVL_DEMANDING = 'DEMANDING';
+const ACTIVITY_LVL_EXTREME   = 'EXTREME';
+const ACTIVITY_LVL_LIST      = 'MILD,MODERATE,DEMANDING,EXTREME';
 
 const TYPE_SERVICE    = 'services';
 const TYPE_EXPERIENCE = 'experiences';
