@@ -17,51 +17,53 @@ class CreateServicesTable extends Migration
             $table->id('id');
 
             $table->foreignId('user_id')
-                  ->constrained();
+                ->constrained();
 
             $table->foreignId('category_id')
-                  ->nullable()
-                  ->constrained();
+                ->nullable()
+                ->constrained();
 
             $table->string('state_id')
-                  ->references('id')
-                  ->on('states')
-                  ->nullable();
+                ->references('id')
+                ->on('states')
+                ->nullable();
 
 
             $table->string('city_id')
-                  ->references('id')
-                  ->on('cities')
-                  ->nullable();
+                ->references('id')
+                ->on('cities')
+                ->nullable();
 
             $table->string('locality_id')
-                  ->references('id')
-                  ->on('localities')
-                  ->nullable();
+                ->references('id')
+                ->on('localities')
+                ->nullable();
 
             $table->string('name')
-                  ->nullable();
+                ->nullable();
 
             $table->text('description')
-                  ->nullable();
+                ->nullable();
 
             $table->jsonb('features')
-                  ->nullable();
+                ->nullable();
+
+            $table->jsonb('photos')
+                ->nullable();
 
             $table->string('address')
-                  ->nullable();
+                ->nullable();
 
             $table->decimal('price', 8, 2)
-                  ->nullable();
+                ->nullable();
 
             $table->enum('status', config('product.status'))
-                  ->default(STATUS_INCOMPLETE);
+                ->default(STATUS_INCOMPLETE);
 
             $table->timestamp('published_at')
-                  ->nullable();
+                ->nullable();
 
             $table->timestamps();
-
         });
     }
 

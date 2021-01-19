@@ -42,6 +42,12 @@ class ServiceFactory extends Factory
                 $this->faker->sentence(4),
                 $this->faker->sentence(2)
             ],
+            'photos'         =>  [
+                'https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                'https://images.pexels.com/photos/3825584/pexels-photo-3825584.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                'https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                'https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            ],
             'price'        => $this->faker->randomFloat(2, 2500, 50000),
             'published_at' => $this->faker->dateTime(),
             'status'       => STATUS_PUBLISHED,

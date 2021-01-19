@@ -18,6 +18,7 @@ class Service extends Model
 
     protected $casts = [
         'features' => 'array',
+        'photos'   => 'array',
     ];
 
     public function microservices()
