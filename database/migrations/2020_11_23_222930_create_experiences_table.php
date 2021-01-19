@@ -34,7 +34,7 @@ class CreateExperiencesTable extends Migration
             $table->jsonb('toBring')
                   ->nullable();
 
-            $table->string('photos')
+            $table->jsonb('photos')
                   ->nullable();
 
             $table->string('minimumAge')

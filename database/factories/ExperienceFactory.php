@@ -50,12 +50,12 @@ class ExperienceFactory extends Factory
                 $this->faker->sentence(2)
             ],
 
-            'photos'         =>  $this->faker->randomElement([
+            'photos'         =>  [
                 'https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
                 'https://images.pexels.com/photos/5414000/pexels-photo-5414000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
                 'https://images.pexels.com/photos/139829/pexels-photo-139829.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260',
                 'https://images.pexels.com/photos/2040189/pexels-photo-2040189.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-            ]),
+            ],
 
             'minimumAge'     => 18,
             'skillLevel'     => SKILL_LVL_BEGINNER,
