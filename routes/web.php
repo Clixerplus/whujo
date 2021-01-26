@@ -6,10 +6,12 @@ use App\Models\Category;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ServiceBuilderWizard;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Site\HomePageController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Site\IndexPageController;
 use App\Http\Controllers\Account\DashboardController;
 use App\Http\Controllers\Account\ServiceHostingController;
-use App\Http\Controllers\Site\HomePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +26,14 @@ use App\Http\Controllers\Site\HomePageController;
 
 
 Route::get('/', HomePageController::class)->name('home');
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::resource('roles', RolesController::class);
+
+});
+
+//Route::resource('categories', CategoryController::class);
 
 
 
@@ -62,7 +72,7 @@ Route::get('/product/{type}/{id}/{slug}', function ($type, $id) {
     return view("pages.{$type}", compact('product'));
 })->name('product');
 
-
+Route::resource('categories', CategoryController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -71,6 +81,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::group(['prefix' => 'service/hosting'], function () {
         //Route::get('listing', [ServiceHostingController::class, 'listing'])->name('service-listing');
         //Route::get('create/{service?}', [ServiceHostingController::class, 'create'])->name('service-create');
+    });
+
+    Route::group(['prefix' => 'admin'], function () {
     });
 });
 
