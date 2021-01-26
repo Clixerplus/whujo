@@ -1,5 +1,7 @@
 <?php
 
+const PHOTO_STORAGE_DISK = 'public';
+
 const UNASSIGNED = 'unassigned';
 
 /** Status Constant */
