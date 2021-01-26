@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Livewire\ServiceBuilderWizard;
-use App\Models\City;
-use App\Models\State;
+
 use App\Models\Service;
+use App\Models\Category;
 use App\Models\Experience;
-use App\Http\Livewire\WizardCreator;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Livewire\ServiceBuilderWizard;
+use App\Http\Controllers\Site\IndexPageController;
+use App\Http\Controllers\Account\DashboardController;
+use App\Http\Controllers\Account\ServiceHostingController;
+use App\Http\Controllers\Site\HomePageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,14 +23,23 @@ use Illuminate\Support\Facades\Storage;
 */
 
 
-Route::get('/', function () {
-    return view('index', [
-        'services' => App\Models\Service::where('status', STATUS_PUBLISHED)->GET(),
-        'experiences' => App\Models\Experience::where('status', STATUS_PUBLISHED)->GET()
+Route::get('/', HomePageController::class)->name('home');
+
+
+
+Route::get('/card', function () {
+    return view('test', [
+        'services'   => Service::with(['state', 'city', 'category'])
+            ->where('status', STATUS_PUBLISHED)
+            ->get(),
+
+        'experiences' => Experience::with(['state', 'city', 'category'])
+            ->where('status', STATUS_PUBLISHED)
+            ->get(),
+
+        'categories' => Category::all()
     ]);
-})->name('index');
-
-
+});
 
 
 Route::get('/listing', function () {
@@ -54,9 +64,19 @@ Route::get('/product/{type}/{id}/{slug}', function ($type, $id) {
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    //Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::group(['prefix' => 'service/hosting'], function () {
+        //Route::get('listing', [ServiceHostingController::class, 'listing'])->name('service-listing');
+        //Route::get('create/{service?}', [ServiceHostingController::class, 'create'])->name('service-create');
+    });
+});
+
+
+
+
 
 Route::get('/test', function () {
 
@@ -65,3 +85,5 @@ Route::get('/test', function () {
 
 
 Route::get('/services/{service}/create', ServiceBuilderWizard::class);
+
+Route::view('colortest', 'colortest');
