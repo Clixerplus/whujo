@@ -4,7 +4,7 @@
         <div class="absolute top-0 inset-x-0 h-20 z-10">
             <div class="w-full flex flex-row space-y-2 items-center justify-between p-4">
                 <div>
-                    <a href="{{ route('index') }}"><x-logo-brand class="text-primary text-4xl" /></a>
+                    <a href="{{ route('home') }}"><x-logo-brand class="text-primary text-4xl" /></a>
                 </div>
                 <div class="flex flex-row space-x-2 items-center text-xs ">
 
