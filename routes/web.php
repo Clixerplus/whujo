@@ -1,9 +1,7 @@
 <?php
 
-
+use App\Http\Livewire\WizardCreator;
 use App\Models\Service;
-use App\Models\Category;
-use App\Models\Experience;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ServiceBuilderWizard;
 use App\Http\Controllers\Admin\UserController;
@@ -23,6 +21,10 @@ use App\Http\Controllers\Admin\CategoryController;
 |
 */
 
+Route::get('/search', function(){
+
+    return view('pages.listing');
+});
 
 Route::get('/', HomePageController::class)->name('home');
 
