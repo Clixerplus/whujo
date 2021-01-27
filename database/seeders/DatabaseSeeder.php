@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\City;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\State;
 use App\Models\Service;
@@ -24,18 +25,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $superadmin = Role::create(['name' => config('roles.super_admin')]);
         User::factory()
             ->create([
                 'name' => 'User Test',
                 'email' => 'usuario@email.test'
-            ]);
+            ])->assignRole($superadmin);
 
         /*  $this->call([
             StateSeeder::class,
             CitySeeder::class,
             LocalitySeeder::class,
         ]);*/
-        Category::factory(3)
+        Category::factory(6)
             ->create();
 
         State::factory(10)
@@ -49,13 +51,13 @@ class DatabaseSeeder extends Seeder
             ->related()
             ->create();
 
-        Experience::factory(10)
+        Experience::factory(25)
             ->related()
             ->create();
 
-        Service::factory(10)
+        Service::factory(25)
             ->related()
-            ->hasMicroservices(5)
+            ->hasMicroservices()
             ->create();
     }
 }

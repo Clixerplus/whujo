@@ -6,12 +6,11 @@ use App\Models\Category;
 use App\Models\Experience;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\ServiceBuilderWizard;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Site\HomePageController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Site\IndexPageController;
-use App\Http\Controllers\Account\DashboardController;
-use App\Http\Controllers\Account\ServiceHostingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +29,7 @@ Route::get('/', HomePageController::class)->name('home');
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('roles', RolesController::class);
+    Route::resource('users', UserController::class);
 
 });
 

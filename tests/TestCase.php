@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
     {
         return $this->actingAs(
             User::factory()
-                ->create()
+                ->create(['email' => 'superadmin@email.com'])
                 ->assignRole(config('roles.super_admin'))
         );
     }
