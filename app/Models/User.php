@@ -76,4 +76,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasRole(config('roles.super_admin'));
     }
+
+    public function getRoleAttribute()
+    {
+        return $this->getRoleNames()[0] ?? null;
+    }
 }

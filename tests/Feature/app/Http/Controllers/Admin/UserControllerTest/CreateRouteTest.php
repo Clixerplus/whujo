@@ -9,7 +9,7 @@ class CreateRouteTest extends AbstractUserController
 {
 
     /** @test */
-    public function it_has_access_to_an_create_route_for_super_admin()
+    public function superadmin_can_access_to_create_users()
     {
         $this->actingAsSuperAdminUser();
 
@@ -19,7 +19,7 @@ class CreateRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_has_access_to_an_create_path_for_authorized_users()
+    public function user_with_permission_can_access_to_create_users()
     {
         $this->actingAsUserWithPermission('create users');
 
@@ -29,7 +29,7 @@ class CreateRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function its_route_create_redirect_a_guest_user()
+    public function guest_cannot_access_to_create_users()
     {
         $response = $this->get(route('users.create'));
 
@@ -37,7 +37,7 @@ class CreateRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_has_access_to_an_create_path_only_for_authorized_users()
+    public function user_without_permission_can_access_to_create_users()
     {
         $this->actingAs(User::factory()->create());
 

@@ -11,16 +11,23 @@ use Tests\Feature\app\Http\Controllers\Admin\UserControllerTest\AbstractUserCont
 class StoreRouteTest extends AbstractUserController
 {
 
+    private function prepareUserData(): array
+    {
+        return [
+            'name'  => 'User Name',
+            'email' => 'email@dominio.com',
+            'role'  => Role::create(['name' => 'team'])->id
+        ];
+    }
+
     /** @test */
     public function superadmin_can_create_a_new_user()
     {
-        $this->actingAsSuperAdminUser();
-        $userData = User::factory()
-            ->make(['password' => Str::random(8)])
-            ->only('name', 'email', 'password');
-        $userData = array_merge($userData, ['role' => Role::first()->id]);
 
-        $response = $this->post(route('users.store'), $userData);
+        $this->actingAsSuperAdminUser();
+        $newUserData = $this->prepareUserData();
+
+        $response = $this->post(route('users.store'), $newUserData);
 
         $this->assertDatabaseCount('users', 2);
         $response->assertSessionHas('success')
@@ -28,14 +35,12 @@ class StoreRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function authorized_users_can_create_a_new_user()
+    public function user_with_permission_can_create_a_new_user()
     {
         $this->actingAsUserWithPermission('create users');
-        $userData = User::factory()
-            ->make(['password' => Str::random(8)])
-            ->only('name', 'email', 'password');
+        $newUserData = $this->prepareUserData();
 
-        $response = $this->post(route('users.store'), $userData);
+        $response = $this->post(route('users.store'), $newUserData);
 
         $this->assertDatabaseCount('users', 2);
         $response->assertSessionHas('success')
@@ -43,22 +48,22 @@ class StoreRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function user_cannot_create_a_user()
+    public function guest_cannot_create_a_user()
     {
-        $user = User::factory()->make();
+        $newUserData = $this->prepareUserData();
 
-        $response = $this->post(route('users.store'), $user->toArray());
+        $response = $this->post(route('users.store'), $newUserData);
 
         $response->assertRedirect(route('login'));
     }
 
     /** @test */
-    public function unauthorized_users_cannot_create_a_user()
+    public function users_without_permission_cannot_create_a_user()
     {
-        $user = User::factory()->make();
+        $newUserData = $this->prepareUserData();
         $this->actingAs(User::factory()->create());
 
-        $response = $this->post(route('users.store'), $user->toArray());
+        $response = $this->post(route('users.store'), $newUserData);
 
         $response->assertForbidden();
     }
@@ -73,6 +78,37 @@ class StoreRouteTest extends AbstractUserController
         $response->assertSessionHasErrors($key, $rule);
     }
 
+    /** @test */
+    public function superadmin_can_create_another_superadmin_user()
+    {
+        $this->actingAsSuperAdminUser();
+        $superadminUser = [
+            'name'  => 'User Name',
+            'email' => 'email@dominio.com',
+            'role'  => Role::where('name', config('roles.super_admin'))->first()->id
+        ];
+
+        $response = $this->post(route('users.store', $superadminUser));
+
+        $this->assertDatabaseCount('users', 2);
+    }
+
+    /** @test */
+    public function only_superadmin_user_can_create_another_superadmin_user()
+    {
+        $this->actingAsUserWithPermission('create users');
+        $superadmin = [
+            'name'  => 'User Name',
+            'email' => 'email@dominio.com',
+            'role'  => Role::where('name', config('roles.super_admin'))->first()->id
+        ];
+
+        $response = $this->post(route('users.store', $superadmin));
+
+        $response->assertForbidden();
+        $this->assertDatabaseCount('users', 1);
+    }
+
     public function dataForValidate()
     {
         return [
@@ -83,10 +119,6 @@ class StoreRouteTest extends AbstractUserController
             "email_must_be_required" => ['email', '', 'required'],
             "email_must_have_a_valid_format" => ['email', 'badformat', 'email'],
             "email_must_be_unique" => ['email', 'superadmin@email.com', 'unique'],
-
-            "password_must_be_required" => ['password', '', 'required'],
-            "password_cant_be_less_than_8" => ['password', Str::random(7), 'between'],
-            "password_cant_be_greather_than_12" => ['password', Str::random(13), 'between'],
 
             "role_must_exists_i_database" => ['role', 'no_exist', 'exists'],
         ];

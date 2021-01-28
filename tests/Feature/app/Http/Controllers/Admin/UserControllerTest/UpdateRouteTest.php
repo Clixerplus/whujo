@@ -15,39 +15,37 @@ class UpdateRouteTest extends AbstractUserController
     {
         $this->actingAsSuperAdminUser();
         $user = User::factory()->create();
-        $userData = [
+        $editedData = [
             'name' => 'editedName',
-            'password' => Str::random(8),
-            'email' => 'otroemail@email.com',
+            'email' => $user->email,
         ];
 
-        $response = $this->put(route('users.update', $user), $userData);
+        $response = $this->put(route('users.update', $user), $editedData);
 
-        $this->assertDatabaseHas('users', ['name' => $userData['name']]);
+        $this->assertDatabaseHas('users', $editedData);
         $response->assertSessionHas('success')
             ->assertRedirect();
     }
 
     /** @test */
-    public function authorized_users_can_update_a_user()
+    public function user_with_permission_can_update_a_user()
     {
         $this->actingAsUserWithPermission('edit users');
         $user = User::factory()->create();
-        $userData = [
+        $editedData = [
             'name' => 'editedName',
-            'password' => Str::random(8),
-            'email' => 'otroemail@email.com',
+            'email' => $user->email,
         ];
 
-        $response = $this->put(route('users.update', $user), $userData);
+        $response = $this->put(route('users.update', $user), $editedData);
 
-        $this->assertDatabaseHas('users', ['name' => $userData['name']]);
+        $this->assertDatabaseHas('users', $editedData);
         $response->assertSessionHas('success')
             ->assertRedirect();
     }
 
     /** @test */
-    public function user_cannot_update_a_user()
+    public function guest_cannot_update_a_user()
     {
         $user = User::factory()->create();
 
@@ -60,7 +58,7 @@ class UpdateRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function unauthorized_users_cannot_update_a_role()
+    public function user_without_permission_cannot_update_a_role()
     {
         $user = User::factory()->create();
         $this->actingAs(User::factory()->create());
@@ -71,6 +69,40 @@ class UpdateRouteTest extends AbstractUserController
         );
 
         $response->assertForbidden();
+    }
+
+    /** @test */
+    public function superadmin_can_update_another_superadmin_user()
+    {
+        $user = User::factory()->create()->assignRole(config('roles.super_admin'));
+        $this->actingAsSuperAdminUser();
+        $newData = [
+            'name'  => $user->name,
+            'email' => $user->email,
+            'role'  => Role::create(['name' => 'team'])->name
+        ];
+
+        $this->put(route('users.update', $user), $newData);
+
+        $this->assertTrue(User::find($user->id)->hasRole('team'));
+        $this->assertNotTrue(User::find($user->id)->isSuperAdmin());
+    }
+
+    /** @test */
+    public function only_superadmin_user_can_update_another_superadmin_user()
+    {
+        $user = User::factory()->create()->assignRole(config('roles.super_admin'));
+        $this->actingAsUserWithPermission('edit users');
+        $newData = [
+            'name'  => $user->name,
+            'email' => $user->email,
+            'role'  => Role::create(['name' => 'team'])->name
+        ];
+
+        $response = $this->put(route('users.update', $user), $newData);
+
+        $response->assertForbidden();
+        $this->assertTrue(User::find($user->id)->isSuperAdmin());
     }
 
     /** @dataProvider dataForValidate */
@@ -95,11 +127,7 @@ class UpdateRouteTest extends AbstractUserController
             "email_must_have_a_valid_format" => ['email', 'badformat', 'email'],
             "email_must_be_unique" => ['email', 'superadmin@email.com', 'unique'],
 
-            "password_must_be_required" => ['password', '', 'required'],
-            "password_cant_be_less_than_8" => ['password', Str::random(7), 'between'],
-            "password_cant_be_greather_than_12" => ['password', Str::random(13), 'between'],
-
-            "role_must_exists_i_database" => ['role', 'no_exist', 'exists'],
+            "role_must_exists_i_database" => ['role', 'no_exists', 'exists'],
         ];
     }
 }

@@ -8,7 +8,7 @@ use App\Models\User;
 class EditRouteTest extends AbstractUserController
 {
     /** @test */
-    public function it_has_access_to_an_edit_route_for_super_admin()
+    public function superadmin_can_access_to_edit_users()
     {
         $user = User::factory()->create();
         $this->actingAsSuperAdminUser();
@@ -19,7 +19,7 @@ class EditRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_has_access_to_an_edit_path_for_authorized_users()
+    public function user_with_permission_can_access_to_edit_users()
     {
         $user = User::factory()->create();
         $this->actingAsUserWithPermission('edit users');
@@ -30,7 +30,7 @@ class EditRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function its_route_edit_redirect_a_guest_user()
+    public function guest_cannot_access_to_edit_users()
     {
         $user = User::factory()->create();
 
@@ -40,7 +40,7 @@ class EditRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_has_access_to_an_edit_path_only_for_authorized_users()
+    public function user_without_permission_can_access_to_edit_users()
     {
         $this->actingAs(User::factory()->create());
 

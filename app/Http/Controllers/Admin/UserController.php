@@ -4,8 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+
+
 
 class UserController extends Controller
 {
@@ -43,7 +48,11 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = User::create($request->only('name', 'email', 'password'));
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
         (!$request->role) ?: $user->assignRole($request->role);
 
@@ -79,9 +88,23 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
-        $user->update($request->only(['name', 'email', 'password']));
+        Validator::make($request->only('name', 'email', 'role'), [
+            'name'  => ['required', 'string', 'between:2,30'],
+            'email' => ['required', 'email',  Rule::unique('users')->ignore($user)],
+            'role'  => ['nullable', 'exists:roles,name']
+        ])->validate();
+
+        $user->update($request->only(['name', 'email']));
+
+        if ($request->role) {
+            if (!$user->hasRole($request->role))
+                $user->removeRole($user->role);
+
+            $user->assignRole($request->role);
+        }
+
         return back()->with(['success' => 'El role ha sido editado']);
     }
 

@@ -22,7 +22,7 @@ class DeleteRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function authorized_users_can_delete_a_user()
+    public function user_with_permission_can_delete_a_user()
     {
         $user = User::factory()->create();
         $this->actingAsUserWithPermission('delete users');
@@ -45,7 +45,7 @@ class DeleteRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function unauthorized_users_cannot_delete_a_user()
+    public function user_without_permission_cannot_delete_a_user()
     {
         $user = User::factory()->create();
         $this->actingAs(User::factory()->create());
@@ -56,16 +56,40 @@ class DeleteRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function a_user_cannot_delete_himself()
+    public function user_cannot_delete_himself()
     {
         $user = User::factory()->create()->givePermissionTo('delete users');
         $this->actingAs($user);
 
         $response = $this->delete(route('users.destroy', $user));
 
-
         $response->assertRedirect()
             ->assertSessionHas('errors');
         $this->assertDatabaseCount('users', 1);
+    }
+
+    /** @test */
+    public function superadmin_can_delete_another_superadmin_user()
+    {
+        $otherSuperadmin = User::factory()->create()->assignRole(config('roles.super_admin'));
+        $this->actingAsSuperAdminUser();
+
+        $response = $this->delete(route('users.destroy', $otherSuperadmin));
+
+        $response->assertRedirect()
+            ->assertSessionHas('success');
+        $this->assertDatabaseCount('users', 1);
+    }
+
+    /** @test */
+    public function only_superadmin_user_can_delete_another_superadmin_user()
+    {
+        $superadmin = User::factory()->create()->assignRole(config('roles.super_admin'));
+        $this->actingAsUserWithPermission('delete users');
+
+        $response = $this->delete(route('users.destroy', $superadmin));
+
+        $response->assertForbidden();
+        $this->assertDatabaseCount('users', 2);
     }
 }

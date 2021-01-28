@@ -11,7 +11,7 @@ class ShowRouteTest extends AbstractUserController
 
 
     /** @test */
-    public function it_has_access_to_an_show_route_for_super_admin()
+    public function superadmin_can_access_to_see_users()
     {
         $user = User::factory()->create();
         $this->actingAsSuperAdminUser();
@@ -22,7 +22,7 @@ class ShowRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_has_access_to_an_show_route_for_authorized_users()
+    public function user_with_permission_can_access_to_see_users()
     {
         $user = User::factory()->create();
         $this->actingAsUserWithPermission('view users');
@@ -33,7 +33,7 @@ class ShowRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function its_route_show_redirect_a_guest_user()
+    public function guest_cannot_access_to_see_users()
     {
         $user = User::factory()->create();
 
@@ -43,7 +43,7 @@ class ShowRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_have_restricted_access_to_an_show_route_for_unauthorized_users()
+    public function user_without_permission_can_access_to_see_users()
     {
         $user = User::factory()->create();
         $this->actingAs(User::factory()->create());

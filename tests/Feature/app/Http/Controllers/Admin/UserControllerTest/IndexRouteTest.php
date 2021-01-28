@@ -9,7 +9,7 @@ class IndexRouteTest extends AbstractUserController
 {
 
     /** @test */
-    public function it_has_access_to_an_index_route_for_super_admin()
+    public function superadmin_can_access_to_see_a_list_of_users()
     {
         $this->actingAsSuperAdminUser();
 
@@ -19,7 +19,7 @@ class IndexRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_has_access_to_an_index_route_for_authorized_users()
+    public function user_with_permission_can_access_to_see_a_list_of_users()
     {
         $this->actingAsUserWithPermission('viewAll users');
 
@@ -29,7 +29,7 @@ class IndexRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function its_route_index_redirect_a_guest_user()
+    public function guest_cannot_access_to_see_a_list_of_users()
     {
         $response = $this->get(route('users.index'));
 
@@ -37,7 +37,7 @@ class IndexRouteTest extends AbstractUserController
     }
 
     /** @test */
-    public function it_have_restricted_access_to_an_index_route_for_unauthorized_users()
+    public function user_without_permission_can_access_to_see_a_list_of_users()
     {
         $this->actingAs(User::factory()->create());
 
