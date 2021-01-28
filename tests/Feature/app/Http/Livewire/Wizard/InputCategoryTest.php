@@ -16,9 +16,11 @@ class InputCategoryTest extends TestCase
 {
     use RefreshDatabase;
 
+
     /** @test  */
     function it_set_incoming_model()
     {
+        $this->withExceptionHandling();
         $model = new ProductModelTest;
         $model->category_id = 1;
 
