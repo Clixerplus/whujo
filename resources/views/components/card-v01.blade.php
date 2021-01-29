@@ -1,6 +1,8 @@
-<div class="relative overflow-hidden duration-300 bg-primary w-full lg:w-72 shadow-w1" style="border-radius: 50px 0 50px 0;">
+<div class="relative overflow-hidden duration-300 bg-primary w-full lg:w-72 shadow-w1"
+    style="border-radius: 50px 0 50px 0;">
     <div class="group">
-        <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" class="object-cover w-full h-64" alt="" />
+        <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+            class="object-cover w-full h-64" alt="" />
         <div
             class="absolute inset-0 h-64 bg-secondary bg-opacity-60 flex items-center justify-center transition transform -translate-y-64 group-hover:translate-y-0 duration-300">
             <a href="{{ route('product', [$product->type, $product->id, $product->slug]) }}"
@@ -19,7 +21,7 @@
                 {{ rand(1,4)}}.{{ rand(0,9)}}
             </span>
         </div>
-        <div class="flex items-center mb-3">
+        <div class="flex items-center mb-3 text-sm">
             <span class="leading-6 flex mr-4">
                 <x-icon-map-outline class="text-secondary fill-current h-auto w-6 mr-2" />
                 {{ $product->city->name }}
@@ -29,14 +31,14 @@
                 ${{ number_format($product->price,2,',','.') }}
             </span>
         </div>
-        <p class="mb-2 text-gray-700 text-sm h-44 ">
-            @if(Str::length('jh') < 250)
-                 {{ $product->description }}
-            @else
-                {{ substr($product->description , 1, 200 ) + '. . .' }};
-            @endif
+        <p class="mb-2 text-gray-700 text-sm h-28 ">
+
+            {{ Str::limit($product->description, 200)  }}
 
         </p>
+    </div>
+    <div class="bg-secondary text-center py-3">
+        <a href="{{ route('product', [$product->type, $product->id, $product->slug]) }}" class="w-full h-full text-white"> Contratar</a>
     </div>
 
 </div>

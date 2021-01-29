@@ -12,7 +12,7 @@
            {{ $product->name }}
         </a>
         <p class="mb-2 text-gray-700 h-18  mt-6">
-            {{ $product->description }}
+            {{ Str::limit($product->description,50) }}
         </p>
         <a href="{{ route('product', [$product->type, $product->id, $product->slug ])}}"
            class="w-full bg-primary text-white rounded-md

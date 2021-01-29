@@ -1,6 +1,6 @@
 <div class="relative h-80 lg:h-64 shadow-lg">
     <img class="absolute inset-0 object-cover w-full h-full rounded-md"
-        src="{{ $product->photos ?? 'https://images.pexels.com/photos/1813346/pexels-photo-1813346.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}}" />
+        src="{{ $product->photos[0] ?? 'https://images.pexels.com/photos/1813346/pexels-photo-1813346.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}}" />
 
     <div class="relative flex flex-col h-full">
 
@@ -10,7 +10,7 @@
             {{-- Pills 01 --}}
             <div class="flex p-1 pr-4 mr-2 items-center rounded-full bg-white bg-opacity-90">
 
-                <span class="w-6 h-6 flex justify-center items-center rounded-full bg-primary ">
+                <span class="w-6 h-6 flex justify-center items-center rounded-full bg-secondary ">
                     <x-icon-star class="w-3 h-auto text-white" />
                 </span>
                 <span class="text-xs ml-2 text-gray-700">Destacado</span>
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="flex items-center justify-between mt-auto w-full bg-gradient-to-t from-secondary p-4 rounded-b-md">
+        <div class="flex items-center justify-between mt-auto w-full bg-gradient-to-t from-gray-900 p-4 rounded-b-md">
 
             <div class="w-4/6">
 
@@ -38,7 +38,7 @@
                 </div>
 
                 {{-- Titulo --}}
-                <h1 class="text-lg font-bold leading-5 text-white mt-2">{{ $product->name }}</h1>
+                <h1 class="text-lg font-bold leading-5 text-white mt-2">{{ Str::limit($product->name,40) }}</h1>
 
                 {{-- Ubicacion --}}
                 <div class="text-sm mt-4 text-gray-400">{{ $product->state->name }} - {{ $product->city->name }}

@@ -2,7 +2,7 @@
 
     {{-- Background --}}
     <img class="absolute inset-0 object-cover w-full h-full "
-        src="{{ $product->photos ?? 'https://images.pexels.com/photos/1813346/pexels-photo-1813346.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}}" />
+        src="{{ $product->photos[0] ?? 'https://images.pexels.com/photos/1813346/pexels-photo-1813346.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'}}" />
 
     <div class="relative flex flex-col h-full mt-auto bg-gradient-to-t from-secondary p-4">
 
