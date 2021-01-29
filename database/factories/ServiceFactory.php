@@ -29,14 +29,13 @@ class ServiceFactory extends Factory
         return [
             'user_id'      => User::factory(),
             'category_id'  => Category::factory(),
-
+            'name'         => $this->faker->sentence(5),
+            'description'  => $this->faker->paragraph(5),
             'state_id'     => State::factory(),
             'city_id'      => City::factory(),
             'locality_id'  => Locality::factory(),
             'address'      => $this->faker->address,
-
-            'name'         => $this->faker->sentence(),
-            'description'  => $this->faker->paragraph(5),
+            'price'        => $this->faker->randomFloat(2, 2500, 50000),
             'features'     => [
                 $this->faker->sentence(3),
                 $this->faker->sentence(4),
@@ -48,7 +47,6 @@ class ServiceFactory extends Factory
                 'https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 'https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             ],
-            'price'        => $this->faker->randomFloat(2, 2500, 50000),
             'published_at' => $this->faker->dateTime(),
             'status'       => STATUS_PUBLISHED,
         ];
@@ -63,16 +61,17 @@ class ServiceFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'category_id'    => null,
-                'state_id'       => null,
-                'city_id'        => null,
-                'locality_id'    => null,
-                'name'           => null,
-                'description'    => null,
-                'address'        => null,
-                'features'       => null,
-                'price'          => null,
-                'published_at'   => null,
+                'category_id'  => null,
+                'state_id'     => null,
+                'city_id'      => null,
+                'locality_id'  => null,
+                'name'         => null,
+                'description'  => null,
+                'address'      => null,
+                'features'     => null,
+                'price'        => null,
+                'photos'       => null,
+                'published_at' => null,
                 'status'       => STATUS_INCOMPLETE,
             ];
         });
@@ -87,10 +86,10 @@ class ServiceFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'category_id'  => Category::all()->random()->id,
-                'state_id'     => State::all()->random()->id,
-                'city_id'      => City::all()->random()->id,
-                'locality_id'  => Locality::all()->random()->id,
+                'category_id' => Category::all()->random()->id,
+                'state_id'    => State::all()->random()->id,
+                'city_id'     => City::all()->random()->id,
+                'locality_id' => Locality::all()->random()->id,
             ];
         });
     }

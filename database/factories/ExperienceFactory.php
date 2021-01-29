@@ -36,7 +36,7 @@ class ExperienceFactory extends Factory
             'locality_id'    => Locality::factory(),
             'address'        => $this->faker->address,
 
-            'name'           => $this->faker->sentence(),
+            'name'           => $this->faker->sentence(5),
             'description'    => $this->faker->paragraph(5),
 
             'toProvide'      => [
