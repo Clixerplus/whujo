@@ -98,4 +98,36 @@ class InputPhotoUploadTest extends TestCase
 
         Storage::disk('image')->assertMissing($photo);
     }
+
+    /** @test */
+    function photo_file_must_be_less_than_1024_kb()
+    {
+        $photo = UploadedFile::fake()->image('photo.png')->size(1100);
+
+        Livewire::test(InputPhotoUpload::class, ['product' => new ProductModelTest])
+            ->set('photo', $photo)
+            ->call('save')
+            ->assertHasErrors(['photo' => 'max']);
+    }
+
+    /** @test */
+    function photo_file_must_ha_a_ration_1_for_1()
+    {
+        $photo = UploadedFile::fake()->image('photo.png', 10, 15);
+
+        Livewire::test(InputPhotoUpload::class, ['product' => new ProductModelTest])
+            ->set('photo', $photo)
+            ->call('save')
+            ->assertHasErrors(['photo' => 'dimensions']);
+    }
+
+    /** @test */
+    function photo_file_cannot_be_empty()
+    {
+        Livewire::test(InputPhotoUpload::class, ['product' => new ProductModelTest])
+            ->call('save')
+            ->assertHasErrors(['photo' => 'required']);
+    }
+
+    
 }

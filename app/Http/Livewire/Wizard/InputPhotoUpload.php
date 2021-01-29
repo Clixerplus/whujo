@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Wizard;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Livewire\Traits\CanValidateStepChange;
 
 class InputPhotoUpload extends Component
 {
@@ -13,6 +14,14 @@ class InputPhotoUpload extends Component
     public $product;
 
     public $photo;
+
+    protected $rules = [
+        'photo' => 'required|image|max:1024|dimensions:ratio=1/1'
+    ];
+
+    protected $listeners  = [
+        'canChangeStep'
+    ];
 
     public function mount(Model $product)
     {
@@ -26,9 +35,10 @@ class InputPhotoUpload extends Component
 
     public function save()
     {
-        //$this->validate();
+        $this->validate();
+
         $arrayPhotos = $this->product->photos;
-        
+
         if (count($arrayPhotos) < 6) {
 
             $this->product->photos = array_merge($arrayPhotos, [$this->upload()]);
