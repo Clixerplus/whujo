@@ -1,5 +1,5 @@
 {{--Footer--}}
-<div class="relative mt-16 bg-secondary">
+<div class="relative mt-16 bg-primary">
     <svg class="absolute top-0 w-full h-6 -mt-5 sm:-mt-10 sm:h-16 text-secondary" preserveAspectRatio="none"
         viewBox="0 0 1440 54">
         <path fill="currentColor"
@@ -10,7 +10,7 @@
         <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
             <div class="md:max-w-md lg:col-span-2">
                 <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                    <span class="ml-2 text-xl font-bold tracking-wide text-primary ">whujo</span>
+                    <span class="ml-2 text-xl font-bold tracking-wide text-secondary ">whujo</span>
                 </a>
                 <div class="mt-4 lg:max-w-sm text-gray-200">
                     <p class="text-sm ">
