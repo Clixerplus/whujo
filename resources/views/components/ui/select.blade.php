@@ -10,7 +10,7 @@ $class = '';
     </div>
 
     <select {{ $attributes->merge([
-                    'class' => 'w-full rounded-md px-4 pr-16 z-20  appearance-none border focus:ring focus:ring-gray-200 outline-none ' . $class,
+                    'class' => 'w-full rounded-md p-4 pr-16 z-20 appearance-none border focus:ring focus:ring-gray-200 outline-none ' . $class,
                     'name'  => $key
                 ])}} >
 
