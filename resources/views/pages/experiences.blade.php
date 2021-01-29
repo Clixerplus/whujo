@@ -4,19 +4,19 @@
     <div class="min-w-screen bg-secondary">
         <div class="flex overflow-x-hidden bg-yellow-300 h-96">
             <div class="w-screen lg:-ml-48 lg:w-4/12  ">
-                <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+                <img src="{{ Storage::url($product->photos[0]) }}"
                     class="object-cover w-full h-full" alt="" />
             </div>
             <div class="hidden lg:inline-flex lg:w-4/12 ">
-                <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+                <img src="{{ Storage::url($product->photos[1]) }}"
                     class="object-cover w-full h-full" alt="" />
             </div>
             <div class="hidden lg:inline-flex lg:w-4/12 ">
-                <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+                <img src="{{ Storage::url($product->photos[2]) }}"
                     class="object-cover w-full h-full" alt="" />
             </div>
             <div class="hidden lg:inline-flex lg:-mr-48 lg:w-4/12 ">
-                <img src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500"
+                <img src="{{ Storage::url($product->photos[3]) }}"
                     class="object-cover w-full h-full" alt="" />
             </div>
         </div>
