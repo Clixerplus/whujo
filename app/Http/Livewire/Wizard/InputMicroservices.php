@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use App\Models\Microservice;
 use App\Models\Service;
 use Livewire\Component;
+use App\Models\Microservice;
+use App\Http\Livewire\Traits\CanValidateStepChange;
 
 class InputMicroservices extends Component
 {
@@ -32,6 +33,10 @@ class InputMicroservices extends Component
         'price' => 'required|numeric|min:' . self::MINIMUM_PRICE
     ];
 
+    protected $listeners  = [
+        'canChangeStep'
+    ];
+
     public function mount(Service $service)
     {
         $this->service = $service;
@@ -49,6 +54,11 @@ class InputMicroservices extends Component
     public function deleteMicroservice($id)
     {
         Microservice::destroy($id);
+    }
+
+    public function canChangeStep()
+    {
+        $this->emit('dataIsValid', true);
     }
 
     public function render()

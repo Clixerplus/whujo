@@ -212,4 +212,12 @@ class InputMicroservicesTest extends TestCase
             ->assertSeeHtml('name="price"')
             ->assertSeeHtml('wire:model.debounce.500ms="price"');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputMicroservices::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
 }

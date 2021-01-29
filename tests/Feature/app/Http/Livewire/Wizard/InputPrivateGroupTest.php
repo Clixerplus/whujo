@@ -124,4 +124,22 @@ class InputPrivateGroupTest extends TestCase
             ->assertSeeHtml('wire:model.debounce.500ms="product.privateGroupPrice"')
             ->assertViewHas('minimumPrice');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputPrivateGroup::class, ['model' => new ProductModelTest])
+            ->set('product.privateGroup', false)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputPrivateGroup::class, ['model' => new ProductModelTest])
+        ->set('product.privateGroup', true)
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

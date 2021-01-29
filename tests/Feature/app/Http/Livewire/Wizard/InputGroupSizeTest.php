@@ -97,4 +97,21 @@ class InputGroupSizeTest extends TestCase
             ->assertSeeHtml('name="product.groupSize"')
             ->assertSeeHtml('wire:model="product.groupSize"');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->set('product.groupSize',  InputGroupSize::MINIMUM_SIZE)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputGroupSize::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

@@ -92,4 +92,21 @@ class InputMinimumAgeTest extends TestCase
             ->assertSeeHtml('name="product.minimumAge"')
             ->assertSeeHtml('wire:model.debounce.500ms="product.minimumAge"');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputMinimumAge::class, ['model' => new ProductModelTest])
+            ->set('product.minimumAge', InputMinimumAge::MINIMUM_AGE)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputMinimumAge::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

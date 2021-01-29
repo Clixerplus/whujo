@@ -129,5 +129,28 @@ class InputPhotoUploadTest extends TestCase
             ->assertHasErrors(['photo' => 'required']);
     }
 
-    
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        $service = Service::factory()->create([
+            'photos' => ['1.png', '2.png', '3.png', '4.png']
+        ]);
+
+        Livewire::test(InputPhotoUpload::class, ['product' => $service])
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        $service = Service::factory()->create([
+            'photos' => ['1.png', '2.png', '3.png']
+        ]);
+
+        Livewire::test(InputPhotoUpload::class, ['product' => $service])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid')
+            ->assertHasErrors('photoCount');
+    }
 }

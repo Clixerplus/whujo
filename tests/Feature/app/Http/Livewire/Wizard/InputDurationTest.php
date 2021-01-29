@@ -120,4 +120,26 @@ class InputDurationTest extends TestCase
             ->assertSeeHtml('name="product_minute"')
             ->assertSeeHtml('wire:model="product_minute"');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        $duration = new TimeVO(0, 45);
+
+        Livewire::test(InputDuration::class, ['model' => $this->modelForTest])
+            ->set('product_hour', $duration->hour)
+            ->set('product_minute', $duration->minute)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputDuration::class, ['model' => $this->modelForTest])
+            ->set('product_hour', null)
+            ->set('product_minute', null)
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

@@ -4,10 +4,13 @@ namespace App\Http\Livewire\Wizard;
 
 use Livewire\Component;
 use App\ValueObjcets\TimeVO;
+use App\Http\Livewire\Traits\CanValidateStepChange;
 use Illuminate\Database\Eloquent\Model as ProductModel;
 
 class InputStarting extends Component
 {
+    use CanValidateStepChange;
+
     const MIN_HOURS_LIMIT = 0;
 
     const MAX_HOURS_LIMIT = 16;
@@ -19,6 +22,10 @@ class InputStarting extends Component
     public $product_hour;
 
     public $product_minute;
+
+    protected $listeners  = [
+        'canChangeStep'
+    ];
 
     /**
      * SearchableComponent constructor.

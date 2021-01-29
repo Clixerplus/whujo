@@ -107,4 +107,14 @@ class InputToBringTest extends TestCase
             ->assertSeeHtml('Requeriment1')
             ->assertSeeHtml('Requeriment2');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        $experience = Experience::factory()->create();
+
+        Livewire::test(InputToBring::class, ['model' => $experience])
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
 }

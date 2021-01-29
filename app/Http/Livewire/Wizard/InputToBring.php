@@ -15,6 +15,10 @@ class InputToBring extends Component
         'requeriment' => 'required|string|min:5'
     ];
 
+    protected $listeners  = [
+        'canChangeStep'
+    ];
+
     public function mount(Experience $experience)
     {
         $this->experience = $experience;
@@ -50,5 +54,10 @@ class InputToBring extends Component
     public function render()
     {
         return view('livewire.wizard.input-to-bring');
+    }
+
+    public function canChangeStep()
+    {
+        $this->emit('dataIsValid', true);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Wizard;
 
+use App\Http\Livewire\Traits\CanValidateStepChange;
 use App\Models\Service;
 use Livewire\Component;
 
@@ -13,8 +14,12 @@ class InputFeatures extends Component
 
     public $feature;
 
+    protected $listeners  = [
+        'canChangeStep'
+    ];
+
     protected $rules = [
-        'feature' => 'required|string|min:'. self::MINIMUM_CHARS
+        'feature' => 'required|string|min:' . self::MINIMUM_CHARS
     ];
 
     public function mount(Service $service)
@@ -51,8 +56,13 @@ class InputFeatures extends Component
 
     public function render()
     {
-        return view('livewire.wizard.input-features',[
+        return view('livewire.wizard.input-features', [
             'features' => $this->service->features
         ]);
+    }
+
+    public function canChangeStep()
+    {
+        $this->emit('dataIsValid', true);
     }
 }

@@ -83,4 +83,22 @@ class InputReservationLimitTimeTest extends TestCase
             ->assertSeeHtml('wire:model="product.reservationLimitTime"')
             ->assertViewHas('intervals');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputReservationLimitTime::class, ['model' => new ProductModelTest])
+            ->set('product.reservationLimitTime', 1)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputReservationLimitTime::class, ['model' => new ProductModelTest])
+            ->set('product.reservationLimitTime', -1)
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

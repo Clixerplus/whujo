@@ -110,4 +110,21 @@ class InputPriceTest extends TestCase
             ->assertSeeHtml('name="product.price"')
             ->assertSeeHtml('wire:model.debounce.500ms="product.price"');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputPrice::class, ['model' => new ProductModelTest])
+            ->set('product.price',  InputPrice::MIN_PRICE_ALLOWED)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputPrice::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

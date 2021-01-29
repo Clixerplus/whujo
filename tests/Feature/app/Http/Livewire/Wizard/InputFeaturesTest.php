@@ -105,4 +105,15 @@ class InputFeaturesTest extends TestCase
             ->assertSeeHtml('Feature1')
             ->assertSeeHtml('Feature2');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Service::factory()->create(['features' => ['Feature']]);
+        $service = Service::first(['id', 'features']);
+
+        Livewire::test(InputFeatures::class, ['service' => $service])
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
 }

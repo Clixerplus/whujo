@@ -12,7 +12,7 @@ class InputCategory extends StepBuilderWizard
     protected function setValidationRules(): void
     {
         $this->rules = [
-            'product.category_id' => 'exists:categories,id'
+            'product.category_id' => 'required|exists:categories,id'
         ];
     }
 

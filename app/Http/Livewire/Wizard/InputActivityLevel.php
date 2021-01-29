@@ -21,8 +21,10 @@ class InputActivityLevel extends StepBuilderWizard
     {
         return view('livewire.wizard.input-activity-level', [
             'levelOptions' => [
-                ACTIVITY_LVL_LIGHT, ACTIVITY_LVL_MODERATE,
-                ACTIVITY_LVL_EXTREME, ACTIVITY_LVL_DEMANDING
+                ACTIVITY_LVL_LIGHT,
+                ACTIVITY_LVL_MODERATE,
+                ACTIVITY_LVL_EXTREME,
+                ACTIVITY_LVL_DEMANDING
             ]
         ]);
     }

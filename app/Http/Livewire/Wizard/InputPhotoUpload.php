@@ -56,4 +56,11 @@ class InputPhotoUpload extends Component
             ['photos' => $this->product->photos ?? []]
         );
     }
+
+    public function canChangeStep()
+    {
+        (count($this->product->photos) >= 4)
+            ? $this->emit('dataIsValid', true)
+            : $this->addError('photoCount', 'Debe tener al menos 4 imagenes de las 6 requeridas');
+    }
 }

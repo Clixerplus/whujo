@@ -8,8 +8,8 @@ use App\Models\State;
 use Livewire\Livewire;
 use App\Models\Service;
 use App\Models\Locality;
-use App\Http\Livewire\Wizard\InputLocation;
 use App\Models\Experience;
+use App\Http\Livewire\Wizard\InputLocation;
 use Tests\Feature\MockClass\ProductModelTest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -183,6 +183,28 @@ class InputLocationTest extends TestCase
             ->set('selectedCity', $state->cities->first()->id)
             ->assertSet('localities', Locality::where('city_id', $state->cities->first()->id)->get());
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        $model = $this->prepareModelForTest();
+
+        Livewire::test(InputLocation::class, ['model' => new ProductModelTest])
+            ->set('selectedState', $model->state_id)
+            ->set('selectedCity', $model->city_id)
+            ->set('selectedLocality', $model->locality_id)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputLocation::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
+
 
 
     private function prepareModelForTest()

@@ -112,4 +112,21 @@ class InputNameTest extends TestCase
             ->assertSeeHtml('name="product.name"')
             ->assertSeeHtml('wire:model.debounce.500ms="product.name"');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputName::class, ['model' => new ProductModelTest])
+            ->set('product.name', Str::random(InputName::MIN_NAME_LENGTH))
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputName::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

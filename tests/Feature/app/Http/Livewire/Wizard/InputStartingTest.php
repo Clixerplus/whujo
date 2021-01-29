@@ -131,4 +131,24 @@ class InputStartingTest extends TestCase
             ->assertViewHas('maxHourLimit')
             ->assertViewHas('minutesInterval');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputStarting::class, ['model' => $this->modelForTest])
+            ->set('product_hour', InputStarting::MIN_HOURS_LIMIT)
+            ->set('product_hour', InputStarting::MINUTES_INTERVAL[1])
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputStarting::class, ['model' => $this->modelForTest])
+            ->set('product_hour', '')
+            ->set('product_hour', '')
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

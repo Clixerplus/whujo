@@ -113,4 +113,14 @@ class InputToProvideTest extends TestCase
             ->assertSeeHtml('Provision2')
             ->assertViewHas('min_length');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        $experience = Experience::factory()->create();
+
+        Livewire::test(InputToProvide::class, ['model' => $experience])
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
 }

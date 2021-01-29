@@ -6,7 +6,7 @@ use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
 class InputName extends StepBuilderWizard
 {
-    const MIN_NAME_LENGTH = 5;
+    const MIN_NAME_LENGTH = 10;
 
     const MAX_NAME_LENGTH = 150;
 

@@ -2,18 +2,24 @@
 
 namespace App\Http\Livewire\Wizard;
 
-
+use App\Http\Livewire\Traits\CanValidateStepChange;
 use Livewire\Component;
 use App\ValueObjcets\TimeVO;
 use Illuminate\Database\Eloquent\Model as ProductModel;
 
 class InputDuration extends Component
 {
+    use CanValidateStepChange;
+
     public $product;
 
     public $product_hour;
 
     public $product_minute;
+
+    protected $listeners  = [
+        'canChangeStep'
+    ];
 
     protected $rules = [
         'product_hour' => 'required|numeric|between:0,16',

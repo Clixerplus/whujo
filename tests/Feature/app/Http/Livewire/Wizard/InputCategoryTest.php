@@ -20,7 +20,6 @@ class InputCategoryTest extends TestCase
     /** @test  */
     function it_set_incoming_model()
     {
-        $this->withExceptionHandling();
         $model = new ProductModelTest;
         $model->category_id = 1;
 
@@ -55,7 +54,7 @@ class InputCategoryTest extends TestCase
     function it_category_save_on_service_model()
     {
         Service::factory()->create();
-        $service = Service::first(['id','category_id']);
+        $service = Service::first(['id', 'category_id']);
         $newCategory = Category::factory()->create();
 
         Livewire::test(InputCategory::class, ['model' => $service])
@@ -75,7 +74,7 @@ class InputCategoryTest extends TestCase
     function it_category_save_on_experience_model()
     {
         Experience::factory()->create();
-        $experience = Experience::first(['id','category_id']);
+        $experience = Experience::first(['id', 'category_id']);
         $newCategory = Category::factory()->create();
 
         Livewire::test(InputCategory::class, ['model' => $experience])
@@ -97,5 +96,24 @@ class InputCategoryTest extends TestCase
         Livewire::test(InputCategory::class, ['model' => new ProductModelTest])
             ->assertSeeHtml('name="product.category_id"')
             ->assertSeeHtml('wire:model="product.category_id"');
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        $category = Category::factory()->create();
+
+        Livewire::test(InputCategory::class, ['model' => new ProductModelTest])
+            ->set('product.category_id', $category->id)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputCategory::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
     }
 }

@@ -84,4 +84,21 @@ class InputSkillLevelTest extends TestCase
             ->assertSeeHtml(SKILL_LVL_ADVANCED)
             ->assertSeeHtml(SKILL_LVL_EXPERT);
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputSkillLevel::class, ['model' => new ProductModelTest])
+            ->set('product.skillLevel', SKILL_LVL_BEGINNER)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputSkillLevel::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

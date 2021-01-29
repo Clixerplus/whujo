@@ -2,20 +2,20 @@
 
 namespace App\Http\Livewire\AbstractComponents;
 
-
+use App\Http\Livewire\Traits\CanValidateStepChange;
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Model as ProductModel;
 
 abstract class StepBuilderWizard extends Component
 {
+    use CanValidateStepChange;
 
     public $product;
 
-    /**
-     * SearchableComponent constructor.
-     *
-     * @param $id
-     */
+    protected $listeners  = [
+        'canChangeStep'
+    ];
+
     public function __construct($id)
     {
         parent::__construct($id);

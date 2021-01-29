@@ -7,7 +7,6 @@ use App\Models\Experience;
 
 class InputToProvide extends Component
 {
-
     const MIN_TEXT_LENGTH = 5;
 
     public Experience $experience;
@@ -16,6 +15,10 @@ class InputToProvide extends Component
 
     protected $rules = [
         'provision' => 'required|string|min:' . self::MIN_TEXT_LENGTH
+    ];
+
+    protected $listeners  = [
+        'canChangeStep'
     ];
 
     public function mount(Experience $experience)
@@ -56,5 +59,10 @@ class InputToProvide extends Component
             'livewire.wizard.input-to-provide',
             ['min_length' => self::MIN_TEXT_LENGTH]
         );
+    }
+
+    public function canChangeStep()
+    {
+        $this->emit('dataIsValid', true);
     }
 }

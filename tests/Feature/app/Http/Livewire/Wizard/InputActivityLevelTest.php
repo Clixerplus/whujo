@@ -80,4 +80,21 @@ class InputActivityLevelTest extends TestCase
             ->assertSeeHtml('name="product.activityLevel"')
             ->assertSeeHtml('wire:model="product.activityLevel"');
     }
+
+    /** @test */
+    function it_listen_for_step_change_request_is_validates_it()
+    {
+        Livewire::test(InputActivityLevel::class, ['model' => new ProductModelTest])
+            ->set('product.activityLevel', ACTIVITY_LVL_EXTREME)
+            ->emit('canChangeStep')
+            ->assertEmitted('dataIsValid', true);
+    }
+
+    /** @test */
+    function it_listen_for_step_change_request_and_rejects_it()
+    {
+        Livewire::test(InputActivityLevel::class, ['model' => new ProductModelTest])
+            ->emit('canChangeStep')
+            ->assertNotEmitted('dataIsValid');
+    }
 }

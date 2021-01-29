@@ -23,4 +23,9 @@ class InputToKnow extends StepBuilderWizard
             'max_length' => self::MAX_TEXT_LENGTH,
         ]);
     }
+
+    public function canChangeStep()
+    {
+        $this->emit('dataIsValid', true);
+    }
 }
