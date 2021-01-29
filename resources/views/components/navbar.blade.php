@@ -3,9 +3,9 @@
     <div class="flex flex-wrap lg:flex-nowrap h-full w-full ">
         {{-- Logo --}}
         <div class="flex items-center justify-between h-full w-full lg:w-auto p-4 shadow-w1 border-b lg:border-b-0 lg:shadow-none lg:flex-shrink z-20">
-            <a href="{{ route('index') }}" aria-label="Whujo" title="Whujo" class="flex items-center">
+            <a href="{{ route('home') }}" aria-label="Whujo" title="Whujo" class="flex items-center">
                 <span class="ml-2 text-4xl font-whujo
-                             font-bold tracking-wide text-primary">whujo</span>
+                             font-bold tracking-wide text-secondary">whujo</span>
             </a>
 
             <x-button onclick="document.getElementById('dropdown-menu').classList.toggle('h-0')"
@@ -25,25 +25,25 @@
                        title="landing 1"
                        class="font-medium tracking-wide
                               transition-colors duration-200
-                             hover:text-gray-700">
+                             hover:text-gray-900 text-gray-700">
 
-                        Landing Page 2
+                        Share a coffe
                     </a>
                 </li>
                 <li class="p-4">
                     <a href="/" aria-label="Landing Pages 2" title="Landing 2" class="font-medium tracking-wide
                               transition-colors duration-200
-                            hover:text-gray-700">
+                           hover:text-gray-900 text-gray-700">
 
-                        Landing Page 3
+                        Servicios
                     </a>
                 </li>
                 <li class="p-4">
                     <a href="/" aria-label="Landing Pages 3" title="Landing 3" class="font-medium tracking-wide
                               transition-colors duration-200
-                            hover:text-gray-700">
+                           hover:text-gray-900 text-gray-700">
 
-                        Landing Page 1
+                        Experiencias
                     </a>
                 </li>
             </ul>
@@ -51,7 +51,7 @@
             {{-- Botons Auth --}}
             <ul class="bg-white lg:bg-transparent w-full lg:w-auto lg:flex-shrink p-4 flex items-center  space-x-8 ">
                 <li>
-                    <a class="btn-login flex border border-secondary lg:border-white
+                    <a class="btn-login flex border border-gray-900 lg:border-white
                             lg:text-white rounded-md items-center space-x-2
                             hover:text-gray-600 tracking-wide
                               outline-none px-4 py-2" href="{{ route('login') }}">
@@ -61,7 +61,7 @@
                 </li>
                 <li>
                     <a href="{{ route('register') }}" aria-label="Sign up" title="Sign up"
-                        class="bg-primary text-white rounded-md px-4 py-3 tracking-wide hover:bg-primary-light ring ring-red-400">
+                        class="bg-primary text-white rounded-md px-4 py-3 tracking-wide hover:bg-primary-light ">
                         Regístrate </a>
                 </li>
             </ul>
