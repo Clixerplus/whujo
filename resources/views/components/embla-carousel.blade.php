@@ -4,7 +4,7 @@
 
             @foreach ($items as $item)
             {{-- Slide --}}
-            <div class="embla__slide w-full md:w-1/2 lg:w-1/4 flex-shrink-0 relative">
+            <div class="embla__slide w-full md:w-1/2 lg:w-1/4 flex-shrink-0 relative p-1">
                 <div class="embla__slide__inner" style="min-height: {{ $height }};">
                     <div class="embla__slide__parallax">
                         <div class="embla__slide__card_container flex-shrink-0">
