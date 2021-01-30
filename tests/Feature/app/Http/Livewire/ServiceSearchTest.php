@@ -3,7 +3,6 @@
 namespace Tests\Feature\app\Http\Livewire;
 
 use Tests\TestCase;
-use App\Models\State;
 use Livewire\Livewire;
 use App\Models\Service;
 use App\Models\Category;
@@ -11,7 +10,7 @@ use App\Http\Livewire\ServiceSearch;
 use App\Http\Livewire\Wizard\InputPrice;
 use App\Models\Locality;
 use App\Models\Microservice;
-use Illuminate\Foundation\Testing\WithFaker;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ServiceSearchTest extends TestCase
@@ -54,18 +53,17 @@ class ServiceSearchTest extends TestCase
         ]);
         Service::factory()->create([
             'status' => STATUS_UNPUBLISHED,
-            'name' => 'Product Unpublished'
+            'name' => 'Product hidden'
         ]);
         Service::factory()->create([
             'status' => STATUS_INCOMPLETE,
-            'name' => 'Product Incomplete'
+            'name' => 'Product hidden'
         ]);
 
         Livewire::test(ServiceSearch::class, [
             'search' => 'Product',
         ])
-            ->assertDontSeeHtml('Product Unpublished')
-            ->assertDontSeeHtml('Product Incomplete')
+            ->assertDontSeeHtml('Product hidden')
             ->assertSeeHtml('Product Published');
     }
 
@@ -227,5 +225,31 @@ class ServiceSearchTest extends TestCase
             ->set('microservice', 'Micro')
             ->assertDontSee('Product hidden')
             ->assertSee('Product showing');
+    }
+
+    /**
+     *  @dataProvider filterToResetProvider
+     *  @test
+     */
+    function it_can_reset_all_filters($key, $setValue, $resetValue)
+    {
+        Livewire::test(ServiceSearch::class)
+            ->set($key, $setValue)
+            ->call('resetFilters')
+            ->assertSet($key, $resetValue);
+    }
+
+    function filterToResetProvider()
+    {
+        return [
+            'can reset category' => ['category', '1', null],
+            'can reset state'    => ['state', '1', null],
+            'can reset city'     => ['city', '1', null],
+            'can reset locality' => ['locality', '1', null],
+            'can reset minPrice' => ['minPrice', '1', 0],
+            'can reset maxPrice' => ['maxPrice', '1', PHP_FLOAT_MAX],
+            'can reset hasMicroservices' => ['hasMicroservices', true, false],
+            'can reset microservices'    => ['microservice', 'string', null],
+        ];
     }
 }
