@@ -13,30 +13,51 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                whujo: "#E32a2e",
                 primary: {
-                    light: "var(--color-primary-light)",
-                    DEFAULT: "var(--color-primary)",
-                    dark: "var(--color-primary-dark)",
+                    DEFAULT: "#E32a2e",
+                    light: "#e64144",
+                    dark: "#d71c20",
                 },
                 secondary: {
-                    light: "var(--color-secondary-light)",
-                    DEFAULT: "var(--color-secondary)",
+                    DEFAULT: "#3D2b60",
+                    light: "#483372",
+                    dark: "#32234e",
                 },
-                success: "var(--color-success)",
-                info: "var(--color-info)",
-                danger: "var(--color-danger)",
-                warning: "var(--color-warning)",
-                useful: "var(--color-useful)",
-            },
-            boxShadow: {
-                w1:
-                    "0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)",
-                w2:
-                    "0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)",
-                w3:
-                    "0 12px 15px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19)",
-                card:
-                    "0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                third: {
+                    golden: "#EFD437",
+                    cardinal: "#C2292F",
+                    carrot: "#F59222",
+                    orange: "#EE6629",
+                    jacarta: "#3D2b60",
+                    cinnabar: "#ED4340",
+                    yonder: "#667ab3",
+                },
+                success: {
+                    DEFAULT: "#00E676",
+                    light: "#69F0AE",
+                    dark: "#00C853",
+                },
+                info: {
+                    DEFAULT: "#3D5AFE",
+                    light: "#536DFE",
+                    dark: "#304FFE",
+                },
+                warning: {
+                    DEFAULT: "#FFEA00",
+                    light: "#FFFF00",
+                    dark: "#FFD600",
+                },
+                danger: {
+                    DEFAULT: "#C62828",
+                    light: "#D32F2F",
+                    dark: "#B71C1C",
+                },
+                dark: "#212121",
+                disabled: {
+                    DEFAULT: "#757575",
+                    light: "#BDBDBD",
+                },
             },
             fontFamily: {
                 sans: ["Inter", ...defaultTheme.fontFamily.sans],
