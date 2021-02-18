@@ -27,7 +27,7 @@ class ServiceSearch extends SearchableComponent
     public function render()
     {
         return view('livewire.service-search', [
-            'results' => $this->makeQuery()
+            'results' => $this->getResults()
                 ->paginate(self::PER_PAGE)
         ]);
     }

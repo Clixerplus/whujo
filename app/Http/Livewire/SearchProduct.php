@@ -3,12 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\Service;
+use App\Models\Experience;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use App\Http\Livewire\AbstractComponents\SearchableComponent;
-use App\Models\Experience;
 
 class SearchProduct extends SearchableComponent
 {
+    public $search;
+
     public $type;
 
     public $location;

@@ -13,16 +13,16 @@ abstract class SearchableComponent extends Component
 {
     use WithPagination;
 
+    /** @var bool */
     public $readyToLoad = false;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $search = '';
 
-    /**
-     * @var int
-     */
+    /** @var string */
+    public $type = '';
+
+    /** @var int */
     protected $paginate = 12;
 
     /** @var Builder */
@@ -36,8 +36,6 @@ abstract class SearchableComponent extends Component
     public function __construct($id)
     {
         parent::__construct($id);
-
-
     }
 
     /**
@@ -67,7 +65,7 @@ abstract class SearchableComponent extends Component
     /**
      * @return Builder
      */
-    protected function getQuery()
+    protected function getQuery(): Builder
     {
         return $this->query;
     }
@@ -103,15 +101,13 @@ abstract class SearchableComponent extends Component
     /**
      * @return Builder
      */
-    protected function filterResults()
+    protected function filterResults(): Builder
     {
-
-
         $searchableFields = $this->searchableFields();
         $search = $this->search;
 
-        $this->query->when(! empty($search), function (Builder $q) use ($search, $searchableFields) {
-            $searchString = '%'.$search.'%';
+        $this->query->when(!empty($search), function (Builder $q) use ($search, $searchableFields) {
+            $searchString = '%' . $search . '%';
             foreach ($searchableFields as $field) {
                 if (Str::contains($field, '.')) {
                     $field = explode('.', $field);

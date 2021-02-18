@@ -5,11 +5,11 @@ namespace App\Http\Livewire;
 use App\Models\Experience;
 use Illuminate\Database\Eloquent\Builder;
 use App\Http\Livewire\Abstracts\SearchableComponent;
-use App\Http\Livewire\Wizard\InputDuration;
-use App\Http\Livewire\Wizard\InputGroupSize;
 
 class ExperienceSearch extends SearchableComponent
 {
+
+    public $type = 'experiences';
 
     public $minimumAge = null;
 
@@ -31,22 +31,21 @@ class ExperienceSearch extends SearchableComponent
 
     public $maxPrivateGroupPrice = PHP_FLOAT_MAX;
 
-    function model()
-    {
-        return Experience::class;
-    }
-
     public function mount()
     {
-        $this->fill(request()->only('search', 'page', 'orderBy'));
+        $this->fill(
+            request()->only('search', 'page', 'orderBy', 'experiences')
+        );
     }
 
     public function render()
     {
-        return view('livewire.service-search', [
-            'results' => $this->makeQuery()
-                ->paginate(self::PER_PAGE)
-        ]);
+        return view(
+            'livewire.experience-search',
+            [
+                'results' => $this->getResults()
+            ]
+        );
     }
 
     public function resetFilters()
@@ -67,9 +66,9 @@ class ExperienceSearch extends SearchableComponent
         ]);
     }
 
-    public function apllyFilters(Builder $query)
+    public function filterQuery(Builder $query)
     {
-        $parentQuery = parent::apllyFilters($query);
+        $parentQuery = parent::filterQuery($query);
 
         return $parentQuery->when($this->minimumAge, function ($q) {
             $q->where('minimumAge', '>=', $this->minimumAge);
@@ -86,5 +85,10 @@ class ExperienceSearch extends SearchableComponent
         })->when($this->minPrivateGroupPrice >= 0 || $this->maxPrivateGroupPrice <= PHP_FLOAT_MAX, function ($q) {
             $q->whereBetween('privateGroupPrice', [$this->minPrivateGroupPrice, $this->maxPrivateGroupPrice]);
         });
+    }
+
+    protected function model()
+    {
+        return Experience::class;
     }
 }

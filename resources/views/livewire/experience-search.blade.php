@@ -1,5 +1,10 @@
 <div>
-    <input wire:model="search" type="text" placeholder="Search posts by title...">
+    <form wire:submit.prevent="search">
+
+        <x-input key="search" wire:model="search" type="text" placeholder="Search posts by title..." />
+        <x-input key="minPrice" type="text" />
+        <button type="submit" class="py-3 px-6 bg-primary my-4 rounded-md">Filtrar</button>
+    </form>
 
     <h1>Search Results:</h1>
 
