@@ -30,10 +30,11 @@ class ExperienceFactory extends Factory
         return [
             'user_id'        => User::factory(),
             'category_id'    => Category::factory(),
-
+            
             'state_id'       => State::factory(),
             'city_id'        => City::factory(),
             'locality_id'    => Locality::factory(),
+            //zipcode -------------------------------
             'address'        => $this->faker->address,
 
             'name'           => $this->faker->sentence(5),

@@ -5,6 +5,7 @@ namespace App\Models;
 
 use App\Casts\TimeCast;
 use App\Traits\HasSlug;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -28,6 +29,9 @@ class Experience extends Model
         'starting'  => TimeCast::class,
     ];
 
+    protected $hidden = [
+        'address'
+    ];
 
     public function user()
     {
@@ -57,5 +61,18 @@ class Experience extends Model
     public function getTypeAttribute()
     {
         return config('product.TYPE_EXPERIENCE');
+    }
+
+    public function scopePublished(Builder $query): Builder
+    {
+        return $query->where('status', STATUS_PUBLISHED);
+    }
+
+    public function scopebyNameAndDescription(Builder $query, string $search): Builder
+    {
+        return $query->where(function ($q) use ($search) {
+            $q->where('name', 'like', $search);
+            $q->orWhere('description', 'like', $search);
+        });
     }
 }
