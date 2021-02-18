@@ -4,6 +4,7 @@
 
         <div class="w-64 h-full bg-gray-900">
             <div class="h-16 bg-white bg-opacity-10">
+<<<<<<< HEAD
                 <h1 class="text-3xl font-bold font-whujo text-whujo p-3">whujo</h1>
             </div>
             <div>
@@ -57,11 +58,15 @@
                         </li>
                     </ul>
                 </div>
+=======
+                <div class="">Main</div>
+>>>>>>> 6c0d0b6a1606556a33557ac32b8b2726dacfe6ad
             </div>
         </div>
         <div class="w-full">
             <div class="h-16 shadow-xl">
                 <div class="flex h-full items-center space-x-8 px-8">
+<<<<<<< HEAD
                     <a href="" class="h-full w-28 flex items-center hover:bg-white hover:bg-opacity-25 text-center transition-300">
                         <span class="w-full">Share a coffe</span>
                     </a>
@@ -71,6 +76,11 @@
                     <a href="" class="h-full w-28 flex items-center hover:bg-white hover:bg-opacity-25 text-center transition-300">
                         <span class="w-full">Servicios</span>
                     </a>
+=======
+                    <a href="">Share a coffe</a>
+                    <a href="">Experiencias</a>
+                    <a href="">Servicios</a>
+>>>>>>> 6c0d0b6a1606556a33557ac32b8b2726dacfe6ad
                     <div class="flex-grow"></div>
                     <a href="#" class="bg-gray-400 h-10 w-10 rounded-full border-2 border-gray-100"></a>
                     <a href="" class="flex items-center justify-between rounded-full
@@ -79,13 +89,18 @@
                                     hover:bg-primary hover:bg-opacity-5 transition-300">
                         <span class="h-6">Crear anuncio</span>
                         <span class="h-6 w-6 rounded-full border border-primary">
+<<<<<<< HEAD
                             <x-icon-add-outline class="w-auto h-full" />
+=======
+                            <x-icon-add-outline class="w-auto h-full"/>
+>>>>>>> 6c0d0b6a1606556a33557ac32b8b2726dacfe6ad
                         </span>
                     </a>
                 </div>
             </div>
             <div class="p-8">
                 <h1 class="text-3xl font-light">Hola, Usuario!</h1>
+<<<<<<< HEAD
                 <div class="flex space-x-8 py-4">
                     <div class="w-1/4 rounded-xl h-32 bg-primary flex items-end justify-between p-6">
                         <div class="text-gray-100 w-2/3">
@@ -124,6 +139,8 @@
                         </div>
                     </div>
                 </div>
+=======
+>>>>>>> 6c0d0b6a1606556a33557ac32b8b2726dacfe6ad
             </div>
         </div>
 
