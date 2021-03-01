@@ -1,6 +1,6 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-*/
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -24,7 +24,7 @@ html {
 }
 
 .navbar-transparent {
-    @apply bg-white text-primary shadow-2xl lg:bg-transparent lg:text-white lg:shadow-none
+    @apply bg-white text-white shadow-2xl lg:bg-transparent lg:text-white lg:shadow-none
 }
 
 .navbar-transparent ul li,
@@ -41,7 +41,7 @@ html {
 
 .navbar-dark ul li,
 .navbar-dark .btn-login {
-    @apply lg:text-secondary;
+    @apply lg:text-secondary lg:bg-transparent;
 }
 .navbar-dark .btn-login {
     @apply lg:border-secondary;
