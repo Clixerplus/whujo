@@ -1,71 +1,65 @@
-<x-app-layout>
+<x-admin-layout>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <h1 class="text-3xl font-light pt-24 pb-4 px-4">Hola, Usuario!</h1>
 
-    <div class="py-4">
-        <div class="w-screen lg:max-w-7xl lg:mx-auto sm:px-6 lg:px-8">
-            <div class="sm:rounded-lg">
-                <div class="flex flex-col flex-wrap md:flex-row md:justify-center md:gap-4 w-full lg:p-4 ">
+    <div class="flex p-4 flex-wrap lg:flex-nowrap space-y-4 lg:space-y-0 lg:space-x-2">
 
-                    <x-btn-touch href="#" :icon="'icon-person-add-outline'"
-                        class="w-full md:w-2/5 lg:w-1/5 text-yellow-500 lg:border-l-4 shadow lg:border-yellow-500">
-                        Perfil
-                        <x-slot name="description">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed, doloribus
-                            neque ipsum expedita?
-                        </x-slot>
-                    </x-btn-touch>
+        <div class="w-full lg:w-1/2 flex flex-wrap md:flex-nowrap space-x-2 space-y-4 md:space-y-0">
+            <div class="w-full md:w-1/2 rounded h-32 bg-white shadow flex items-end justify-between p-6">
+                <div class="text-gray-500 w-2/3">
+                    <h2 class="text-6xl">0</h2>
+                    <h3 class="text-sm">Anuncios Activos</h3>
+                </div>
+                <div class="w-1/3 h-full text-gray-400">
+                    <x-icon-newspaper class="w-full h-full" />
+                </div>
+            </div>
 
-                    <x-btn-touch href="#" :icon="'icon-key-outline'"
-                        class="w-full md:w-2/5 lg:w-1/5 text-primary lg:border-l-4 shadow lg:border-primary">
-                        Seguridad
-                        <x-slot name="description">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, fuga officiis.
-                        </x-slot>
-                    </x-btn-touch>
-
-                    <x-btn-touch href="#" :icon="'icon-wallet-outline'"
-                        class="w-full md:w-2/5 lg:w-1/5 text-purple-500 lg:border-l-4 shadow lg:border-purple-500">
-                        Pagos y Cobros
-                        <x-slot name="description">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </x-slot>
-                    </x-btn-touch>
-
-                    <x-btn-touch href="#" :icon="'icon-notifications-outline'"
-                        class="w-full md:w-2/5 lg:w-1/5 text-pink-700 lg:border-l-4 shadow lg:border-pink-700">
-                        Mensajes y Notificaciones
-                        <x-slot name="description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam esse quod iure?
-                        </x-slot>
-                    </x-btn-touch>
-
-                    <x-btn-touch href="{{ route('service-listing') }}" :icon="'icon-newspaper'"
-                        class="w-full md:w-2/5 lg:w-2/5 text-blue-700 lg:border-l-4 shadow lg:border-blue-700">
-                        Anuncios de Servicios
-                        <x-slot name="description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam esse quod
-                            iure?
-                        </x-slot>
-                    </x-btn-touch>
-
-                    <x-btn-touch href="#" :icon="'icon-rocket'"
-                        class="w-full md:w-2/5 lg:w-2/5 text-green-500 lg:border-l-4 shadow lg:border-green-500">
-                        Anuncios de Experiencias
-                        <x-slot name="description">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam esse quod
-                            iure?
-                        </x-slot>
-                    </x-btn-touch>
-
+            <div class="w-full md:w-1/2 rounded h-32 bg-white shadow flex items-end justify-between p-6">
+                <div class="text-gray-500  w-2/3">
+                    <h2 class="text-6xl">0</h2>
+                    <h3 class="text-sm">Reservaciones</h3>
+                </div>
+                <div class="w-1/3 h-full text-gray-600">
+                    <x-icon-newspaper class="w-full h-full" />
                 </div>
             </div>
         </div>
+
+        <div class="w-full lg:w-1/2 flex flex-wrap md:flex-nowrap space-x-2 space-y-4 md:space-y-0">
+            <div class="w-full md:w-1/2 rounded h-32 bg-white shadow flex items-end justify-between p-6">
+                <div class="text-gray-500  w-2/3">
+                    <h2 class="text-6xl">0</h2>
+                    <h3 class="text-sm">Rating & reviews</h3>
+                </div>
+                <div class="w-1/3 h-full text-gray-400">
+                    <x-icon-newspaper class="w-full h-full" />
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 rounded h-32 bg-white shadow flex items-end justify-between p-6">
+                <div class="text-gray-500  w-2/3">
+                    <h2 class="text-6xl">0</h2>
+                    <h3 class="text-sm">Fondos Totales</h3>
+                </div>
+                <div class="w-1/3 h-full text-gray-600">
+                    <x-icon-newspaper class="w-full h-full" />
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <x-footer />
-</x-app-layout>
+    <div class="flex flex-wrap lg:flex-nowrap p-4 space-y-4 lg:space-y-0 lg:space-x-4 items-stretch">
+
+        <div class="w-full lg:w-3/5 bg-white shadow rounded-lg self-stretch">
+            <div class="bg-white h-96"></div>
+        </div>
+
+        <div class="w-full lg:w-2/5 bg-white shadow rounded-lg">
+            <div class="bg-white h-96"></div>
+        </div>
+
+    </div>
+
+</x-admin-layout>
