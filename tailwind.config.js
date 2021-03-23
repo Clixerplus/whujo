@@ -2,11 +2,11 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-    // purge: [
-    //     './vendor/laravel/jetstream/**/*.blade.php',
-    //     './storage/framework/views/*.php',
-    //     './resources/views/**/*.blade.php',
-    // ],
+    purge: [
+        "./vendor/laravel/jetstream/**/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+    ],
 
     darkMode: false,
 
@@ -20,9 +20,13 @@ module.exports = {
                     dark: "#d71c20",
                 },
                 secondary: {
-                    DEFAULT: "#3D2b60",
-                    light: "#483372",
-                    dark: "#32234e",
+                    DEFAULT: "#212121",
+                    light: "#374151",
+                },
+                accent: {
+                    orange: "#ff9900",
+                    aqua: "#1da1f2",
+                    purple: "#3D2b60",
                 },
                 third: {
                     golden: "#EFD437",
