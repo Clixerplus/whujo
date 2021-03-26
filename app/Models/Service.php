@@ -3,13 +3,22 @@
 namespace App\Models;
 
 
+use App\Models\City;
+use App\Models\User;
+use App\Models\State;
 use App\Traits\HasSlug;
+use App\Models\Category;
+use App\Models\Locality;
+use Spatie\Tags\HasTags;
+use App\Models\Microservice;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Service extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
 
     protected $fillable = [
         'user_id', 'category_id', 'state_id', 'city_id', 'locality_id',

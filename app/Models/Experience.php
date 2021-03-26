@@ -3,15 +3,25 @@
 namespace App\Models;
 
 
+use App\Models\City;
+use App\Models\User;
+use App\Models\State;
 use App\Casts\TimeCast;
 use App\Traits\HasSlug;
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\Category;
+use App\Models\Locality;
+use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Experience extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory;
+    use HasSlug;
+    use HasTags;
+
+
 
     protected $fillable = [
         'user_id', 'category_id', 'name', 'location', 'description',
@@ -32,6 +42,19 @@ class Experience extends Model
     protected $hidden = [
         'address'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('type', function (Builder $builder) {
+            $builder->where('type', self::class);
+        });
+
+        self::creating(function ($model) {
+            $model->type = self::class;
+        });
+    }
 
     public function user()
     {

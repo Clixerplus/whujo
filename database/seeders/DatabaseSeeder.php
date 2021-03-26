@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
 
         Service::factory(25)
             ->related()
-            ->hasMicroservices()
+            ->hasMicroservices(rand(0,3))
             ->create();
     }
 }

@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "adrianorosa/laravel-geolocation": "^1.0",
         "blade-ui-kit/blade-icons": "^0.5.1",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -17,11 +18,15 @@
         "laravel/jetstream": "^2.2",
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
+        "laraveles/spanish": "^1.5",
         "livewire/livewire": "^2.0",
-        "mercadopago/dx-php": "^2.2",
-        "spatie/laravel-permission": "^4.0"
+        "skagarwal/google-places-api": "^1.7",
+        "spatie/geocoder": "^3.10",
+        "spatie/laravel-permission": "^3.18",
+        "spatie/laravel-tags": "^4.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.5",
         "brianium/paratest": "^6.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
