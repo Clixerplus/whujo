@@ -7,14 +7,9 @@
         "lang",
         "npm"
     ],
-    "files.autoSave": "afterDelay",
-    "tailwindCSS.colorDecorators": "on",
-    "tailwindCSS.emmetCompletions": true,
-    "editor.fontFamily": "Fira Code",
-    "editor.fontLigatures": true,
-    "emmet.triggerExpansionOnTab": true,
-    "blade.format.enable": true,
-    "[blade]": {
-        "editor.autoClosingBrackets": "always"
-    },
+    "better-phpunit.docker.enable": true,
+    "better-phpunit.docker.command": "docker exec whujow_laravel.test_1",
+    "better-phpunit.docker.paths": {
+        "/home/johanso/webprojects/whujow": "/var/www/html"
+    }
 }
