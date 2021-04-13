@@ -1,30 +1,31 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 :root {
     --color-primary-light: #ff2e31;
-    --color-primary: #E32a2e;
+    --color-primary: #e32a2e;
     --color-primary-dark: #bd2225;
-    --color-secondary: #0F172A;
-    --color-secondary-light: #1E293B;
-    --color-secondary-dark: #1E293B;
-    --color-success:#00B74A;
-    --color-info:#1266F1;
-    --color-danger:#D50000;
-    --color-warning:#FFA900;
-    --color-useful: #14B8A6;
-     /* ... */
+    --color-secondary: #0f172a;
+    --color-secondary-light: #1e293b;
+    --color-secondary-dark: #1e293b;
+    --color-success: #00b74a;
+    --color-info: #1266f1;
+    --color-danger: #d50000;
+    --color-warning: #ffa900;
+    --color-useful: #14b8a6;
+    /* ... */
 }
+
 html {
     scroll-behavior: smooth;
 }
 
 .navbar-transparent {
-    @apply bg-white text-white shadow-2xl lg:bg-transparent lg:text-white lg:shadow-none
+    @apply text-white bg-white shadow-2xl lg:bg-transparent lg:text-white lg:shadow-none;
 }
 
 .navbar-transparent ul li,
@@ -47,101 +48,95 @@ html {
     @apply lg:border-secondary;
 }
 
-
-
-
-.tab ul li.active    {
+.tab ul li.active {
     @apply border-b-4 border-primary-light;
-
 }
 
 .whujo-brand {
-    @apply text-primary font-bold;
-    font-family:arial;
+    @apply font-bold text-primary;
+    font-family: arial;
 }
 
 .btn {
-    @apply inline-flex items-center justify-center px-5 py-3 border border-transparent  text-base font-medium rounded-md;
+    @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium border border-transparent rounded-md;
 }
 
 .btn-circle {
-    @apply inline-flex items-center justify-center border text-base font-medium rounded-full;
+    @apply inline-flex items-center justify-center text-base font-medium border rounded-full;
 }
+
+
 
 .toggle-check:checked {
     @apply border-success;
 }
 
-.toggle-check:checked+.toggle-label {
+.toggle-check:checked + .toggle-label {
     @apply opacity-100;
 }
 
+
+
 .toggle-checkbox:checked {
-    @apply right-0 border-green-400;
+    @apply transform translate-x-full border-green-400;
 }
 
-.toggle-checkbox:checked+.toggle-label {
+.toggle-checkbox:checked + .toggle-label {
     @apply bg-green-400;
 }
 
 
-.toggle-radio:checked+.toggle-label {
-    @apply bg-secondary text-white;
+.toggle-radio:checked + .toggle-label {
+    @apply text-white bg-secondary;
 }
 
 #productType {
-    @apply h-36
+    @apply h-36;
 }
 
-input[name="search"]:focus {
-    @apply bg-info-dark
-}
 input[name="search"]:focus + #productType {
-    @apply h-20 transition-all ease-linear duration-200
+    @apply h-20 transition-all duration-200 ease-linear;
 }
 
 .transition-75 {
-    @apply transition duration-75 ease-in-out
+    @apply transition duration-75 ease-in-out;
 }
-.transition-100
- {
-    @apply transition duration-100 ease-in-out
+.transition-100 {
+    @apply transition duration-100 ease-in-out;
 }
-.transition-150
- {
-    @apply transition duration-150 ease-in-out
+.transition-150 {
+    @apply transition duration-150 ease-in-out;
 }
 .transition-200 {
-    @apply transition duration-200 ease-in-out
+    @apply transition duration-200 ease-in-out;
 }
 .transition-300 {
-    @apply transition duration-300 ease-in-out
+    @apply transition duration-300 ease-in-out;
 }
 .transition-500 {
-    @apply transition duration-500 ease-in-out
+    @apply transition duration-500 ease-in-out;
 }
 .transition-700 {
-    @apply transition duration-700 ease-in-out
+    @apply transition duration-700 ease-in-out;
 }
 .transition-1000 {
-    @apply transition duration-1000 ease-in-out
+    @apply transition duration-1000 ease-in-out;
 }
-
 
 .step-list {
     @apply flex flex-col space-y-1;
 }
 
 .step-list-item {
-    @apply p-4 rounded-md hover:bg-white text-secondary transition-500;
+    @apply p-4 transition duration-500 ease-in-out rounded-md hover:bg-white text-secondary;
 }
 
 .step-list-item > a {
-    @apply flex space-x-4 items-start opacity-70 lg:opacity-30 lg:hover:opacity-80;
+    @apply flex items-start space-x-4 opacity-70 lg:opacity-30 lg:hover:opacity-80;
 }
 
 .step-list-item.active > a {
-    @apply opacity-100 font-semibold;
+    @apply font-semibold opacity-100;
 }
 
 .step-list-item:active,
@@ -150,5 +145,10 @@ input[name="search"]:focus + #productType {
 }
 
 .step-list-item > a .icon {
-    @apply h-5 w-auto transition-500;
+    @apply w-auto h-5 transition duration-500 ease-in-out;
 }
+
+.radio-buttom > input[type="radio"]:checked + span {
+    @apply opacity-100;
+}
+

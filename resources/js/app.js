@@ -13,7 +13,7 @@ const expeCarousel = EmblaCarousel(expeNode, {
     align: "start",
     loop: true,
 });*/
-/** Begin Embla */
+/** Begin Embla *//*
 import EmblaCarousel from "embla-carousel";
 import { setupPrevNextBtns, disablePrevNextBtns } from "./prevAndNextButtons";
 import { parallax } from "./parallax";
@@ -71,7 +71,7 @@ const expeCarouselDisablePrevAndNextBtns = disablePrevNextBtns(
 setupPrevNextBtns(expeCarouselPrevBtn, expeCarouselNextBtn, expeCarouselEmbla);
 expeCarouselEmbla.on("init", expeCarouselDisablePrevAndNextBtns);
 expeCarouselEmbla.on("select", expeCarouselDisablePrevAndNextBtns);
-
+ */
 /** End Embla */
 
 const closeAlert = () => {
