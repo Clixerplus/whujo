@@ -22,28 +22,23 @@ class SearchProductForm extends Component
 
     public $results = [];
 
-    public $active = false;
+    public $activeSearch = false;
 
     public function activeSearch()
     {
-        $this->active = true;
+        $this->activeSearch = true;
     }
 
     public function pickResult(string $value)
     {
         $this->search = $value;
         $this->reset('results');
-        $this->reset('active');
-    }
-
-    public function doSomething()
-    {
-        dd('entra');
+        $this->reset('activeSearch');
     }
 
     public function render()
     {
-        if (!empty($this->search) && $this->active) {
+        if (!empty($this->search) && $this->activeSearch) {
             $this->results = $this->search();
         }
 
@@ -52,8 +47,7 @@ class SearchProductForm extends Component
 
     protected function search()
     {
-
-        return Tag::where('name', 'like', '%' . $this->search . '%')
-            ->where('type', $this->tagsType[$this->productType])->pluck('name')->take(5);
+        return Tag::SearchByName($this->search, $this->tagsType[$this->productType])
+            ->pluck('name')->take(5);
     }
 }

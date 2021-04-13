@@ -14,14 +14,15 @@ $placeholder = [
                 <input type="text" wire:model="search" class="w-full px-4 focus:outline-none " name="search"
                     wire:keydown="activeSearch" placeholder="{{ __($placeholder[$productType]) }}">
 
-                @if (count($results))
-                <ul class="absolute left-0 z-10 w-full mt-5 overflow-y-auto bg-white" style="max-height: 220px;">
+
+                <ul class="absolute left-0 z-10 w-full mt-5 overflow-y-auto bg-white @if (! $activeSearch) hidden @endif"
+                    style="max-height: 220px;">
 
                     @forelse ($results as $key => $result)
 
                     @if($loop->first)
                     <li class="w-full p-4 text-sm font-bold text-left bg-gray-200">
-                        {{ __('Results') }}
+                        {{ __('Results') }} <span class="text-xs">({{ count($results) }})</span>
                     </li>
                     @endif
 
@@ -38,12 +39,12 @@ $placeholder = [
 
                     @endforelse
                 </ul>
-                @endif
+
             </div>
 
             <div class="self-start pl-4 md:self-center">
                 <button type="submit"
-                    class="px-4 py-2 font-bold text-white rounded-md bg-primary hover:bg-primary-light">
+                    class="px-4 py-2 font-bold text-white rounded-md focus:outline-none bg-primary hover:bg-primary-light">
                     {{ __('Search') }}
                 </button>
             </div>
@@ -55,14 +56,14 @@ $placeholder = [
             <label for="share-a-coffee" class="radio-buttom">
                 <input id="share-a-coffee" type="radio" name="type" value="share-a-coffee" class="hidden" checked
                     wire:model="productType" />
-                <span class="block p-3 rounded-full cursor-pointer hover:opacity-75 opacity-40 w-36 bg-accent-orange">
+                <span class="block p-3 rounded-md cursor-pointer hover:opacity-75 opacity-40 w-36 bg-accent-orange">
                     {{ __('Share a coffee') }}
                 </span>
             </label>
 
             <label for="service" class="radio-buttom">
                 <input id="service" type="radio" name="type" value="service" class="hidden" wire:model="productType" />
-                <span class="block p-3 rounded-full cursor-pointer hover:opacity-75 opacity-40 w-36 bg-accent-orange">
+                <span class="block p-3 rounded-md cursor-pointer hover:opacity-75 opacity-40 w-36 bg-accent-orange">
                     {{ __('Services') }}
                 </span>
             </label>
@@ -70,7 +71,7 @@ $placeholder = [
             <label for="experience" class="radio-buttom">
                 <input id="experience" type="radio" name="type" value="experience" class="hidden"
                     wire:model="productType" />
-                <span class="block p-3 rounded-full cursor-pointer hover:opacity-75 opacity-40 w-36 bg-accent-orange">
+                <span class="block p-3 rounded-md cursor-pointer hover:opacity-75 opacity-40 w-36 bg-accent-orange">
                     {{ __('Experiencias') }}
                 </span>
             </label>
