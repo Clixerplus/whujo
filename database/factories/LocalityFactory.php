@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocalityFactory extends Factory
 {
+
+    
     /**
      * The name of the factory's corresponding model.
      *

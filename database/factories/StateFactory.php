@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StateFactory extends Factory
 {
+
     /**
      * The name of the factory's corresponding model.
      *

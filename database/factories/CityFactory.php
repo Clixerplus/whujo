@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CityFactory extends Factory
 {
+
     /**
      * The name of the factory's corresponding model.
      *
