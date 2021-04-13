@@ -7,18 +7,18 @@ use App\Models\User;
 use App\Models\State;
 use App\Models\Category;
 use App\Models\Locality;
-use App\Models\Experience;
+use App\Models\ShareAcoffee;
 use App\ValueObjcets\TimeVO;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ExperienceFactory extends Factory
+class ShareACoffeeFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Experience::class;
+    protected $model = ShareAcoffee::class;
 
     /**
      * Define the model's default state.
@@ -27,7 +27,6 @@ class ExperienceFactory extends Factory
      */
     public function definition()
     {
-
         $photos = collect([
             'https://images.pexels.com/photos/3760958/pexels-photo-3760958.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
             'https://images.pexels.com/photos/5414000/pexels-photo-5414000.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',

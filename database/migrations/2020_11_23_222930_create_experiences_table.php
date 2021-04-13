@@ -41,10 +41,10 @@ class CreateExperiencesTable extends Migration
                 ->nullable();
 
             $table->enum('skillLevel', config('product.skill_levels'))
-                ->default(SKILL_LVL_BEGINNER);
+                ->default('SKILL_LVL_BEGINNER');
 
             $table->enum('activityLevel', config('product.activity_levels'))
-                ->default(ACTIVITY_LVL_LIGHT);
+                ->default('ACTIVITY_LVL_LIGHT');
 
             $table->text('toKnow')
                 ->nullable();
@@ -71,9 +71,11 @@ class CreateExperiencesTable extends Migration
                 ->nullable();
 
             $table->enum('status', config('product.status'))
-                ->default(STATUS_INCOMPLETE);
+                ->default('STATUS_INCOMPLETE');
 
             $table->timestamps();
+
+            $table->string('type');
         });
     }
 
