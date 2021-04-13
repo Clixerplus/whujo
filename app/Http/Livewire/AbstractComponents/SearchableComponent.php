@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\AbstractComponents;
 
 
+use App\Models\Service;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
@@ -13,76 +14,49 @@ abstract class SearchableComponent extends Component
 {
     use WithPagination;
 
-    /** @var bool */
+
     public $readyToLoad = false;
 
-    /** @var string */
     public $search = '';
 
-    /** @var string */
     public $type = '';
 
-    /** @var int */
     protected $paginate = 12;
 
-    /** @var Builder */
     private $query;
 
-    /**
-     * SearchableComponent constructor.
-     *
-     * @param $id
-     */
     public function __construct($id)
     {
         parent::__construct($id);
     }
 
-    /**
-     *  Prepare query
-     */
-    public function prepareModelQuery()
+    protected abstract function model();
+
+    protected abstract function searchableFields();
+
+    protected function prepareQuery()
     {
-        /** @var Model $model */
-        $model = app($this->model());
+        $model = $this->model();
 
         $this->query = $model->newQuery();
     }
 
-    /**
-     * @return mixed
-     */
-    abstract function model();
-
-    /**
-     * Reset model query
-     */
-    protected function resetQuery()
+    protected function resetQuery(): void
     {
         $this->prepareModelQuery();
     }
 
-    /**
-     * @return Builder
-     */
-    protected function getQuery(): Builder
+    /* protected function getQuery(): Builder
     {
         return $this->query;
     }
 
-    /**
-     * @param  Builder  $query
-     */
-    protected function setQuery(Builder $query)
+    protected function setQuery(Builder $query): void
     {
         $this->query = $query;
-    }
+    } */
 
-    /**
-     * @param  bool  $search
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    protected function paginate($search = true)
+    protected function paginate(bool $search = true)
     {
         if ($search) {
             $this->filterResults();
@@ -98,9 +72,6 @@ abstract class SearchableComponent extends Component
         return $this->query->paginate($this->paginate);
     }
 
-    /**
-     * @return Builder
-     */
     protected function filterResults(): Builder
     {
         $searchableFields = $this->searchableFields();
@@ -122,9 +93,4 @@ abstract class SearchableComponent extends Component
 
         return $this->query;
     }
-
-    /**
-     * @return mixed
-     */
-    abstract function searchableFields();
 }

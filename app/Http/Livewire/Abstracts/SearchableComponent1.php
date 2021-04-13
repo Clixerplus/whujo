@@ -21,15 +21,28 @@ abstract class SearchableComponent extends Component
 
     public $orderBy  = 'normal';
 
-    public $type = '';
+    public $category = null;
 
-    private $query = null;
+    public $state    = null;
+
+    public $city     = null;
+
+    public $locality = null;
+
+    public $minPrice = 0;
+
+    public $maxPrice = PHP_FLOAT_MAX;
 
     protected $queryString = [
         'search'   => ['except' => ''],
-        'type'     => ['except' => ''],
         'page'     => ['except' => 1],
         'orderBy'  => ['except' => 'normal'],
+        'category' => ['except' => null],
+        'state'    => ['except' => null],
+        'city'     => ['except' => null],
+        'locality' => ['except' => null],
+        'minPrice' => ['except' => null],
+        'maxPrice' => ['except' => PHP_FLOAT_MAX],
     ];
 
     protected $orderOption = [
@@ -39,27 +52,18 @@ abstract class SearchableComponent extends Component
         'newest'  => ['created_at', 'desc'],
     ];
 
+    protected $results = null;
 
     abstract protected function model();
 
-    abstract protected function searchableFields();
-
-
+    public function search()
+    {
+        $this->render();
+    }
 
     protected function getResults()
     {
-        $this->prepare();
-
-
-        $this->search();
-
-        $this->filter();
-
-        $this->sorting();
-
-        $this->paginate();
-
-        $this->execute();
+        $query = $this->generateNewQuery();
 
         $query = $this->executeQuery($query);
 
@@ -68,61 +72,6 @@ abstract class SearchableComponent extends Component
         $query = $this->sortQuery($query);
 
         return $query->paginate(self::PER_PAGE);
-    }
-
-
-    protected function prepare()
-    {
-        $model = $this->model();
-
-        $this->query = new $model();
-    }
-
-    protected function search()
-    {
-        $searchableFields = $this->searchableFields();
-        $search = $this->search;
-        $this->query->when(!empty($search), function (Builder $q) use ($search, $searchableFields) {
-            $searchString = '%' . $search . '%';
-            foreach ($searchableFields as $field) {
-                if (Str::contains($field, '.')) {
-                    $field = explode('.', $field);
-                    $q->orWhereHas($field[0], function (Builder $query) use ($field, $searchString) {
-                        $query->whereRaw("lower($field[1]) like ?", $searchString);
-                    });
-                } else {
-                    $q->orWhereRaw("lower($field) like ?", $searchString);
-                }
-            }
-        });
-    }
-
-    public function filter()
-    {
-
-        $data = $this->prepareDataForFiltering($query);
-
-        $query = app(Pipeline::class)
-            ->send($data)
-            ->through([
-                PriceBetween::class,
-                CategoryFilter::class,
-            ])
-            ->then(
-                function ($data) {
-                    return $data->query;
-                }
-            );
-
-        return $query->when($this->state, function ($q) {
-            $q->where('state_id', $this->state);
-        })
-            ->when($this->city, function ($q) {
-                $q->where('city_id', $this->city);
-            })
-            ->when($this->locality, function ($q) {
-                $q->where('locality_id', $this->locality);
-            });
     }
 
     protected function executeQuery(Builder $query)
@@ -184,7 +133,7 @@ abstract class SearchableComponent extends Component
         return $this->orderOption[$this->orderBy];
     }
 
-    private function prepareQuery()
+    private function generateNewQuery()
     {
         $model = app($this->model());
 
