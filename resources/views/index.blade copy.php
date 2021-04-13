@@ -1,13 +1,13 @@
 <x-guest-layout>
 
     {{-- Hero Banner --}}
-    <header class="relative h-auto w-screen">
+    <header class="relative h-auto max-w-screen ">
 
         {{-- Background --}}
-        <img src="{{ asset('public/bg/bg-hero.jpeg') }}" alt="people celebrating together"
-             class="absolute inset-0 object-cover w-full h-full"/>
+        <img src="https://images.pexels.com/photos/3184419/pexels-photo-3184419.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+            class="absolute inset-0 object-cover w-full h-full" alt="" />
 
-        <div class="relative flex items-center bg-primary bg-opacity-30 w-full h-full overflow-x-hidden hddein">
+        <div class="relative flex items-center bg-secondary bg-opacity-30 w-full h-full overflow-x-hidden">
             <div class="px-4 py-24 mx-auto sm:max-w-xl md:max-w-screen-xl  md:px-12 lg:px-8 md:pt-44">
                 <div class="max-w-2xl mx-auto sm:max-w-xl md:max-w-4xl">
                     <div class="text-center pt-4">
@@ -183,7 +183,7 @@
                     shadow-sm lg:flex-row sm:mx-auto">
 
             <div class="relative lg:w-1/2">
-                <img src="{{-- https://images.pexels.com/photos/1253184/pexels-photo-1253184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 --}}"
+                <img src="https://images.pexels.com/photos/1253184/pexels-photo-1253184.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                     alt="" class="object-cover w-full lg:absolute h-80 lg:h-full" />
                 <svg class="absolute top-0 right-0 hidden h-full text-primary lg:inline-block -mr-2"
                     viewBox="0 0 20 104" fill="currentColor">
