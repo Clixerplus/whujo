@@ -2,7 +2,7 @@
 
 use App\Models\Service;
 use App\Models\Experience;
-use App\Http\Livewire\WizardCreator;
+use App\Models\Microservice;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ReviewController;
@@ -17,10 +17,8 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Site\HomePageController;
 use App\Http\Controllers\WizardOptionsController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\MercadopagoController;
 use App\Http\Controllers\Site\ListinPageController;
-use App\Models\Microservice;
-use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +75,7 @@ Route::get('/product/{type}/{id}/{slug}', function ($type, $id) {
 })->name('mercadopago');
  */
 
-Route::get('/mercadopagoa', MercadopagoController::class)->name('mercadopago');
+
 
 
 
@@ -118,7 +116,7 @@ Route::resource('categories', CategoryController::class);
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //auth()->login(App\Models\User::first());
-    
+
     Route::get('/dashboard', DashboardController::class)->name('account.dashboard');
     Route::get('/notificaciones', NotificationController::class)->name('account.notifications');
     Route::get('/reservaciones', DashboardController::class)->name('account.booking');
