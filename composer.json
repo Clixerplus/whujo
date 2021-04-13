@@ -33,6 +33,7 @@
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.4",
         "mockery/mockery": "^1.4.2",
+        "morrislaptop/laravel-route-menu": "^0.2.1",
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.3.3"
     },
