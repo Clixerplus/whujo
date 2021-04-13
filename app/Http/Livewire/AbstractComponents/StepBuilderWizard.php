@@ -23,9 +23,9 @@ abstract class StepBuilderWizard extends Component
         $this->setValidationRules();
     }
 
-    public function mount(ProductModel $model)
+    public function mount(ProductModel $product)
     {
-        $this->product = $model;
+        $this->product = $product;
     }
 
     public function save()

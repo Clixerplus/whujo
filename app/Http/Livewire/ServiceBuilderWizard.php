@@ -26,58 +26,72 @@ class ServiceBuilderWizard extends Component
 
     public $item;
 
+    protected $rules = [
+        'product.name' => 'nullable',
+        'product.category_id' => 'nullable',
+        'product.description' => 'nullable',
+        'product.state_id' => 'nullable',
+        'product.price' => 'nullable',
+        'product.features' => 'nullable',
+        'product.photos' => 'nullable',
+        'product.city_id' => 'nullable',
+
+    ];
+
     private $steps =  [
         [
             'field'     => 'name',
-            'component' => 'livewire.wizard.input-name',
-            'title'     => 'Nombre de la experiencia',
+            'component' => 'wizard.inputs.name',
+            'title'     => 'Nombre del Servicio',
         ],
+
         [
             'field'     => 'category_id',
-            'component' => 'livewire.wizard.input-category',
-            'title'     => 'Category de tu producto',
+            'component' => 'wizard.inputs.category',
+            'title'     => 'Tipo de Servicio',
         ],
+
         [
             'field'     => 'description',
-            'component' => 'livewire.wizard.input-description',
-            'title'     => 'Describenos que tu idea',
+            'component' => 'wizard.inputs.description',
+            'title'     => 'Describe tu servicio',
+        ],
+        [
+            'field'     => 'state_id',
+            'component' => 'wizard.inputs.location',
+            'title'     => 'Lugar de trabajo',
+        ],
+        [
+            'field'     => 'price',
+            'component' => 'wizard.inputs.price',
+            'title'     => 'Costo de tu trabajo',
         ],
         [
             'field'     => 'features',
             'component' => 'wizard.inputs.features',
-            'title'     => 'Ventajas y Beneficios',
+            'title'     => 'Caracteristicas',
         ],
         [
-            'field'     => 'price',
-            'component' => 'livewire.wizard.input-price',
-            'title'     => 'Costo de tu trabajo',
+            'field'     => 'photos',
+            'component' => 'wizard.inputs.photos',
+            'title'     => 'Galería ilustrativa',
         ],
         [
-            'field'     => 'microservices',
+            'field'     => 'city_id',
             'component' => 'wizard.inputs.microservices',
-            'title'     => 'Servicios Adicionales',
-            'suggest'   => 'wizard.suggest.miroservices'
-        ]
-    ];
-
-    protected $rules = [
-        'product.name' => 'required|string|between:5,120',
-        'product.category_id' => 'required|exists:categories,id',
-        'product.description' => 'required|string|between:300,1400',
-        'product.features' => 'nullable|array',
-        'product.price' => 'required|numeric|min:' . MIN_PRICE,
+            'title'     => 'Microptrabajos adicionales',
+        ],
     ];
 
     public function mount(Service $service)
     {
-        //Service::factory()->blank()->create();
+
         $this->step = 1;
 
         $this->totalSteps = count($this->steps);
 
         $this->product = $service;
 
-        //$this->stepsMenu = [];
         $this->setStepsMenu();
     }
 
@@ -131,9 +145,10 @@ class ServiceBuilderWizard extends Component
         if (!empty($this->item)) {
 
             $array = $this->product->{$this->field} ?? [];
-            
+
             $this->product->{$this->field} = array_merge(
-                $array, [$this->item]
+                $array,
+                [$this->item]
             );
 
             $this->item = "";
@@ -166,7 +181,6 @@ class ServiceBuilderWizard extends Component
                     'title'  => 'Categrorias',
                     'status' => true
                 ];
-
             } else {
                 $this->stepsMenu[] = [
                     'title' => $step['title'],

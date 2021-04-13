@@ -2,7 +2,7 @@
 $styles = [
 'completed' => 'bg-green-500 ring-green-400 text-white',
 'incomplete' => 'bg-gray-100 ring-gray-300 text-gray-400',
-'current' => 'bg-gray-100 ring-gray-300 text-gray-400'
+'current' => 'bg-gray-100 ring-yellow-300 text-gray-700'
 ];
 
 @endphp
@@ -31,9 +31,12 @@ $styles = [
                     <ul class="text-sm">
 
                         @foreach ($steps as $step)
-                        <li @if ($step->status=='current') class="bg-gray-200" @else class="hover:bg-gray-50" @endif>
+                        <li @if ($currentStep == $loop->index) class="bg-gray-200" @else class="hover:bg-gray-50" @endif>
                             <a href="" class="flex items-center pl-4 py-6 border-b border-t">
-                                <button class="w-6 h-6 text-sm rounded-full ring {{ $styles[$step->status] }}">
+                                <button class="w-6 h-6 text-sm rounded-full ring
+                                    @if ($currentStep == $loop->index) {{ $styles['current'] }}
+                                    @elseif ($step->status == 'complete') {{ $styles['completed'] }}
+                                    @else {{ $styles['incomplete'] }}  @endif">
                                     {{ $loop->iteration }}
                                 </button>
 
@@ -70,17 +73,45 @@ $styles = [
 
                 </div>
 
-                <div class="flex-grow py-6 px-8 lg:px-24 leading-relaxed overflow-y-auto">
+                <div class="flex-grow leading-relaxed overflow-y-auto">
+                    {{ $currentStep }}
 
-                    @livewire('wizard.input-starting', [$product->starting])
+                    <div class="@if ($currentStep != 0) hidden @endif px-8 lg:px-24 py-6 w-full h-full">
+                        @livewire('wizard.' . $steps[0]->view, [$product->{$steps[0]->field}])
+                    </div>
+
+
+                    <div class="@if ($currentStep != 1) hidden @endif px-8 lg:px-24 py-6 w-full h-full">
+                        @livewire('wizard.' . $steps[1]->view, [$product->{$steps[1]->field}])
+                    </div>
+
+                    <div class="@if ($currentStep != 2) hidden @endif px-8 lg:px-24 py-6 w-full h-full">
+                        @livewire('wizard.' . $steps[2]->view, [$product->{$steps[2]->field}])
+                    </div>
+
+                    <div class="@if ($currentStep != 3) hidden @endif px-8 lg:px-24 py-6 w-full h-full">
+                        @livewire('wizard.' . $steps[3]->view, [$product->{$steps[3]->field}])
+                    </div>
+
+                    <div class="@if ($currentStep != 4) hidden @endif px-8 lg:px-24 py-6 w-full h-full">
+                        @livewire('wizard.' . $steps[4]->view, [$product->{$steps[4]->field}])
+                    </div>
+
+                    <div class="@if ($currentStep != 5) hidden @endif px-8 lg:px-24 py-6 w-full h-full">
+                        @livewire('wizard.' . $steps[5]->view, [$product->{$steps[5]->field}])
+                    </div>
+
+                    <div class="@if ($currentStep != 6) hidden @endif px-8 lg:px-24 py-6 w-full h-full">
+                        @livewire('wizard.' . $steps[6]->view, [$product->{$steps[6]->field}])
+                    </div>
 
                 </div>
 
-                <div class="w-full h-20 py-4 px-8 text-center bg-gray-200 border-t shadow-2xl ">
-                    <div class="flex items-center justify-between ">
-                        <x-button class="py-4">{{ __('Previous') }}</x-button>
+                <div class="w-full h-20 px-8 text-center bg-gray-200 border-t shadow-2xl ">
+                    <div class="flex items-center justify-between h-full">
+                        <x-button class="bg-gray-700 p-3 lg:p-4" wire:click="previous">{{ __('Previous') }}</x-button>
                         <span class="font-bold text-xs ">1/10</span>
-                        <x-button class="py-4">{{ __('Next') }}</x-button>
+                        <x-button class="bg-success p-3 lg:p-4" wire:click="next">{{ __('Next') }}</x-button>
                     </div>
                 </div>
 
