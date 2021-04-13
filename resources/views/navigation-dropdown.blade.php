@@ -7,7 +7,7 @@
                 <div class="flex-shrink-0 flex items-center">
                     <a href="/" aria-label="Whujo" title="Whujo" class="inline-flex items-center">
                         <span class="ml-2 text-3xl font-whujo
-                                             font-bold tracking-wide text-gray-800 md:text-primary">whujo</span>
+                                    font-bold tracking-wide text-gray-800 md:text-primary">whujo</span>
                     </a>
                 </div>
 

@@ -8,9 +8,10 @@ class SwitchButton extends Component
 {
     public $key;
 
-    public function __construct($key)
+    public function __construct($key = '')
     {
-        $this->key = $key ?? '';
+
+        $this->key = $key;
     }
 
     /**

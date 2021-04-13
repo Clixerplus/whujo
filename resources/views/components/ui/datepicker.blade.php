@@ -11,19 +11,21 @@
 
 <div class="antialiased sans-serif">
     <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-        <div class="container mx-auto px-4 py-2 md:py-10">
-            <div class="mb-5 w-64">
+        <div class="py-2 mx-auto md:py-10">
+            <div class="w-full mb-5">
 
-                <label for="datepicker" class="font-bold mb-1 text-gray-700 block">Select Date</label>
+                <label for="datepicker" class="block mb-1 font-bold text-gray-700">Selecciona una fecha</label>
                 <div class="relative">
-                    <input type="hidden" name="date" x-ref="date">
+
+                    <input type="hidden" name="date" x-ref="date" required>
+
                     <input type="text" readonly x-model="datepickerValue" @click="showDatepicker = !showDatepicker"
                         @keydown.escape="showDatepicker = false"
-                        class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
+                        class="w-full py-3 pl-4 pr-10 font-medium leading-none text-gray-600 rounded-lg focus:outline-none"
                         placeholder="Select date">
 
                     <div class="absolute top-0 right-0 px-3 py-2">
-                        <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -34,30 +36,30 @@
                           <div x-text="32 - new Date(year, month, 32).getDate()"></div>
                           <div x-text="new Date(year, month).getDay()"></div> -->
 
-                    <div class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0" style="width: 17rem"
+                    <div class="absolute top-0 left-0 p-4 mt-12 bg-white rounded-lg " style="width: 17rem"
                         x-show.transition="showDatepicker" @click.away="showDatepicker = false">
 
-                        <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center justify-between mb-2">
                             <div>
                                 <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
-                                <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
+                                <span x-text="year" class="ml-1 text-lg font-normal text-gray-600"></span>
                             </div>
                             <div>
                                 <button type="button"
-                                    class="transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 rounded-full"
+                                    class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer hover:bg-gray-200"
                                     :class="{'cursor-not-allowed opacity-25': month == 0 }"
                                     :disabled="month == 0 ? true : false" @click="month--; getNoOfDays()">
-                                    <svg class="h-6 w-6 text-gray-500 inline-flex" fill="none" viewBox="0 0 24 24"
+                                    <svg class="inline-flex w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M15 19l-7-7 7-7" />
                                     </svg>
                                 </button>
                                 <button type="button"
-                                    class="transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 rounded-full"
+                                    class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer hover:bg-gray-200"
                                     :class="{'cursor-not-allowed opacity-25': month == 11 }"
                                     :disabled="month == 11 ? true : false" @click="month++; getNoOfDays()">
-                                    <svg class="h-6 w-6 text-gray-500 inline-flex" fill="none" viewBox="0 0 24 24"
+                                    <svg class="inline-flex w-6 h-6 text-gray-500" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M9 5l7 7-7 7" />
@@ -69,20 +71,20 @@
                         <div class="flex flex-wrap mb-3 -mx-1">
                             <template x-for="(day, index) in DAYS" :key="index">
                                 <div style="width: 14.26%" class="px-1">
-                                    <div x-text="day" class="text-gray-800 font-medium text-center text-xs"></div>
+                                    <div x-text="day" class="text-xs font-medium text-center text-gray-800"></div>
                                 </div>
                             </template>
                         </div>
 
                         <div class="flex flex-wrap -mx-1">
                             <template x-for="blankday in blankdays">
-                                <div style="width: 14.28%" class="text-center border p-1 border-transparent text-sm">
+                                <div style="width: 14.28%" class="p-1 text-sm text-center border border-transparent">
                                 </div>
                             </template>
                             <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
                                 <div style="width: 14.28%" class="px-1 mb-1">
                                     <div @click="getDateValue(date)" x-text="date"
-                                        class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition ease-in-out duration-100"
+                                        class="text-sm leading-none leading-loose text-center transition duration-100 ease-in-out rounded-full cursor-pointer"
                                         :class="{'bg-blue-500 text-white': isToday(date) == true, 'text-gray-700 hover:bg-blue-200': isToday(date) == false }">
                                     </div>
                                 </div>
@@ -90,6 +92,41 @@
                         </div>
                     </div>
 
+
+                </div>
+                <div class="w-full mt-4">
+                    <div class="relative w-full px-3 py-2 font-bold text-gray-700 bg-white rounded-lg sans-serif">
+                        <div class="flex ">
+                            <select name="hours" class="bg-transparent outline-none appearance-none ">
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <span class="mr-3">:</span>
+                            <select name="minutes" class="mr-4 bg-transparent outline-none appearance-none">
+                                <option value="00">00</option>
+                                <option value="15">15</option>
+                                <option value="30">30</option>
+                                <option value="45">45</option>
+                            </select>
+                            <select name="ampm" class="bg-transparent outline-none appearance-none ">
+                                <option value="am">AM</option>
+                                <option value="pm">PM</option>
+                            </select>
+                        </div>
+                        <div class="absolute top-0 right-0 px-3 py-2 text-gray-400">
+                            <x-icon-time-outline class="w-6 h-6 currentColor"/>
+                        </div>
+                    </div>
                 </div>
             </div>
 

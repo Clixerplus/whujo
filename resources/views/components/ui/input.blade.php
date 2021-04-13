@@ -1,7 +1,7 @@
 @php
-    $class= ($errors->has($key))
-        ? 'ring ring-danger focus:ring-danger ring-opacity-75'
-        : '';
+$class= ($errors->has($key))
+? 'ring ring-danger focus:ring-danger ring-opacity-75'
+: '';
 @endphp
 
 <div class="relative my-2">
@@ -12,9 +12,15 @@
     }}>
 
     @if ($key)
-        @error($key)
-            <x-icon-alert-circle-outline class="absolute inset-0 my-auto text-danger w-10 h-10 mr-4 ml-auto" />
-        @enderror
+    @error($key)
+    <x-icon-alert-circle-outline class="absolute inset-0 my-auto text-danger w-10 h-10 mr-4 ml-auto" />
+    @enderror
     @endif
 
 </div>
+
+@section('suggestPanel')
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias cum officiis facere laborum labore doloribus aliquid
+quam! Blanditiis neque quam cum, quae, quaerat minima odio eos velit error iusto magni.
+
+@endsection

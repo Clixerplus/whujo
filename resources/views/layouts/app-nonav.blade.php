@@ -38,6 +38,8 @@
 
         @stack('modals')
 
+        @stack('script')
+
         @livewireScripts
     </body>
 
