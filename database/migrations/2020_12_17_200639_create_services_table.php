@@ -58,7 +58,7 @@ class CreateServicesTable extends Migration
                 ->nullable();
 
             $table->enum('status', config('product.status'))
-                ->default(STATUS_INCOMPLETE);
+                ->default('STATUS_INCOMPLETE');
 
             $table->timestamp('published_at')
                 ->nullable();

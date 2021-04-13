@@ -26,6 +26,14 @@ class ServiceFactory extends Factory
      */
     public function definition()
     {
+
+        $photos = collect([
+            'https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            'https://images.pexels.com/photos/3825584/pexels-photo-3825584.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            'https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+            'https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
+        ]);
+
         return [
             'user_id'      => User::factory(),
             'category_id'  => Category::factory(),
@@ -35,20 +43,20 @@ class ServiceFactory extends Factory
             'city_id'      => City::factory(),
             'locality_id'  => Locality::factory(),
             'address'      => $this->faker->address,
-            'price'        => $this->faker->randomFloat(2, 2500, 50000),
+            'price'        => rand(25, 999) * 100,
             'features'     => [
                 $this->faker->sentence(3),
                 $this->faker->sentence(4),
                 $this->faker->sentence(2)
             ],
             'photos'         =>  [
-                'https://images.pexels.com/photos/3825582/pexels-photo-3825582.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                'https://images.pexels.com/photos/3825584/pexels-photo-3825584.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                'https://images.pexels.com/photos/3825580/pexels-photo-3825580.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                'https://images.pexels.com/photos/3825585/pexels-photo-3825585.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                $photos->random(),
+                $photos->random(),
+                $photos->random(),
+                $photos->random(),
             ],
             'published_at' => $this->faker->dateTime(),
-            'status'       => STATUS_PUBLISHED,
+            'status'       => 'STATUS_PUBLISHED',
         ];
     }
 
@@ -72,7 +80,7 @@ class ServiceFactory extends Factory
                 'price'        => null,
                 'photos'       => null,
                 'published_at' => null,
-                'status'       => STATUS_INCOMPLETE,
+                'status'       => 'STATUS_INCOMPLETE',
             ];
         });
     }
@@ -86,7 +94,7 @@ class ServiceFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'category_id' => Category::all()->random()->id,
+                'category_id'    => Category::where('product_type', $this->model)->get()->random()->id,
                 'state_id'    => State::all()->random()->id,
                 'city_id'     => City::all()->random()->id,
                 'locality_id' => Locality::all()->random()->id,
