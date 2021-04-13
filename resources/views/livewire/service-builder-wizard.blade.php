@@ -60,7 +60,7 @@
                 <div class="flex-grow overflow-y-auto">
 
                     {{-- Barra de Superior | Titulo y Botones --}}
-                    <div class="flex items-center h-20 px-6 ">
+                    <div class="flex items-center h-20 px-6 border-b">
 
                         {{-- Boton de Menu | Steps --}}
                         <x-button class="lg:hidden border rounded-md bg-gray-100 w-10 h-10 p-1 text-secondary mr-4"
@@ -74,21 +74,21 @@
                         </h1>
 
                         {{-- Boton de Sugerencias --}}
-                        @hasSection('suggestPanel')
+
                         <x-button class="lg:hidden border rounded-full bg-gray-100 text-info w-10 h-10 p-1 ml-auto"
                             onclick="document.getElementById('suggestPanel').classList.toggle('translate-y-full')">
                             <x-icon-alert-circle-outline class="h-full w-full" />
                         </x-button>
-                        @endif
+
 
                     </div>
                     {{-- Barra de Titulo --}}
 
                     {{-- Formulario --}}
-                    <div class="p-12">
-                        <div class="max-w-xl mx-auto">
+                    <div class="max-w-2xl mx-auto">
+                        <div class="p-6 ">
 
-                            @include($component)
+                            @include($component,['product' => $product])
 
                         </div>
                     </div>
@@ -97,13 +97,15 @@
                 </div>
 
                 @yield('barra')
+
                 {{-- Barra Inferior | Botones - Contador de Pasos --}}
                 <div class="flex-shrink-0 h-16 px-4 bg-gray-50 lg:border-t-4 lg:border-gray-200">
                     <div class="flex items-center p-3 justify-between">
-                        <x-button wire:click="previous" class="py-1 px-4 border border-secondary
-                                            text-secondary text-sm
-                                            hover:bg-secondary hover:text-white
-                                            active:bg-secondary active:text-white">
+                        <x-button wire:click="previous"
+                                  class="py-1 px-4 border border-secondary
+                                        text-secondary text-sm
+                                        hover:bg-secondary hover:text-white
+                                        active:bg-secondary active:text-white">
 
                             Anterior</x-button>
 
