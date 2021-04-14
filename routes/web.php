@@ -3,12 +3,14 @@
 use App\Models\Service;
 use App\Models\Experience;
 use App\Models\Microservice;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WalletController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\ServiceBuilderWizard;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -35,23 +37,40 @@ use App\Http\Controllers\Site\ListinPageController;
 
 Route::get('/', HomePageController::class);
 Route::get('/home', HomePageController::class)->name('home');
-
 Route::get('/listing', ListinPageController::class)->name('listing-product');
 
-Route::post('/checkout', function () {
-    $service = Service::find(request()->input('serviceId'));
-    $microservices = Microservice::find(request()->input('microservices')) ?? collect();
-    $date = request()->input('date');
-    $time = request()->input('hours') . ':' . request()->input('minutes') . ' ' . request()->input('ampm');
+Route::post('/payment', CheckoutController::class)->name('payment');
+
+
+
+Route::get('/checkout', function (Request $request) {
+
+    $service = Service::find(1);
+    $microservices = Microservice::find(1) ?? collect();
+    $date = request()->input(now());
+    $time = request()->input(now()->hour()) . ':' . request()->input(now()->minute()) . 'PM';
 
     isset($microservices)
         ? $total = $service->price + $microservices->sum('price')
         : $total = $service->price;
 
-
-
     return view('pages.checkout', compact('service', 'microservices', 'date', 'time', 'total'));
 })->name('checkout');
+
+Route::get('checkout/thanks', function () {
+    return 'Thanks you';
+})->name('checkout.thanks');
+Route::get('checkout/pending', function () {
+    return 'Pending';
+})->name('checkout.pending');
+Route::get('checkout/error', function () {
+    return 'Error';
+})->name('checkout.error');
+
+Route::get('checkout/ipn', function () {
+    return 'IPN';
+})->name('ipn');
+
 
 Route::post('/booking/services/', function () {
 
