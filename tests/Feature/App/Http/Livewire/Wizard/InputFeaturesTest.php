@@ -1,6 +1,6 @@
-<?php
+s<?php
 
-namespace Tests\Feature\app\Http\Livewire\Wizard;
+namespace Tests\Feature\App\Http\Livewire\Wizard;
 
 use Tests\TestCase;
 use Livewire\Livewire;

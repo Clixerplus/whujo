@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Pipeline\Pipeline;
 
-abstract class SearchableComponent extends Component
+abstract class SearchableComponent1 extends Component
 {
     use WithPagination;
 

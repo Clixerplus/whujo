@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\app\Http\Controllers\Admin;
+namespace Tests\Feature\App\Http\Controllers\Admin;
 
 use App\Models\Tag;
 use Tests\TestCase;
@@ -34,7 +34,5 @@ class CategoryControllerTest extends TestCase
         Tag::factory()->create(['name' => 'excursiones']);
         $tag = Tag::all()->random();
         $serv = Service::factory()->create()->attachTag($tag);
-        dd(Service::withAnyTags([$tag->name])->get());
-        dd('hasta aqui');
     }
 }
