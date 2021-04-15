@@ -40,14 +40,11 @@ Route::get('/home', HomePageController::class)->name('home');
 Route::get('/listing', ListinPageController::class)->name('listing-product');
 
 Route::post('/payment', CheckoutController::class)->name('payment');
+Route::post('/checkout', function (Request $request) {
 
-
-
-Route::get('/checkout', function (Request $request) {
-
-    $service = Service::find(1);
-    $microservices = Microservice::find(1) ?? collect();
-    $date = request()->input(now());
+    $service = Service::find(request()->id);
+    $microservices = Microservice::find(request()->microservices) ?? collect();
+    $date = Carbon\Carbon::create(request()->date);
     $time = request()->input(now()->hour()) . ':' . request()->input(now()->minute()) . 'PM';
 
     isset($microservices)
@@ -57,7 +54,7 @@ Route::get('/checkout', function (Request $request) {
     return view('pages.checkout', compact('service', 'microservices', 'date', 'time', 'total'));
 })->name('checkout');
 
-Route::get('checkout/thanks', function () {
+Route::get('    ', function () {
     return 'Thanks you';
 })->name('checkout.thanks');
 Route::get('checkout/pending', function () {
@@ -70,6 +67,19 @@ Route::get('checkout/error', function () {
 Route::get('checkout/ipn', function () {
     return 'IPN';
 })->name('ipn');
+
+Route::get('autorization', function (Request $request) {
+    return $request->all();
+})->name('autorization');
+
+
+Route::get('/product-test', function () {
+    //TODO: Eliminar luego de pruebas
+    $product = Service::findOrFail(110);
+    return view("pages.services", compact('product'));
+})->name('product-service-test');
+
+
 
 
 Route::post('/booking/services/', function () {

@@ -14,10 +14,8 @@ class Microservices extends Component
 
     public $total;
 
-    public function mount()
+    public function mount($service)
     {
-        $service = Service::findOrFail(request()->id);
-
         $this->service = $service;
 
         $this->total = $service->price;

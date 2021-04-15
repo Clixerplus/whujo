@@ -1,5 +1,5 @@
 
-<x-app-nonav-layout>
+<x-guest-layout>
 
     <x-gallery-banner />
 
@@ -64,6 +64,7 @@
                     <h3 class="pb-4 mx-4 text-xl font-semibold border-b border-gray-400">Servicios Adicionales</h3>
                     <ul class="flex flex-col">
                         @foreach ($product->microservices as $microservice)
+
                         <li class="flex px-8 py-4">
                             <div class="w-3/4 ">
                                 <h4 class="font-semibold">{{ $microservice->name }}</h4>
@@ -335,7 +336,7 @@
             <div class="w-full h-full space-y-4">
 
                 {{-- Seleccion de Microservicios --}}
-                <livewire:microservices />
+                <livewire:microservices :service="$product"/>
 
                 {{-- Horario --}}
                 <section class="px-8 py-4 bg-gray-200 rounded-md">
@@ -423,18 +424,18 @@
 
     </div>
 
-    {{--Sugerencias--}}
+    {{--Sugerencias
     <div class="w-full px-8 my-8">
 
         @php
         $suggestion = App\Models\Service::all();
         @endphp
 
-        <x-embla-carousel id="servCarousel" :items="$suggestion" :type="TYPE_SERVICE" :cardType="'V02'" />
+        <x-embla-carousel id="servCarousel" :items="$suggestion" :type="'services'" :cardType="'V02'" />
 
-    </div>
+    </div>--}}
 
-</x-app-nonav-layout>
+</x-guest-layout>
 
 {{--
 <main class="flex-1">

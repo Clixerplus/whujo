@@ -22,7 +22,7 @@
                     <input type="text" readonly x-model="datepickerValue" @click="showDatepicker = !showDatepicker"
                         @keydown.escape="showDatepicker = false"
                         class="w-full py-3 pl-4 pr-10 font-medium leading-none text-gray-600 rounded-lg focus:outline-none"
-                        placeholder="Select date">
+                        placeholder="Select date" name="datepickerValue">
 
                     <div class="absolute top-0 right-0 px-3 py-2">
                         <svg class="w-6 h-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

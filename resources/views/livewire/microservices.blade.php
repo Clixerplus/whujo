@@ -8,13 +8,13 @@
     <form action="/checkout" method="POST">
 
         @csrf
-
+        <input type="hidden" name="id" value="{{ $service->id }}">
         <div class="rounded">
 
             <div class="py-4 space-y-4 d-flex justify-content-between">
                 @foreach ($service->microservices as $microservice)
                 <div class="flex mb-3 space-x-2">
-                    <x-switch id="check_{{ $microservice->id }}" key="microservices[]"
+                    <x-switch id="check_{{ $microservice->id }}" key="microservices[]" name="microservices[]"
                         wire:click="sumarRestar({{ $microservice->id }})" :value="$microservice->id" />
                     <label class="overflow-hidden whitespace-nowrap overflow-ellipsis"
                         for="check_{{ $microservice }}">{{ $microservice->name }}.</label>

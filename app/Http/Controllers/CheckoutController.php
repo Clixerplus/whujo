@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Service;
-use MercadoPago\Payment;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 //use MercadoPago\SDK as MercadoPago;
@@ -68,8 +67,7 @@ class CheckoutController extends Controller
         return $method->setupPaymentAndGetRedirectURL($product);
     }
 
-    /* "id":743762114,"nickname":"TEST9R5V4FNK","password":"qatest9001","site_status":"active","email":"test_user_58321508@testuser.com" */
-    /* "id":743765778,"nickname":"TETE6815991","password":"qatest3886","site_status":"active","email":"test_user_58893812@testuser.com" */
+
 
     /*
     Mastercard	        5031 7557 3453 0604	 123   11/25
