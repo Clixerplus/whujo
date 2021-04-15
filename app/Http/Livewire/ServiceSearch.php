@@ -58,4 +58,6 @@ class ServiceSearch extends SearchableComponent
             }
         );
     }
+
+    public function searchableFields() {}
 }
