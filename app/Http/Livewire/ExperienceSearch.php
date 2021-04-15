@@ -91,4 +91,6 @@ class ExperienceSearch extends SearchableComponent
     {
         return Experience::class;
     }
+
+    public function searchableFields(){}
 }
