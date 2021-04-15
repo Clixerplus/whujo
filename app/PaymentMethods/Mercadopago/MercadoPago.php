@@ -1,26 +1,25 @@
 <?php
 
-namespace App\PaymentMethods;
+namespace App\PaymentMethods\Mercadopago;
 
-
-use MercadoPago\SDK;
-use MercadoPago\Item;
-use MercadoPago\Payer;
-use MercadoPago\Payment;
-use MercadoPago\Preference;
-use Illuminate\Http\Request;
-use MercadoPago\MerchantOrder;
+use App\PaymentMethods\Mercadopago\SDK;
+use App\PaymentMethods\Mercadopago\Payer;
+use App\PaymentMethods\Mercadopago\Preference;
 
 class MercadoPago
 {
     public function __construct()
     {
-        SDK::setClientId(
-            config("payment-methods.mercadopago.client")
+        SDK::setAccessToken(
+            config("payment-methods.mercadopago.access_token")
         );
 
-        SDK::setClientSecret(
-            config("payment-methods.mercadopago.secret")
+        SDK::setClientId(
+            config("payment-methods.mercadopago.client_id")
+        );
+
+        SDK::setPublicKey(
+            config("payment-methods.mercadopago.public_key")
         );
     }
 
