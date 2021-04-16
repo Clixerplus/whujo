@@ -1,5 +1,5 @@
 <?php
-namespace App\PaymentMethods\Mercadopago;
+namespace App\Payments\Mercadopago;
 
 use MercadoPago\Payment as MercadoPagoPayment;
 
