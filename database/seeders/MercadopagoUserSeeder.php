@@ -47,5 +47,17 @@ class MercadopagoUserSeeder extends Seeder
                 'email' => 'test_user_58321508@testuser.com'
             ]);
 
+        /*
+        Marcketplace
+            "id":744459939,
+            "nickname":"TESTYVFYWIUI",
+            "password":"qatest7390",
+            "site_status":"active",
+            "email":"test_user_21672683@testuser.com",
+            APP_ID = ID: 6889998068947570
+            PUBLIC_KEY   = TEST-11209421-0e59-404f-869f-4fddea1e3fea
+            ACCESS_TOKEN = TEST-6889998068947570-041601-3ea0d8106e16c0556e29d80593e6787c-744459939
+
+         */
     }
 }
