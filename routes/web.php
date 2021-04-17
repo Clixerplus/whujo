@@ -40,18 +40,64 @@ Route::get('/home', HomePageController::class)->name('home');
 Route::get('/listing', ListinPageController::class)->name('listing-product');
 
 Route::post('/payment', CheckoutController::class)->name('payment');
-Route::post('/checkout', function (Request $request) {
+Route::get('/checkout', function (Request $request) {
 
-    $service = Service::find(request()->id);
-    $microservices = Microservice::find(request()->microservices) ?? collect();
-    $date = Carbon\Carbon::create(request()->date);
-    $time = request()->input(now()->hour()) . ':' . request()->input(now()->minute()) . 'PM';
+    $service = Service::find(101);
+    $microservices = $service->microservices() ?? collect();
+
+    $date = now()->addDay()->format('d/m/Y');
+    $time = Carbon\Carbon::create('08:00 PM')->format('h:i A');
 
     isset($microservices)
         ? $total = $service->price + $microservices->sum('price')
         : $total = $service->price;
 
-    return view('pages.checkout', compact('service', 'microservices', 'date', 'time', 'total'));
+    // Agrega credenciales
+
+    MercadoPago\SDK::setAccessToken('APP_USR-7492515157636570-041602-9f2802459bff7741b5c1d81f448b1702-743765778');
+    //MercadoPago\SDK::setPublicKey('TEST-11209421-0e59-404f-869f-4fddea1e3fea');
+    //MercadoPago\SDK::setAccessToken(env('MERCADOPAGO_ACCESS_TOKEN'));
+
+    // Crea un objeto de preferencia
+    $preference = new MercadoPago\Preference();
+
+    // Crea un ítem en la preferencia
+    $item = new MercadoPago\Item();
+    $item->title = $service->name;
+    $item->quantity = 1;
+    $item->unit_price = 100;
+
+    //Crea al payer que hace el pago
+    $user = App\Models\User::find(302);
+    $payer = new MercadoPago\Payer();
+    $payer->name = $user->name;
+    $payer->email = $user->email;
+    $payer->date_created = $user->created_at;
+    $payer->identification = array(
+        "type" => "DNI",
+        "number" => "12345678"
+    );
+
+    $payer->address = array(
+        "street_name" => "Cuesta Miguel Armendáriz",
+        "street_number" => 1004,
+        "zip_code" => "11020"
+    );
+
+    $preference->items = array($item);
+    $preference->back_urls = [
+        "success" => 'http://localhost/checkout', //route('checkout.thanks'),
+        "pending" => route('checkout.pending'),
+        "failure" => route('checkout.error'),
+    ];
+    $preference->binary_mode = true;
+    $preference->marketplace_fee = $item->unit_price * 0.05;
+    $preference->statement_descriptor = env('APP_NAME');
+    $preference->auto_return = "all";
+    $preference->save();
+    dd($preference);
+
+    return view('pages.checkout', compact('service', 'microservices', 'date', 'time', 'total', 'preference'));
 })->name('checkout');
 
 Route::get('    ', function () {
@@ -75,7 +121,7 @@ Route::get('autorization', function (Request $request) {
 
 Route::get('/product-test', function () {
     //TODO: Eliminar luego de pruebas
-    $product = Service::findOrFail(110);
+    $product = Service::findOrFail(101);
     return view("pages.services", compact('product'));
 })->name('product-service-test');
 

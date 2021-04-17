@@ -41,7 +41,6 @@ class Mercadopago
         # Create a payer object
         $payer = new Payer();
         $payer->email = $user->email;
-        $payer->name = $user->name;
         //TODO: Agregar campo phone a user
         //$payer->phone = $user->phone;
         //TODO: Implementar clase address

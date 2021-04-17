@@ -3,7 +3,21 @@
     @push('scripts')
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
     @endpush
+    <div class="flex items-center justify-center h-screen">
+        <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+            data-preference-id="{{ $preference->id }}" data-public-key="APP_USR-f587eb88-31e6-49f9-bb2e-97c9671566b1">
 
+        </script>
+        {{--
+    <form action="{{ route('payment') }}" method="POST" class="border rounded-full">
+        @csrf
+        <script src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
+            data-public-key="APP_USR-f84f2a7d-0061-4855-af9e-c9ec774856ed" data-transaction-amount="100.00">
+        </script> --}}
+        </form>
+    </div>
+
+    {{--
 <div x-data="{ cartOpen: true , isOpen: false }" class="bg-white">
     <header>
         <div class="container px-6 py-3 mx-auto">
@@ -34,7 +48,9 @@
             </div>
         </div>
     </header>
-        <x-cart/>
+
+    <x-cart/>
+
     <main class="my-8">
         <div class="container px-6 mx-auto">
             <h3 class="text-2xl font-medium text-gray-700">Checkout</h3>
@@ -119,12 +135,7 @@
                                 </svg>
                             </button>
 
-                            <form action="{{ route('payment') }}" method="POST" class="border rounded-full">
-                                @csrf
-                                <script src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
-                                    data-public-key="{{ env('MERCADOPAGP_PUBLIC_KEY') }}" data-transaction-amount="100.00">
-                                </script>
-                            </form>
+
                         </div>
                     </form>
                 </div>
@@ -175,5 +186,5 @@
                 title="Mercado Pago - Medios de pago" alt="Mercado Pago - Medios de pago" width="785" height="40" />
         </div>
     </main>
-</div>
+</div> --}}
 </x-guest-layout>

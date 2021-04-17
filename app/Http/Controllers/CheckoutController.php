@@ -6,8 +6,9 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Payments\Mercadopago\Mercadopago;
 //use MercadoPago\SDK as MercadoPago;
-use App\PaymentMethods\MercadoPago;
+
 
 class CheckoutController extends Controller
 {
@@ -63,8 +64,8 @@ class CheckoutController extends Controller
 
     protected function generatePaymentGateway($paymentMethod, $product): string
     {
-        $method = new MercadoPago;
-        return $method->setupPaymentAndGetRedirectURL($product);
+        $method = new Mercadopago;
+        return $method->setupPaymentAndGetRedirectURL($product, \App\Models\User::find(249));
     }
 
 
