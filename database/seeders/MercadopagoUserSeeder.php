@@ -19,18 +19,18 @@ class MercadopagoUserSeeder extends Seeder
 
         /*
         Vendedor
-            "id_mercadopago":743765778,
-            "nickname_mercadopago":"TETE6815991",
-            "password_mercadopago":"qatest3886",
-            "site_status_mercadopago":"active",
-            "email":"test_user_58893812@testuser.com"
+            "id": 746931280,
+            "nickname": "TETE963798",
+            "password": "qatest408",
+            "site_status": "active",
+            "email": "test_user_75689841@testuser.com"
         */
         User::factory()
         ->has(
             Service::factory(rand(1,3))
             ->hasMicroservices(4))
         ->create([
-            'email' =>'test_user_58893812@testuser.com',
+            'email' =>'test_user_75689841@testuser.com',
         ]);
 
 
@@ -69,6 +69,13 @@ class MercadopagoUserSeeder extends Seeder
             ACCESS_TOKEN = TEST-7492515157636570-041602-969e193c7934fdcc9c5bb2b8a0f66bf6-743765778
                            APP_USR-7492515157636570-041602-9f2802459bff7741b5c1d81f448b1702-743765778
 
+            Cuenta real
+
+            Public Key = TEST-f8b4415e-3c39-4507-a03b-4931dbf106cf
+            Access Token= TEST-6480234298692909-030914-55ab350ef43f8f8255b2c9a06c14060f-515445429
+            App Id = 6480234298692909
+
+            https://auth.mercadopago.com.ar/authorization?client_id=6480234298692909&response_type=code&platform_id=mp&redirect_uri=http://localhost/authorization
          */
     }
 }

@@ -42,7 +42,7 @@ Route::get('/listing', ListinPageController::class)->name('listing-product');
 Route::post('/payment', CheckoutController::class)->name('payment');
 Route::get('/checkout', function (Request $request) {
 
-    $service = Service::find(101);
+    $service = Service::find(100);
     $microservices = $service->microservices() ?? collect();
 
     $date = now()->addDay()->format('d/m/Y');
@@ -53,8 +53,10 @@ Route::get('/checkout', function (Request $request) {
         : $total = $service->price;
 
     // Agrega credenciales
-
-    MercadoPago\SDK::setAccessToken('APP_USR-7492515157636570-041602-9f2802459bff7741b5c1d81f448b1702-743765778');
+    MercadoPago\SDK::initialize();
+    $MP = MercadoPago\SDK::config();
+    $MP->set('ACCESS_TOKEN', 'TEST-6480234298692909-030914-55ab350ef43f8f8255b2c9a06c14060f-515445429');
+    //MercadoPago\SDK::setClientId(config('payment-methods.mercadopago.client_id'));
     //MercadoPago\SDK::setPublicKey('TEST-11209421-0e59-404f-869f-4fddea1e3fea');
     //MercadoPago\SDK::setAccessToken(env('MERCADOPAGO_ACCESS_TOKEN'));
 
@@ -68,7 +70,7 @@ Route::get('/checkout', function (Request $request) {
     $item->unit_price = 100;
 
     //Crea al payer que hace el pago
-    $user = App\Models\User::find(302);
+    $user = App\Models\User::find(2);
     $payer = new MercadoPago\Payer();
     $payer->name = $user->name;
     $payer->email = $user->email;
@@ -91,16 +93,21 @@ Route::get('/checkout', function (Request $request) {
         "failure" => route('checkout.error'),
     ];
     $preference->binary_mode = true;
-    $preference->marketplace_fee = $item->unit_price * 0.05;
+    //dd("MP-MKT-" .  config("payment-methods.mercadopago.client_id"));
+    //$preference->marketplace = "MP-MKT-" .  config("payment-methods.mercadopago.client_id");
+    $preference->marketplace_fee = $item->unit_price * 0.1;
+
     $preference->statement_descriptor = env('APP_NAME');
+
     $preference->auto_return = "all";
+
     $preference->save();
-    dd($preference);
+    //dd($preference);
 
     return view('pages.checkout', compact('service', 'microservices', 'date', 'time', 'total', 'preference'));
 })->name('checkout');
 
-Route::get('    ', function () {
+Route::get('success', function () {
     return 'Thanks you';
 })->name('checkout.thanks');
 Route::get('checkout/pending', function () {

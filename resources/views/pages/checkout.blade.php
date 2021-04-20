@@ -5,7 +5,7 @@
     @endpush
     <div class="flex items-center justify-center h-screen">
         <script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-            data-preference-id="{{ $preference->id }}" data-public-key="APP_USR-f587eb88-31e6-49f9-bb2e-97c9671566b1">
+            data-preference-id="{{ $preference->id }}" data-public-key="APP_USR-f84f2a7d-0061-4855-af9e-c9ec774856ed">
 
         </script>
         {{--

@@ -59,6 +59,10 @@ class Mercadopago
             "failure" => route('checkout.error'),
         ];
         $preference->auto_return = "all";
+
+        $preference->marketplace = "MP-MKT-" .  config("payment-methods.mercadopago.client_id");
+        $preference->marketplace_fee = $item->unit_price * 0.1;
+
         //TODO: Estudiar e implementar ruta ipn
         //$preference->notification_url = route('ipn');
 
@@ -75,10 +79,9 @@ class Mercadopago
 
     public function linkSellerAccount()
     {
-
     }
 
-   /*  public function getAuthorizationCode()
+    /*  public function getAuthorizationCode()
     {
         $client_id
         $url_back = 'http://localhost/autorization';
@@ -97,7 +100,7 @@ class Mercadopago
         necesaria para crear la respectiva credencial.
 
          Atributos:
-            * Url = https://auth.mercadopago.com.ar/authorization?client_id=APP_ID&response_type=code&platform_id=mp&redirect_uri=http://www.URL_de_retorno.com
+            * Url = https://auth.mercadopago.com.ar/authorization?client_id=6889998068947570&response_type=code&platform_id=mp&redirect_uri=http://localhost/authorization
             * client_id debe ser el APP_ID
             * redirect_uri  debe ser la url a la que se enviaran los datos de retorno
 
