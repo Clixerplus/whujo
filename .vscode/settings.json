@@ -10,6 +10,6 @@
     "better-phpunit.docker.enable": true,
     "better-phpunit.docker.command": "docker exec whujow_laravel.test_1",
     "better-phpunit.docker.paths": {
-        "/home/johanso/webprojects/whujow": "/var/www/html"
+        "/home/johanso/Proyectos/Development/whujow": "/var/www/html"
     }
 }
