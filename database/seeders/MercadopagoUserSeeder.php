@@ -34,15 +34,6 @@ class MercadopagoUserSeeder extends Seeder
         ]);
 
 
-
-        /*
-        Comprador
-            "id_mercadopago":743762114,
-            "nickname_mercadopago":"TEST9R5V4FNK",
-            "password_mercadopago":"qatest9001",
-            "site_status_mercadopago":"active",
-            "email":"test_user_58321508@testuser.com"
-        */
             User::factory()->create([
                 'email' => 'test_user_58321508@testuser.com'
             ]);
@@ -76,6 +67,41 @@ class MercadopagoUserSeeder extends Seeder
             App Id = 6480234298692909
 
             https://auth.mercadopago.com.ar/authorization?client_id=6480234298692909&response_type=code&platform_id=mp&redirect_uri=http://localhost/authorization
+            TG-60809664bddc1d0007be2cc6-746931280
+
+            https://auth.mercadopago.com.ar/authorization?client_id=6889998068947570&response_type=code&platform_id=mp&redirect_uri=http://localhost/authorization
+
+            https://auth.mercadopago.com.ar/authorization?client_id=6889998068947570&response_type=code&platform_id=mp&redirect_uri=
+
+    curl -X POST \
+     -H 'accept: application/json' \
+     -H 'content-type: application/x-www-form-urlencoded' \
+     'https://api.mercadopago.com/oauth/token' \
+     -d 'client_secret=EST-6480234298692909-030914-55ab350ef43f8f8255b2c9a06c14060f-515445429' \
+     -d 'grant_type=authorization_code' \
+     -d 'code=TG-608099ec6f9d290007b823f7-743762114' \
+     -d 'redirect_uri=https://whujo.test/authorization'
+
+
+     /*
+        Vendedor
+            "id_mercadopago":743762114,
+            "nickname_mercadopago":"TEST9R5V4FNK",
+            "password_mercadopago":"qatest9001",
+            "site_status_mercadopago":"active",
+            "email":"test_user_58321508@testuser.com",
+
+            "access_token":"TEST-6480234298692909-042121-7556f05ec93ef9a0c8eeba744361ad32-743762114",
+            "token_type":"bearer",
+            "expires_in":15552000,
+            "scope":"offline_access read write",
+            "user_id":743762114,
+            "refresh_token":"TG-60809afcbddc1d0007be37e8-743762114",
+            "public_key":"TEST-af2b4bbd-7b80-4168-a229-c266b216aa4c",
+            "live_mode":false,
+
+            tikcet - IDS-20767.
+
          */
     }
 }

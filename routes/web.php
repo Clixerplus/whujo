@@ -19,6 +19,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Site\HomePageController;
 use App\Http\Controllers\WizardOptionsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\ListinPageController;
 
 
@@ -43,7 +44,7 @@ Route::post('/payment', CheckoutController::class)->name('payment');
 Route::get('/checkout', function (Request $request) {
 
     $service = Service::find(100);
-    $microservices = $service->microservices() ?? collect();
+    $microservices = $service->microservices()->get() ?? collect();
 
     $date = now()->addDay()->format('d/m/Y');
     $time = Carbon\Carbon::create('08:00 PM')->format('h:i A');
@@ -55,7 +56,7 @@ Route::get('/checkout', function (Request $request) {
     // Agrega credenciales
     MercadoPago\SDK::initialize();
     $MP = MercadoPago\SDK::config();
-    $MP->set('ACCESS_TOKEN', 'TEST-6480234298692909-030914-55ab350ef43f8f8255b2c9a06c14060f-515445429');
+    $MP->set('ACCESS_TOKEN', 'TEST-6480234298692909-042121-7556f05ec93ef9a0c8eeba744361ad32-743762114');
     //MercadoPago\SDK::setClientId(config('payment-methods.mercadopago.client_id'));
     //MercadoPago\SDK::setPublicKey('TEST-11209421-0e59-404f-869f-4fddea1e3fea');
     //MercadoPago\SDK::setAccessToken(env('MERCADOPAGO_ACCESS_TOKEN'));
@@ -121,8 +122,8 @@ Route::get('checkout/ipn', function () {
     return 'IPN';
 })->name('ipn');
 
-Route::get('autorization', function (Request $request) {
-    return $request->all();
+Route::get('authorization', function (Request $request) {
+    return $request->all();//view('pages.failed');
 })->name('autorization');
 
 
@@ -204,6 +205,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/reservaciones', DashboardController::class)->name('account.booking');
     Route::get('/wallet', WalletController::class)->name('account.wallet');
     Route::get('/reviews', ReviewController::class)->name('account.reviews');
+    Route::get('/profile', ProfileController::class)->name('account.profile');
     Route::get('/configuracion', SetupController::class)->name('account.setup');
     Route::get('/seguridad', SecurityController::class)->name('account.security');
     Route::get('/wizard/options/', WizardOptionsController::class)->name('wizard.options');
