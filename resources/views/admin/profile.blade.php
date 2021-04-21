@@ -2,13 +2,13 @@
 
     <div class="flex flex-col items-center px-6 py-8 mt-16 space-y-2 lg:flex-row lg:justify-between">
 
-        <h1 class="text-3xl ">Configuración de Usuario</h1>
+        <h1 class="text-3xl ">Perfil de Usuario</h1>
         <ul class="flex items-center space-x-1 text-sm text-gray-500">
             <li><a href="{{ route('account.dashboard')}}" class="hover:text-gray-900">Dahsboard</a></li>
             <li>
                 <x-icon-chevron-forward class="w-auto h-3" />
             </li>
-            <li>Configuración de Usuario</li>
+            <li>Perfil de Usuario</li>
         </ul>
 
     </div>
