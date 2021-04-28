@@ -3,11 +3,13 @@
 use App\Models\Service;
 use App\Models\Experience;
 use App\Models\Microservice;
+use App\Models\ShareACoffee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Livewire\ServiceBuilderWizard;
 use App\Http\Controllers\CheckoutController;
@@ -19,9 +21,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Site\HomePageController;
 use App\Http\Controllers\WizardOptionsController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\ListinPageController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -143,10 +143,12 @@ Route::post('/booking/services/', function () {
 
 Route::get('/product/{type}/{id}/{slug}', function ($type, $id) {
 
-    if ($type == TYPE_SERVICE) {
+    if ($type == 'services') {
         $product = Service::findOrFail($id);
-    } else if ($type == TYPE_EXPERIENCE) {
+    } else if ($type == 'experiences') {
         $product = Experience::findOrFail($id);
+    } else if ($type == 'share-a-coffee') {
+        $product = ShareACoffee::findOrFail($id);
     }
 
     return view("pages.{$type}", compact('product'));

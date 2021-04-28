@@ -62,6 +62,6 @@ class Service extends Model
 
     public function getTypeAttribute()
     {
-        return config('product.TYPE_SERVICE');
+        return 'services';
     }
 }

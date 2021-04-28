@@ -56,7 +56,7 @@ class SearchProduct extends SearchableComponent
         $productType = [
             'service' => Service::class,
             'experience' => Experience::class,
-            'share-a-coffe' => ShareACoffee::class,
+            'share-a-coffee' => ShareACoffee::class,
         ];
 
         return $productType[$this->type];

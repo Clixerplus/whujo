@@ -83,7 +83,7 @@ class Experience extends Model
 
     public function getTypeAttribute()
     {
-        return config('product.TYPE_EXPERIENCE');
+        return 'experiences';
     }
 
     public function scopePublished(Builder $query): Builder

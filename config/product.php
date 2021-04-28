@@ -25,9 +25,4 @@ return [
     'max_group_size' => '10',
 
     'MAX_LONG_TEXT' => '1400',
-
-    'TYPE_SERVICE'    => 'TYPE_SERVICE',
-
-    'TYPE_EXPERIENCE' => 'TYPE_EXPERIENCE',
-
 ];

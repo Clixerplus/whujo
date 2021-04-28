@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ShareACoffee extends Experience
 {
     protected $table = 'experiences';
+
+    public function getTypeAttribute()
+    {
+        return 'share-a-coffee';
+    }
 }
