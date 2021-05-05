@@ -4,6 +4,7 @@ use App\Models\Service;
 use App\Models\Experience;
 use App\Models\Microservice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
 use App\Http\Controllers\ReviewController;
@@ -42,7 +43,7 @@ Route::get('/listing', ListinPageController::class)->name('listing-product');
 Route::post('/payment', CheckoutController::class)->name('payment');
 Route::get('/checkout', function (Request $request) {
 
-    $service = Service::find(101);
+    $service = Service::find(100);
     $microservices = $service->microservices() ?? collect();
 
     $date = now()->addDay()->format('d/m/Y');
@@ -54,7 +55,7 @@ Route::get('/checkout', function (Request $request) {
 
     // Agrega credenciales
 
-    MercadoPago\SDK::setAccessToken('APP_USR-7492515157636570-041602-9f2802459bff7741b5c1d81f448b1702-743765778');
+    MercadoPago\SDK::setAccessToken('TEST-6889998068947570-042822-1a778215c35571c2e644239081ccb00a-743765778');
     //MercadoPago\SDK::setPublicKey('TEST-11209421-0e59-404f-869f-4fddea1e3fea');
     //MercadoPago\SDK::setAccessToken(env('MERCADOPAGO_ACCESS_TOKEN'));
 
@@ -65,10 +66,10 @@ Route::get('/checkout', function (Request $request) {
     $item = new MercadoPago\Item();
     $item->title = $service->name;
     $item->quantity = 1;
-    $item->unit_price = 100;
+    $item->unit_price = 1000;
 
     //Crea al payer que hace el pago
-    $user = App\Models\User::find(302);
+    $user = App\Models\User::find(2);
     $payer = new MercadoPago\Payer();
     $payer->name = $user->name;
     $payer->email = $user->email;
@@ -86,7 +87,7 @@ Route::get('/checkout', function (Request $request) {
 
     $preference->items = array($item);
     $preference->back_urls = [
-        "success" => 'http://localhost/checkout', //route('checkout.thanks'),
+        "success" => 'http://localhost/success', //route('checkout.thanks'),
         "pending" => route('checkout.pending'),
         "failure" => route('checkout.error'),
     ];
@@ -95,13 +96,16 @@ Route::get('/checkout', function (Request $request) {
     $preference->statement_descriptor = env('APP_NAME');
     $preference->auto_return = "all";
     $preference->save();
-    dd($preference);
+    //dd($preference);
 
     return view('pages.checkout', compact('service', 'microservices', 'date', 'time', 'total', 'preference'));
 })->name('checkout');
 
-Route::get('    ', function () {
-    return 'Thanks you';
+Route::get('success', function () {
+    $response = Http::withHeaders([
+        'Authorization' => 'Bearer TEST-6889998068947570-041601-3ea0d8106e16c0556e29d80593e6787c-744459939'
+    ])->get('https://api.mercadopago.com/v1/payments/' . request()->input('payment_id'));
+    return view('pages.payment',  ['response'=> json_decode($response->body())]);
 })->name('checkout.thanks');
 Route::get('checkout/pending', function () {
     return 'Pending';
@@ -114,14 +118,14 @@ Route::get('checkout/ipn', function () {
     return 'IPN';
 })->name('ipn');
 
-Route::get('autorization', function (Request $request) {
+Route::get('authorization', function (Request $request) {
     return $request->all();
 })->name('autorization');
 
 
-Route::get('/product-test', function () {
+Route::get('product-test', function () {
     //TODO: Eliminar luego de pruebas
-    $product = Service::findOrFail(101);
+    $product = Service::findOrFail(100);
     return view("pages.services", compact('product'));
 })->name('product-service-test');
 
