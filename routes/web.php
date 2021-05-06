@@ -156,7 +156,7 @@ Route::get('/product/{type}/{id}/{slug}', function ($type, $id) {
 
 
 
-
+Route::view('icons','tests.icons');
 
 
 
