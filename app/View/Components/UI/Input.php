@@ -8,9 +8,13 @@ class Input extends Component
 {
     public $key;
 
-    public function __construct($key)
+    public $size;
+
+    public function __construct($key = '', $size = 'md')
     {
-        $this->key = $key ?? '';
+        $this->key = $key;
+
+        $this->size = $size;
     }
 
     /**

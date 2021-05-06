@@ -5,7 +5,7 @@
 @endphp
 <div class="relative my-2">
     <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-600 border-l pointer-events-none">
-        <x-icon-caret-down-circle-outline class="w-6 h-6 fill-current" />
+        <x-icon-caret-down-outline class="w-6 h-6 fill-current" />
     </div>
 
     <select {{ $attributes->merge([
