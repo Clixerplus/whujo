@@ -47,19 +47,24 @@ class SearchProduct extends SearchableComponent
 
         return view('livewire.search-product', [
             'results' => $results,
-            'tags' => Tag::where('type', $this->getType())->select('name')->orderBy('name', 'asc')->get()
+            'tags' => $this->getTags($this->type),
         ]);
     }
 
-    protected function getType()
+    private function getType($type)
     {
         $productType = [
             'service' => Service::class,
             'experience' => Experience::class,
-            'share-a-coffe' => ShareACoffee::class,
+            'share-a-coffee' => ShareACoffee::class,
         ];
 
-        return $productType[$this->type];
+        return $productType[$type];
+    }
+
+    public function getTags($type)
+    {
+        return Tag::where('type',$this->getType($type))->select('name')->orderBy('name', 'asc')->get();
     }
 
     /**
@@ -81,7 +86,7 @@ class SearchProduct extends SearchableComponent
 
     function model()
     {
-        return $this->getType();
+        return $this->getType($this->type);
     }
 
     function searchableFields()
