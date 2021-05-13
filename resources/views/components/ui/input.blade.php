@@ -1,21 +1,20 @@
 @props([
     'classSize' => [
-        'xs' => ' rounded-xs p-2 ',
-        'sm' => ' rounded-sm p-3 ',
-        'md' => ' rounded-md p-4 ',
+        'xs' => ' rounded-xs p-1 ',
+        'sm' => ' rounded-sm p-2 ',
+        'md' => ' rounded-md p-3 ',
+        'lg' => ' rounded-lg p-4 ',
     ]
 ])
 
 @php
-$class= ($errors->has($key))
-? ' ring ring-danger focus:ring-danger ring-opacity-75 '
-: '';
+    $errorClass = (!$errors->has($key)) ? '' : ' ring ring-danger focus:ring-danger ring-opacity-75 ';
 @endphp
 
-<div class="relative my-2">
+<div class="relative">
 
     <input {{ $attributes->merge([
-        'class' => 'pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none ' . $class . $classSize[$size],
+        'class' => 'pr-16 placeholder-gray-500 border focus:ring focus:ring-gray-200 outline-none ' . $errorClass . $classSize[$size],
         'name'  => $key])
     }}>
 
@@ -27,7 +26,3 @@ $class= ($errors->has($key))
 
 </div>
 
-@section('suggestPanel')
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias cum officiis facere laborum labore doloribus aliquid
-quam! Blanditiis neque quam cum, quae, quaerat minima odio eos velit error iusto magni.
-@endsection

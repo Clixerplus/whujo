@@ -1,9 +1,7 @@
-<div>
-    <x-button {{ $attributes }}>
+<x-button {{ $attributes->merge(['class'=>'space-x-2']) }} :size="$size">
 
-        <x-dynamic-component :component="$icon" class="h-auto w-4 fill-current" />
+    <x-dynamic-component :component="$icon" class=" fill-current w-auto h-4 " />
 
-        <span class="mx-2">{{ $slot }}</span>
+    <span >{{ $slot }}</span>
 
-    </x-button>
-</div>
+</x-button>

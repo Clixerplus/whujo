@@ -34,23 +34,7 @@
 
 <body>
 
-    {{-- <x-navbar /> --}}
-    <div class="flex items-center justify-between w-full h-16 px-4">
-        <x-button class="px-2 text-gray-400 border">
-            <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </x-button>
-
-        <a href="{{ route('home') }}" aria-label="whujo" title="whujo">
-            <span class="text-4xl font-bold tracking-wide font-whujo text-primary">whujo</span>
-        </a>
-
-
-        <a href="{{ route('login') }}">Login</a>
-    </div>
-
+    <x-navbar-top />
 
     <div class="relative antialiased">
         {{ $slot }}

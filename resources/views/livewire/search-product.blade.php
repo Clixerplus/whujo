@@ -39,54 +39,41 @@
 <hr>
 
 
-{{-- search-input --}}
-<div class="p-2 text-center bg-gray-50">
-    <x-input key="search" size="xs" x-ref="searchInput" placeholder="Search here..."
-        class="w-full bg-gray-50 border-gray-50 focus:ring-white" />
-</div>
 
 {{-- filter and sort container --}}
-<div class="sticky top-0 max-h-screen overflow-hidden overflow-y-auto bg-white shadow">
+<div class="sticky top-20 max-h-screen overflow-hidden overflow-y-auto bg-white shadow  border-b ">
 
-    {{-- <div class="z-50 w-full border-t">
-        <div class="flex items-center justify-between p-1 text-xs divide-x rounded text-secondary">
-            <button class="flex items-center justify-center w-1/3 py-3 mx-1 space-x-1 text-center border">
-                <x-icon-persons class="w-auto h-4" />
-                <span>Services</span>
-            </button>
-            <button class="flex items-center justify-center w-1/3 py-3 mx-1 space-x-1 text-center border">
-                <x-icon-world class="w-auto h-4" />
-                <span>Experience</span>
-            </button>
-            <button class="flex items-center justify-center w-1/3 py-3 mx-1 space-x-1 text-center border">
-                <x-icon-coffee class="w-auto h-4" />
-                <span>Share a coffee</span>
-            </button>
-        </div>
-    </div> --}}
+    <div class="p-4 w-full flex items-center flex-wrap">
 
-    <div class="flex items-center justify-around">
-        {{-- filter button --}}
-        <div class="h-16 p-2 text-center">
-            <x-button class="space-x-2 bg-white border text-secondary" @click="show_filter = !show_filter"
-                x-bind:disabled="show_sort">
-                <x-icon-options class="w-4 h-4" />
-                <span>Filtros Avanzados</span>
-            </x-button>
+        {{-- search-input --}}
+        <div class="text-center bg-gray-50 w-full md:w-2/3 pb-4 xs:pb-0">
+            <x-input key="search" x-ref="searchInput" placeholder="Search here..."
+                class="w-full bg-gray-50 border-gray-50 focus:ring-white" />
         </div>
 
-        {{-- sort button --}}
-        <x-button class="space-x-2 bg-white border text-secondary" @click="show_sort = !show_sort"
-            x-bind:disabled="show_filter">
-            <x-icon-filter class="w-4 h-4" />
-            <span>Order By</span>
-        </x-button>
+        <div class="flex w-full">
+            {{-- filter button --}}
+            <div class="pr-2">
+                <x-button-icon class="bg-white text-secondary" size="sm" icon="options"
+                    @click="show_filter = !show_filter" x-bind:disabled="show_sort">
+                    Filtros Avanzados
+                </x-button-icon>
+            </div>
+
+
+            {{-- sort button --}}
+            <div class="">
+                <x-button-icon class="bg-white text-secondary" size="sm" icon="filter"
+                    @click="show_sort = !show_sort" x-bind:disabled="show_filter" >
+                    Order By
+                </x-button-icon>
+            </div>
+        </div>
     </div>
 
 
-
     {{-- filters wrapper --}}
-    <div class="p-4 space-y-4" x-show="show_filter">
+    <div class="p-4 space-y-4 w-full border-t" x-show="show_filter">
         <div class="p-6 bg-gray-200 border"></div>
         <div class="p-6 bg-gray-200 border"></div>
         <div class="p-6 bg-gray-200 border"></div>
@@ -96,54 +83,56 @@
     </div>
 
     {{-- sort wrapper --}}
-    <div class="p-4 space-y-4" x-show="show_sort">
+    <div class="p-4 space-y-4 w-full border-t" x-show="show_sort">
         <div class="p-6 bg-gray-200 border">Ordenar 1</div>
         <div class="p-6 bg-gray-200 border">Ordenar 2</div>
         <div class="p-6 bg-gray-200 border">Ordenar 3</div>
     </div>
 </div>
 
+@for ($i = 0; $i < 50; $i++) <p>&nbsp;</p>
+    @endfor
 
-{{-- filter categories --}}
+    {{-- filter categories --}}
 
 
-{{-- Results --}}
-<div class="px-8 py-4 text-xl">
+    {{-- Results --}}
+    {{-- <div class="px-8 py-4 text-xl">
     <h2>Showing 45 results from <strong>{{ $search }}</strong></h2>
-</div>
+    </div>
 
-<hr class="mt-4">
+    <hr class="mt-4"> --}}
 
-{{-- Results Grid/List --}}
-<div class="flex flex-wrap p-4 -mx-1 overflow-hidden">
+    {{-- Results Grid/List --}}
+    {{-- <div class="flex flex-wrap p-4 -mx-1 overflow-hidden">
     @foreach ([1,2,3,4,5,6,7,8] as $item)
     <div class="w-full px-2 my-2 overflow-hidden md:w-1/2 lg:w-1/4 xl:w-1/5">
         <div class="w-full h-64 bg-gray-200 border rounded"></div>
     </div>
     @endforeach
-</div>
+</div> --}}
 
-{{-- paginate --}}
-<div class="flex justify-center space-x-2 overflow-hidden">
+    {{-- paginate --}}
+    {{-- <div class="flex justify-center space-x-2 overflow-hidden">
     @foreach ([1,2,3,4,5,6] as $number)
     <div class="flex items-center justify-center w-8 h-8 bg-gray-200 border rounded-full">
         <span>{{ $number }}</span>
     </div>
     @endforeach
-</div>
+    </div>
 
-<hr class="mt-4">
+    <hr class="mt-4"> --}}
 
-{{-- suggest carousel --}}
-<div class="flex p-4 -mx-1 overflow-hidden flex-nowrap">
+    {{-- suggest carousel --}}
+    {{-- <div class="flex p-4 -mx-1 overflow-hidden flex-nowrap">
     @foreach ([1,2,3,4,5,6,7] as $item)
     <div class="flex-shrink-0 w-full px-2 my-2 overflow-hidden md:w-1/2 lg:w-1/4 xl:w-1/5">
         <div class="w-full h-64 bg-gray-200 border rounded"></div>
     </div>
     @endforeach
-</div>
+</div> --}}
 
-<!--
+    <!--
     {{-- search-bar --}}
     <div class="flex flex-col items-center justify-center w-full py-4 space-y-4 border-b">
 
@@ -219,7 +208,7 @@
 -->
 
 
-<!--
+    <!--
 
 
     <div class="p-8 space-y-4">

@@ -9,15 +9,19 @@ class ButtonIcon extends Component
 
     public $icon;
 
+    public $size;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $icon)
+    public function __construct(string $icon, string $size = 'md')
     {
         $this->icon = 'icon-' . $icon;
-        
+
+        $this->size = $size;
+
     }
 
     /**
