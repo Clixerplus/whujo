@@ -1,16 +1,17 @@
-<div x-data="{open:false, show_explore:false}" class="fixed top-0 left-0 z-50 w-screen h-20">
+<div x-data="{open:false, show_explore:false}" class="fixed inset-0 z-50">
     <div class="relative">
-
-        <div id="navbar" class="navbar navbar-transparent">
+        <div id="navbar" class="w-screen h-20 px-8 bg-pink-500 navbar navbar-transparent bg-opacity-80">
 
             {{-- logo brand --}}
-            <h1 class="h-12">
-                <a href="{{ route('home') }}">
-                    <span  class="text-4xl font-bold text-primary font-whujo">
-                        whujo
-                    </span>
-                </a>
-            </h1>
+            <div class="flex items-center">
+                <h1 class="">
+                    <a href="{{ route('home') }}">
+                        <span class="text-4xl font-bold text-primary font-whujo">
+                            whujo
+                        </span>
+                    </a>
+                </h1>
+            </div>
 
             {{-- landing page links --}}
             <div class="mx-auto">
@@ -33,8 +34,11 @@
                 </ul>
             </div>
 
-            {{-- auth buttons --}}
-            <div class="hidden p-4 lg:flex">
+            {{-- auth section --}}
+            <div class="items-center justify-center hidden w-auto h-20 lg:flex">
+                @auth
+                <x-dropdown-avatar />
+                @else
                 <ul class="flex items-center ml-auto space-x-4">
                     <li>
                         <a href="{{ route('login') }}" class="capitalize">
@@ -48,6 +52,7 @@
                         </a>
                     </li>
                 </ul>
+                @endauth
             </div>
 
             {{-- button side menu --}}
@@ -65,8 +70,7 @@
             <div class="w-4/5 h-full max-w-xs p-6 bg-white" x-show="open" @click.away="open = false"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="transform -translate-x-full"
-                x-transition:enter-end="transform translate-x-4/5"
-                x-transition:leave="ease-in duration-300"
+                x-transition:enter-end="transform translate-x-4/5" x-transition:leave="ease-in duration-300"
                 x-transition:leave-start="transform translate-x-4/5"
                 x-transition:leave-end="transform -translate-x-full">
 

@@ -25,11 +25,11 @@ html {
 }
 
 .navbar {
-    @apply flex items-center justify-between p-4 bg-white text-primary;
+    @apply flex items-center justify-between bg-white shadow text-primary;
 }
 
 .navbar-transparent {
-    @apply transition-colors duration-500 ease-in-out shadow lg:bg-opacity-0 lg:shadow-none;
+    @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0 lg:shadow-none;
 }
 
 .navbar-transparent a {
