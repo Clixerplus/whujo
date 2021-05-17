@@ -24,29 +24,35 @@ html {
     scroll-behavior: smooth;
 }
 
-.navbar-transparent {
-    @apply text-white bg-white shadow-2xl lg:bg-transparent lg:text-white lg:shadow-none;
+.navbar {
+    @apply flex items-center justify-between p-4 bg-white text-primary;
 }
 
-.navbar-transparent ul li,
-.navbar-transparent .btn-login {
-    @apply lg:text-white;
+.navbar-transparent {
+    @apply transition-colors duration-500 ease-in-out shadow lg:bg-opacity-0 lg:shadow-none;
 }
-.navbar-transparent .btn-login {
-    @apply lg:border-white;
+
+.navbar-transparent a {
+    @apply font-semibold text-white hover:text-primary;
+}
+
+.navbar-transparent .btn-join {
+    @apply bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50 ;
 }
 
 .navbar-dark {
-    @apply lg:bg-white lg:text-secondary lg:shadow-2xl;
+    @apply  transition-colors duration-500 ease-in-out bg-opacity-100 shadow;
 }
 
-.navbar-dark ul li,
-.navbar-dark .btn-login {
-    @apply lg:text-secondary lg:bg-transparent;
+.navbar-dark a {
+    @apply font-semibold text-secondary hover:text-primary;
 }
-.navbar-dark .btn-login {
-    @apply lg:border-secondary;
+
+.navbar-dark .btn-join {
+    @apply text-white bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50 ;
 }
+
+
 
 .tab ul li.active {
     @apply border-b-4 border-primary-light;
@@ -65,8 +71,6 @@ html {
     @apply inline-flex items-center justify-center text-base font-medium border rounded-full;
 }
 
-
-
 .toggle-check:checked {
     @apply border-success;
 }
@@ -75,8 +79,6 @@ html {
     @apply opacity-100;
 }
 
-
-
 .toggle-checkbox:checked {
     @apply transform translate-x-full border-green-400;
 }
@@ -84,7 +86,6 @@ html {
 .toggle-checkbox:checked + .toggle-label {
     @apply bg-green-400;
 }
-
 
 .toggle-radio:checked + .toggle-label {
     @apply text-white bg-secondary;
@@ -113,7 +114,7 @@ input[name="search"]:focus + #productType {
 .transition-300 {
     @apply transition duration-300 ease-in-out;
 }
-.transition-500 {
+.c {
     @apply transition duration-500 ease-in-out;
 }
 .transition-700 {
@@ -151,4 +152,3 @@ input[name="search"]:focus + #productType {
 .radio-buttom > input[type="radio"]:checked + span {
     @apply opacity-100;
 }
-
