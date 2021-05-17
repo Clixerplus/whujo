@@ -6,4 +6,4 @@ mix.postCss("resources/css/app.css", "public/css")
     })
     .js("resources/js/app.js", "public/js");
 
-mix.browserSync("whujo.test");
+mix.browserSync("localhost");
