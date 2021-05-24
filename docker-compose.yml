@@ -20,6 +20,7 @@ services:
         depends_on:
             - mysql
             - redis
+            - phpmyadmin
     # selenium:
     #     image: 'selenium/standalone-chrome'
     #     volumes:
