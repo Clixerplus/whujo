@@ -95,7 +95,7 @@ $results = App\Models\Experience::all();
 
             {{--Breadcrumb--}}
             <div class="flex items-end justify-start mb-4 text-sm font-light text-gray-500">
-                <a href="{{ route('index') }}" class="text-primary">Inicio</a>
+                <a href="{{ route('home') }}" class="text-primary">Inicio</a>
                 <x-icon-chevron-forward class="h-5 p-1 mt-0.5" />
                 <span>Busqueda</span>
             </div>
