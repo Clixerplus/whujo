@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Tag;
+use App\Models\User;
 use App\Models\Service;
 use Livewire\Component;
 use App\Models\Experience;
@@ -47,7 +48,34 @@ class SearchProductForm extends Component
 
     protected function search()
     {
-        return Tag::SearchByName($this->search, $this->tagsType[$this->productType])
-            ->pluck('name')->take(5);
+        $tags = Tag::SearchByName($this->search, $this->tagsType[$this->productType])
+            ->pluck('name')->take(5)->toArray();
+
+
+        $users = User::where('name', 'like', '%' . $this->search . '%')
+            ->pluck('name')->take(5)->toArray();
+
+
+        $services = Service::withAnyTags([$this->search], Service::class)
+            ->orWhere('name', 'like', '%' . $this->search . '%')
+            ->pluck('name')->take(5)->toArray();
+
+
+        $experiences = Experience::withAnyTags([$this->search], Experience::class)
+            ->orWhere('name', 'like', '%' . $this->search . '%')
+            ->pluck('name')->take(5)->toArray();
+
+        $shareACoffees = ShareACoffee::withAnyTags([$this->search], ShareACoffee::class)
+            ->orWhere('name', 'like', '%' . $this->search . '%')
+            ->pluck('name')->take(5)->toArray();
+
+
+        return [
+            'tags' => $tags,
+            'users' => $users,
+            'services' => $services,
+            'experiences' => $experiences,
+            'share a coffee' => $shareACoffees
+        ];
     }
 }
