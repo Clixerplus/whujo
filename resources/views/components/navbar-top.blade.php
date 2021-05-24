@@ -1,6 +1,6 @@
-<div x-data="{open:false, show_explore:false}" class="fixed inset-0 z-50">
+<div x-data="{open:false, show_explore:false}" class="fixed z-50 h-20 ">
     <div class="relative">
-        <div id="navbar" class="w-screen h-20 px-8 bg-pink-500 navbar navbar-transparent bg-opacity-80">
+        <div id="navbar" class="w-screen h-20 px-8 navbar navbar-transparent bg-opacity-80">
 
             {{-- logo brand --}}
             <div class="flex items-center">
@@ -47,7 +47,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('login') }}" class="px-4 py-2 font-semibold rounded-md btn-join">
+                        <a href="{{ route('login') }}" class="px-4 py-2 font-semibold rounded btn-join">
                             {{ __('Join whujo') }}
                         </a>
                     </li>
@@ -65,73 +65,84 @@
         </div>
 
         {{-- side menu --}}
-        <div class="absolute inset-0 top-0 w-screen h-screen overflow-hidden bg-secondary bg-opacity-80 " x-show="open">
+        <template x-if="open">
+            <div class="absolute inset-0 w-screen h-screen opacity-75 bg-secondary"
+                x-transition:enter="transition-opacity ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-75"
+                x-transition:leave="ease-in duration-300"
+                x-transition:leave-start="opacity-75"
+                x-transition:leave-end="opacity-0"></div>
 
-            <div class="w-4/5 h-full max-w-xs p-6 bg-white" x-show="open" @click.away="open = false"
+            <div class="fixed top-0 left-0 w-screen h-screen overflow-hidden" x-show="open"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="transform -translate-x-full"
                 x-transition:enter-end="transform translate-x-4/5" x-transition:leave="ease-in duration-300"
                 x-transition:leave-start="transform translate-x-4/5"
                 x-transition:leave-end="transform -translate-x-full">
 
-                {{-- register side menu --}}
-                <div class="flex justify-between">
-                    <a href="{{ route('login') }}" class="px-4 py-2 font-semibold text-white rounded-md bg-primary">
-                        {{ __('Join whujo') }}
-                    </a>
-                    <button @click="open = false" class="text-secondary focus:outline-none">
-                        <svg class="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path class="text-gray-600" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
+                <div class="absolute top-0 left-0 w-4/5 h-full max-w-xs p-6 bg-white" @click.away="open = false">
 
-
-                {{-- options link side menu --}}
-                <ul class="py-3 mt-3 space-y-3 text-gray-600">
-                    <li>
-                        <a href="{{ route('login') }}" class="capitalize">{{ __('login') }}</a>
-                    </li>
-                    <li>
-                        <button @click="show_explore = !show_explore"
-                            class="flex items-baseline justify-between w-full capitalize focus:outline-none">
-                            <span>{{ __('explore') }}</span>
-                            <x-icon-angle-down class="w-3 h-3 transform rotate-90" />
+                    {{-- register side menu --}}
+                    <div class="flex justify-between">
+                        <a href="{{ route('login') }}" class="px-4 py-2 font-semibold text-white rounded-md bg-primary">
+                            {{ __('Join whujo') }}
+                        </a>
+                        <button @click="open = false" class="text-secondary focus:outline-none">
+                            <svg class="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                                <path class="text-gray-600" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                         </button>
+                    </div>
 
-                        <ul class="w-full p-3 space-y-3 text-gray-500" x-show="show_explore">
-                            <li>
-                                <a href="#" class="capitalize">{{ __('services') }}</a>
-                            </li>
-                            <li>
-                                <a href="#" class="capitalize">{{ __('experiences') }}</a>
-                            </li>
-                            <li>
-                                <a href="#" class="capitalize">{{ __('share a coffe') }}</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
 
-                <h3 class="py-2 mt-8 font-semibold border-b text-secondary">{{ __('General') }}</h3>
-                <ul class="py-3 space-y-3 text-gray-400">
-                    <li>
-                        <a href="/" class="capitalize">{{ __('home') }}</a>
-                    </li>
-                    <li>
-                        <a href="#">Landing page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Landing page 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Landing page 3</a>
-                    </li>
-                </ul>
+                    {{-- options link side menu --}}
+                    <ul class="py-3 mt-3 space-y-3 text-gray-600">
+                        <li>
+                            <a href="{{ route('login') }}" class="capitalize">{{ __('login') }}</a>
+                        </li>
+                        <li>
+                            <button @click="show_explore = !show_explore"
+                                class="flex items-baseline justify-between w-full capitalize focus:outline-none">
+                                <span>{{ __('explore') }}</span>
+                                <x-icon-angle-down class="w-3 h-3 transform rotate-90" />
+                            </button>
 
+                            <ul class="w-full p-3 space-y-3 text-gray-500" x-show="show_explore">
+                                <li>
+                                    <a href="#" class="capitalize">{{ __('services') }}</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="capitalize">{{ __('experiences') }}</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="capitalize">{{ __('share a coffe') }}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h3 class="py-2 mt-8 font-semibold border-b text-secondary">{{ __('General') }}</h3>
+                    <ul class="py-3 space-y-3 text-gray-400">
+                        <li>
+                            <a href="/" class="capitalize">{{ __('home') }}</a>
+                        </li>
+                        <li>
+                            <a href="#">Landing page 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Landing page 2</a>
+                        </li>
+                        <li>
+                            <a href="#">Landing page 3</a>
+                        </li>
+                    </ul>
+
+                </div>
             </div>
-        </div>
+        </template>
+        
     </div>
 </div>
 
