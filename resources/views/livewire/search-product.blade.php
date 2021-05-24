@@ -41,12 +41,12 @@
 
 
 {{-- filter and sort container --}}
-<div class="sticky top-20 max-h-screen overflow-hidden overflow-y-auto bg-white shadow  border-b ">
+<div class="sticky max-h-screen overflow-hidden overflow-y-auto bg-white border-b shadow top-20 ">
 
-    <div class="p-4 w-full flex items-center flex-wrap">
+    <div class="flex flex-wrap items-center w-full p-4">
 
         {{-- search-input --}}
-        <div class="text-center bg-gray-50 w-full md:w-2/3 pb-4 xs:pb-0">
+        <div class="w-full pb-4 text-center bg-gray-50 md:w-2/3 xs:pb-0">
             <x-input key="search" x-ref="searchInput" placeholder="Search here..."
                 class="w-full bg-gray-50 border-gray-50 focus:ring-white" />
         </div>
@@ -73,7 +73,7 @@
 
 
     {{-- filters wrapper --}}
-    <div class="p-4 space-y-4 w-full border-t" x-show="show_filter">
+    <div class="w-full p-4 space-y-4 border-t" x-show="show_filter">
         <div class="p-6 bg-gray-200 border"></div>
         <div class="p-6 bg-gray-200 border"></div>
         <div class="p-6 bg-gray-200 border"></div>
@@ -83,14 +83,15 @@
     </div>
 
     {{-- sort wrapper --}}
-    <div class="p-4 space-y-4 w-full border-t" x-show="show_sort">
+    <div class="w-full p-4 space-y-4 border-t" x-show="show_sort">
         <div class="p-6 bg-gray-200 border">Ordenar 1</div>
         <div class="p-6 bg-gray-200 border">Ordenar 2</div>
         <div class="p-6 bg-gray-200 border">Ordenar 3</div>
     </div>
 </div>
 
-@for ($i = 0; $i < 50; $i++) <p>&nbsp;</p>
+@for ($i = 0; $i < 50; $i++) 
+<p>&nbsp;</p>
     @endfor
 
     {{-- filter categories --}}

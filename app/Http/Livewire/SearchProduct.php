@@ -37,7 +37,7 @@ class SearchProduct extends SearchableComponent
     public function mount()
     {
         $this->search = request()->search;
-        $this->type   = request()->type;
+        $this->type   = 'experience';
     }
 
     public function render()
