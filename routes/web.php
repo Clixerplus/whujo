@@ -40,6 +40,10 @@ Route::get('/', HomePageController::class);
 Route::get('/home', HomePageController::class)->name('home');
 Route::get('/listing', ListinPageController::class)->name('listing-product');
 
+Route::get('/meet/room/{link}', function ($link) {
+    return view('site.meet-room', ['link'=> $link]);
+})->name('meet-room');
+
 Route::post('/payment', CheckoutController::class)->name('payment');
 Route::get('/checkout', function (Request $request) {
 
@@ -105,7 +109,7 @@ Route::get('success', function () {
     $response = Http::withHeaders([
         'Authorization' => 'Bearer TEST-6889998068947570-041601-3ea0d8106e16c0556e29d80593e6787c-744459939'
     ])->get('https://api.mercadopago.com/v1/payments/' . request()->input('payment_id'));
-    return view('pages.payment',  ['response'=> json_decode($response->body())]);
+    return view('pages.payment',  ['response' => json_decode($response->body())]);
 })->name('checkout.thanks');
 Route::get('checkout/pending', function () {
     return 'Pending';
@@ -156,7 +160,7 @@ Route::get('/product/{type}/{id}/{slug}', function ($type, $id) {
 
 
 
-Route::view('icons','tests.icons');
+Route::view('icons', 'tests.icons');
 
 
 
