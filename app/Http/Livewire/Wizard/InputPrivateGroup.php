@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use Illuminate\Database\Eloquent\Model as ProductModel;
+use App\Models\Experience as ProductModel;
 use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
 class InputPrivateGroup extends StepBuilderWizard
@@ -11,11 +11,10 @@ class InputPrivateGroup extends StepBuilderWizard
 
     protected $rules;
 
-    public function mount(ProductModel $model)
+    public function mount($model=null)
     {
-        parent::mount($model);
 
-        $this->product->privateGroup = (!is_null($this->product->privateGroup)) ?: false;
+        $this->product->privateGroup =  false;
     }
 
     protected function setValidationRules(): void
@@ -33,5 +32,5 @@ class InputPrivateGroup extends StepBuilderWizard
             ['minimumPrice' => self::MINIMUN_PRICE]
         );
     }
-    
+
 }

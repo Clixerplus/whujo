@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Wizard;
 
-use App\Http\Livewire\Traits\CanValidateStepChange;
 use Livewire\Component;
 use App\ValueObjcets\TimeVO;
-use Illuminate\Database\Eloquent\Model as ProductModel;
+use App\Models\Experience as ProductModel;
+use App\Http\Livewire\Traits\CanValidateStepChange;
 
 class InputDuration extends Component
 {
@@ -28,11 +28,11 @@ class InputDuration extends Component
 
     public function mount(ProductModel $model = null)
     {
-        $this->product = $model;
+        $this->product = ProductModel::all()->first();
 
-        $this->product_hour = $model->duration->hour;
+        $this->product_hour = $this->product->duration->hour;
 
-        $this->product_minute = $model->duration->minute;
+        $this->product_minute = $this->product->duration->minute;
     }
 
     public function save()

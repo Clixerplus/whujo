@@ -13,7 +13,7 @@ class InputActivityLevel extends StepBuilderWizard
     protected function setValidationRules(): void
     {
         $this->rules = [
-            'product.activityLevel' => 'required|in:' . ACTIVITY_LVL_LIST
+            'product.activityLevel' => 'required|in:LIGHT,MODERATE,EXTREME,DEMANDING'
         ];
     }
 
@@ -21,10 +21,10 @@ class InputActivityLevel extends StepBuilderWizard
     {
         return view('livewire.wizard.input-activity-level', [
             'levelOptions' => [
-                ACTIVITY_LVL_LIGHT,
-                ACTIVITY_LVL_MODERATE,
-                ACTIVITY_LVL_EXTREME,
-                ACTIVITY_LVL_DEMANDING
+                'LIGHT',
+                'MODERATE',
+                'EXTREME',
+                'DEMANDING'
             ]
         ]);
     }
