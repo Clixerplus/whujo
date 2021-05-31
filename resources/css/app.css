@@ -59,7 +59,7 @@ html {
 }
 
 .whujo-brand {
-    @apply font-bold text-primary;
+    @apply font-extrabold text-primary;
     font-family: arial;
 }
 
