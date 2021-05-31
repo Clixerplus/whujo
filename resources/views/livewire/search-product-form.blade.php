@@ -1,54 +1,112 @@
-@php
-$placeholder = [
-'service'=> 'Make your life easier',
-'experience'=> 'Discover a new world',
-'share-a-coffee'=> 'Share amazing moments'
-];
-@endphp
-<div>
-    <form method="get" action="/listing">
+<section class="relative w-full mx-auto bg-white bg-opacity-50 rounded-md"
+    x-data="{ isSearchActive: @entangle('isSearchActive') }">
+    <form action="/listing">
         <div class="relative">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                <x-icon-search class="w-5 h-5 text-gray-400" />
+            </span>
 
-            <input type="text" wire:model="search" name="search" wire:keydown="activeSearch"
-                placeholder="{{ __($placeholder[$productType]) }}" class="w-full p-4">
+            <input type="text" placeholder="Type Something" spellcheck="false" data-ms-editor="true"
+                class="w-full py-4 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-red-500 dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-red-500"
+                wire:model.debounce.500ms="search" name="search" wire:keydown="activateSearch"
+                wire:keydown.escape="deactivateSearch" autocomplete="false">
 
             <x-button type="submit"
-                class="absolute top-0 right-0 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
-                <span class="hidden lg:inline">{{ __('Search') }}</span>
+                class="absolute top-0 right-0 flex items-center h-12 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
+                {{ __('Search') }}
                 <x-icon-search class="w-6 h-6 lg:hidden" />
             </x-button>
-            {{-- @if (is_null($results))
-            {{ dd($results) }} --}}
-            <div class="hidden mt-2 overflow-y-auto bg-white rounded h-80">
-                @forelse ($results as $key => $result)
+        </div>
+        <div class="absolute inset-x-0 w-full mt-2 overflow-y-auto text-left bg-white border rounded max-h-44"
+            x-show="isSearchActive">
+            @if($results)
+            <ul>
+                @foreach ($results as $type_results => $data_result)
+                <li class="px-4 py-2 font-medium text-secondary capitalize border-b border-gray-200 @if ($loop->iteration > 1) mt-6 @endif">
+                    {{ str_replace('-',' ', __($type_results)) }}
+                </li>
 
-                    <ul class="text-left ">
-                        <li class="p-4 capitalize border-b text-secondary"><strong>{{ $key }}</strong></li>
-                        @foreach ($result as $value)
-                        <li class="py-2 text-sm text-gray-600 text-light">
-                            <a href="#" class="w-full h-full px-6 hover:bg-black">{{ $value }}</a>
-                        </li>
-                        @endforeach
-                    </ul>
+                @foreach ($data_result as $result)
+                <li class="w-full">
+                    <a href="#"
+                        class="block h-full px-6 py-2 text-sm text-gray-500 capitalize transition-colors duration-300 ease-out hover:bg-red-100 hover:text-gray-700"
+                        x-on:click="$wire.pickResult('{{ $result }}')">
+                        {{ $result }}
+                    </a>
+                </li>
+                @endforeach
 
-                @empty
-                    No results
-                @endforelse
-            {{-- @endif --}}
-            </div>
+                @endforeach
+            </ul>
+            @else
+            <p class="p-4 text-sm text-gray-500">
+                {{ __('No results found') }}
+            </p>
+            @endif
         </div>
     </form>
+</section>
+
+
+
+
+{{-- <div>
+    <form method="get" action="/listing">
+        <div class="relative ">
+
+            <input type="text" wire:model.debounce.500ms="search" name="search" wire:keydown="activateSearch"
+                wire:keydown.escape="deactiveSearch" placeholder="{{ __('Que estas buscando?') }}"
+class="w-full p-4 rounded" autocomplete="false">
+
+<x-button type="submit"
+    class="absolute top-0 right-0 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
+    <span class="hidden lg:inline">{{ __('Search') }}</span>
+    <x-icon-search class="w-6 h-6 lg:hidden" />
+</x-button>
+
+
+@if($activateSearch)
+<div class="absolute inset-x-0 h-auto mt-1 top-12">
+    <div class="h-48 overflow-y-auto bg-white border rounded shadow max-h-48">
+        @if($results)
+        <div
+            class="absolute inset-x-0 px-6 py-3 mx-5 mt-4 overflow-y-auto bg-white border border-gray-300 rounded-md max-h-72">
+            @foreach ($results as $key => $item)
+
+            <span href="#" class="block py-1 font-medium text-gray-700">
+                <span class="">
+                    {{ str_replace("-"," ",$key) }}
+                </span>
+            </span>
+
+            @foreach ($item as $result)
+            <a href="#" class="block py-1">
+                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{{ str_replace("-"," ",$result) }}</p>
+            </a>
+
+            @endforeach
+            @endforeach
+        </div>
+
+        @else
+        <h3 class="p-4">No results was found</h3>
+        @endif
+    </div>
 </div>
+@endif
+</div>
+</form>
+</div> --}}
 {{-- <div>
     <form method="get" action="/listing">
         <div class="flex flex-col items-center justify-center w-full py-2 mb-8 text-lg border rounded-md shadow-xl md:flex-row md:px-2 md:bg-white">
 
             <div class="relative w-full md:flex-1 md:border-r md:mb-0">
                 <input type="text" wire:model="search" class="w-full px-4 focus:outline-none " name="search"
-                    wire:keydown="activeSearch" placeholder="{{ __($placeholder[$productType]) }}">
+                    wire:keydown="activateSearch" placeholder="{{ __($placeholder[$productType]) }}">
 
 
-<ul class="absolute left-0 z-10 w-full mt-5 overflow-y-auto bg-white @if (! $activeSearch) hidden @endif"
+<ul class="absolute left-0  w-full mt-5 overflow-y-auto bg-white @if (! $activateSearch) hidden @endif"
     style="max-height: 220px;">
 
     @forelse ($results as $key => $result)

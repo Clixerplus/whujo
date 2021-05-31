@@ -11,71 +11,60 @@ use App\Models\ShareACoffee;
 
 class SearchProductForm extends Component
 {
-    protected $tagsType = [
+    protected const TAGS_TYPE = [
         'service' => Service::class,
         'experience' => Experience::class,
         'share-a-coffee' => ShareACoffee::class
     ];
 
-    public $productType = 'service';
+    protected const MAX_RESULTS = 5;
 
-    public $search = null;
+    public string $search = '';
 
-    public $results = [];
+    public array $results = [];
 
-    public $activeSearch = false;
+    public bool $isSearchActive = false;
 
-    public function activeSearch()
+    public function activateSearch()
     {
-        $this->activeSearch = true;
+        $this->isSearchActive = true;
+    }
+
+    public function deactivateSearch()
+    {
+        $this->isSearchActive = false;
     }
 
     public function pickResult(string $value)
     {
         $this->search = $value;
         $this->reset('results');
-        $this->reset('activeSearch');
+        $this->reset('isSearchActive');
     }
 
     public function render()
     {
-        if (!empty($this->search) && $this->activeSearch) {
-            $this->results = $this->search();
+        if (!empty($this->search) && $this->isSearchActive) {
+            $this->results = $this->makeSearch();
         }
 
         return view('livewire.search-product-form');
     }
 
-    protected function search()
+    protected function makeSearch()
     {
-        $tags = Tag::SearchByName($this->search, $this->tagsType[$this->productType])
-            ->pluck('name')->take(5)->toArray();
+        $results = [];
 
+        foreach (self::TAGS_TYPE as $tag_key => $tag_class) {
 
-        $users = User::where('name', 'like', '%' . $this->search . '%')
-            ->pluck('name')->take(5)->toArray();
+            $result = Tag::SearchByName($this->search, $tag_class)
+                ->pluck('name')->take(self::MAX_RESULTS)->toArray();
 
+            if (count($result)) {
+                $results[$tag_key] = $result;
+            }
+        }
 
-        $services = Service::withAnyTags([$this->search], Service::class)
-            ->orWhere('name', 'like', '%' . $this->search . '%')
-            ->pluck('name')->take(5)->toArray();
-
-
-        $experiences = Experience::withAnyTags([$this->search], Experience::class)
-            ->orWhere('name', 'like', '%' . $this->search . '%')
-            ->pluck('name')->take(5)->toArray();
-
-        $shareACoffees = ShareACoffee::withAnyTags([$this->search], ShareACoffee::class)
-            ->orWhere('name', 'like', '%' . $this->search . '%')
-            ->pluck('name')->take(5)->toArray();
-
-
-        return [
-            'tags' => $tags,
-            'users' => $users,
-            'services' => $services,
-            'experiences' => $experiences,
-            'share a coffee' => $shareACoffees
-        ];
+        return $results;
     }
 }
