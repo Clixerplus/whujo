@@ -9,7 +9,7 @@ use App\Models\ShareACoffee;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use App\Http\Livewire\AbstractComponents\SearchableComponent;
 
-class SearchProduct extends SearchableComponent
+class ProductListing extends SearchableComponent
 {
     public $search;
 
@@ -45,7 +45,7 @@ class SearchProduct extends SearchableComponent
 
         $results = empty($this->search) ?:  $this->getResults();
 
-        return view('livewire.search-product', [
+        return view('livewire.product-listing', [
             'results' => $results,
             'tags' => $this->getTags($this->type),
         ]);

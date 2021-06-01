@@ -1,6 +1,6 @@
 
 <x-guest-layout>
 
-    <livewire:search-product/>
+    <livewire:product-listing/>
 
 </x-app-nonav-layout>
