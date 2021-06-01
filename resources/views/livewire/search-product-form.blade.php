@@ -9,7 +9,7 @@
             <input type="text" placeholder="Type Something" spellcheck="false" data-ms-editor="true"
                 class="w-full py-4 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-red-500 dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-red-500"
                 wire:model.debounce.500ms="search" name="search" wire:keydown="activateSearch"
-                wire:keydown.escape="deactivateSearch" autocomplete="false">
+                wire:keydown.escape="deactivateSearch" autocomplete="false" required>
 
             <x-button type="submit"
                 class="absolute top-0 right-0 flex items-center h-12 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
