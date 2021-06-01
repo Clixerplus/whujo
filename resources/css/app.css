@@ -24,6 +24,8 @@ html {
     scroll-behavior: smooth;
 }
 
+[x-cloak] { display: none; }
+
 .navbar {
     @apply flex items-center justify-between bg-white shadow text-primary;
 }

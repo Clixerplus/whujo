@@ -1,4 +1,4 @@
-<div x-data="{open:false, show_explore:false}" class="fixed z-50 h-20 ">
+<div x-data="{open_side_menu:false, show_explore:false}" class="fixed z-50 h-20 ">
     <div class="relative">
         <div id="navbar" class="w-screen h-20 px-8 navbar navbar-transparent bg-opacity-80">
 
@@ -16,21 +16,9 @@
             {{-- landing page links --}}
             <div class="mx-auto">
                 <ul class="hidden space-x-8 lg:flex">
-                    <li class="">
-                        <a href="#">
-                            Landing page 1
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#">
-                            Landing page 2
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="#">
-                            Landing page 3
-                        </a>
-                    </li>
+                    <li class=""><a href="#">Landing page 1</a></li>
+                    <li class=""><a href="#">Landing page 2</a></li>
+                    <li class=""><a href="#">Landing page 3</a></li>
                 </ul>
             </div>
 
@@ -56,7 +44,7 @@
             </div>
 
             {{-- button side menu --}}
-            <button @click="open = ! open" class="text-secondary focus:outline-none lg:hidden">
+            <button @click="open_side_menu = ! open_side_menu" class="text-secondary focus:outline-none lg:hidden">
                 <svg class="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
@@ -65,30 +53,32 @@
         </div>
 
         {{-- side menu --}}
-        <template x-if="open">
-            <div class="absolute inset-0 w-screen h-screen opacity-75 bg-secondary"
-                x-transition:enter="transition-opacity ease-out duration-300"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-75"
-                x-transition:leave="ease-in duration-300"
-                x-transition:leave-start="opacity-75"
-                x-transition:leave-end="opacity-0"></div>
+        <div class="absolute inset-0 z-50 w-screen h-screen overflow-hidden" x-cloak x-show="open_side_menu">
+            <div class="relative h-full w-ful">
 
-            <div class="fixed top-0 left-0 w-screen h-screen overflow-hidden" x-show="open"
+                {{-- dark mask --}}
+                <div class="absolute inset-0 h-full bg-black bg-opacity-75"
+                x-show="open_side_menu"
                 x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="transform -translate-x-full"
-                x-transition:enter-end="transform translate-x-4/5" x-transition:leave="ease-in duration-300"
-                x-transition:leave-start="transform translate-x-4/5"
-                x-transition:leave-end="transform -translate-x-full">
+                x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-90"
+                x-transition:leave="ease-in duration-300"
+                x-transition:leave-start=" opacity-90"x-transition:leave-end=" opacity-0"></div>
 
-                <div class="absolute top-0 left-0 w-4/5 h-full max-w-xs p-6 bg-white" @click.away="open = false">
+                {{-- menu wrapper --}}
+                <div class="absolute top-0 left-0 w-4/5 h-full max-w-xs p-6 bg-white"
+                    @click.away="open_side_menu = false"
+                    x-show="open_side_menu"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="transform -translate-x-full" x-transition:enter-end="transform translate-x-0"
+                    x-transition:leave="ease-in duration-300"
+                    x-transition:leave-start=" transform translate-x-0"x-transition:leave-end=" transform -translate-x-full">
 
                     {{-- register side menu --}}
                     <div class="flex justify-between">
                         <a href="{{ route('login') }}" class="px-4 py-2 font-semibold text-white rounded-md bg-primary">
                             {{ __('Join whujo') }}
                         </a>
-                        <button @click="open = false" class="text-secondary focus:outline-none">
+                        <button @click="open_side_menu = false" class="text-secondary focus:outline-none">
                             <svg class="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                 <path class="text-gray-600" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -140,9 +130,10 @@
                     </ul>
 
                 </div>
+
             </div>
-        </template>
-        
+        </div>
+
     </div>
 </div>
 
