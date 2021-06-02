@@ -1,8 +1,9 @@
 <section class="relative w-full mx-auto bg-white bg-opacity-50 rounded-md"
     x-data="{ isSearchActive: @entangle('isSearchActive') }">
     <form action="/listing">
+
         <div class="relative">
-            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <span class="absolute inset-y-0 left-0 items-center hidden pl-3 md:flex ">
                 <x-icon-search class="w-5 h-5 text-gray-400" />
             </span>
 
@@ -13,23 +14,24 @@
 
             <x-button type="submit"
                 class="absolute top-0 right-0 flex items-center h-12 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
-                {{ __('Search') }}
-                <x-icon-search class="w-6 h-6 lg:hidden" />
+                <span class="hidden md:inline-flex">{{ __('Search') }}</span>
+                <x-icon-search class="w-6 h-6 md:hidden" />
             </x-button>
         </div>
+
         <div class="absolute inset-x-0 w-full mt-2 overflow-y-auto text-left bg-white border rounded max-h-44"
-            x-show="isSearchActive">
+            x-show="isSearchActive" x-cloak>
             @if($results)
             <ul>
                 @foreach ($results as $type_results => $data_result)
-                <li class="px-4 py-2 font-medium text-secondary capitalize border-b border-gray-200 @if ($loop->iteration > 1) mt-6 @endif">
+                <li
+                    class="px-4 py-2 font-medium text-secondary capitalize border-b border-gray-200 @if ($loop->iteration > 1) mt-6 @endif">
                     {{ str_replace('-',' ', __($type_results)) }}
                 </li>
 
                 @foreach ($data_result as $result)
                 <li class="w-full">
-                    <a href="#"
-                        class="block h-full px-6 py-2 text-sm text-gray-500 capitalize transition-colors duration-300 ease-out hover:bg-red-100 hover:text-gray-700"
+                    <a class="block h-full px-6 py-2 text-sm text-gray-500 capitalize transition-colors duration-300 ease-out cursor-pointer hover:bg-red-100 hover:text-gray-700"
                         x-on:click="$wire.pickResult('{{ $result }}')">
                         {{ $result }}
                     </a>
@@ -44,6 +46,7 @@
             </p>
             @endif
         </div>
+
     </form>
 </section>
 
