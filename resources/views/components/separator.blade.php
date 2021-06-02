@@ -1,1 +1,1 @@
-<hr {{ $attributes->merge(['class'=>"hidden my-8 border-4 rounded w-44 border-primary md:block"]) }}>
+<hr {{ $attributes->merge(['class'=>"border-2 rounded w-24 md:w-44 border-primary md:block"]) }}>
