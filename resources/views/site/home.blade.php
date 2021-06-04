@@ -47,69 +47,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
     </header>
 
     {{-- section: services --}}
-    <div class="bg-gray-100 ">
-        <x-section-container class="flex flex-col items-center space-y-8 lg:h-screen lg:flex-row">
 
-            <div class="w-full md:pr-8 lg:w-2/5">
-                <x-section-title>
-
-                    {{-- title --}}
-                    Variedad de <span class=" text-primary"> Servicios</span>
-                    <div class="mt-4"></div>
-
-                    <x-separator class="mt-4" />
-
-                    <x-slot name="subtitle">
-                        <span class="text-xl">
-                            Desde lo mas simple hasta lo complejo ofreciendo servicios adaptados a tus requerimientos.
-                            Diseñados para tus necesidades
-                        </span>
-                    </x-slot>
-
-                </x-section-title>
-            </div>
-
-            <div class="relative flex flex-wrap justify-end w-full lg:w-3/5">
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-24 ">
-                    <img src="{{ asset('images/service-category-01.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-8 ">
-                    <img src="{{ asset('images/service-category-02.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-24 ">
-                    <img src="{{ asset('images/service-category-07.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-4 ">
-                    <img src="{{ asset('images/service-category-04.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-12 ">
-                    <img src="{{ asset('images/service-category-05.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:-mt-16 ">
-                    <img src="{{ asset('images/service-category-06.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 ">
-                    <img src="{{ asset('images/service-category-03.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:-mt-20 ">
-                    <img src="{{ asset('images/service-category-08.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:-mt-12 ">
-                    <img src="{{ asset('images/service-category-09.jpeg') }}"
-                        class="object-cover w-full h-full lg:rounded" alt="" />
-                </div>
-            </div>
-
-        </x-section-container>
-    </div>
 
     {{-- section: products --}}
     <x-section-container class="relative ">
