@@ -1,6 +1,6 @@
 <x-guest-layout>
-    {{--https://www.pexels.com/es-es/foto/foto-de-personas-que-buscan-en-el-portatil-3182743/
-https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
+    {{-- https://www.pexels.com/es-es/foto/foto-de-personas-que-buscan-en-el-portatil-3182743/
+https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- header: hero-banner --}}
     <header class="overflow-x-hidden ">
@@ -38,7 +38,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
 
                     {{-- form search component --}}
                     <div class="mt-8">
-                        <livewire:search-product-form/>
+                        <livewire:search-product-form />
                     </div>
 
                 </div>
@@ -63,6 +63,8 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
                     y conoce el mundo <span class="text-xl whujo-brand">whujo</span>
                 </div>
             </x-slot>
+
+
         </x-section-title>
 
 
@@ -97,53 +99,77 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
 
 
     {{-- section: cta-share-a-coffee --}}
-    <div class="relative bg-fixed bg-center bg-cover"
-        style="background-image: url({{ asset('images/bg/section-bg-share-a-coffe.jpeg') }}); ">
+    <div class="relative bg-black">
+        <x-section-container class="z-20 flex flex-col items-center space-y-8 lg:h-screen lg:flex-row">
 
-        <section class="p-0 mx-auto md:py-24 max-w-screen md:max-w-2xl lg:max-w-7xl md:px-6">
-            <div class="py-16 text-center bg-opacity-75 rounded bg-gray-50 " style=" backdrop-filter: blur(5px);">
+            <div class="w-full md:pr-8 lg:w-2/5">
+                <x-section-title>
 
+                    {{-- title --}}
 
-                <h1 class="text-4xl font-bold text-secondary md:text-5xl">
-                    Comparte <span class="text-primary"> un Momento</span>
-                </h1>
+                    <span class="text-white">Share a</span>
+                    <span class=" text-primary"> Coffee </span>
 
-                <x-separator class="mx-auto mt-4"/>
+                    <div class="mt-4"></div>
 
-                <h3 class="px-4 mt-8 text-lg font-light text-secondary md:text-2xl md:text-gray-700">
-                    Compartir un café, un té, un mate o cualquiera que sea tu bebida favorita, haciendo de un
-                    pequeño momento una experiencia, reconectándonos con lo perdido.
-                </h3>
-                <div class="mt-8">
-                    <x-button class="text-white bg-primary hover:ring hover:ring-primary hover:ring-opacity-50">
-                        {{ __('Let\'s go') }}
-                    </x-button>
-                </div>
-                {{-- <x-section-title class="">
-
+                    <x-separator class="mt-4" />
 
                     <x-slot name="subtitle">
-
-                        <div class="px-4"></div>
-
-                        <x-separator class="mx-auto my-4" />
-                    </x-slot>
-
-                    <x-slot name="description">
-                        <div class="max-w-3xl mx-auto text-sm font-light text-gray-700">
-                            Compartir un café, un té, un mate o cualquiera que sea tu bebida favorita, haciendo de un
-                            pequeño momento una experiencia, reconectándonos con lo perdido.
-                        </div>
+                        <span class="text-xl text-gray-50">
+                            Desde lo mas simple hasta lo complejo ofreciendo servicios adaptados a tus requerimientos.
+                            Diseñados para tus necesidades
+                        </span>
                     </x-slot>
 
                     <x-slot name="call_to_action">
-
+                        <x-button class="text-white bg-primary">Vamos...!</x-button>
                     </x-slot>
 
-                </x-section-title> --}}
-
+                </x-section-title>
             </div>
-        </section>
+
+            <div class="relative flex flex-wrap justify-end w-full lg:w-3/5">
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-24 ">
+                    <img src="{{ asset('images/service-category-01.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-8 ">
+                    <img src="{{ asset('images/service-category-02.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-24 ">
+                    <img src="{{ asset('images/service-category-07.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-4 ">
+                    <img src="{{ asset('images/service-category-04.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:mt-12 ">
+                    <img src="{{ asset('images/service-category-05.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:-mt-16 ">
+                    <img src="{{ asset('images/service-category-06.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 ">
+                    <img src="{{ asset('images/service-category-03.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:-mt-20 ">
+                    <img src="{{ asset('images/service-category-08.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+                <div class="flex w-1/3 h-32 lg:p-2 lg:w-1/5 lg:h-48 lg:-mt-12 ">
+                    <img src="{{ asset('images/service-category-09.jpeg') }}"
+                        class="object-cover w-full h-full lg:rounded" alt="" />
+                </div>
+            </div>
+
+        </x-section-container>
+
+            {{-- <x-icon-coffee class="absolute z-10 text-white opacity-25 right-24 top-24 h-96 w-96"></x-icon-coffee> --}}
 
     </div>
 
