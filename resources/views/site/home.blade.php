@@ -99,7 +99,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
 
     {{-- section: cta-share-a-coffee --}}
-    <div class="relative bg-black">
+    <div class="relative bg-white">
         <x-section-container class="z-20 flex flex-col items-center space-y-8 lg:h-screen lg:flex-row">
 
             <div class="w-full md:pr-8 lg:w-2/5">
@@ -107,7 +107,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
                     {{-- title --}}
 
-                    <span class="text-white">Share a</span>
+                    <span class="text-secondary">Share a</span>
                     <span class=" text-primary"> Coffee </span>
 
                     <div class="mt-4"></div>
@@ -115,7 +115,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                     <x-separator class="mt-4" />
 
                     <x-slot name="subtitle">
-                        <span class="text-xl text-gray-50">
+                        <span class="text-xl text-gray-600">
                             Desde lo mas simple hasta lo complejo ofreciendo servicios adaptados a tus requerimientos.
                             Diseñados para tus necesidades
                         </span>
