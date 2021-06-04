@@ -1,0 +1,3 @@
+command="docker exec whujow_laravel.test_1 php "$@""
+echo "Running php on docker whujow_laravel.test_1"
+$command

@@ -12,4 +12,9 @@ class Tag extends SpatieTag
         return $query->where('name', 'like', '%' . $search . '%')
             ->where('type', $type);
     }
+
+    public static function scopeOnlyForType($query,  $type)
+    {
+        return $query->where('type', $type);
+    }
 }

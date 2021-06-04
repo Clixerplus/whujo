@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+
 use App\Models\City;
 use App\Models\User;
 use App\Models\State;
@@ -14,6 +15,7 @@ use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Experience extends Model
 {
@@ -21,14 +23,12 @@ class Experience extends Model
     use HasSlug;
     use HasTags;
 
-
-
     protected $fillable = [
         'user_id', 'category_id', 'name', 'location', 'description',
         'toProvide', 'toBring', 'photos', 'minimumAge', 'skillLevel',
         'activityLevel', 'toKnow', 'groupSize', 'duration', 'starting',
         'price', 'privateGroup', 'privateGroupPrice', 'reservationLimitTime',
-        'status', 'state_id', 'city_id', 'locality_id', 'address',
+        'status', 'state_id', 'city_id', 'locality_id', 'address', 'modality'
     ];
 
     protected $casts = [
@@ -48,7 +48,7 @@ class Experience extends Model
         parent::boot();
 
         static::addGlobalScope('type', function (Builder $builder) {
-            $builder->where('type', self::class);
+            $builder->where('shareACoffee', false);
         });
 
         self::creating(function ($model) {
@@ -98,4 +98,5 @@ class Experience extends Model
             $q->orWhere('description', 'like', $search);
         });
     }
+
 }
