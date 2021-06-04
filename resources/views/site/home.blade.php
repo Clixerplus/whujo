@@ -7,7 +7,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
         <div class="relative w-screen h-auto min-h-screen md:h-1/2 ">
 
             {{-- background image --}}
-            <img src="{{ asset('images/bg/hero-bg-01.jpeg') }}" alt="multi-experiences collage"
+            <img src="{{ asset('images/bg/section-bg-experience-cta.jpeg') }}" alt="multi-experiences collage"
                 class="absolute inset-0 object-cover w-full h-full" />
 
             {{-- mask container --}}
