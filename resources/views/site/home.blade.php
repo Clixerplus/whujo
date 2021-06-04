@@ -4,7 +4,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
 
     {{-- header: hero-banner --}}
     <header class="overflow-x-hidden ">
-        <div class="relative w-screen h-auto min-h-screen md:h-1/2 ">
+        <div class="relative w-screen md:h-96">
 
             {{-- background image --}}
             <img src="{{ asset('images/bg/section-bg-experience-cta.jpeg') }}" alt="multi-experiences collage"
@@ -12,8 +12,8 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
 
             {{-- mask container --}}
             <div
-                class="relative flex justify-center w-full h-auto min-h-screen px-4 pb-8 bg-opacity-75 bg-secondary md:h-1/2 md:items-center lg:items-start">
-                <div class="w-full max-w-full mt-40 rounded sm:max-w-full lg:text-center md:max-w-xl">
+                class="relative flex justify-center w-full px-4 pb-8 bg-opacity-75 h-96 bg-secondary md:h-1/2 md:items-center lg:items-start">
+                <div class="w-full max-w-full mt-32 mb-16 rounded sm:max-w-full lg:text-center md:max-w-xl">
 
                     <div class="absolute top-0 right-0 hidden text-white lg:inline">
                         <svg viewBox="0 0 52 24" fill="currentColor" class="w-32 mt-4 ml-8 -mb-4 -mr-8">
