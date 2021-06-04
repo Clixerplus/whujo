@@ -99,7 +99,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
 
     {{-- section: cta-share-a-coffee --}}
-    <div class="relative bg-white">
+    <div class="relative bg-gray-100">
         <x-section-container class="z-20 flex flex-col items-center space-y-8 lg:h-screen lg:flex-row">
 
             <div class="w-full md:pr-8 lg:w-2/5">
