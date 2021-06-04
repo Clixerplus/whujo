@@ -73,6 +73,12 @@ class CreateExperiencesTable extends Migration
             $table->enum('status', config('product.status'))
                 ->default('STATUS_INCOMPLETE');
 
+            $table->string('modality')
+                ->nullable();
+
+            $table->boolean('shareACoffee')->default(false);
+
+
             $table->timestamps();
 
             $table->string('type');

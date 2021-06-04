@@ -20,18 +20,31 @@
     /* ... */
 }
 
+/*------ Globales ---------*/
 html {
     scroll-behavior: smooth;
 }
 
 [x-cloak] { display: none; }
 
+.blur-hover:hover {
+    @apply bg-opacity-75;
+    backdrop-filter: blur(5px);
+
+}
+
+.whujo-brand {
+    @apply font-extrabold text-primary;
+    font-family: arial;
+}
+
+/*------ Navbar ----------*/
 .navbar {
-    @apply flex items-center justify-between bg-white shadow text-primary;
+    @apply flex items-center justify-between bg-white text-primary;
 }
 
 .navbar-transparent {
-    @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0 lg:shadow-none;
+    @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0 ;
 }
 
 .navbar-transparent a {
@@ -43,7 +56,7 @@ html {
 }
 
 .navbar-dark {
-    @apply  transition-colors duration-500 ease-in-out bg-opacity-100 shadow;
+    @apply  transition-colors duration-500 ease-in-out bg-opacity-100 ;
 }
 
 .navbar-dark a {
@@ -55,16 +68,12 @@ html {
 }
 
 
-
+/*--------- Tabs ----------*/
 .tab ul li.active {
     @apply border-b-4 border-primary-light;
 }
 
-.whujo-brand {
-    @apply font-extrabold text-primary;
-    font-family: arial;
-}
-
+/*--------- Botones ----------*/
 .btn {
     @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium border border-transparent rounded-md;
 }
@@ -73,6 +82,7 @@ html {
     @apply inline-flex items-center justify-center text-base font-medium border rounded-full;
 }
 
+/*------ Toggle Check -------*/
 .toggle-check:checked {
     @apply border-success;
 }
@@ -93,14 +103,7 @@ html {
     @apply text-white bg-secondary;
 }
 
-#productType {
-    @apply h-36;
-}
-
-input[name="search"]:focus + #productType {
-    @apply h-20 transition-all duration-200 ease-linear;
-}
-
+/*--------- Animations ----------*/
 .transition-75 {
     @apply transition duration-75 ease-in-out;
 }
@@ -116,7 +119,7 @@ input[name="search"]:focus + #productType {
 .transition-300 {
     @apply transition duration-300 ease-in-out;
 }
-.c {
+.transition-500 {
     @apply transition duration-500 ease-in-out;
 }
 .transition-700 {
@@ -126,6 +129,8 @@ input[name="search"]:focus + #productType {
     @apply transition duration-1000 ease-in-out;
 }
 
+
+/*---------- Step list ----------*/
 .step-list {
     @apply flex flex-col space-y-1;
 }
@@ -151,6 +156,12 @@ input[name="search"]:focus + #productType {
     @apply w-auto h-5 transition duration-500 ease-in-out;
 }
 
+
+/*---------- From ----------*/
 .radio-buttom > input[type="radio"]:checked + span {
     @apply opacity-100;
+}
+
+input[name="search"]:focus + #productType {
+    @apply h-20 transition-all duration-200 ease-linear;
 }

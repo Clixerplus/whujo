@@ -11,6 +11,12 @@ use App\Http\Livewire\AbstractComponents\SearchableComponent;
 
 class ProductListing extends SearchableComponent
 {
+    protected const TAGS_TYPE = [
+        'service' => Service::class,
+        'experience' => Experience::class,
+        'share-a-coffee' => ShareACoffee::class,
+    ];
+
     public $search;
 
     public $type;
@@ -53,18 +59,14 @@ class ProductListing extends SearchableComponent
 
     private function getType($type)
     {
-        $productType = [
-            'service' => Service::class,
-            'experience' => Experience::class,
-            'share-a-coffee' => ShareACoffee::class,
-        ];
+        $productType = [];
 
         return $productType[$type];
     }
 
     public function getTags($type)
     {
-        return Tag::where('type',$this->getType($type))->select('name')->orderBy('name', 'asc')->get();
+        return Tag::where('type', self::TAGS_TYPE[$type])->select('name')->orderBy('name', 'asc')->get();
     }
 
     /**
@@ -86,7 +88,7 @@ class ProductListing extends SearchableComponent
 
     function model()
     {
-        return $this->getType($this->type);
+        return self::TAGS_TYPE[$this->type];
     }
 
     function searchableFields()

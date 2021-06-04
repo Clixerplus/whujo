@@ -1,5 +1,7 @@
-<div x-data="{open_side_menu:false, show_explore:false}" class="fixed z-50 h-20 ">
+<div x-data="{open_side_menu:false, show_explore:false}" class="fixed z-40 h-20 ">
     <div class="relative">
+
+        {{-- topbar --}}
         <div id="navbar" class="w-screen h-20 px-8 navbar navbar-transparent bg-opacity-80">
 
             {{-- logo brand --}}
@@ -73,6 +75,7 @@
                     x-transition:leave="ease-in duration-300"
                     x-transition:leave-start=" transform translate-x-0"x-transition:leave-end=" transform -translate-x-full">
 
+                    {{-- TODO: Cambiar maquetacion por el componente sidebar de https://merakiui.com/  --}}
                     {{-- register side menu --}}
                     <div class="flex justify-between">
                         <a href="{{ route('login') }}" class="px-4 py-2 font-semibold text-white rounded-md bg-primary">

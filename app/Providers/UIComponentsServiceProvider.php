@@ -53,6 +53,7 @@ class UIComponentsServiceProvider extends ServiceProvider
         Blade::component('checkbox', Checkbox::class);
         Blade::component('button', Button::class);
         Blade::component('input-search', InputSearch::class);
+        Blade::component('dropdown', Dropdown::class);
     }
 }
 

@@ -1,10 +1,10 @@
-<section class="relative w-full mx-auto bg-white bg-opacity-50 rounded-md"
-    x-data="{ isSearchActive: @entangle('isSearchActive') }">
+<section x-data="{ isSearchActive: @entangle('isSearchActive') }"
+    class="relative w-full mx-auto bg-white bg-opacity-50 rounded-md">
 
     {{-- btn set focus --}}
     <div class="fixed z-40 w-12 h-12 right-4 bottom-4">
         <button class="w-full h-full p-3 rounded-full focus:outline-none bg-primary hover:bg-primary-light"
-            @click="$refs.search.focus()">
+            x-on:click="$refs.search.focus()">
             <x-icon-search class="w-full h-auto text-white" />
         </button>
     </div>
@@ -17,14 +17,14 @@
                 <x-icon-search class="w-5 h-5 text-gray-400" />
             </span>
 
-            <input type="text" placeholder="Type Something" spellcheck="false" data-ms-editor="true" x-ref="search"
-                class="w-full py-4 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-red-500 dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-red-500"
+            <input type="text" placeholder="Buscar..." title="buscar" spellcheck="false" x-ref="search"
                 wire:model.debounce.500ms="search" name="search" wire:keydown="activateSearch"
                 wire:keydown.escape="deactivateSearch" autocomplete="false" required
-                x-on:keydown="$refs.productTag.value=''; $refs.productType.value=''">
+                x-on:keydown="$refs.productTag.value=''; $refs.productType.value=''"
+                class="w-full py-4 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-red-500 dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-red-500">
 
-            <input type="hidden" x-ref="productType" name="type" />
-            <input type="hidden" x-ref="productTag" name="category" />
+            <input type="hidden" x-ref="productType" name="type"  class="border"/>
+            <input type="hidden" x-ref="productTag" name="category"  class="border"/>
 
             <x-button type="submit"
                 class="absolute top-0 right-0 flex items-center h-12 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
@@ -33,7 +33,7 @@
             </x-button>
         </div>
 
-        <div class="absolute inset-x-0 w-full mt-2 overflow-y-auto text-left bg-white border rounded max-h-44"
+        <div class="absolute inset-x-0 z-40 w-full mt-2 overflow-y-auto text-left bg-white border rounded max-h-44"
             x-show="isSearchActive" x-cloak>
             @if ($results)
                 <ul>

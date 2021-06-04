@@ -44,6 +44,7 @@ class ServiceFactory extends Factory
             'locality_id'  => Locality::factory(),
             'address'      => $this->faker->address,
             'price'        => rand(25, 999) * 100,
+            'modality'     => $this->faker->randomElement(['online', 'onsite']),
             'features'     => [
                 $this->faker->sentence(3),
                 $this->faker->sentence(4),

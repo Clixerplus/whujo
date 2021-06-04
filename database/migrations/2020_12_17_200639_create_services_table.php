@@ -57,6 +57,9 @@ class CreateServicesTable extends Migration
             $table->decimal('price', 8, 2)
                 ->nullable();
 
+            $table->string('modality')
+                ->nullable();
+
             $table->enum('status', config('product.status'))
                 ->default('STATUS_INCOMPLETE');
 

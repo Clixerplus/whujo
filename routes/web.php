@@ -40,8 +40,10 @@ Route::get('/', HomePageController::class);
 Route::get('/home', HomePageController::class)->name('home');
 Route::get('/listing', ListinPageController::class)->name('listing-product');
 
+Route::view('/about', 'site.landing-page1')->name('about-landing');
+
 Route::get('/meet/room/{link}', function ($link) {
-    return view('site.meet-room', ['link'=> $link]);
+    return view('site.meet-room', ['link' => $link]);
 })->name('meet-room');
 
 Route::post('/payment', CheckoutController::class)->name('payment');

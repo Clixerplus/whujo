@@ -10,7 +10,18 @@ class ListinPageController extends Controller
 
     public function __invoke()
     {
-        return view('pages.listing');
+        $productType = [
+            ['title' => 'Services', 'value' => 'service'],
+            ['title' => 'Experiences', 'value' => 'experience'],
+            ['title' => 'Share a coffee', 'value' => 'share-a-coffee']
+         ];
 
+         
+         $productType = [
+            ['title' => 'Services', 'value' => 'service'],
+            ['title' => 'Experiences', 'value' => 'experience'],
+            ['title' => 'Share a coffee', 'value' => 'share-a-coffee']
+         ];
+        return view('pages.listing', compact('productType', 'categories'));
     }
 }

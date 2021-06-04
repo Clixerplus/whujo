@@ -38,7 +38,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/--}}
 
                     {{-- form search component --}}
                     <div class="mt-8">
-                        @livewire('search-product-form')
+                        <livewire:search-product-form/>
                     </div>
 
                 </div>

@@ -18,35 +18,49 @@
 
     <title>{{ config('app.name', 'whujo') }}</title>
 
-    <!-- Styles -->
+    {{-- General styles --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/embla.css') }}">
 
+    {{-- Alpin CDN --}}
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
 
-
-
+    {{-- View stack tyles --}}
     @stack('styles')
 
+    {{-- Livewire css --}}
     @livewireStyles
+
+    {{-- UI blade-icons css --}}
     @bukStyles(true)
+
 </head>
 
 <body>
 
+    {{-- Navbar component --}}
     <x-navbar-top />
 
+    {{-- Main wrapper --}}
     <div class="relative antialiased">
         {{ $slot }}
     </div>
 
+    {{-- Footer component --}}
     <x-footer />
 
+    {{-- View stack scripts --}}
     @stack('scripts')
+
+    {{-- App scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
 
+    {{-- Livewire scripts --}}
     @livewireScripts
+
+    {{-- UI blade-icons scripts --}}
     @bukScripts(true)
+
 </body>
 
 </html>

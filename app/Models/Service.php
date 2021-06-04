@@ -23,6 +23,7 @@ class Service extends Model
     protected $fillable = [
         'user_id', 'category_id', 'state_id', 'city_id', 'locality_id',
         'address', 'name', 'description', 'features', 'price', 'published_at',
+        'modality'
     ];
 
     protected $casts = [
