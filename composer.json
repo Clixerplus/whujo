@@ -25,13 +25,13 @@
         "skagarwal/google-places-api": "^1.7",
         "spatie/geocoder": "^3.10",
         "spatie/laravel-permission": "^3.18",
-        "spatie/laravel-tags": "^4.0"
+        "spatie/laravel-tags": "^4.0",
+        "fakerphp/faker": "^1.9.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
         "brianium/paratest": "^6.2",
         "facade/ignition": "^2.5",
-        "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.4",
         "mockery/mockery": "^1.4.2",
         "morrislaptop/laravel-route-menu": "^0.2.1",
