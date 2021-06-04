@@ -18,7 +18,7 @@
             {{-- landing page links --}}
             <div class="mx-auto">
                 <ul class="hidden space-x-8 lg:flex">
-                    <li class=""><a href="{{ route('about-landing') }}">Landing page 1</a></li>
+                    <li class=""><a href="{{ route('about-landing') }}">Conócenos</a></li>
                     <li class=""><a href="#">Landing page 2</a></li>
                     <li class=""><a href="#">Landing page 3</a></li>
                 </ul>
