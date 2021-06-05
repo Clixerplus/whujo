@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Models\Tag;
-use App\Models\User;
 use App\Models\Service;
 use Livewire\Component;
 use App\Models\Experience;
