@@ -1,31 +1,21 @@
 <?php
 
-namespace App\View\Components\UI;
+namespace Components\UI;
 
 use Illuminate\View\Component;
 
-class Checkbox extends Component
+class Error extends Component
 {
-
-    public $caption;
-
     public $key;
-
-    public $size;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(String $caption, String $key, string $size = 'w-4 h-4')
+    public function __construct($key)
     {
-        $this->caption = $caption;
-
         $this->key = $key;
-
-        $this->size = $size;
-
     }
 
     /**
@@ -35,6 +25,6 @@ class Checkbox extends Component
      */
     public function render()
     {
-        return view('components.ui.chekbox');
+        return view('components.ui.error');
     }
 }

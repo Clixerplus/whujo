@@ -2,23 +2,8 @@
 
 namespace App\Providers;
 
-
-use App\View\Components\UI\Alert;
-use App\View\Components\UI\Badge;
-use App\View\Components\UI\Error;
-use App\View\Components\UI\Input;
-use App\View\Components\UI\Modal;
-use App\View\Components\UI\Button;
-use App\View\Components\UI\Select;
-use App\View\Components\UI\Callout;
-use App\View\Components\UI\Checkbox;
-use App\View\Components\UI\TextArea;
 use Illuminate\Support\Facades\Blade;
-use App\View\Components\UI\ButtonIcon;
-use App\View\Components\UI\Datepicker;
-use App\View\Components\UI\InputSearch;
 use Illuminate\Support\ServiceProvider;
-use App\View\Components\UI\SwitchButton;
 
 class UIComponentsServiceProvider extends ServiceProvider
 {
@@ -39,21 +24,22 @@ class UIComponentsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::component('input', Input::class);
-        Blade::component('select', Select::class);
-        Blade::component('switch', SwitchButton::class);
-        Blade::component('textarea', TextArea::class);
-        Blade::component('error', Error::class);
-        Blade::component('callout', Callout::class);
-        Blade::component('alert', Alert::class);
-        Blade::component('modal', Modal::class);
-        Blade::component('button-icon', ButtonIcon::class);
-        Blade::component('datepicker', Datepicker::class);
-        Blade::component('badge', Badge::class);
-        Blade::component('checkbox', Checkbox::class);
-        Blade::component('button', Button::class);
-        Blade::component('input-search', InputSearch::class);
-        Blade::component('dropdown', Dropdown::class);
+        Blade::componentNamespace('Components\\UI', 'ui');
+
+        /* Blade::component('input', \Components\UI\Input::class);
+        Blade::component('select', \Components\UI\Select::class);
+        Blade::component('switch', \Components\UI\SwitchButton::class);
+        Blade::component('textarea', \Components\UI\TextArea::class);
+        Blade::component('error', \Components\UI\Error::class);
+        Blade::component('callout', \Components\UI\Callout::class);
+        Blade::component('alert', \Components\UI\Alert::class);
+        Blade::component('modal', \Components\UI\Modal::class);
+        Blade::component('button-icon', \Components\UI\ButtonIcon::class);
+        Blade::component('datepicker', \Components\UI\Datepicker::class);
+        Blade::component('badge', \Components\UI\Badge::class);
+        Blade::component('checkbox', \Components\UI\Checkbox::class);
+        Blade::component('button', \Components\UI\Button::class);
+        Blade::component('input-search', \Components\UI\InputSearch::class);
+        Blade::component('dropdown', \Components\UI\Dropdown::class); */
     }
 }
-

@@ -1,23 +1,22 @@
 <?php
 
-namespace App\View\Components\UI;
+namespace Components\UI;
 
 use Illuminate\View\Component;
 
-class Button extends Component
+class Input extends Component
 {
+    public $key;
+
     public $size;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct(string $size = 'md')
+    public function __construct($key = '', $size = 'md')
     {
+        $this->key = $key;
+
         $this->size = $size;
     }
-    
+
     /**
      * Get the view / contents that represents the component.
      *
@@ -25,6 +24,6 @@ class Button extends Component
      */
     public function render()
     {
-        return view('components.ui.button');
+        return view('components.ui.input');
     }
 }
