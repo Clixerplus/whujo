@@ -1,10 +1,9 @@
-<x-appnonav-layout>
+<x-app-nonav-layout>
 
-
-    <div class="relative bg-gray">
+    <div class=" bg-gray">
 
         {{-- navbar --}}
-        <div class="fixed top-0 inset-x-0 w-full z-10 lg:z-20 shadow lg:shadow-none lg:border-b">
+        <div class="fixed top-0 inset-x-0 w-full z-10 lg:z-20 shadow lg:shadow-none lg:border-b hidden">
             <div class="flex items-center h-16 bg-white">
 
                 <div class="border-r w-16 h-full lg:hidden">
@@ -148,120 +147,7 @@
             </div>
         </div>
 
-        {{-- sideMenu --}}
-        <div id="sideMenu"
-            class="fixed inset-y-0 left-0 lg:transform-none lg:pt-20 bg-white h-screen overflow-y-auto w-full max-w-xs lg:w-1/5
-                    shadow-xl lg:shadow-none border-r transform -translate-x-full transition-transform duration-500 ease-in-out z-20 lg:z-10">
-
-            <div class="w-full text-right px-4 py-1 lg:hidden">
-                <button onclick="toggleMenu()" class="ml-auto">
-                    <x-icon-close-outline class="h-8 w-8 text-gray-400" />
-                </button>
-            </div>
-
-            <ul class="lg:text-sm space-y-2">
-                <li class="text-gray-600 font-bold opacity-75 p-3 "> Main </li>
-
-                <li class="border-l-4 border-whujo border-opacity-75 hover:bg-gray-200 transition-500">
-                    <a href="{{ route('account.dashboard') }}" class="inline-flex  items-center py-2 px-6 space-x-2 w-full ">
-                        <x-icon-bar-chart-outline class="h-5" />
-                        <span> Dashboard</span>
-                        <span class=" ml-12 h-2 w-2 rounded-full bg-primary"></span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="{{ route('account.notifications') }}" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <x-icon-notifications-outline class="h-5" />
-                        <span> Notificaciones</span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-book-outline class="h-full" /></span>
-                        <span> Reservaciones</span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="{{ route('account.wallet') }}" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-wallet-outline class="h-full" /></span>
-                        <span> Cartera</span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="{{ route('account.reviews') }}" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-star-outline class="h-full" /></span>
-                        <span> Reseñas</span>
-                    </a>
-                </li>
-
-            </ul>
-
-            <ul class="lg:text-sm space-y-2 lg:hidden">
-                <li class="text-gray-600 font-bold opacity-75 p-3 "> Account</li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-share-social-outline class="h-full" /></span>
-                        <span> Share a...</span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="{{ route('service.index') }} class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-construct-outline class="h-full" /></span>
-                        <span> Servicios</span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-expand-outline class="h-full" /></span>
-                        <span> Experiencias</span>
-                    </a>
-                </li>
-
-            </ul>
-
-            <ul class="lg:text-sm space-y-2">
-                <li class="text-gray-600 font-bold opacity-75 p-3 "> Account</li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="{{ route('account.setup') }}" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-settings-outline class="h-full" /></span>
-                        <span> Configuracion</span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="{{ route('account.security') }}" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-shield-outline class="h-full" /></span>
-                        <span> Seguridad</span>
-                    </a>
-                </li>
-
-                <li class="border-l-4 border-transparent  hover:border-whujo hover:bg-gray-200 transition-500">
-                    <a href="" class="inline-flex items-center py-2 px-6 space-x-2">
-                        <span class="h-5">
-                            <x-icon-power-outline class="h-full" /></span>
-                        <span> Cerrar Sesión</span>
-                    </a>
-                </li>
-
-            </ul>
-
-        </div>
+        <x-side-menu></x-side-menu>
 
         {{-- content --}}
         <div id="content" class=" w-full lg:w-4/5 lg:ml-auto lg:pr-4">
@@ -334,4 +220,4 @@
     </script>
 
     @endpush
-</x-appnonav-layout>
+</x-app-nonav-layout>

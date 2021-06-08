@@ -1,84 +1,40 @@
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+import Vuesax from "vuesax";
+
 require("./bootstrap");
 
-/*import EmblaCarousel from "embla-carousel";
-const servNode = document.getElementById("servCarousel");
-const expeNode = document.getElementById("expeCarousel");
+window.Vue = require("vue").default;
 
-const servCarousel = EmblaCarousel(servNode, {
-    align: "start",
-    loop: true,
-});
-
-const expeCarousel = EmblaCarousel(expeNode, {
-    align: "start",
-    loop: true,
-});*/
-/** Begin Embla *//*
-import EmblaCarousel from "embla-carousel";
-import { setupPrevNextBtns, disablePrevNextBtns } from "./prevAndNextButtons";
-import { parallax } from "./parallax";
-import "../css/embla.css";
-
-const servCarouselWrap = document.querySelector(
-    "#servCarousel.embla__parallax"
-);
-const servCarouselViewPort = servCarouselWrap.querySelector(
-    "#servCarousel.embla__parallax .embla__viewport"
-);
-const servCarouselPrevBtn = servCarouselWrap.querySelector(
-    "#servCarousel.embla__parallax .embla__button--prev"
-);
-const servCarouselNextBtn = servCarouselWrap.querySelector(
-    "#servCarousel.embla__parallax .embla__button--next"
-);
-const servCarouselEmbla = EmblaCarousel(servCarouselViewPort, {
-    align: "start",
-    containScroll: "trimSnaps",
-});
-
-const servCarouselDisablePrevAndNextBtns = disablePrevNextBtns(
-    servCarouselPrevBtn,
-    servCarouselNextBtn,
-    servCarouselEmbla
-);
-setupPrevNextBtns(servCarouselPrevBtn, servCarouselNextBtn, servCarouselEmbla);
-servCarouselEmbla.on("init", servCarouselDisablePrevAndNextBtns);
-servCarouselEmbla.on("select", servCarouselDisablePrevAndNextBtns);
-
-
-const expeCarouselWrap = document.querySelector(
-    "#expeCarousel.embla__parallax"
-);
-const expeCarouselViewPort = expeCarouselWrap.querySelector(
-    "#expeCarousel.embla__parallax .embla__viewport"
-);
-const expeCarouselPrevBtn = expeCarouselWrap.querySelector(
-    "#expeCarousel.embla__parallax .embla__button--prev"
-);
-const expeCarouselNextBtn = expeCarouselWrap.querySelector(
-    "#expeCarousel.embla__parallax .embla__button--next"
-);
-const expeCarouselEmbla = EmblaCarousel(expeCarouselViewPort, {
-    align: "start",
-    containScroll: "trimSnaps",
-});
-
-const expeCarouselDisablePrevAndNextBtns = disablePrevNextBtns(
-    expeCarouselPrevBtn,
-    expeCarouselNextBtn,
-    expeCarouselEmbla
-);
-setupPrevNextBtns(expeCarouselPrevBtn, expeCarouselNextBtn, expeCarouselEmbla);
-expeCarouselEmbla.on("init", expeCarouselDisablePrevAndNextBtns);
-expeCarouselEmbla.on("select", expeCarouselDisablePrevAndNextBtns);
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-/** End Embla */
 
-const closeAlert = () => {
-    const alert = document.getElementById("alert");
-    alert.classList.add("scale-x-0");
-};
-const narvbar = {
-    state: false,
-    el: document.getElementById("navbar"),
-};
+// const files = require.context('./', true, /\.vue$/i)
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+
+
+
+  Vue.use(Vuesax, {});
+
+  /**
+    Vue.component("botones", require("./components/Botones.vue").default);
+    Vue.component("menu", require("./components/Menu.vue").default);
+*/
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+const app = new Vue({
+    el: "#app"
+});
