@@ -24,11 +24,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $superadmin = Role::create(['name' => config('roles.super_admin')]);
+
         User::factory()
+            ->hasServices(2)
+            ->hasExperiences(2)
+            ->hasShareACoffees(2)
             ->create([
                 'name' => 'User Test',
                 'email' => 'usuario@email.test'
-            ])->assignRole($superadmin);
+            ])
+            ->assignRole($superadmin);
 
         State::factory()->times(10)->create();
         City::factory(10)->related()->create();
