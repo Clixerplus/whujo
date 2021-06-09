@@ -17,16 +17,16 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        Service::factory(100)->related()->hasMicroservices(rand(0, 3))
+        Service::factory(20)->related()->hasMicroservices(rand(0, 3))
             ->create()->each(function ($service) {
                 $service->attachTag(Tag::where('type', get_class($service))->get()->random());
             });
 
-        Experience::factory(100)->related()->create()->each(function ($experience) {
+        Experience::factory(20)->related()->create()->each(function ($experience) {
             $experience->attachTag(Tag::where('type', get_class($experience))->get()->random());
         });
 
-        ShareACoffee::factory(100)->related()->create()->each(function ($shareACoffee) {
+        ShareACoffee::factory(20)->related()->create()->each(function ($shareACoffee) {
             $shareACoffee->attachTag(Tag::where('type', get_class($shareACoffee))->get()->random());
         });
     }
