@@ -24,7 +24,7 @@ class StateFactory extends Factory
     {
         return [
             'id'   => $this->faker->randomElement(['A', 'B', 'C']) . rand(1000, 9999),
-            'name' => $this->faker->state,
+            'name' => $this->faker->state(),
         ];
     }
 }
