@@ -45,6 +45,7 @@ class ServiceFactory extends Factory
             'address'      => $this->faker->address,
             'price'        => rand(25, 999) * 100,
             'modality'     => $this->faker->randomElement(['online', 'onsite']),
+            'shareAcoffee' => false,
             'features'     => [
                 $this->faker->sentence(3),
                 $this->faker->sentence(4),

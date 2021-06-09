@@ -78,7 +78,6 @@ class CreateExperiencesTable extends Migration
 
             $table->boolean('shareACoffee')->default(false);
 
-
             $table->timestamps();
 
             $table->string('type');
