@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
     {
         $superadmin = Role::create(['name' => config('roles.super_admin')]);
 
+        State::factory()->times(10)->create();
+        City::factory(10)->related()->create();
+        Locality::factory(10)->related()->create();
+
         User::factory()
             ->hasServices(2)
             ->hasExperiences(2)
@@ -35,9 +39,7 @@ class DatabaseSeeder extends Seeder
             ])
             ->assignRole($superadmin);
 
-        State::factory()->times(10)->create();
-        City::factory(10)->related()->create();
-        Locality::factory(10)->related()->create();
+
 
         $this->call([
             CategorySeeder::class,
