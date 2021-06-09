@@ -1,184 +1,130 @@
-<x-app-nonav-layout>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-    <div class=" bg-gray">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        {{-- navbar --}}
-        <div class="fixed top-0 inset-x-0 w-full z-10 lg:z-20 shadow lg:shadow-none lg:border-b hidden">
-            <div class="flex items-center h-16 bg-white">
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144-precomposed.png" />
+    <meta name="msapplication-TileImage" content="/favicon.png" />
+    <meta name="msapplication-TileColor" content="#E32a2e" />
+    <link rel="fluid-icon" href="http://whujo.test/favicon.png" title="whujo" />
 
-                <div class="border-r w-16 h-full lg:hidden">
-                    <button onclick="toggleMenu()" class="rounded-md p-2 h-full w-full">
-                        <x-icon-menu-outline class="h-auto w-full" />
-                    </button>
-                </div>
+    <title>{{ config('app.name', 'whujo') }}</title>
 
-                <div class="px-4 flex items-center justify-between w-full">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-                    <h1 class="text-3xl font-bold font-whujo text-whujo lg:w-36 xl:w-48">
-                        whujo
-                    </h1>
+    @livewireStyles
 
-                    <div class="lg:flex flex-grow">
-                        <div class="flex h-full items-center w-full justify-between space-x-8 md:px-8">
+    @stack('styles')
 
-                            <ul class="hidden lg:flex h-full items-center space-x-8">
-                                <li
-                                    class="flex items-center hover:bg-gray-200 hover:bg-opacity-75 border-b-4 border-transparent hover:border-whujo transition-300 h-16">
-                                    <a href="" class="h-full w-28 flex items-center text-center">
-                                        <span class="w-full">Share a coffe</span>
-                                    </a>
-                                </li>
-                                <li
-                                    class="flex items-center hover:bg-gray-200 hover:bg-opacity-75 border-b-4 border-transparent hover:border-whujo transition-300 h-16">
-                                    <a href="" class="h-full w-28 flex items-center text-center">
-                                        <span class="w-full">Experiencias</span>
-                                    </a>
-                                </li>
-                                <li
-                                    class="flex items-center hover:bg-gray-200 hover:bg-opacity-75 border-b-4 border-transparent hover:border-whujo transition-300 h-16">
-                                    <a href="{{ route('service.index') }}" class="h-full w-28 flex items-center text-center">
-                                        <span class="w-full">Servicios</span>
-                                    </a>
-                                </li>
-                            </ul>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</head>
 
-                            <div class="flex h-full items-center justify-end w-full space-x-4 ml-auto">
+<body class="font-sans antialiased">
+    <div class="flex w-screen h-screen overflow-hidden bg-white">
 
-                                <x-jet-dropdown align="right" width="48">
-                                    <x-slot name="trigger">
-                                        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                        <button
-                                            class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                            <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}"
-                                                alt="{{ Auth::user()->name }}" />
-                                        </button>
-                                        @else
-                                        <button
-                                            class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                            <div>{{ Auth::user()->name }}</div>
 
-                                            <div class="ml-1">
-                                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                                    viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd"
-                                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </div>
-                                        </button>
-                                        @endif
-                                    </x-slot>
-
-                                    <x-slot name="content">
-                                        <!-- Account Management -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Manage Account') }}
-                                        </div>
-
-                                        <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                            {{ __('Profile') }}
-                                        </x-jet-dropdown-link>
-
-                                        @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                        <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                            {{ __('API Tokens') }}
-                                        </x-jet-dropdown-link>
-                                        @endif
-
-                                        <div class="border-t border-gray-100"></div>
-
-                                        <!-- Team Management -->
-                                        @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Manage Team') }}
-                                        </div>
-
-                                        <!-- Team Settings -->
-                                        <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                            {{ __('Team Settings') }}
-                                        </x-jet-dropdown-link>
-
-                                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                            {{ __('Create New Team') }}
-                                        </x-jet-dropdown-link>
-                                        @endcan
-
-                                        <div class="border-t border-gray-100"></div>
-
-                                        <!-- Team Switcher -->
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Switch Teams') }}
-                                        </div>
-
-                                        @foreach (Auth::user()->allTeams() as $team)
-                                        <x-jet-switchable-team :team="$team" />
-                                        @endforeach
-
-                                        <div class="border-t border-gray-100"></div>
-                                        @endif
-
-                                        <!-- Authentication -->
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-
-                                            <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                            this.closest('form').submit();">
-                                                {{ __('Logout') }}
-                                            </x-jet-dropdown-link>
-                                        </form>
-                                    </x-slot>
-                                </x-jet-dropdown>
-
-                                <a href="{{ route('wizard.options') }}" class="hidden lg:flex items-center justify-between rounded-2xl text-primary
-                                           text-sm font-light border border-primary py-1 px-2 h-10 space-x-1 border-opacity-75
-                                           hover:bg-primary hover:text-white transition-150">
-                                    <span>Crear anuncio</span>
-                                    <x-icon-add-circle-outline class="h-6 w-6" />
-                                </a>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
+        <div class="w-2/12 h-full border-r shadow-2xl rounded-xl">
+            <x-side-menu></x-side-menu>
         </div>
 
-        <x-side-menu></x-side-menu>
+        <div class="w-7/12 h-full overflow-y-auto bg ">
 
-        {{-- content --}}
-        <div id="content" class=" w-full lg:w-4/5 lg:ml-auto lg:pr-4">
+            <div class="flex items-center justify-around h-16 p-4 mt-2 border-b">
+                <a href="" class="py-2 text-center text-white rounded bg-primary w-44">Services</a>
+                <a href="" class="py-2 text-center text-white rounded bg-primary w-44">Experiences</a>
+                <a href="" class="py-2 text-center text-white rounded bg-primary w-44">Share a Coffee</a>
+            </div>
+
             {{ $slot }}
         </div>
 
-        {{-- btnNew --}}
-        <div class="lg:hidden fixed bottom-4 inset-x-0">
+        <div class="w-3/12 h-full">
+            <div class="p-8 px-12 space-y-4">
+
+                <div class="flex items-center pb-4 space-x-4">
+                    <x-avatar-custom></x-avatar-custom>
+                    <div>
+                        <p class="font-light">{{ __('Welcome') }}!</p>
+                        <h1 class="text-2xl font-bold text-secondary">{{ Auth::user()->name }}</h1>
+                    </div>
+                </div>
+
+
+                <div class="w-full p-4 bg-green-100 rounded">
+                    <span
+                        class="inline-flex px-3 py-1 mb-4 text-xl font-bold bg-green-500 rounded text-green-50">ARS</span>
+                    <p class="mb-4 text-3xl font-bold text-green-800"> 25.000,00</p>
+                    <h2 class="font-light text-green-800 capitalize ">{{ __('total profit') }}</h2>
+                </div>
+
+                <ul class="pt-8 ">
+                    <li class="pb-2 mb-4 font-semibold capitalize border-b text-secondary-light">
+                        {{ __('last activities') }}
+                    </li>
+                    <li class="flex items-end justify-between pb-4 space-x-2 text-sm font-light">
+                        <div> Lorem ipsum dolor sit.</div>
+                        <div>5.000,00</div>
+                    </li>
+                    <li class="flex items-end justify-between pb-4 space-x-2 text-sm font-light">
+                        <div> Lorem, ipsum dolor.</div>
+                        <div>15.000,00</div>
+                    </li>
+                    <li class="flex items-end justify-between pb-4 space-x-2 text-sm font-light">
+                        <div> Lorem ipsum dolor sit amet consectetur.</div>
+                        <div>25.000,00</div>
+                    </li>
+                </ul>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    {{-- <div class=" bg-gray">
+
+        <x-admin-navbar></x-admin-navbar>
+
+        <x-side-menu></x-side-menu>
+
+
+        <div id="content" class="pl-20 mx-auto max-w-7xl bg-gray-50">
+            {{ $slot }}
+        </div>
+
+        <div class="fixed inset-x-0 lg:hidden bottom-4">
             <div class="pb-8 space-y-8">
                 <div
-                    class="btn-create-new transform translate-x-full transition-transform duration-500 ease-out delay-75">
-                    <button class="mx-auto bg-amazon text-white p-6 rounded-xl flex space-x-2 items-center">
+                    class="transition-transform duration-500 ease-out delay-75 transform translate-x-full btn-create-new">
+                    <button class="flex items-center p-6 mx-auto space-x-2 text-white bg-amazon rounded-xl">
                         <span>Share a ...</span>
                         <span>
-                            <x-icon-add-circle-outline class="h-6 w-auto text-white" />
+                            <x-icon-add-circle-outline class="w-auto h-6 text-white" />
                         </span>
                     </button>
                 </div>
-                <div class="btn-create-new transform translate-x-full transition-transform duration-500 ease-in-out">
-                    <button class="mx-auto bg-telegram text-white p-6 rounded-xl flex space-x-2 items-center">
+                <div class="transition-transform duration-500 ease-in-out transform translate-x-full btn-create-new">
+                    <button class="flex items-center p-6 mx-auto space-x-2 text-white bg-telegram rounded-xl">
                         <span>Experiencias</span>
                         <span>
-                            <x-icon-add-circle-outline class="h-6 w-auto text-white" />
+                            <x-icon-add-circle-outline class="w-auto h-6 text-white" />
                         </span>
                     </button>
                 </div>
-                <div class="btn-create-new transform translate-x-full transition-transform duration-500 ease-out">
-                    <button class="mx-auto bg-duolingo text-white p-6 rounded-xl flex space-x-2 items-center">
+                <div class="transition-transform duration-500 ease-out transform translate-x-full btn-create-new">
+                    <button class="flex items-center p-6 mx-auto space-x-2 text-white bg-duolingo rounded-xl">
                         <span>Servicios</span>
                         <span>
-                            <x-icon-add-circle-outline class="h-6 w-auto text-white" />
+                            <x-icon-add-circle-outline class="w-auto h-6 text-white" />
                         </span>
                     </button>
                 </div>
@@ -186,38 +132,46 @@
             </div>
 
             <button onclick="toggleBtnNew()"
-                class="mx-auto bg-whujo text-white py-3 px-4 rounded-full flex space-x-2 items-center">
+                class="flex items-center px-4 py-3 mx-auto space-x-2 text-white rounded-full bg-whujo">
                 <span>Nuevo</span>
                 <span>
-                    <x-icon-add-circle-outline class="btn-new-icon h-6 w-auto text-white" />
-                    <x-icon-close-circle-outline class="btn-new-icon h-6 w-auto text-white hidden" />
+                    <x-icon-add-circle-outline class="w-auto h-6 text-white btn-new-icon" />
+                    <x-icon-close-circle-outline class="hidden w-auto h-6 text-white btn-new-icon" />
                 </span>
             </button>
 
-        </div>
-
+        </div> --}}
     </div>
 
     @push('script')
-    <script>
-        let toggleMenu = ()=>{
-                const sideMenu= document.getElementById('sideMenu');
+        <script>
+            let toggleMenu = () => {
+                const sideMenu = document.getElementById('sideMenu');
                 sideMenu.classList.toggle('-translate-x-full')
             }
 
-        let toggleBtnNew = ()=>{
-            const btns  = document.querySelectorAll('.btn-create-new');
-            const icons = document.querySelectorAll('.btn-new-icon');
+            let toggleBtnNew = () => {
+                const btns = document.querySelectorAll('.btn-create-new');
+                const icons = document.querySelectorAll('.btn-new-icon');
 
-            btns.forEach((btn)=>{
-                btn.classList.toggle('translate-x-full')
-            })
+                btns.forEach((btn) => {
+                    btn.classList.toggle('translate-x-full')
+                })
 
-            icons.forEach((icon)=>{
-                icon.classList.toggle('translate-x-full')
-            })
-        }
-    </script>
+                icons.forEach((icon) => {
+                    icon.classList.toggle('translate-x-full')
+                })
+            }
+
+        </script>
 
     @endpush
-</x-app-nonav-layout>
+
+    @stack('modals')
+
+    @stack('script')
+
+    @livewireScripts
+</body>
+
+</html>

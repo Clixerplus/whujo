@@ -17,7 +17,6 @@ mix.postCss("resources/css/app.css", "public/css")
     })
     .css("resources/css/vuesax.css", "public/css/vuesax.css")
     .js("resources/js/app.js", "public/js")
-    .vue()
     .version();
 
-mix.browserSync("whujo-1.test");
+mix.browserSync("localhost");

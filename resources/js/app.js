@@ -3,11 +3,16 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+/*
 import Vuesax from "vuesax";
+*/
 
 require("./bootstrap");
 
+/*
 window.Vue = require("vue").default;
+*/
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,9 +26,9 @@ window.Vue = require("vue").default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
-
+/*
   Vue.use(Vuesax, {});
-
+ */
   /**
     Vue.component("botones", require("./components/Botones.vue").default);
     Vue.component("menu", require("./components/Menu.vue").default);
