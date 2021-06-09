@@ -45,7 +45,7 @@
                     <span class="text-gray-700">Citas Pendients</span>
                 </div>
                 <div class="relative w-1/3 h-full text-gray-400">
-                    <x-icon-calendar-number-outline class="absolute bottom-0 right-0 w-full h-full" />
+                    <x-icon-calendar class="absolute bottom-0 right-0 w-full h-full" />
                 </div>
             </div>
         </div>
@@ -58,86 +58,36 @@
             <h2 class="p-4 font-bold">Listado de Servicios</h2>
             <ul class="divide-y">
 
+                @foreach ($services as $service)
+
                 <li class="py-4 px-8 flex items-center space-x-8">
 
-                    <div class="w-24 h-24 bg-gray-900 rounded "></div>
+                    <div class="w-24 h-24 bg-gray-900 rounded ">
+                        <img src="" alt="">
+                    </div>
 
                     <div class="flex-grow">
                         <div>
-                            <span class="text-gray-900">Nombre Producto</span>
+                            <span class="text-gray-900">{{ $service->name }}</span>
                         </div>
 
                         <div class="space-y-2 md:flex md:space-x-2 md:space-y-0 sm:justify-between sm:w-full">
                             <div>
-                                <span class="text-sm text-green-600 px-3 py-1 bg-green-200 rounded-full">
+
+                                @if ($service->status == 'STATUS_PUBLISHED')
+                                <span class="text-sm text-green-600 px-3 py-1 bg-green-200 rounded">
                                     activo
                                 </span>
-                            </div>
-
-                            <div class="flex space-x-4 text-xs text-gray-500 ">
-                                <button class="hover:text-gray-700">Edit</button>
-                                <button class="hover:text-gray-700">Delete</button>
-                                <button class="hover:text-gray-700">Publish</button>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-2 pt-2">
-                            <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-xs text-white">4.5</div>
-                            <span class="text-xs px-3 py-1 bg-gray-200 text-gray-600 rounded-full">20 Reseñas</span>
-
-                        </div>
-                    </div>
-
-                </li>
-
-                <li class="py-4 px-8 flex items-center space-x-8">
-
-                    <div class="w-24 h-24 bg-gray-900 rounded "></div>
-
-                    <div class="flex-grow">
-                        <div>
-                            <span class="text-gray-900">Nombre Producto</span>
-                        </div>
-
-                        <div class="space-y-2 md:flex md:space-x-2 md:space-y-0 sm:justify-between sm:w-full">
-                            <div>
-                                <span class="text-sm text-gray-600 px-3 py-1 bg-gray-200 rounded-full">
+                                @elseif ($service->status == 'STATUS_INCOMPLETE')
+                                <span class="text-sm text-gray-600 px-3 py-1 bg-gray-200 rounded">
                                     incompleto
                                 </span>
-                            </div>
-
-                            <div class="flex space-x-4 text-xs text-gray-500 ">
-                                <button class="hover:text-gray-700">Edit</button>
-                                <button class="hover:text-gray-700">Delete</button>
-                                <button class="hover:text-gray-700">Publish</button>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center space-x-2 pt-2">
-                            <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-xs text-white">4.5</div>
-                            <span class="text-xs px-3 py-1 bg-gray-200 text-gray-600 rounded-full">20 Reseñas</span>
-
-                        </div>
-                    </div>
-
-                </li>
-
-                <li class="py-4 px-8 flex items-center space-x-8">
-
-                    <div class="w-24 h-24 bg-gray-900 rounded "></div>
-
-                    <div class="flex-grow">
-                        <div>
-                            <span class="text-gray-900">Nombre Producto</span>
-                        </div>
-
-                        <div class="space-y-2 md:flex md:space-x-2 md:space-y-0 sm:justify-between sm:w-full">
-                            <div>
-                                <span class="text-sm text-yellow-600 px-3 py-1 bg-yellow-200 rounded-full">
+                                @elseif ($service->status == 'STATUS_DEACTIVATE')
+                                <span class="text-sm text-yellow-600 px-3 py-1 bg-yellow-200 rounded">
                                     desactivado
                                 </span>
+                                @endif
                             </div>
-
                             <div class="flex space-x-4 text-xs text-gray-500 ">
                                 <button class="hover:text-gray-700">Edit</button>
                                 <button class="hover:text-gray-700">Delete</button>
@@ -146,14 +96,16 @@
                         </div>
 
                         <div class="flex items-center space-x-2 pt-2">
-                            <div class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-xs text-white">4.5</div>
-                            <span class="text-xs px-3 py-1 bg-gray-200 text-gray-600 rounded-full">20 Reseñas</span>
+                            <div
+                                class="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center text-xs text-white">
+                                {{ rand(0,4) }}.{{ rand(0,9) }}</div>
+                            <span class="text-xs px-3 py-1 bg-gray-200 text-gray-600 rounded-full">{{ rand(0,500) }} Reseñas</span>
 
                         </div>
                     </div>
 
                 </li>
-
+                @endforeach
             </ul>
 
         </div>
@@ -180,6 +132,12 @@
                             <span>
                                 +(00) 000-0000
                             </span>
+
+                            <div class="pt-2">
+                                <span class="text-sm text-yellow-600 px-3 py-1 bg-yellow-200 rounded-full">
+                                    pending
+                                </span>
+                            </div>
                         </div>
                     </a>
                 </li>
@@ -229,6 +187,12 @@
                             <span>
                                 +(00) 000-0000
                             </span>
+
+                            <div class="pt-2">
+                                <span class="text-sm text-yellow-600 px-3 py-1 bg-yellow-200 rounded-full">
+                                    pending
+                                </span>
+                            </div>
                         </div>
                     </a>
                 </li>
