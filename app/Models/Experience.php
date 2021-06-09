@@ -28,7 +28,8 @@ class Experience extends Model
         'toProvide', 'toBring', 'photos', 'minimumAge', 'skillLevel',
         'activityLevel', 'toKnow', 'groupSize', 'duration', 'starting',
         'price', 'privateGroup', 'privateGroupPrice', 'reservationLimitTime',
-        'status', 'state_id', 'city_id', 'locality_id', 'address', 'modality'
+        'status', 'state_id', 'city_id', 'locality_id', 'address', 'modality',
+        'shareACoffee'
     ];
 
     protected $casts = [
@@ -37,6 +38,7 @@ class Experience extends Model
         'photos'    => 'array',
         'duration'  => TimeCast::class,
         'starting'  => TimeCast::class,
+        'shareACoffee' => 'boolean'
     ];
 
     protected $hidden = [
@@ -98,5 +100,4 @@ class Experience extends Model
             $q->orWhere('description', 'like', $search);
         });
     }
-
 }

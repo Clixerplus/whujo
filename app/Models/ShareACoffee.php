@@ -10,12 +10,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class ShareACoffee extends Experience
 {
     protected $table = 'experiences';
+
     protected $fillable = [
         'user_id', 'category_id', 'name', 'location', 'description',
         'toProvide', 'toBring', 'photos', 'minimumAge', 'skillLevel',
         'activityLevel', 'toKnow', 'groupSize', 'duration', 'starting',
         'price', 'privateGroup', 'privateGroupPrice', 'reservationLimitTime',
-        'status', 'state_id', 'city_id', 'locality_id', 'address','modality'
+        'status', 'state_id', 'city_id', 'locality_id', 'address', 'modality',
+        'shareACoffee'
     ];
 
     protected $casts = [
@@ -24,6 +26,7 @@ class ShareACoffee extends Experience
         'photos'    => 'array',
         'duration'  => TimeCast::class,
         'starting'  => TimeCast::class,
+        'shareACoffee' => 'boolean'
     ];
 
 
