@@ -21,19 +21,17 @@
 
         @livewireStyles
 
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
         @stack('styles')
 
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     </head>
 
     <body class="font-sans antialiased text-gray-800">
 
         <div class="min-h-screen bg-gray-100">
-            <main>
-                {{ $slot }}
-            </main>
+            {{ $slot }}
         </div>
 
         @stack('modals')

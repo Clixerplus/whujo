@@ -38,6 +38,15 @@ html {
     font-family: arial;
 }
 
+
+.sidebar-active {
+    @apply bg-red-50 text-primary;
+}
+
+.sidebar-active.item-open {
+    @apply  border-whujo border-opacity-75 border-l-4;
+}
+
 /*------ Navbar ----------*/
 .navbar {
     @apply flex items-center justify-between bg-white text-primary;

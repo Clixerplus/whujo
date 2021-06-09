@@ -1,12 +1,12 @@
 <x-admin-layout>
 
-    <div class="flex flex-col lg:flex-row lg:justify-between items-center space-y-2  px-6 py-8 mt-16">
+    <div class="flex flex-col items-center px-6 py-8 mt-16 space-y-2 lg:flex-row lg:justify-between">
 
         <h1 class="text-3xl ">Configuración de Usuario</h1>
-        <ul class="flex items-center space-x-1 text-gray-500 text-sm">
+        <ul class="flex items-center space-x-1 text-sm text-gray-500">
             <li><a href="{{ route('account.dashboard')}}" class="hover:text-gray-900">Dahsboard</a></li>
             <li>
-                <x-icon-chevron-forward class="h-3 w-auto" />
+                <x-icon-chevron-forward class="w-auto h-3" />
             </li>
             <li>Configuración de Usuario</li>
         </ul>
@@ -16,9 +16,10 @@
     <div class="px-4">
 
         <div>
-            <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+            <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updateProfileInformation()))
-                    @livewire('profile.update-profile-information-form')
+
+                @livewire('profile.update-profile-information-form')
 
                     <x-jet-section-border />
                 @endif

@@ -20,7 +20,7 @@
 
     {{-- General styles --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/embla.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/vuesax.css') }}">
 
     {{-- Alpin CDN --}}
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
@@ -42,7 +42,7 @@
     <x-navbar-top />
 
     {{-- Main wrapper --}}
-    <div class="relative antialiased">
+    <div class="relative antialiased" id="app">
         {{ $slot }}
     </div>
 
@@ -54,6 +54,7 @@
 
     {{-- App scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
+    
 
     {{-- Livewire scripts --}}
     @livewireScripts
