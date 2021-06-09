@@ -113,6 +113,7 @@ Route::get('success', function () {
     ])->get('https://api.mercadopago.com/v1/payments/' . request()->input('payment_id'));
     return view('pages.payment',  ['response' => json_decode($response->body())]);
 })->name('checkout.thanks');
+
 Route::get('checkout/pending', function () {
     return 'Pending';
 })->name('checkout.pending');
@@ -258,3 +259,6 @@ Route::get('account')->group('account', function () {
     Route::get('notification', [AccountDashboard::class, 'dashboard']);
 });
  */
+
+
+ 

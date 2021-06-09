@@ -1,9 +1,10 @@
-<div class="relative h-full">
-    <h2 class="relative h-16 p-4 mt-2 mb-16 text-3xl font-bold">
-        <x-whujo />
+<div class="relative h-full"  >
+    <h2 class="relative h-16 p-4 mt-2 mb-16 text-3xl font-bold" >
+        <x-whujo x-show="open"/>
         <button
             class="absolute inset-y-0 right-0 flex items-center justify-center w-10 h-12 my-auto text-white hover:bg-primary-light rounded-l-xl bg-primary">
-            <x-icon-chevron-forward class="w-5 h-5 transform rotate-180 " />
+            <x-icon-chevron-forward class="w-5 h-5 transform" x-bin:class="{'rotate-180': !open}"
+            @click="open = !open" />
         </button>
     </h2>
 
