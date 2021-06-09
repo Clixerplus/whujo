@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use App\Models\Service;
 use App\Models\Experience;
+use App\Models\ShareACoffee;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -65,6 +67,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function experiences()
     {
         return $this->hasMany(Experience::class);
+    }
+
+    public function shareACoffees()
+    {
+        return $this->hasMany(ShareACoffee::class);
     }
 
     public function services()
