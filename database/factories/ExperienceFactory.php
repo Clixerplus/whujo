@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Locality;
 use App\Models\Experience;
 use App\ValueObjcets\TimeVO;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ExperienceFactory extends Factory
@@ -60,10 +61,10 @@ class ExperienceFactory extends Factory
             ],
 
             'photos'         =>  [
-                $photos->random(),
-                $photos->random(),
-                $photos->random(),
-                $photos->random(),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
             ],
 
             'minimumAge'     => 18,
