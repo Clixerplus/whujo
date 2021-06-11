@@ -65,6 +65,7 @@ module.exports = {
                 },
             },
             fontFamily: {
+                "inter":["Inter"],
                 sans: ["Inter", ...defaultTheme.fontFamily.sans],
                 whujo: ["arial"],
             },
