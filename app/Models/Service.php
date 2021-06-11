@@ -35,12 +35,10 @@ class Service extends Model
     {
         return $this->hasMany(Microservice::class);
     }
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -50,12 +48,10 @@ class Service extends Model
     {
         return $this->belongsTo(State::class);
     }
-
     public function city()
     {
         return $this->belongsTo(City::class);
     }
-
     public function locality()
     {
         return $this->belongsTo(Locality::class);
