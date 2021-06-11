@@ -4,7 +4,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- header: hero-banner --}}
     <header class="overflow-x-hidden ">
-        <div class="relative w-screen md:h-96">
+        <div class="relative w-screen " style="height:500px">
 
             {{-- background image --}}
             <img src="{{ asset('images/bg/section-bg-experience-cta.jpeg') }}" alt="multi-experiences collage"
@@ -16,18 +16,6 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                 class="relative flex justify-center w-full h-full px-4 pb-8 bg-opacity-75 bg-secondary md:items-center lg:items-start">
                 <div class="w-full max-w-full mt-32 mb-16 rounded sm:max-w-full lg:text-center md:max-w-xl">
 
-                    <div class="absolute top-0 right-0 hidden text-white lg:inline">
-                        <svg viewBox="0 0 52 24" fill="currentColor" class="w-32 mt-4 ml-8 -mb-4 -mr-8">
-                            <defs>
-                                <pattern id="700c93bf-0068-4e32-aafe-ef5b6a647708" x="0" y="0" width=".135"
-                                    height=".30">
-                                    <circle cx="1" cy="1" r=".7"></circle>
-                                </pattern>
-                            </defs>
-                            <rect fill="url(#700c93bf-0068-4e32-aafe-ef5b6a647708)" width="52" height="24">
-                            </rect>
-                        </svg>
-                    </div>
 
                     <h2 class="mb-4 text-5xl font-semibold text-white lg:text-center">
                         Creando Momentos y <span class="text-primary">Soluciones</span>
