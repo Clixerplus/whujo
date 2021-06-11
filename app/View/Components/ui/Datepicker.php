@@ -1,12 +1,11 @@
 <?php
 
-namespace App\View\Components\UI;
+namespace Components\UI;
 
 use Illuminate\View\Component;
 
-class Modal extends Component
+class Datepicker extends Component
 {
-
     /**
      * Create a new component instance.
      *
@@ -17,7 +16,6 @@ class Modal extends Component
         //
     }
 
-
     /**
      * Get the view / contents that represent the component.
      *
@@ -25,6 +23,6 @@ class Modal extends Component
      */
     public function render()
     {
-        return view('components.ui.modal');
+        return view('components.ui.datepicker');
     }
 }

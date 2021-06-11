@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "09a0e8c21448c64c9429f5df496ff933",
+    "content-hash": "7999213e6f25248a89a9c61015552aa5",
     "packages": [
         {
             "name": "adrianorosa/laravel-geolocation",
@@ -2108,6 +2108,7 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
             "version": "v8.46.0",
             "source": {
                 "type": "git",
@@ -2118,6 +2119,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/a18266c612e0e6aba5e0174b3c873d2d217dccfb",
                 "reference": "a18266c612e0e6aba5e0174b3c873d2d217dccfb",
+=======
+            "version": "v8.45.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "dc2f0bb02c3eb4b27669d626bb3e810db8e7749d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/dc2f0bb02c3eb4b27669d626bb3e810db8e7749d",
+                "reference": "dc2f0bb02c3eb4b27669d626bb3e810db8e7749d",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -2272,6 +2285,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
             "time": "2021-06-08T13:36:46+00:00"
         },
         {
@@ -2286,6 +2300,22 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/jetstream/zipball/38f756d615a58dc16d2949ef69187b6d7487fa1c",
                 "reference": "38f756d615a58dc16d2949ef69187b6d7487fa1c",
+=======
+            "time": "2021-06-03T16:39:17+00:00"
+        },
+        {
+            "name": "laravel/jetstream",
+            "version": "v2.3.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/jetstream.git",
+                "reference": "05fa16096324a90299277a3a1a6a3de311f3f587"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/05fa16096324a90299277a3a1a6a3de311f3f587",
+                "reference": "05fa16096324a90299277a3a1a6a3de311f3f587",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -2339,7 +2369,11 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
+<<<<<<< HEAD
             "time": "2021-06-08T14:30:35+00:00"
+=======
+            "time": "2021-06-01T15:46:41+00:00"
+>>>>>>> master
         },
         {
             "name": "laravel/sanctum",
@@ -7275,6 +7309,7 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-debugbar",
+<<<<<<< HEAD
             "version": "v3.6.1",
             "source": {
                 "type": "git",
@@ -7285,6 +7320,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/f6f0f895a33cac801286a74355d146bb5384a5da",
                 "reference": "f6f0f895a33cac801286a74355d146bb5384a5da",
+=======
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "bc99f4c52aec0636ecb3aae4576ce84c5773bae2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/bc99f4c52aec0636ecb3aae4576ce84c5773bae2",
+                "reference": "bc99f4c52aec0636ecb3aae4576ce84c5773bae2",
+>>>>>>> master
                 "shasum": ""
             },
             "require": {
@@ -7344,7 +7391,11 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.6.1"
+=======
+                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.6.0"
+>>>>>>> master
             },
             "funding": [
                 {
@@ -7352,7 +7403,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2021-06-02T06:42:22+00:00"
+=======
+            "time": "2021-06-01T08:46:17+00:00"
+>>>>>>> master
         },
         {
             "name": "brianium/paratest",

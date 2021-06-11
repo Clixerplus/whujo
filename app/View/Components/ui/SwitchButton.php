@@ -1,15 +1,16 @@
 <?php
 
-namespace App\View\Components\UI;
+namespace Components\UI;
 
 use Illuminate\View\Component;
 
-class Select extends Component
+class SwitchButton extends Component
 {
     public $key;
 
     public function __construct($key = '')
     {
+
         $this->key = $key;
     }
 
@@ -20,6 +21,6 @@ class Select extends Component
      */
     public function render()
     {
-        return view('components.ui.select');
+        return view('components.ui.switch');
     }
 }
