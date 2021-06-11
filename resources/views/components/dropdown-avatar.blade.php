@@ -29,8 +29,12 @@
             {{ __('Manage Account') }}
         </div>
 
+        <x-jet-dropdown-link href="{{ route('admin.dashboard') }}">
+            <span class="text-gray-600">{{ __('Account') }}</span>
+        </x-jet-dropdown-link>
+
         <x-jet-dropdown-link href="{{ route('profile.show') }}">
-            {{ __('Profile') }}
+            <span class="text-gray-600">{{ __('Profile') }}</span>
         </x-jet-dropdown-link>
 
         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -78,7 +82,7 @@
 
             <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                {{ __('Logout') }}
+                <span class="text-gray-600">{{ __('Logout') }}</span>
             </x-jet-dropdown-link>
         </form>
     </x-slot>
