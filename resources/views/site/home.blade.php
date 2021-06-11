@@ -12,6 +12,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
             {{-- mask container --}}
             <div
+
                 class="relative flex justify-center w-full h-full px-4 pb-8 bg-opacity-75 bg-secondary md:items-center lg:items-start">
                 <div class="w-full max-w-full mt-32 mb-16 rounded sm:max-w-full lg:text-center md:max-w-xl">
 
@@ -87,6 +88,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
             <div class="w-full md:w-1/2 h-80">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/share-a-coffee-02.jpg')"
                     class="from-secondary bg-gradient-to-t group-hover:from-transparent">
+
                     <x-slot name="title">
                         <h2 class="text-2xl font-bold lg:text-3xl text-accent-orange">Comparte un momento</h2>
                     </x-slot>

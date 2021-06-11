@@ -1,3 +1,4 @@
+
 @props(['icon', 'route' => null, 'view' => null])
 
 <li {{ $attributes }} class="">
@@ -18,4 +19,3 @@
             {{ $slot }}
         </span>
     </button>
-</li>

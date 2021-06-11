@@ -1,4 +1,5 @@
 @props(['title' => null])
+
 <ul {{ $attributes->merge(['class' => 'mb-8 space-y-2 lg:text-sm']) }}>
 
     @isset($title)

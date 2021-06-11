@@ -40,6 +40,15 @@ html {
 }
 
 
+.sidebar-active {
+    @apply bg-red-50 text-primary;
+}
+
+.sidebar-active.item-open {
+    @apply  border-whujo border-opacity-75 border-l-4;
+}
+
+
 /*------ Navbar ----------*/
 .navbar {
     @apply flex items-center justify-between bg-white text-primary;
@@ -164,6 +173,7 @@ html {
 input[name="search"]:focus + #productType {
     @apply h-20 transition-all duration-200 ease-linear;
 }
+
 /*------- Sidebar ----------*/
 .animate-sidebar {
     @apply z-20 h-full transition-all duration-300 ease-in-out transform -translate-x-full w-72 md:w-16 md:transform-none;

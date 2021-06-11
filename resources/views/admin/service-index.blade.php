@@ -64,15 +64,18 @@
 
                 @foreach ($services as $service)
 
+
                     <li class="flex items-center px-8 py-4 space-x-8">
 
                         <div class="w-24 h-24 rounded ">
                             <img src="{{ $service->photos[1] }}" alt="{{ $service->photos[1] }}"
                             class="object-cover w-24 h-24 rounded shadow">
+
                         </div>
 
                         <div class="flex-grow">
                             <div>
+
                                 <span class="text-gray-900">{{ $service->name }}</span>
                             </div>
 
@@ -112,6 +115,7 @@
                         </div>
 
                     </li>
+
                 @endforeach
             </ul>
 
@@ -141,6 +145,7 @@
                             </span>
 
                             <div class="pt-2">
+
                                 <span class="px-3 py-1 text-sm text-yellow-600 bg-yellow-200 rounded-full">
                                     pending
                                 </span>
@@ -196,6 +201,7 @@
                             </span>
 
                             <div class="pt-2">
+
                                 <span class="px-3 py-1 text-sm text-yellow-600 bg-yellow-200 rounded-full">
                                     pending
                                 </span>
