@@ -12,7 +12,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
             {{-- mask container --}}
             <div
-                class="relative flex justify-center w-full px-4 pb-8 bg-opacity-75 h-full bg-secondary  md:items-center lg:items-start">
+                class="relative flex justify-center w-full h-full px-4 pb-8 bg-opacity-75 bg-secondary md:items-center lg:items-start">
                 <div class="w-full max-w-full mt-32 mb-16 rounded sm:max-w-full lg:text-center md:max-w-xl">
 
                     <div class="absolute top-0 right-0 hidden text-white lg:inline">
@@ -75,51 +75,40 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/services-04.jpg')"
                     class="from-secondary bg-gradient-to-t group-hover:from-transparent">
                     <x-slot name="title">
-
                         <h2 class="text-2xl font-bold lg:text-3xl text-accent-aqua">Servicios</h2>
                     </x-slot>
 
                     <x-slot name="text">
                         <p class="">Vive y aprende mirando a los ojos</p>
                     </x-slot>
-
-
                 </x-link-card>
             </div>
 
             <div class="w-full md:w-1/2 h-80">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/share-a-coffee-02.jpg')"
                     class="from-secondary bg-gradient-to-t group-hover:from-transparent">
-
                     <x-slot name="title">
                         <h2 class="text-2xl font-bold lg:text-3xl text-accent-orange">Comparte un momento</h2>
                     </x-slot>
-
                     <x-slot name="text">
                         <p class="w-4/5 md:w-full">Vive la experiencia no importa donde estés</p>
                     </x-slot>
-
-
                 </x-link-card>
             </div>
 
             <div class="w-full md:w-1/2 h-80">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/experiences-01.jpg')"
                     class="from-secondary bg-gradient-to-t group-hover:from-transparent">
-
                     <x-slot name="title">
                         <h2 class="text-2xl font-bold lg:text-3xl text-duolingo">
                             Experiencias
                         </h2>
                     </x-slot>
-
                     <x-slot name="text">
                         <p class="w-4/5 text-gray-400 md:w-full">
                             Vive la experiencia no importadonde estés
                         </p>
                     </x-slot>
-
-
                 </x-link-card>
             </div>
         </div>

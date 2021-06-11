@@ -1,5 +1,5 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"); */
 
 @import "tailwindcss/base";
 @import "tailwindcss/components";
@@ -25,12 +25,13 @@ html {
     scroll-behavior: smooth;
 }
 
-[x-cloak] { display: none; }
+[x-cloak] {
+    display: none;
+}
 
 .blur-hover:hover {
     @apply bg-opacity-75;
     backdrop-filter: blur(5px);
-
 }
 
 .whujo-brand {
@@ -39,21 +40,13 @@ html {
 }
 
 
-.sidebar-active {
-    @apply bg-red-50 text-primary;
-}
-
-.sidebar-active.item-open {
-    @apply  border-whujo border-opacity-75 border-l-4;
-}
-
 /*------ Navbar ----------*/
 .navbar {
     @apply flex items-center justify-between bg-white text-primary;
 }
 
 .navbar-transparent {
-    @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0 ;
+    @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0;
 }
 
 .navbar-transparent a {
@@ -61,11 +54,11 @@ html {
 }
 
 .navbar-transparent .btn-join {
-    @apply bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50 ;
+    @apply bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50;
 }
 
 .navbar-dark {
-    @apply  transition-colors duration-500 ease-in-out bg-opacity-100 ;
+    @apply transition-colors duration-500 ease-in-out bg-opacity-100;
 }
 
 .navbar-dark a {
@@ -73,9 +66,8 @@ html {
 }
 
 .navbar-dark .btn-join {
-    @apply text-white bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50 ;
+    @apply text-white bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50;
 }
-
 
 /*--------- Tabs ----------*/
 .tab ul li.active {
@@ -138,7 +130,6 @@ html {
     @apply transition duration-1000 ease-in-out;
 }
 
-
 /*---------- Step list ----------*/
 .step-list {
     @apply flex flex-col space-y-1;
@@ -165,7 +156,6 @@ html {
     @apply w-auto h-5 transition duration-500 ease-in-out;
 }
 
-
 /*---------- From ----------*/
 .radio-buttom > input[type="radio"]:checked + span {
     @apply opacity-100;
@@ -173,4 +163,21 @@ html {
 
 input[name="search"]:focus + #productType {
     @apply h-20 transition-all duration-200 ease-linear;
+}
+/*------- Sidebar ----------*/
+.animate-sidebar {
+    @apply z-20 h-full transition-all duration-300 ease-in-out transform -translate-x-full w-72 md:w-16 md:transform-none;
+}
+
+.animate-sidebar.open {
+    @apply translate-x-0 md:w-72 md:transform-none;
+}
+
+
+.sidebar-active {
+    @apply bg-gray-100 text-secondary;
+}
+
+.sidebar-active.item-open {
+    @apply border-l-4 border-opacity-75 border-whujo;
 }
