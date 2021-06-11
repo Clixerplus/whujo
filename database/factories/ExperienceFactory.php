@@ -78,7 +78,7 @@ class ExperienceFactory extends Factory
             'privateGroup'   => true,
             'status'         => 'STATUS_PUBLISHED',
             'modality'       => $this->faker->randomElement(['online', 'onsite']),
-            'shareAcoffee'    => false,
+            'shareACoffee'    => false,
             'privateGroupPrice'    => 15000,
             'reservationLimitTime' => $this->faker->randomElement(
                 [0, 1, 2, 3, 4, 5, 6, 12, 24, 48, 72]
