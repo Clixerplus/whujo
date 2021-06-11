@@ -1,13 +1,15 @@
 <?php
 
-namespace App\View\Components\UI;
+namespace Components\UI;
 
 use Illuminate\View\Component;
 
-class ButtonIcon extends Component
+class Checkbox extends Component
 {
 
-    public $icon;
+    public $caption;
+
+    public $key;
 
     public $size;
 
@@ -16,9 +18,11 @@ class ButtonIcon extends Component
      *
      * @return void
      */
-    public function __construct(string $icon, string $size = 'md')
+    public function __construct(String $caption, String $key, string $size = 'w-4 h-4')
     {
-        $this->icon = 'icon-' . $icon;
+        $this->caption = $caption;
+
+        $this->key = $key;
 
         $this->size = $size;
 
@@ -31,6 +35,6 @@ class ButtonIcon extends Component
      */
     public function render()
     {
-        return view('components.ui.button-icon');
+        return view('components.ui.chekbox');
     }
 }

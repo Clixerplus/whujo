@@ -1,21 +1,27 @@
 <?php
 
-namespace App\View\Components\UI;
+namespace Components\UI;
 
 use Illuminate\View\Component;
 
-class Error extends Component
+class ButtonIcon extends Component
 {
-    public $key;
+
+    public $icon;
+
+    public $size;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($key)
+    public function __construct(string $icon, string $size = 'md')
     {
-        $this->key = $key;
+        $this->icon = 'icon-' . $icon;
+
+        $this->size = $size;
+
     }
 
     /**
@@ -25,6 +31,6 @@ class Error extends Component
      */
     public function render()
     {
-        return view('components.ui.error');
+        return view('components.ui.button-icon');
     }
 }

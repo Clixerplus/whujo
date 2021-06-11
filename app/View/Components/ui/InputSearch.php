@@ -1,17 +1,19 @@
 <?php
 
-namespace App\View\Components\UI;
+namespace Components\UI;
 
 use Illuminate\View\Component;
 
-class Datepicker extends Component
+class Dropdown extends Component
 {
+
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($label = null)
     {
         //
     }
@@ -19,10 +21,10 @@ class Datepicker extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|string
+     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
     public function render()
     {
-        return view('components.ui.datepicker');
+        return view('components.ui.dropdown');
     }
 }

@@ -23,18 +23,18 @@
                 x-on:keydown="$refs.productTag.value=''; $refs.productType.value=''"
                 class="w-full py-4 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-red-500 dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-red-500">
 
-            <input type="hidden" x-ref="productType" name="type"  class="border"/>
-            <input type="hidden" x-ref="productTag" name="category"  class="border"/>
+            <input type="hidden" x-ref="productType" name="type" class="border" />
+            <input type="hidden" x-ref="productTag" name="category" class="border" />
 
-            <x-button type="submit"
+            <x-ui::button type="submit"
                 class="absolute top-0 right-0 flex items-center h-12 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
                 <span class="hidden md:inline-flex">{{ __('Search') }}</span>
                 <x-icon-search class="w-6 h-6 md:hidden" />
-            </x-button>
+            </x-ui::button>
         </div>
 
         <div class="absolute inset-x-0 z-40 w-full mt-2 overflow-y-auto text-left bg-white border rounded max-h-44"
-            x-show="isSearchActive" x-cloak>
+            x-show="isSearchActive" @click.away="isSearchActive = false" x-cloak>
             @if ($results)
                 <ul>
                     @foreach ($results as $type_results => $data_result)
