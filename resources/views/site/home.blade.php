@@ -171,10 +171,10 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                             posibilidades</span>
 
                         <x-slot name="call_to_action">
-                            <x-button class="bg-accent-aqua hover:ring hover:ring-accent-aqua hover:ring-opacity-50"
+                            <x-ui::button class="bg-accent-aqua hover:ring hover:ring-accent-aqua hover:ring-opacity-50"
                                 size="lg">
                                 {{ __('Let\'s go') }}
-                            </x-button>
+                            </x-ui::button>
                         </x-slot>
                     </x-section-title>
 
