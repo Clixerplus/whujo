@@ -61,6 +61,15 @@ class Service extends Model
         return $this->belongsTo(Locality::class);
     }
 
+    public function isPublished()
+    {
+        return $this->status == 'STATUS_PUBLISHED';
+    }
+    public function isComplete()
+    {
+        return $this->status != 'STATUS_INCOMPLETE';
+    }
+
     public function getTypeAttribute()
     {
         return config('product.TYPE_SERVICE');

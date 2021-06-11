@@ -7,6 +7,7 @@
 
 <div class="relative w-full h-full rounded-md group">
     <a href="{{ $link }}">
+
         <vs-card type="5" >
 
             @isset ($title)
@@ -17,7 +18,8 @@
                 <template #img>
                     <div class="relative">
                         <img src="{{ $img }}" alt="{{ $alt }}">
-                        <div class="inset-0 absolute from-secondary bg-gradient-to-t group-hover:from-transparent"></div>
+
+                        <div class="absolute inset-0 from-secondary bg-gradient-to-t group-hover:from-transparent"></div>
                     </div>
                 </template>
             @endif
@@ -31,8 +33,9 @@
             @endif
 
         </vs-card>
-    </a>
-    {{-- <img src="{{ $img }}"
+
+    </a> --}}
+    <img src="{{ $img }}"
     class="absolute inset-0 object-cover w-full h-full transition-opacity ease-in-out rounded-xl group-hover:opacity-90"
     alt="{{ $alt }}" />
 

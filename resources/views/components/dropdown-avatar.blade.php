@@ -3,7 +3,7 @@
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
         <button
             class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
-            <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
+            <img class="object-cover w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
                 alt="{{ Auth::user()->name }}" />
         </button>
         @else
@@ -29,8 +29,12 @@
             {{ __('Manage Account') }}
         </div>
 
+        <x-jet-dropdown-link href="{{ route('admin.dashboard') }}">
+            <span class="text-gray-600">{{ __('Account') }}</span>
+        </x-jet-dropdown-link>
+
         <x-jet-dropdown-link href="{{ route('profile.show') }}">
-            {{ __('Profile') }}
+            <span class="text-gray-600">{{ __('Profile') }}</span>
         </x-jet-dropdown-link>
 
         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -78,7 +82,7 @@
 
             <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                {{ __('Logout') }}
+                <span class="text-gray-600">{{ __('Logout') }}</span>
             </x-jet-dropdown-link>
         </form>
     </x-slot>

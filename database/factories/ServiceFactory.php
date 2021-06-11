@@ -8,6 +8,7 @@ use App\Models\State;
 use App\Models\Service;
 use App\Models\Category;
 use App\Models\Locality;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ServiceFactory extends Factory
@@ -52,10 +53,10 @@ class ServiceFactory extends Factory
                 $this->faker->sentence(2)
             ],
             'photos'         =>  [
-                $photos->random(),
-                $photos->random(),
-                $photos->random(),
-                $photos->random(),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
+                Storage::url('images/' . rand(1, 29) . '.jpg'),
             ],
             'published_at' => $this->faker->dateTime(),
             'status'       => 'STATUS_PUBLISHED',
