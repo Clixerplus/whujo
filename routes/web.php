@@ -21,7 +21,7 @@ use App\Http\Controllers\Site\HomePageController;
 use App\Http\Controllers\WizardOptionsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Site\ListinPageController;
-
+use App\Http\Livewire\AdminLayout;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +41,7 @@ Route::get('/home', HomePageController::class)->name('home');
 Route::get('/listing', ListinPageController::class)->name('listing-product');
 
 Route::view('/about', 'site.landing-page1')->name('about-landing');
+Route::view('/about/2', 'site.landing-page2')->name('about-landing2');
 
 Route::get('/meet/room/{link}', function ($link) {
     return view('site.meet-room', ['link' => $link]);
@@ -201,7 +202,23 @@ Route::resource('categories', CategoryController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    //auth()->login(App\Models\User::first());
+
+    Route::view('/admin/dashboard','backoffice.dashboard')->name('admin.dashboard');
+    Route::view('/admin/notifications','backoffice.notifications')->name('admin.notifications');
+    Route::view('/admin/profile','backoffice.settings')->name('admin.settings');
+    Route::view('/admin/reviews','backoffice.reviews')->name('admin.reviews');
+    Route::view('/admin/bookings','backoffice.bookings')->name('admin.bookings');
+    Route::view('/admin/security','backoffice.security')->name('admin.security');
+
+    Route::get('/service/create', ServiceBuilderWizard::class)->name('service.create');
+    Route::get('/service/{service}/edit', ServiceBuilderWizard::class)->name('service.edit');
+    Route::get('/service/index/', ServiceController::class)->name('service.index');
+
+    Route::get('/experience/create', ServiceBuilderWizard::class)->name('experience.create');
+    Route::get('/experience/index/', ServiceController::class)->name('experience.index');
+
+    Route::get('/share-a-coffee/create', ServiceBuilderWizard::class)->name('shareACoffee.create');
+    Route::get('/share-a-coffee/index/', ServiceController::class)->name('shareACoffee.index');
 
     Route::get('/dashboard', DashboardController::class)->name('account.dashboard');
     Route::get('/notificaciones', NotificationController::class)->name('account.notifications');
@@ -211,7 +228,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/configuracion', SetupController::class)->name('account.setup');
     Route::get('/seguridad', SecurityController::class)->name('account.security');
     Route::get('/wizard/options/', WizardOptionsController::class)->name('wizard.options');
-    Route::get('/service/index/', ServiceController::class)->name('service.index');
+
 
 
     Route::group(['prefix' => 'service/hosting'], function () {
@@ -243,7 +260,7 @@ Route::get('/test', function () {
 });
 
 
-Route::get('/services/{service}/create', ServiceBuilderWizard::class)->name('wizard.service.create');
+
 
 Route::view('colortest', 'colortest');
 
@@ -259,6 +276,3 @@ Route::get('account')->group('account', function () {
     Route::get('notification', [AccountDashboard::class, 'dashboard']);
 });
  */
-
-
- 

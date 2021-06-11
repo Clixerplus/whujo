@@ -10,7 +10,7 @@ class ServiceController extends Controller
 {
     public function __invoke()
     {
-        return view('admin.service-index',[
+        return view('backoffice.service-index',[
             'services' => Auth::user()->services
         ]);
     }

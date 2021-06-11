@@ -5,6 +5,7 @@ namespace App\Providers;
 use SKAgarwal\GoogleApi\PlacesApi;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,5 +35,7 @@ class AppServiceProvider extends ServiceProvider
     /*     if (env('REDIRECT_HTTPS')) {
             $url->formatScheme('https://');
         } */
+        Blade::componentNamespace('App\\View\\Components\\Admin', 'admin');
+
     }
 }
