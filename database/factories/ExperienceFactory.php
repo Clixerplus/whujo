@@ -113,6 +113,7 @@ class ExperienceFactory extends Factory
                 'starting'      => new TimeVO(),
                 'price'         => null,
                 'privateGroup'  => false,
+                'shareACoffee'  => false,
                 'status'        => 'STATUS_INCOMPLETE',
                 'privateGroupPrice'    => null,
                 'reservationLimitTime' => 0,
