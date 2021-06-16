@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ServiceController extends Controller
+class ExperienceController extends Controller
 {
     public function __invoke()
     {
         return view('backoffice.product-index',[
-            'productType' => 'Services',
-            'products' => Auth::user()->services
+            'productType' => 'Experiences',
+            'products' => Auth::user()->experiences
         ]);
     }
 }

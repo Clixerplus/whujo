@@ -3,7 +3,7 @@
         <x-whujo x-show="open"/>
         <button
             class="absolute inset-y-0 right-0 flex items-center justify-center w-10 h-12 my-auto text-white hover:bg-primary-light rounded-l-xl bg-primary">
-            <x-icon-chevron-forward class="w-5 h-5 transform" x-bin:class="{'rotate-180': !open}"
+            <x-icon-chevron-forward class="w-5 h-5 transform" x-bind:class="{'rotate-180': !open}"
             @click="open = !open" />
         </button>
     </h2>

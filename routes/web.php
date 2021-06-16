@@ -4,6 +4,7 @@ use App\Models\Service;
 use App\Models\Experience;
 use App\Models\Microservice;
 use Illuminate\Http\Request;
+use App\Http\Livewire\AdminLayout;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SetupController;
@@ -15,13 +16,16 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\ExperienceController;
+use App\Http\Livewire\ExperienceBuilderWizard;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ShareACoffeeController;
+use App\Http\Livewire\ShareACoffeeBuilderWizard;
 use App\Http\Controllers\Site\HomePageController;
 use App\Http\Controllers\WizardOptionsController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Site\ListinPageController;
-use App\Http\Livewire\AdminLayout;
 
 /*
 |--------------------------------------------------------------------------
@@ -188,6 +192,7 @@ Route::get('/navbar', function () {
 
 
 Route::get('/listing', function () {
+    
     return view('pages.listing');
 })->name('search');
 
@@ -203,22 +208,24 @@ Route::resource('categories', CategoryController::class);
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
-    Route::view('/admin/dashboard','backoffice.dashboard')->name('admin.dashboard');
-    Route::view('/admin/notifications','backoffice.notifications')->name('admin.notifications');
-    Route::view('/admin/profile','backoffice.settings')->name('admin.settings');
-    Route::view('/admin/reviews','backoffice.reviews')->name('admin.reviews');
-    Route::view('/admin/bookings','backoffice.bookings')->name('admin.bookings');
-    Route::view('/admin/security','backoffice.security')->name('admin.security');
+    Route::view('/admin/dashboard', 'backoffice.dashboard')->name('admin.dashboard');
+    Route::view('/admin/notifications', 'backoffice.notifications')->name('admin.notifications');
+    Route::view('/admin/profile', 'backoffice.settings')->name('admin.settings');
+    Route::view('/admin/reviews', 'backoffice.reviews')->name('admin.reviews');
+    Route::view('/admin/bookings', 'backoffice.bookings')->name('admin.bookings');
+    Route::view('/admin/security', 'backoffice.security')->name('admin.security');
 
     Route::get('/service/create', ServiceBuilderWizard::class)->name('service.create');
     Route::get('/service/{service}/edit', ServiceBuilderWizard::class)->name('service.edit');
     Route::get('/service/index/', ServiceController::class)->name('service.index');
 
     Route::get('/experience/create', ServiceBuilderWizard::class)->name('experience.create');
-    Route::get('/experience/index/', ServiceController::class)->name('experience.index');
+    Route::get('/experience/{experience}/edit', ExperienceBuilderWizard::class)->name('experience.edit');
+    Route::get('/experience/index/', ExperienceController::class)->name('experience.index');
 
     Route::get('/share-a-coffee/create', ServiceBuilderWizard::class)->name('shareACoffee.create');
-    Route::get('/share-a-coffee/index/', ServiceController::class)->name('shareACoffee.index');
+    Route::get('/share-a-coffee/{shareACoffee}/edit', ShareACoffeeBuilderWizard::class)->name('shareACoffee.edit');
+    Route::get('/share-a-coffee/index/', ShareACoffeeController::class)->name('shareACoffee.index');
 
     Route::get('/dashboard', DashboardController::class)->name('account.dashboard');
     Route::get('/notificaciones', NotificationController::class)->name('account.notifications');
@@ -276,6 +283,3 @@ Route::get('account')->group('account', function () {
     Route::get('notification', [AccountDashboard::class, 'dashboard']);
 });
  */
-
-
- 

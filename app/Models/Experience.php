@@ -12,6 +12,8 @@ use App\Traits\HasSlug;
 use App\Models\Category;
 use App\Models\Locality;
 use Spatie\Tags\HasTags;
+use App\Traits\HasRating;
+use App\Traits\HasPublish;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +24,8 @@ class Experience extends Model
     use HasFactory;
     use HasSlug;
     use HasTags;
+    use HasRating;
+    use HasPublish;
 
     protected $fillable = [
         'user_id', 'category_id', 'name', 'location', 'description',
@@ -82,6 +86,10 @@ class Experience extends Model
     public function getTypeAttribute()
     {
         return config('product.TYPE_EXPERIENCE');
+    }
+    public function getCoverPhotoAttribute()
+    {
+        return $this->photos[0];
     }
 
     public function scopePublished(Builder $query): Builder

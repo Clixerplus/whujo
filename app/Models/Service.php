@@ -11,6 +11,8 @@ use App\Models\Category;
 use App\Models\Locality;
 use Spatie\Tags\HasTags;
 use App\Models\Microservice;
+use App\Traits\HasPublish;
+use App\Traits\HasRating;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,6 +21,9 @@ class Service extends Model
     use HasFactory;
     use HasSlug;
     use HasTags;
+    use HasRating;
+    use HasPublish;
+
 
     protected $fillable = [
         'user_id', 'category_id', 'state_id', 'city_id', 'locality_id',
@@ -57,17 +62,13 @@ class Service extends Model
         return $this->belongsTo(Locality::class);
     }
 
-    public function isPublished()
-    {
-        return $this->status == 'STATUS_PUBLISHED';
-    }
-    public function isComplete()
-    {
-        return $this->status != 'STATUS_INCOMPLETE';
-    }
 
     public function getTypeAttribute()
     {
         return config('product.TYPE_SERVICE');
+    }
+    public function getCoverPhotoAttribute()
+    {
+        return $this->photos[0];
     }
 }
