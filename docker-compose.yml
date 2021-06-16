@@ -21,7 +21,7 @@ services:
         depends_on:
             - mysql
             - redis
-            - phpmyadmin
+         #   - phpmyadmin
     # selenium:
     #     image: 'selenium/standalone-chrome'
     #     volumes:
@@ -54,19 +54,19 @@ services:
             - sail
         healthcheck:
           test: ["CMD", "redis-cli", "ping"]
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        links:
-          - mysql
-        environment:
-            PMA_HOST: mysql
-            PMA_PORT: 3306
-            PMA_ARBITRARY: 1
-        restart: always
-        networks:
-            - sail
-        ports:
-          - 8081:80
+    #phpmyadmin:
+    #    image: phpmyadmin/phpmyadmin
+    #    links:
+    #      - mysql
+    #    environment:
+    #        PMA_HOST: mysql
+    #        PMA_PORT: 3306
+    #        PMA_ARBITRARY: 1
+    #    restart: always
+    #    networks:
+    #        - sail
+    #    ports:
+    #      - 8081:80
 networks:
     sail:
         driver: bridge
