@@ -42,7 +42,7 @@
     <x-navbar-top />
 
     {{-- Main wrapper --}}
-    <div class="relative antialiased" id="app">
+    <div class="relative overflow-x-hidden antialiased" id="app">
         {{ $slot }}
     </div>
 
@@ -54,7 +54,7 @@
 
     {{-- App scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
-    
+
 
     {{-- Livewire scripts --}}
     @livewireScripts
