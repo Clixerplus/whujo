@@ -4,6 +4,7 @@
 
             {{-- type --}}
             <x-ui.dropdown :labelTag="__('Categories')" :active="$type">
+
                 <ul class="w-48 overflow-y-auto border max-h-44">
                     @foreach ($types as $type_key => $type_value)
                         <li wire:click="selectType('{{ $type_key }}')"
@@ -143,4 +144,5 @@
 </div>
 
 </x-section-container>
+
 </div>

@@ -17,7 +17,7 @@
                 <x-icon-search class="w-5 h-5 text-gray-400" />
             </span>
 
-            <input type="text" placeholder="Buscar..." title="buscar" spellcheck="false" x-ref="search"
+            <input type="text" placeholder="Buscar..." title="buscar" spellcheck="false" x-ref="search" list="results"
                 wire:model.debounce.500ms="search" name="search" wire:keydown="activateSearch"
                 wire:keydown.escape="deactivateSearch" autocomplete="false" required
                 x-on:keydown="$refs.productTag.value=''; $refs.productType.value=''"
@@ -62,4 +62,5 @@
         </div>
 
     </form>
+
 </section>

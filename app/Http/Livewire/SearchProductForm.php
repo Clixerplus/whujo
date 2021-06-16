@@ -46,7 +46,6 @@ class SearchProductForm extends Component
         if (!empty($this->search) && $this->isSearchActive) {
             $this->results = $this->makeSearch();
         }
-
         return view('livewire.search-product-form');
     }
 

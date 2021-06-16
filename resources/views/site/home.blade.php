@@ -3,7 +3,7 @@
 https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- header: hero-banner --}}
-    <header class="overflow-x-hidden ">
+    <header class="">
         <div class="relative w-screen " style="height:500px">
 
             {{-- background image --}}

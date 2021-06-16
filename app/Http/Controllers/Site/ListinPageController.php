@@ -16,12 +16,7 @@ class ListinPageController extends Controller
             ['title' => 'Share a coffee', 'value' => 'share-a-coffee']
          ];
 
-         
-         $productType = [
-            ['title' => 'Services', 'value' => 'service'],
-            ['title' => 'Experiences', 'value' => 'experience'],
-            ['title' => 'Share a coffee', 'value' => 'share-a-coffee']
-         ];
+         dd('$productType');
         return view('pages.listing', compact('productType', 'categories'));
     }
 }

@@ -45,6 +45,7 @@ class SearchFilters extends Component
 
     public function mount()
     {
+
         $this->type = request()->type ?? null;
 
         $this->search = request()->search;
@@ -54,6 +55,7 @@ class SearchFilters extends Component
 
     public function render()
     {
+
         $productTypeOptions = [
             'all' => 'All',
             'service' => 'Services',
@@ -104,8 +106,11 @@ class SearchFilters extends Component
 
     protected function makeQuery($model)
     {
+        if (is_null($this->category)) {
+            $this->reset('category');
+        }
 
-        return (new $model)::withAnyTags([$this->category], $model)
+        return (new $model)::withAnyTags([$this->search], $model)
             ->when(!is_null($this->category), function ($q) use ($model) {
 
                 return $q->orWhere(function ($q) use ($model) {
