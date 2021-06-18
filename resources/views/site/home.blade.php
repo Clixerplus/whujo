@@ -4,7 +4,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- header: hero-banner --}}
     <header>
-        <div class="relative w-screen md:h-[500px] h-screen">
+        <div class="relative w-screen md:h-[500px] h-full">
 
             {{-- background image --}}
             <img src="{{ asset('images/bg/section-bg-experience-cta.jpeg') }}" alt="multi-experiences collage"
