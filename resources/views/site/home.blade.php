@@ -3,8 +3,8 @@
 https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- header: hero-banner --}}
-    <header class="">
-        <div class="relative w-screen " style="height:500px">
+    <header>
+        <div class="relative w-screen md:h-[500px] h-screen">
 
             {{-- background image --}}
             <img src="{{ asset('images/bg/section-bg-experience-cta.jpeg') }}" alt="multi-experiences collage"
@@ -21,7 +21,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                         Creando Momentos y <span class="text-primary">Soluciones</span>
                     </h2>
 
-                    <p class="text-xl text-white">
+                    <p class="hidden text-xl text-white">
                         Servicios, experiencias y <br class="sm:hidden"> momentos hechos para vos!
                     </p>
 
