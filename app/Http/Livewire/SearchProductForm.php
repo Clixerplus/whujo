@@ -10,59 +10,50 @@ use App\Models\ShareACoffee;
 
 class SearchProductForm extends Component
 {
-    protected const TAGS_TYPE = [
-        'service' => Service::class,
-        'experience' => Experience::class,
-        'share-a-coffee' => ShareACoffee::class
+    protected const TYPES = [
+        Service::class,
+        Experience::class,
+        ShareACoffee::class
     ];
 
     protected const MAX_RESULTS = 5;
 
     public string $search = '';
-
+    public string $type = '';
     public array $results = [];
+    public int $tabActive = 0;
 
-    public bool $isSearchActive = false;
-
-    public function activateSearch()
+    public function updatedSearch()
     {
-        $this->isSearchActive = true;
+        $this->results = $this->makeSearch();
     }
 
-    public function deactivateSearch()
+    public function updatedTabActive()
     {
-        $this->isSearchActive = false;
-    }
-
-    public function pickResult(string $value)
-    {
-        $this->search = $value;
-        $this->reset('results');
-        $this->reset('isSearchActive');
+        $this->results = $this->makeSearch();
     }
 
     public function render()
     {
-        if (!empty($this->search) && $this->isSearchActive) {
-            $this->results = $this->makeSearch();
-        }
+        $this->selectType();
         return view('livewire.search-product-form');
     }
 
-    protected function makeSearch()
+    public function makeSearch()
     {
-        $results = [];
+        $first = Tag::where('name->es', 'like', "{$this->search}%")
+            ->orderBy('name->es')->pluck('name')->toArray();
 
-        foreach (self::TAGS_TYPE as $tag_key => $tag_class) {
+        $second = Tag::where('name->es', 'like', "%{$this->search}%")
+            ->where('name->es', 'not like', "{$this->search}%")
+            ->orderBy('name->es')->pluck('name')->toArray();
 
-            $result = Tag::SearchByName($this->search, $tag_class)
-                ->pluck('name')->take(self::MAX_RESULTS)->toArray();
+        return array_merge($first, $second);
+    }
 
-            if (count($result)) {
-                $results[$tag_key] = $result;
-            }
-        }
-
-        return $results;
+    protected function selectType()
+    {
+        $type = ['service', 'experience', 'share-a-coffee'];
+        $this->type = $type[$this->tabActive];
     }
 }

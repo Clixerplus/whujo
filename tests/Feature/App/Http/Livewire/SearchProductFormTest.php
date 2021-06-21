@@ -14,32 +14,27 @@ class SearchProductFormTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function it_can_search_by_tags()
+    /**
+     * @test
+     * @dataProvider productTypeProvider
+     */
+    public function it_can_search_by_each_product_type($productType)
     {
-        $this->createTags(['web', 'web development', 'mobile development'], Service::class);
+        $this->createTags(['webdesign', 'app web', 'web'], $productType);
 
         Livewire::test(SearchProductForm::class)
+            ->set('tabActive', 0)
             ->set('search', 'web')
-            ->set('active', true)
-            ->assertSee('web')
-            ->assertSee('web development')
-            ->assertDontSee('mobile development');
+            ->assertSet('results', ['web', 'webdesign', 'app web']);
     }
 
-    /** @test */
-    public function it_can_pick_a_result()
+    public function productTypeProvider()
     {
-        $this->createTags(['web', 'web development', 'mobile development'], Service::class);
-
-        Livewire::test(SearchProductForm::class)
-            ->set('search', 'web')
-            ->set('active', true)
-            ->assertSee('web development')
-            ->call('pickResult', 'web development')
-            ->assertSet('search', 'web development')
-            ->assertSet('results', [])
-            ->set('active', false);
+        return [
+            'with Service type' => [Service::class],
+            'with Experience type' => [Experience::class],
+            'with Share a coffee type' => [ShareACoffee::class],
+        ];
     }
 
     private function createTags(array $names, $type)

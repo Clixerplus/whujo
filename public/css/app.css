@@ -877,6 +877,9 @@ video {
 .-mt-16 {
 	margin-top: -4rem;
 }
+.-mt-1 {
+	margin-top: -0.25rem;
+}
 .mb-1 {
 	margin-bottom: 0.25rem;
 }
@@ -891,9 +894,6 @@ video {
 }
 .-mr-44 {
 	margin-right: -11rem;
-}
-.-mt-1 {
-	margin-top: -0.25rem;
 }
 .-mt-px {
 	margin-top: -1px;
@@ -1192,6 +1192,9 @@ video {
 .w-64 {
 	width: 16rem;
 }
+.w-1\/3 {
+	width: 33.333333%;
+}
 .w-screen {
 	width: 100vw;
 }
@@ -1218,9 +1221,6 @@ video {
 }
 .w-2\/3 {
 	width: 66.666667%;
-}
-.w-1\/3 {
-	width: 33.333333%;
 }
 .w-5\/6 {
 	width: 83.333333%;
@@ -1739,6 +1739,10 @@ video {
 .rounded-r {
 	border-top-right-radius: 0.25rem;
 	border-bottom-right-radius: 0.25rem;
+}
+.rounded-t {
+	border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
 }
 .rounded-t-lg {
 	border-top-left-radius: 0.5rem;
@@ -2459,9 +2463,6 @@ video {
 }
 .pb-12 {
 	padding-bottom: 3rem;
-}
-.pl-10 {
-	padding-left: 2.5rem;
 }
 .pl-4 {
 	padding-left: 1rem;
@@ -3624,10 +3625,6 @@ input[name="search"]:focus + #productType {
 	--tw-bg-opacity: 1;
 	background-color: rgba(33, 33, 33, var(--tw-bg-opacity));
 }
-.hover\:bg-red-100:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(254, 226, 226, var(--tw-bg-opacity));
-}
 .hover\:bg-blue-200:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
@@ -3866,10 +3863,6 @@ input[name="search"]:focus + #productType {
 	--tw-border-opacity: 1;
 	border-color: rgba(33, 33, 33, var(--tw-border-opacity));
 }
-.focus\:border-red-500:focus {
-	--tw-border-opacity: 1;
-	border-color: rgba(239, 68, 68, var(--tw-border-opacity));
-}
 .focus\:border-blue-200:focus {
 	--tw-border-opacity: 1;
 	border-color: rgba(191, 219, 254, var(--tw-border-opacity));
@@ -3964,10 +3957,6 @@ input[name="search"]:focus + #productType {
 .focus\:ring-gray-200:focus {
 	--tw-ring-opacity: 1;
 	--tw-ring-color: rgba(229, 231, 235, var(--tw-ring-opacity));
-}
-.focus\:ring-red-500:focus {
-	--tw-ring-opacity: 1;
-	--tw-ring-color: rgba(239, 68, 68, var(--tw-ring-opacity));
 }
 .focus\:ring-primary:focus {
 	--tw-ring-opacity: 1;
@@ -4344,6 +4333,10 @@ input[name="search"]:focus + #productType {
 	.md\:-m-2 {
 		margin: -0.5rem;
 	}
+	.md\:my-0 {
+		margin-top: 0px;
+		margin-bottom: 0px;
+	}
 	.md\:-mx-12 {
 		margin-left: -3rem;
 		margin-right: -3rem;
@@ -4400,9 +4393,6 @@ input[name="search"]:focus + #productType {
 	.md\:flex {
 		display: flex;
 	}
-	.md\:inline-flex {
-		display: inline-flex;
-	}
 	.md\:table-cell {
 		display: table-cell;
 	}
@@ -4417,6 +4407,9 @@ input[name="search"]:focus + #productType {
 	}
 	.md\:h-auto {
 		height: auto;
+	}
+	.md\:h-\[500px\] {
+		height: 500px;
 	}
 	.md\:h-full {
 		height: 100%;
@@ -4615,6 +4608,9 @@ input[name="search"]:focus + #productType {
 	}
 	.md\:border-r {
 		border-right-width: 1px;
+	}
+	.md\:border-none {
+		border-style: none;
 	}
 	.md\:border-solid {
 		border-style: solid;

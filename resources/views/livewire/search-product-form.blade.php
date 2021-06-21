@@ -1,5 +1,4 @@
-<section x-data="{ isSearchActive: @entangle('isSearchActive') }"
-    class="relative w-full mx-auto bg-white bg-opacity-50 rounded-md">
+<section x-data="{ isSearchActive: @entangle('isSearchActive') }" class="relative w-full mx-auto rounded-md">
 
     {{-- btn set focus --}}
     <div class="fixed z-40 w-12 h-12 right-4 bottom-4">
@@ -12,55 +11,62 @@
     {{-- search form --}}
     <form action="/listing">
 
-        <div class="relative">
-            <span class="absolute inset-y-0 left-0 items-center hidden pl-3 md:flex ">
-                <x-icon-search class="w-5 h-5 text-gray-400" />
-            </span>
+        <div class="flex flex-auto h-12" x-data="tabHandler()">
+            <button type="button"
+                class="w-1/3 py-2 text-xs transition-colors duration-300 ease-in-out rounded-t md:px-8 focus:outline-none md:w-auto"
+                :class="applyTabStyles(0)" @click="tabActive = 0">
+                <span>{{ __('Services') }}</span>
+            </button>
 
-            <input type="text" placeholder="Buscar..." title="buscar" spellcheck="false" x-ref="search" list="results"
-                wire:model.debounce.500ms="search" name="search" wire:keydown="activateSearch"
-                wire:keydown.escape="deactivateSearch" autocomplete="false" required
-                x-on:keydown="$refs.productTag.value=''; $refs.productType.value=''"
-                class="w-full py-4 pl-10 pr-4 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-red-500 dark:focus:border-blue-500 focus:outline-none focus:ring focus:ring-red-500">
+            <button type="button"
+                class="w-1/3 py-2 text-xs transition-colors duration-300 ease-in-out rounded-t md:px-8 focus:outline-none md:w-auto"
+                :class="applyTabStyles(1)" @click="tabActive = 1">
+                <span>{{ __('Experience') }}</span>
+            </button>
 
-            <input type="hidden" x-ref="productType" name="type" class="border" />
-            <input type="hidden" x-ref="productTag" name="category" class="border" />
-
-            <x-ui::button type="submit"
-                class="absolute top-0 right-0 flex items-center h-12 m-1 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
-                <span class="hidden md:inline-flex">{{ __('Search') }}</span>
-                <x-icon-search class="w-6 h-6 md:hidden" />
-            </x-ui::button>
+            <button type="button"
+                class="w-1/3 py-2 text-xs transition-colors duration-300 ease-in-out rounded-t md:px-8 focus:outline-none md:w-auto"
+                :class="applyTabStyles(2)" @click="tabActive = 2">
+                <span>{{ __('Share a coffee') }}</span>
+            </button>
         </div>
 
-        <div class="absolute inset-x-0 z-40 w-full mt-2 overflow-y-auto text-left bg-white border rounded max-h-44"
-            x-show="isSearchActive" @click.away="isSearchActive = false" x-cloak>
-            @if ($results)
-                <ul>
-                    @foreach ($results as $type_results => $data_result)
-                        <li class="px-4 py-2 font-medium text-secondary capitalize border-b border-gray-200 @if ($loop->iteration > 1) mt-6 @endif">
-                            {{ str_replace('-', ' ', __($type_results)) }}
-                        </li>
+        <div class="relative p-1 -mt-1 bg-white md:flex rounded-b-md">
 
-                        @foreach ($data_result as $result)
-                            <li class="w-full">
-                                <a class="block h-full px-6 py-2 text-sm text-gray-500 capitalize transition-colors duration-300 ease-out cursor-pointer hover:bg-red-100 hover:text-gray-700"
-                                    x-on:click="$wire.pickResult('{{ $result }}'); $refs.productTag.value='{{ $result }}'; $refs.productType.value='{{ $type_results }}'">
-
-                                    {{ $result }}
-                                </a>
-                            </li>
-                        @endforeach
-
-                    @endforeach
-                </ul>
-            @else
-                <p class="p-4 text-sm text-gray-500">
-                    {{ __('No results found') }}
-                </p>
-            @endif
+            <div class="flex-1 px-2 my-4 md:my-0">
+                <input type="text" required placeholder="Buscar..." title="buscar" spellcheck="false" x-ref="search"
+                    list="results" wire:model.debounce.1000ms="search" name="search" autocomplete="off"
+                    class="w-full py-2 pl-4 text-gray-700 border-b focus:outline-none md:border-none">
+            </div>
+            <div>
+                <x-ui::button type="submit"
+                    class="flex items-center justify-center w-full h-12 space-x-2 bg-primary focus:ring focus:ring-primary focus:ring-opacity-50 active:bg-primary-light active:ring-red-200">
+                    <x-icon-search class="w-5 h-5 md:hidden" />
+                    <span class="inline-flex">{{ __('Search') }}</span>
+                </x-ui::button>
+            </div>
         </div>
 
+        <datalist id="results" class="mt-4">
+            @foreach ($results as $result)
+                <option value="{{ $result }}" @click="$refs.productTag.value = 'algo'">
+            @endforeach
+        </datalist>
+        <input type="hidden" wire:model.debounce.500ms="type" name="type" class="border" />
+        <input type="hidden" x-ref="productTag" name="category" class="border" />
     </form>
+
+    <script>
+        const tabHandler = () => {
+            return {
+                tabActive: @entangle('tabActive'),
+                activeClass: ' bg-white ',
+                deactiveClass: ' bg-gray-100 bg-opacity-75 border border-gray-400   ',
+                applyTabStyles(index) {
+                    return this.tabActive == index ? this.activeClass : this.deactiveClass
+                },
+            }
+        }
+    </script>
 
 </section>

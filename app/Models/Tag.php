@@ -3,14 +3,16 @@
 namespace App\Models;
 
 use Spatie\Tags\Tag as SpatieTag;
+use Illuminate\Support\Facades\DB;
 
 class Tag extends SpatieTag
 {
 
     public static function scopeSearchByName($query, $search, $type)
     {
-        return $query->where('name', 'like', '%' . $search . '%')
-            ->where('type', $type);
+        $first = Tag::where('name->es', 'like', "{$search}%");
+
+        return $first;
     }
 
     public static function scopeOnlyForType($query,  $type)
