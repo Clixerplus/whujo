@@ -39,7 +39,9 @@
 <body>
 
     {{-- Navbar component --}}
-    <x-navbar-top />
+    @section('navtop')
+        <x-navbar-top />
+    @endsection
 
     {{-- Main wrapper --}}
     <div class="relative overflow-x-hidden antialiased" id="app">
@@ -54,13 +56,23 @@
 
     {{-- App scripts --}}
     <script src="{{ asset('js/app.js') }}"></script>
-
+    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
 
     {{-- Livewire scripts --}}
     @livewireScripts
 
     {{-- UI blade-icons scripts --}}
     @bukScripts(true)
+
+    <script type="text/javascript">
+        // Grab wrapper nodes
+        const rootNode = document.querySelector('.embla')
+        const viewportNode = rootNode.querySelector('.embla__viewport')
+        // Initialize the carousel
+        const embla = EmblaCarousel(viewportNode, {
+            loop: true
+        })
+    </script>
 
 </body>
 

@@ -71,4 +71,9 @@ class Service extends Model
     {
         return $this->photos[0];
     }
+
+    public function getRouteAttribute()
+    {
+        return route('service-show', $this);
+    }
 }

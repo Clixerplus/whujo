@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
             $url->formatScheme('https://');
         } */
         Blade::componentNamespace('App\\View\\Components\\Admin', 'admin');
+        Blade::componentNamespace('App\\View\\Components\\UI', 'ui');
 
     }
 }

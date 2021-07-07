@@ -10,14 +10,14 @@
         </div>
     </div>
 
-    <div class="sticky inset-x-0 z-10 border-b bg-gray-50 top-20">
+    <div class="sticky inset-x-0 z-10 bg-gray-50 top-20">
         <div class="w-full p-4 mx-auto max-w-screen md:max-w-2xl lg:max-w-7xl md:px-6">
             <livewire:search-filters />
         </div>
     </div>
 
 
-    
+
 
 
 

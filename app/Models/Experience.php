@@ -104,4 +104,9 @@ class Experience extends Model
             $q->orWhere('description', 'like', $search);
         });
     }
+
+    public function getRouteAttribute()
+    {
+        return route('experience-show', $this);
+    }
 }

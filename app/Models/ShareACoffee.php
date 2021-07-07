@@ -47,4 +47,9 @@ class ShareACoffee extends Experience
             $model->type = self::class;
         });
     }
+
+    public function getRouteAttribute()
+    {
+        return route('shareACoffee-show', $this);
+    }
 }

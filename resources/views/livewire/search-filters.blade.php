@@ -124,25 +124,25 @@
 
 </div>
 
-<x-section-container >
 
-<div class="w-auto h-full ">
 
-    @foreach ($results as $type => $products)
-        <h1 class="w-full py-2 font-bold capitalize border-b">{{ $type }}</h1>
-        <ul class="flex flex-wrap mt-4">
-            @foreach ($products as $product)
-                <li class="w-1/4 h-72">
-                    <a href="/product/{{ $product->id }}"
-                        class="block h-full p-2 transition duration-500 ease-out transform hover:-translate-y-4 active:opacity-75">
-                        <x-card-V02 :product="$product" />
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    @endforeach
+<div class="w-auto h-full mb-24">
+
+@foreach ($results as $type => $products)
+    <h1 class="w-full py-2 font-bold capitalize border-b">{{ $type }}</h1>
+    <ul class="flex flex-wrap mt-4">
+        @foreach ($products as $product)
+            <li class="w-1/4 h-72">
+                <a href="{{ $product->route }}"
+                    class="block h-full p-2 transition duration-500 ease-out transform hover:-translate-y-4 active:opacity-75">
+                    <x-card-V02 :product="$product" />
+                </a>
+            </li>
+        @endforeach
+    </ul>
+@endforeach
 </div>
 
-</x-section-container>
+
 
 </div>

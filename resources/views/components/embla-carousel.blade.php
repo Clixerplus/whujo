@@ -4,11 +4,11 @@
 
             @foreach ($items as $item)
             {{-- Slide --}}
-            <div class="embla__slide w-full md:w-1/2 lg:w-1/4 flex-shrink-0 relative p-1">
+            <div class="relative flex-shrink-0 w-full p-1 embla__slide md:w-1/2 lg:w-1/4">
                 <div class="embla__slide__inner" style="min-height: {{ $height }};">
                     <div class="embla__slide__parallax">
-                        <div class="embla__slide__card_container flex-shrink-0">
-                            <a href="{{ route('product', [$item->type, $item->id, $item->slug ]) }}">
+                        <div class="flex-shrink-0 embla__slide__card_container">
+                            <a href="{{  $item->route  }}">
                                 <x-dynamic-component :component="$cardType" :product="$item" />
                             </a>
                         </div>

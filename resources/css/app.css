@@ -5,188 +5,236 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-:root {
-    --color-primary-light: #ff2e31;
-    --color-primary: #e32a2e;
-    --color-primary-dark: #bd2225;
-    --color-secondary: #0f172a;
-    --color-secondary-light: #1e293b;
-    --color-secondary-dark: #1e293b;
-    --color-success: #00b74a;
-    --color-info: #1266f1;
-    --color-danger: #d50000;
-    --color-warning: #ffa900;
-    --color-useful: #14b8a6;
-    /* ... */
-}
+@layer components {
+    :root {
+        --color-primary-light: #ff2e31;
+        --color-primary: #e32a2e;
+        --color-primary-dark: #bd2225;
+        --color-secondary: #0f172a;
+        --color-secondary-light: #1e293b;
+        --color-secondary-dark: #1e293b;
+        --color-success: #00b74a;
+        --color-info: #1266f1;
+        --color-danger: #d50000;
+        --color-warning: #ffa900;
+        --color-useful: #14b8a6;
+        /* ... */
+    }
 
-/*------ Globales ---------*/
-html {
-    scroll-behavior: smooth;
-}
+    /*------ Globales ---------*/
+    html {
+        scroll-behavior: smooth;
+    }
 
-[x-cloak] {
-    display: none;
-}
+    [x-cloak] {
+        display: none;
+    }
 
-.blur-hover:hover {
-    @apply bg-opacity-75;
-    backdrop-filter: blur(5px);
-}
-.whujo-brand {
-    @apply font-extrabold text-primary;
-    font-family: arial;
-}
+    .blur-hover:hover {
+        @apply bg-opacity-75;
+        backdrop-filter: blur(5px);
+    }
+    .whujo-brand {
+        @apply font-extrabold text-primary;
+        font-family: arial;
+    }
+
+    .sidebar-active {
+        @apply bg-red-50 text-primary;
+    }
+
+    .sidebar-active.item-open {
+        @apply border-l-4 border-opacity-75 border-whujo;
+    }
+
+    /*------ Navbar ----------*/
+    .navbar {
+        @apply flex items-center justify-between bg-white text-primary;
+    }
+
+    .navbar-transparent {
+        @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0;
+    }
+
+    .navbar-transparent a {
+        @apply font-semibold text-white hover:text-primary;
+    }
+
+    .navbar-transparent .btn-join {
+        @apply bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50;
+    }
+
+    .navbar-dark {
+        @apply transition-colors duration-500 ease-in-out bg-opacity-100;
+    }
+
+    .navbar-dark a {
+        @apply font-semibold text-secondary hover:text-primary;
+    }
+
+    .navbar-dark .btn-join {
+        @apply text-white bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50;
+    }
+
+    /*--------- Tabs ----------*/
+    .tab ul li.active {
+        @apply border-b-4 border-primary-light;
+    }
+
+    /*--------- Botones ----------*/
+    .btn {
+        @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium border border-transparent rounded-md;
+    }
+
+    .btn-circle {
+        @apply inline-flex items-center justify-center text-base font-medium border rounded-full;
+    }
+
+    /*------ Toggle Check -------*/
+    .toggle-check:checked {
+        @apply border-success;
+    }
+
+    .toggle-check:checked + .toggle-label {
+        @apply opacity-100;
+    }
+
+    .toggle-checkbox:checked {
+        @apply transform translate-x-full border-green-400;
+    }
+
+    .toggle-checkbox:checked + .toggle-label {
+        @apply bg-green-400;
+    }
+
+    .toggle-radio:checked + .toggle-label {
+        @apply text-white bg-secondary;
+    }
+
+    /*--------- Animations ----------*/
+    .transition-75 {
+        @apply transition duration-75 ease-in-out;
+    }
+    .transition-100 {
+        @apply transition duration-100 ease-in-out;
+    }
+    .transition-150 {
+        @apply transition duration-150 ease-in-out;
+    }
+    .transition-200 {
+        @apply transition duration-200 ease-in-out;
+    }
+    .transition-300 {
+        @apply transition duration-300 ease-in-out;
+    }
+    .transition-500 {
+        @apply transition duration-500 ease-in-out;
+    }
+    .transition-700 {
+        @apply transition duration-700 ease-in-out;
+    }
+    .transition-1000 {
+        @apply transition duration-1000 ease-in-out;
+    }
+
+    /*---------- Step list ----------*/
+    .step-list {
+        @apply flex flex-col space-y-1;
+    }
+
+    .step-list-item {
+        @apply p-4 transition duration-500 ease-in-out rounded-md hover:bg-white text-secondary;
+    }
+
+    .step-list-item > a {
+        @apply flex items-start space-x-4 opacity-70 lg:opacity-30 lg:hover:opacity-80;
+    }
+
+    .step-list-item.active > a {
+        @apply font-semibold opacity-100;
+    }
+
+    .step-list-item:active,
+    .step-list-item:active > a {
+        @apply bg-white opacity-100;
+    }
+
+    .step-list-item > a .icon {
+        @apply w-auto h-5 transition duration-500 ease-in-out;
+    }
+
+    /*---------- From ----------*/
+    .radio-buttom > input[type="radio"]:checked + span {
+        @apply opacity-100;
+    }
+
+    input[name="search"]:focus + #productType {
+        @apply h-20 transition-all duration-200 ease-linear;
+    }
+
+    /*------- Sidebar ----------*/
+    .animate-sidebar {
+        @apply z-20 h-full transition-all duration-300 ease-in-out transform -translate-x-full w-72 md:w-16 md:transform-none;
+    }
+
+    .animate-sidebar.open {
+        @apply translate-x-0 md:w-72 md:transform-none;
+    }
+
+    .sidebar-active {
+        @apply bg-gray-100 text-secondary;
+    }
+
+    .sidebar-active.item-open {
+        @apply border-l-4 border-opacity-75 border-whujo;
+    }
+
+    /* EMBLA  */
+    .embla {
+        @apply relative w-full h-96;
+    }
+
+    .embla__viewport {
+        @apply w-full h-full overflow-hidden ;
+    }
+
+    .embla__viewport.is-draggable {
+        cursor: move;
+        cursor: grab;
+    }
+
+    .embla__viewport.is-dragging {
+        cursor: grabbing;
+    }
+
+    .embla__container {
+        @apply flex justify-start bg-green-600;
+        user-select: none;
+        -webkit-touch-callout: none;
+        -khtml-user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .embla__slide {
+        @apply relative w-full h-full max-w-full min-w-full md:w-1/2 md:max-w-[50%] md:min-w-[50%] lg:w-1/4 lg:max-w-[25%] lg:min-w-[25%];
+
+    }
+
+    .embla__slide__inner {
+        @apply relative overflow-hidden h-96;
+    }
+
+    .embla__slide__img {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        min-height: 100%;
+        min-width: 100%;
+        max-width: none;
+        transform: translate(-50%, -50%);
+    }
 
 
-.sidebar-active {
-    @apply bg-red-50 text-primary;
-}
-
-.sidebar-active.item-open {
-    @apply  border-l-4 border-opacity-75 border-whujo;
-}
-
-
-/*------ Navbar ----------*/
-.navbar {
-    @apply flex items-center justify-between bg-white text-primary;
-}
-
-.navbar-transparent {
-    @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0;
-}
-
-.navbar-transparent a {
-    @apply font-semibold text-white hover:text-primary;
-}
-
-.navbar-transparent .btn-join {
-    @apply bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50;
-}
-
-.navbar-dark {
-    @apply transition-colors duration-500 ease-in-out bg-opacity-100;
-}
-
-.navbar-dark a {
-    @apply font-semibold text-secondary hover:text-primary;
-}
-
-.navbar-dark .btn-join {
-    @apply text-white bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50;
-}
-
-/*--------- Tabs ----------*/
-.tab ul li.active {
-    @apply border-b-4 border-primary-light;
-}
-
-/*--------- Botones ----------*/
-.btn {
-    @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium border border-transparent rounded-md;
-}
-
-.btn-circle {
-    @apply inline-flex items-center justify-center text-base font-medium border rounded-full;
-}
-
-/*------ Toggle Check -------*/
-.toggle-check:checked {
-    @apply border-success;
-}
-
-.toggle-check:checked + .toggle-label {
-    @apply opacity-100;
-}
-
-.toggle-checkbox:checked {
-    @apply transform translate-x-full border-green-400;
-}
-
-.toggle-checkbox:checked + .toggle-label {
-    @apply bg-green-400;
-}
-
-.toggle-radio:checked + .toggle-label {
-    @apply text-white bg-secondary;
-}
-
-/*--------- Animations ----------*/
-.transition-75 {
-    @apply transition duration-75 ease-in-out;
-}
-.transition-100 {
-    @apply transition duration-100 ease-in-out;
-}
-.transition-150 {
-    @apply transition duration-150 ease-in-out;
-}
-.transition-200 {
-    @apply transition duration-200 ease-in-out;
-}
-.transition-300 {
-    @apply transition duration-300 ease-in-out;
-}
-.transition-500 {
-    @apply transition duration-500 ease-in-out;
-}
-.transition-700 {
-    @apply transition duration-700 ease-in-out;
-}
-.transition-1000 {
-    @apply transition duration-1000 ease-in-out;
-}
-
-/*---------- Step list ----------*/
-.step-list {
-    @apply flex flex-col space-y-1;
-}
-
-.step-list-item {
-    @apply p-4 transition duration-500 ease-in-out rounded-md hover:bg-white text-secondary;
-}
-
-.step-list-item > a {
-    @apply flex items-start space-x-4 opacity-70 lg:opacity-30 lg:hover:opacity-80;
-}
-
-.step-list-item.active > a {
-    @apply font-semibold opacity-100;
-}
-
-.step-list-item:active,
-.step-list-item:active > a {
-    @apply bg-white opacity-100;
-}
-
-.step-list-item > a .icon {
-    @apply w-auto h-5 transition duration-500 ease-in-out;
-}
-
-/*---------- From ----------*/
-.radio-buttom > input[type="radio"]:checked + span {
-    @apply opacity-100;
-}
-
-input[name="search"]:focus + #productType {
-    @apply h-20 transition-all duration-200 ease-linear;
-}
-
-/*------- Sidebar ----------*/
-.animate-sidebar {
-    @apply z-20 h-full transition-all duration-300 ease-in-out transform -translate-x-full w-72 md:w-16 md:transform-none;
-}
-
-.animate-sidebar.open {
-    @apply translate-x-0 md:w-72 md:transform-none;
-}
-
-
-.sidebar-active {
-    @apply bg-gray-100 text-secondary;
-}
-
-.sidebar-active.item-open {
-    @apply border-l-4 border-opacity-75 border-whujo;
 }

@@ -26,8 +26,10 @@ return [
 
     'MAX_LONG_TEXT' => '1400',
 
-    'TYPE_SERVICE'    => 'TYPE_SERVICE',
+    'TYPE_SERVICE'    => 'services',
 
-    'TYPE_EXPERIENCE' => 'TYPE_EXPERIENCE',
+    'TYPE_EXPERIENCE' => 'experiences',
+
+    'TYPE_SHARE_A_COFFEE' => 'share_a_coffee'
 
 ];

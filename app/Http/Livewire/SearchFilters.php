@@ -110,7 +110,7 @@ class SearchFilters extends Component
             $this->reset('category');
         }
 
-        return (new $model)::withAnyTags([$this->search], $model)
+        return (new $model)::with(['state', 'city'  ])->withAnyTags([$this->search], $model)
             ->when(!is_null($this->category), function ($q) use ($model) {
 
                 return $q->orWhere(function ($q) use ($model) {

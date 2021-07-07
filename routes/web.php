@@ -3,6 +3,7 @@
 use App\Models\Service;
 use App\Models\Experience;
 use App\Models\Microservice;
+use App\Models\ShareACoffee;
 use Illuminate\Http\Request;
 use App\Http\Livewire\AdminLayout;
 use Illuminate\Support\Facades\Http;
@@ -149,16 +150,20 @@ Route::post('/booking/services/', function () {
     //return $request->all();
 })->name('booking.services');
 
-Route::get('/product/{type}/{id}/{slug}', function ($type, $id) {
+Route::get('/product/service/{service}', function (Service $service) {
+    $product = $service;
+    return view("pages.services", compact('product'));
+})->name('service-show');
 
-    if ($type == TYPE_SERVICE) {
-        $product = Service::findOrFail($id);
-    } else if ($type == TYPE_EXPERIENCE) {
-        $product = Experience::findOrFail($id);
-    }
+Route::get('/product/experience/{experience}', function (Experience $experience) {
+    $product = $experience;
+    return view("pages.experiences", compact('product'));
+})->name('experience-show');
 
-    return view("pages.{$type}", compact('product'));
-})->name('product');
+Route::get('/product/share-a-coffee/{shareACoffee}', function (ShareACoffee $shareACoffee) {
+    $product = $shareACoffee;
+    return view("pages.experiences", compact('product'));
+})->name('shareACoffee-show');
 
 
 /* Route::post('/mercadopago', function () {
@@ -192,7 +197,7 @@ Route::get('/navbar', function () {
 
 
 Route::get('/listing', function () {
-    
+
     return view('pages.listing');
 })->name('search');
 
