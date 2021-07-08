@@ -225,14 +225,9 @@
     }
 
     .embla__slide__img {
-        position: absolute;
-        display: block;
+        @apply absolute block object-cover object-center w-auto max-w-full min-w-full min-h-full;
         top: 50%;
         left: 50%;
-        width: auto;
-        min-height: 100%;
-        min-width: 100%;
-        max-width: none;
         transform: translate(-50%, -50%);
     }
 

@@ -10,12 +10,7 @@
             @endforeach
             <div class="embla__slide">
                 <div class="embla__slide__inner">
-                    <img class="embla__slide__img" src="{{ $photos[1] }}" />
-                </div>
-            </div>
-            <div class="embla__slide">
-                <div class="embla__slide__inner">
-                    <img class="embla__slide__img" src="{{ $photos[0] }}" />
+                    <img class="embla__slide__img" src="{{ $photos[2] }}" />
                 </div>
             </div>
         </div>
