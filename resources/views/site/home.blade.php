@@ -45,13 +45,13 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
         <x-section-title>
 
-            Lorem ipsum dolor <span class="text-primary">sit amet</span>
+            Ven, ofrece, crea <span class="text-primary">y comparte</span>
             <x-separator class="mt-4" />
 
             <x-slot name="subtitle">
                 <div class="w-full lg:w-2/3">
                     Conoce una nueva cultura, aprende algo nuevo, experimenta la vida desde otros ojos, ven
-                    y conoce el mundo <span class="text-xl whujo-brand">whujo</span>
+                    y conoce el mundo <span class="text-3xl font-bold whujo-brand">whujo</span>
                 </div>
             </x-slot>
 
@@ -60,45 +60,28 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
 
         <div class="flex flex-col items-center justify-center mt-8 space-y-4 md:space-x-4 md:flex-row md:space-y-0">
+
             <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/services-04.jpg')"
-                    class="from-secondary bg-gradient-to-t group-hover:from-transparent">
-                    <x-slot name="title">
-                        <h2 class="text-2xl font-bold lg:text-3xl text-accent-aqua">Servicios</h2>
-                    </x-slot>
-
-                    <x-slot name="text">
-                        <p class="">Vive y aprende mirando a los ojos</p>
-                    </x-slot>
+                    class="transition-opacity duration-500 ease-in from-secondary bg-gradient-to-t group-hover:from-transparent">
+                    <h2 class="text-2xl font-bold lg:text-3xl text-accent-aqua">Servicios</h2>
+                    <p class="w-full text-white ">Vive y aprende mirando a los ojos</p>
                 </x-link-card>
             </div>
 
-            <div class="w-full md:w-1/2 h-80">
+            <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/share-a-coffee-02.jpg')"
-                    class="from-secondary bg-gradient-to-t group-hover:from-transparent">
-
-                    <x-slot name="title">
-                        <h2 class="text-2xl font-bold lg:text-3xl text-accent-orange">Comparte un momento</h2>
-                    </x-slot>
-                    <x-slot name="text">
-                        <p class="w-4/5 md:w-full">Vive la experiencia no importa donde estés</p>
-                    </x-slot>
+                    class="transition-opacity duration-500 ease-in from-secondary bg-gradient-to-t group-hover:from-transparent">
+                    <h2 class="text-2xl font-bold lg:text-3xl text-accent-orange">Comparte un momento</h2>
+                    <p class="w-full text-white ">Vive la experiencia no importa donde estés</p>
                 </x-link-card>
             </div>
 
-            <div class="w-full md:w-1/2 h-80">
+            <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/experiences-01.jpg')"
-                    class="from-secondary bg-gradient-to-t group-hover:from-transparent">
-                    <x-slot name="title">
-                        <h2 class="text-2xl font-bold lg:text-3xl text-duolingo">
-                            Experiencias
-                        </h2>
-                    </x-slot>
-                    <x-slot name="text">
-                        <p class="w-4/5 text-gray-400 md:w-full">
-                            Vive la experiencia no importadonde estés
-                        </p>
-                    </x-slot>
+                    class="transition-opacity duration-500 ease-in from-secondary bg-gradient-to-t group-hover:from-transparent">
+                    <h2 class="text-2xl font-bold lg:text-3xl text-duolingo">Experiencias</h2>
+                    <p class="w-full text-white ">Vive la experiencia no importadonde estés</p>
                 </x-link-card>
             </div>
         </div>
@@ -110,22 +93,16 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
     <x-section-container>
 
         <x-section-title>
-            Lorem ipsum dolor <span class="text-primary">sit amet</span>
-            <x-separator class="mt-4" />
+            Desde donde quieras <span class="text-primary">vive whujo</span>
+            <x-separator class="block my-8" />
 
-            <x-slot name="subtitle">
-                <div class="w-full lg:w-2/3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, modi! Labore sequi vel
-                    cumque libero.
-                </div>
-            </x-slot>
         </x-section-title>
 
-        <div class="flex flex-col justify-between mt-8 space-y-8 md:space-x-8 md:flex-row md:space-y-0">
+        <div class="flex flex-col justify-between space-y-8 md:space-x-8 md:flex-row md:space-y-0">
 
             <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/experience-category-01.jpeg')"
-                    class="from-secondary bg-gradient-to-t group-hover:from-transparent">
+                    class="transition-opacity duration-500 ease-in from-secondary bg-gradient-to-t group-hover:from-transparent">
                     <h2 class="text-3xl font-bold text-duolingo ">Presencial</h2>
                     <p class="w-full text-white ">Vive y aprende mirando a los ojos</p>
                 </x-link-card>
@@ -133,7 +110,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
             <div class="w-full md:w-1/2 h-80">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/experience-category-02.jpeg')"
-                    class="from-secondary bg-gradient-to-t group-hover:from-transparent">
+                    class="transition-opacity duration-500 ease-in from-secondary bg-gradient-to-t group-hover:from-transparent">
                     <h2 class="text-3xl font-bold text-right text-skype ">Online</h2>
                     <p class="w-4/5 ml-auto text-right text-white md:w-full">Vive la experiencia no importa
                         donde estés</p>
