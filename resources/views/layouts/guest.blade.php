@@ -39,9 +39,8 @@
 <body>
 
     {{-- Navbar component --}}
-    @section('navtop')
         <x-navbar-top />
-    @endsection
+
 
     {{-- Main wrapper --}}
     <div class="relative overflow-x-hidden antialiased" id="app">

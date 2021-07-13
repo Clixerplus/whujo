@@ -2,7 +2,7 @@
     <div class="relative">
 
         {{-- topbar --}}
-        <div id="navbar" class="w-screen h-20 px-8 navbar navbar-transparent bg-opacity-80">
+        <div id="navbar" class="w-screen h-20 px-8 navbar navbar-transparent">
 
             {{-- logo brand --}}
             <div class="flex items-center">

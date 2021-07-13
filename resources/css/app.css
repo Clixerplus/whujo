@@ -49,11 +49,11 @@
 
     /*------ Navbar ----------*/
     .navbar {
-        @apply flex items-center justify-between bg-white text-primary;
+        @apply flex items-center justify-between bg-white text-primary ;
     }
 
     .navbar-transparent {
-        @apply transition-colors duration-500 ease-in-out lg:bg-opacity-0;
+        @apply transition-colors duration-500 ease-in-out lg:bg-transparent;
     }
 
     .navbar-transparent a {
@@ -65,7 +65,7 @@
     }
 
     .navbar-dark {
-        @apply transition-colors duration-500 ease-in-out bg-opacity-100;
+        @apply transition-colors duration-500 ease-in-out bg-white shadow;
     }
 
     .navbar-dark a {
