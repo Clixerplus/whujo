@@ -51,7 +51,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
             <x-slot name="subtitle">
                 <div class="w-full lg:w-2/3">
                     Conoce una nueva cultura, aprende algo nuevo, experimenta la vida desde otros ojos, ven
-                    y conoce el mundo <span class="text-3xl font-bold whujo-brand">whujo</span>
+                    y conoce el mundo <span class="">whujo</span>
                 </div>
             </x-slot>
 
@@ -59,7 +59,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
         </x-section-title>
 
 
-        <div class="flex flex-col items-center justify-center mt-8 space-y-4 md:space-x-4 md:flex-row md:space-y-0">
+        <div class="flex flex-col items-center justify-center mt-16 space-y-4 md:space-x-4 md:flex-row md:space-y-0">
 
             <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/services-04.jpg')"
@@ -94,11 +94,11 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
         <x-section-title>
             Desde donde quieras <span class="text-primary">vive whujo</span>
-            <x-separator class="block my-8" />
+            <x-separator class="block my-4" />
 
         </x-section-title>
 
-        <div class="flex flex-col justify-between space-y-8 md:space-x-8 md:flex-row md:space-y-0">
+        <div class="flex flex-col items-center justify-center mt-16 space-y-4 md:space-x-8 md:flex-row md:space-y-0">
 
             <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/experience-category-01.jpeg')"
