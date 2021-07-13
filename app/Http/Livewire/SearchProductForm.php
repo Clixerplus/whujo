@@ -10,7 +10,13 @@ use App\Models\ShareACoffee;
 
 class SearchProductForm extends Component
 {
-    protected const TYPES = [
+    public int $activeType = 0;
+
+    public function render()
+    {
+        return view('livewire.search-product-form');
+    }
+    /*     protected const TYPES = [
         Service::class,
         Experience::class,
         ShareACoffee::class
@@ -18,28 +24,26 @@ class SearchProductForm extends Component
 
     protected const MAX_RESULTS = 5;
 
-    public string $search = '';
-    public string $type = '';
-    public array $results = [];
-    public int $tabActive = 0;
+    public string $type     = "service";
+    public string $search   = "";
+    public string $location = "";
+    public string $category = "";
 
-    public function updatedSearch()
-    {
-        $this->results = $this->makeSearch();
-    }
+    public int $activeType = 0;
 
-    public function updatedTabActive()
-    {
-        $this->results = $this->makeSearch();
-    }
+    public string $isSearchActive   = false;
+    public string $isLocationActive = false;
+    public string $isCategoryActive = false;
 
-    public function render()
+    public function updatedActiveType()
     {
         $this->selectType();
-        return view('livewire.search-product-form');
     }
 
-    public function makeSearch()
+
+
+
+    public function searchTags()
     {
         $first = Tag::where('name->es', 'like', "{$this->search}%")
             ->orderBy('name->es')->pluck('name')->toArray();
@@ -54,6 +58,6 @@ class SearchProductForm extends Component
     protected function selectType()
     {
         $type = ['service', 'experience', 'share-a-coffee'];
-        $this->type = $type[$this->tabActive];
-    }
+        $this->type = $type[$this->activeType];
+    } */
 }

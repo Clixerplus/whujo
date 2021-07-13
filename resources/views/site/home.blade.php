@@ -4,34 +4,26 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- header: hero-banner --}}
     <header>
-        <div class="relative w-screen md:h-[500px] h-full">
+        <div class="relative w-screen md:h-[500px] h-screen ">
 
             {{-- background image --}}
             <img src="{{ asset('images/bg/section-bg-experience-cta.jpeg') }}" alt="multi-experiences collage"
                 class="absolute inset-0 object-cover w-full h-full" />
 
             {{-- mask container --}}
-            <div
+            <div class="relative w-full h-full px-4 bg-opacity-75 bg-secondary">
+                <div class="flex items-center justify-center h-full ">
+                    <div class="w-auto h-auto mb-16 max-w-screen lg:text-center md:max-w-3xl">
 
-                class="relative flex justify-center w-full h-full px-4 pb-8 bg-opacity-75 bg-secondary md:items-center lg:items-start">
-                <div class="w-full max-w-full mt-32 mb-16 rounded sm:max-w-full lg:text-center md:max-w-xl">
+                        {{-- hero title --}}
+                        <h2 class="mb-8 text-5xl font-semibold text-white md:mb-16 lg:text-center">
+                            Creando Momentos <br><span class="text-primary">y Soluciones</span>
+                        </h2>
 
-
-                    <h2 class="mb-4 text-5xl font-semibold text-white lg:text-center">
-                        Creando Momentos y <span class="text-primary">Soluciones</span>
-                    </h2>
-
-                    <p class="hidden text-xl text-white">
-                        Servicios, experiencias y <br class="sm:hidden"> momentos hechos para vos!
-                    </p>
-
-
-
-                    {{-- form search component --}}
-                    <div class="mt-8">
+                        {{-- form search component --}}
                         <livewire:search-product-form />
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
