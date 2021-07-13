@@ -19,4 +19,12 @@ class Tag extends SpatieTag
     {
         return $query->where('type', $type);
     }
+
+    public static function scopeSearch($query, $search, $type, $lang = 'es')
+    {
+        $first  = Tag::where("name->{$lang}", 'like', "{$search}%")->where('type', $type)->orderBy('name', 'DESC')->get()->pluck('name')->toArray();
+        $second = Tag::where("name->{$lang}", 'like', "%{$search}%")->where('type', $type)->orderBy('name')->get()->pluck('name')->toArray();
+
+        return collect(array_unique(array_merge($first, $second)));
+    }
 }

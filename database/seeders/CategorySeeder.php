@@ -29,19 +29,19 @@ class CategorySeeder extends Seeder
         ]);
 
         Category::factory()->create([
-            'name' => 'Aprendizaje',
+            'name' => 'Learning',
             'product_type' => Service::class
         ]);
 
 
         /** Experience */
         Category::factory()->create([
-            'name' => 'Turismo',
+            'name' => 'Tourism',
             'product_type' => Experience::class
         ]);
 
         Category::factory()->create([
-            'name' => 'Descubre',
+            'name' => 'Explore',
             'product_type' => Experience::class
         ]);
 
@@ -50,12 +50,12 @@ class CategorySeeder extends Seeder
 
         /** Share a coffee -> abrierta */
         Category::factory()->create([
-            'name' => 'Aprendizaje',
+            'name' => 'Learning',
             'product_type' => ShareACoffee::class
         ]);
 
         Category::factory()->create([
-            'name' => 'Comparte un momento',
+            'name' => 'Sharing Experiences',
             'product_type' => ShareACoffee::class
         ]);
     }
