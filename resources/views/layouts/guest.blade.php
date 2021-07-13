@@ -22,9 +22,6 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/vuesax.css') }}">
 
-    {{-- Alpin CDN --}}
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
-
     {{-- View stack tyles --}}
     @stack('styles')
 
@@ -39,7 +36,7 @@
 <body>
 
     {{-- Navbar component --}}
-        <x-navbar-top />
+    <x-navbar-top />
 
 
     {{-- Main wrapper --}}
