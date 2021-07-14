@@ -165,7 +165,6 @@ Route::get('/product/share-a-coffee/{shareACoffee}', function (ShareACoffee $sha
     return view("pages.experiences", compact('product'));
 })->name('shareACoffee-show');
 
-
 /* Route::post('/mercadopago', function () {
     return view('pages.mercadopago');
 })->name('mercadopago');

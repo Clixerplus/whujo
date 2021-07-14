@@ -16,6 +16,10 @@ class SearchProductForm extends Component
     {
         return view('livewire.search-product-form');
     }
+
+    public function  changeType(int $type){
+        $this->activeType = $type;
+    }
     /*     protected const TYPES = [
         Service::class,
         Experience::class,

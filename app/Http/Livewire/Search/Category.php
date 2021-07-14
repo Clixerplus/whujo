@@ -6,7 +6,7 @@ use Livewire\Component;
 
 class Category extends Component
 {
-    public $model = [];
+    public $model = '';
     public $category = '';
 
     public function mount($type)
