@@ -18,56 +18,47 @@
 
     <title>{{ config('app.name', 'whujo') }}</title>
 
-    {{-- General styles --}}
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/vuesax.css') }}">
 
-    {{-- View stack tyles --}}
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
     @stack('styles')
 
-    {{-- Livewire css --}}
     @livewireStyles
 
     {{-- UI blade-icons css --}}
-    @bukStyles(true)
-
+    {{-- @bukStyles(true) --}}
 </head>
-
 <body>
 
-    {{-- Navbar component --}}
     <x-navbar-top />
 
-
-    {{-- Main wrapper --}}
     <div class="relative overflow-x-hidden antialiased" id="app">
         {{ $slot }}
     </div>
 
-    {{-- Footer component --}}
     <x-footer />
+
+    {{-- Livewire scripts --}}
+    @livewireScripts
+    {{-- App scripts --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- Embla CDN scripts --}}
+    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+
+    {{-- UI blade-icons scripts --}}
+    {{-- @bukScripts(true) --}}
 
     {{-- View stack scripts --}}
     @stack('scripts')
 
-    {{-- App scripts --}}
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
-
-    {{-- Livewire scripts --}}
-    @livewireScripts
-
-    {{-- UI blade-icons scripts --}}
-    @bukScripts(true)
-
     <script type="text/javascript">
         // Grab wrapper nodes
-        const rootNode = document.querySelector('.embla')
+        /* const rootNode = document.querySelector('.embla')
         const viewportNode = rootNode.querySelector('.embla__viewport')
         // Initialize the carousel
         const embla = EmblaCarousel(viewportNode, {
             loop: true
-        })
+        }) */
     </script>
 
 </body>

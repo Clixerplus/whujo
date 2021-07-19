@@ -2,66 +2,82 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Tag;
-use App\Models\Service;
+
 use Livewire\Component;
-use App\Models\Experience;
-use App\Models\ShareACoffee;
+use Spatie\Geocoder\Geocoder;
+use App\Models\Tag as TagModel;
+
 
 class SearchProductForm extends Component
 {
-    public int $activeType = 0;
+    public int $activeType  = 0;
+    public string $search   = '';
+    public string $location = '';
+    public string $category = '';
 
     public function render()
     {
-        return view('livewire.search-product-form');
+        return view('livewire.search-product-form', [
+            'tags' => $this->getResults(),
+            'categories' => $this->getCategories(),
+            'locations' => $this->getLocations(),
+            'model' => $this->getModel()
+        ]);
     }
 
-    public function  changeType(int $type){
+    private function getResults()
+    {
+        $model = $this->getModel();
+        return !empty($this->search)
+            ? TagModel::search($this->search, $model)
+            : collect();
+    }
+    private function getCategories()
+    {
+        $model = $this->getModel();
+        return \App\Models\Category::where('product_type', $model)->get();
+    }
+    private function getModel()
+    {
+        return [
+            \App\Models\Service::class,
+            \App\Models\Experience::class,
+            \App\Models\ShareACoffee::class
+        ][$this->activeType];
+    }
+    private function getLocations()
+    {
+        $locations = [];
+
+        if ($this->location) {
+            $client = new \GuzzleHttp\Client();
+            $geocoder = new Geocoder($client);
+            $geocoder->setApiKey(config('geocoder.key'));
+            $results = $geocoder->getAllCoordinatesForAddress($this->location);
+
+            foreach ($results as $result) {
+                $locations[] = [
+                    "address"  => data_get($result, 'formatted_address'),
+                    "locality" => $this->getAreaName($result, 'locality'),
+                    "state"    => $this->getAreaName($result, 'administrative_area_level_1'),
+                    "country"  => $this->getAreaName($result, 'country'),
+                ];
+            }
+        }
+        return $locations;
+    }
+
+    private function getAreaName($array, $key)
+    {
+        $result = array_filter(data_get($array, 'address_components'), function ($arr) use ($key) {
+            return data_get($arr, 'types.0') === $key;
+        });
+
+        return data_get($result, '0.long_name');
+    }
+
+    public function changeType(int $type)
+    {
         $this->activeType = $type;
     }
-    /*     protected const TYPES = [
-        Service::class,
-        Experience::class,
-        ShareACoffee::class
-    ];
-
-    protected const MAX_RESULTS = 5;
-
-    public string $type     = "service";
-    public string $search   = "";
-    public string $location = "";
-    public string $category = "";
-
-    public int $activeType = 0;
-
-    public string $isSearchActive   = false;
-    public string $isLocationActive = false;
-    public string $isCategoryActive = false;
-
-    public function updatedActiveType()
-    {
-        $this->selectType();
-    }
-
-
-
-
-    public function searchTags()
-    {
-        $first = Tag::where('name->es', 'like', "{$this->search}%")
-            ->orderBy('name->es')->pluck('name')->toArray();
-
-        $second = Tag::where('name->es', 'like', "%{$this->search}%")
-            ->where('name->es', 'not like', "{$this->search}%")
-            ->orderBy('name->es')->pluck('name')->toArray();
-
-        return array_merge($first, $second);
-    }
-
-    protected function selectType()
-    {
-        $type = ['service', 'experience', 'share-a-coffee'];
-        $this->type = $type[$this->activeType];
-    } */
 }

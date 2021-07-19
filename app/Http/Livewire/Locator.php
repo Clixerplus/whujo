@@ -15,18 +15,20 @@ class Locator extends Component
 
     public function search()
     {
-
         $client = new \GuzzleHttp\Client();
-
         $geocoder = new Geocoder($client);
-
         $geocoder->setApiKey(config('geocoder.key'));
 
-        $geocoder->setCountry(config('geocoder.country', 'US'));
+        $results = $geocoder->getCoordinatesForAddress('valencia Venezuela');
 
-        $results = $geocoder->getCoordinatesForAddress('Barqusimeto');
 
         dd($results);
+        $res= array_filter(data_get($results, 'address_components'), function ($arr) {
+            /* dd($arr); */
+            return data_get($arr, 'types.0') === 'locality';
+        });
+
+        dd(data_get($res, '0.long_name'));
     }
     public function render()
     {
