@@ -1,4 +1,4 @@
-@php
+ @php
     if ($errors->has($key)){
         $attributes->merge([ 'ring ring-danger focus:ring-danger ring-opacity-75']);
     }
@@ -9,7 +9,7 @@
     </div>
 
     <select {{ $attributes->merge([
-                    'class' => 'w-full rounded-md p-3 pr-16 z-20 appearance-none border focus:ring focus:ring-gray-200 outline-none ',
+                    'class' => 'w-full rounded-md pl-2 pr-16 appearance-none focus:outline-none ',
                     'name'  => $key
                 ])}}>
 

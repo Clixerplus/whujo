@@ -4,7 +4,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- header: hero-banner --}}
     <header>
-        <div class="relative w-screen md:h-[500px] h-screen ">
+        <div class="relative w-screen h-screen ">
 
             {{-- background image --}}
             <img src="{{ asset('images/bg/section-bg-experience-cta.jpeg') }}" alt="multi-experiences collage"
@@ -13,7 +13,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
             {{-- mask container --}}
             <div class="relative w-full h-full px-4 bg-opacity-75 bg-secondary">
                 <div class="flex items-center justify-center h-full ">
-                    <div class="w-auto h-auto mb-16 max-w-screen lg:text-center md:max-w-3xl">
+                    <div class="w-full h-auto mb-16 max-w-screen lg:text-center md:max-w-4xl">
 
                         {{-- hero title --}}
                         <h2 class="mb-8 text-5xl font-semibold text-white md:mb-16 lg:text-center">

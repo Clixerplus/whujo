@@ -1,21 +1,22 @@
-<div>
-    <form action="{{ route('search') }}" class="flex flex-wrap h-12 space-y-4 bg-white rounded-md md:space-y-0">
+<div class="w-full">
+    <form action="{{ route('search') }}" class="w-full">
+
+        <div class="flex flex-wrap md:h-12 space-y-2 md:bg-white rounded-md md:space-y-0 p-1 w-full">
+            <x-search-tag :tags="$tags" :model="$model" />
+
+            <x-search-locator :locations="$locations" :model="$model" />
+
+            <x-search-category :categories="$categories" :model="$model" />
+
+            <button type="submit" class="w-full h-10 text-white md:w-1/12 bg-primary rounded-md px-1" placeholder="Button">
+                {{ __('Search') }}
+            </button>
+        </div>
 
         <input type="hidden" wire:model="type" />
 
-        <x-search-tag :tags="$tags" :model="$model" />
 
-        {{-- <input wire:model="location" class="w-full h-full px-2 bg-gray-100 md:w-4/12" placeholder="Location" /> --}}
-        <x-search-locator :locations="$locations" :model="$model"/>
-
-        <x-search-category :categories="$categories" :model="$model" />
-
-        <button type="submit" class="w-full h-full text-white md:w-1/12 bg-primary" placeholder="Button">
-            {{ __('Search') }}
-        </button>
-
-
-        <div class="flex justify-center w-full gap-4 pt-4" >
+        <div class="flex justify-center w-full gap-4 pt-4">
             <button wire:click="changeType(0)" type="button" class="w-32 py-2 text-white bg-white bg-opacity-25">
                 Services
             </button>
@@ -26,5 +27,6 @@
                 Share a Coffee
             </button>
         </div>
+        
     </form>
-    </section>
+</div>

@@ -1,9 +1,29 @@
-<div x-data="{open:false}"
-    class="relative w-full h-full transition-all duration-300 transform bg-gray-100 rounded-md md:w-4/12 hover:shadow hover:scale-110">
-    <input wire:model.debounce.500ms="location" x-ref="location" placeholder="Location" x-on:keydown="open=true"
-        class="w-full h-full pl-2 pr-6 bg-gray-50 focus:outline-none" />
-    <x-icon-location class="absolute w-6 h-6 text-gray-300 bg-white right-1 top-3" />
-    <div class="w-full bg-white shadow" x-cloak x-show="open">
+@php
+    $locations = [
+        ['address'=> 'Address 1'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 2'],
+        ['address'=> 'Address 3'],
+    ];
+@endphp
+<div x-data="{open:true}"
+    class="relative w-full h-10 z-10   md:w-4/12 bg-white rounded-md">
+
+    <div class="w-full h-full flex items-center px-2">
+        <input wire:model.debounce.500ms="location" x-ref="location" placeholder="Location" x-on:keydown="open=true"
+            class="w-full h-full focus:outline-none rounded-md " />
+        <x-icon-location class="w-auto h-7 text-gray-300" />
+    </div>
+
+    <div class="w-full bg-white shadow mt-1 rounded-md max-h-64 overflow-y-auto" x-cloak x-show="open">
         <ul>
             @foreach ($locations as $local)
                 <li x-on:click="$refs.location.value = '{{ $local['address'] }}'; open=false"
