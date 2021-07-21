@@ -12,16 +12,22 @@ class SearchProductForm extends Component
 {
     public int $activeType  = 0;
     public string $search   = '';
-    public string $location = '';
+    public string $searchLocation   = '';
+
+    public array $location = [];
+    public array $locations = [];
     public string $category = '';
+    public string $type = '';
+
 
     public function render()
     {
+        $this->getLocations();
+        $this->getModel();
+
         return view('livewire.search-product-form', [
             'tags' => $this->getResults(),
             'categories' => $this->getCategories(),
-            'locations' => $this->getLocations(),
-            'model' => $this->getModel()
         ]);
     }
 
@@ -39,6 +45,12 @@ class SearchProductForm extends Component
     }
     private function getModel()
     {
+        $this->type = [
+            'service',
+            'experience',
+            'share-a-coffees'
+        ][$this->activeType];
+
         return [
             \App\Models\Service::class,
             \App\Models\Experience::class,
@@ -49,22 +61,38 @@ class SearchProductForm extends Component
     {
         $locations = [];
 
-        if ($this->location) {
+        if ($this->searchLocation) {
             $client = new \GuzzleHttp\Client();
             $geocoder = new Geocoder($client);
             $geocoder->setApiKey(config('geocoder.key'));
-            $results = $geocoder->getAllCoordinatesForAddress($this->location);
+            $results = $geocoder->getAllCoordinatesForAddress($this->searchLocation);
 
             foreach ($results as $result) {
+                $address_arr = [];
+                $locality = $this->getAreaName($result, 'locality');
+                $state    = $this->getAreaName($result, 'administrative_area_level_1');
+                $country  = $this->getAreaName($result, 'country');
+
+                if (!is_null($locality)) {
+                    $address_arr[] = $locality;
+                }
+                if (!is_null($state)) {
+                    $address_arr[] = $state;
+                }
+                if (!is_null($locality)) {
+                    $address_arr[] = $country;
+                }
+
                 $locations[] = [
-                    "address"  => data_get($result, 'formatted_address'),
-                    "locality" => $this->getAreaName($result, 'locality'),
-                    "state"    => $this->getAreaName($result, 'administrative_area_level_1'),
-                    "country"  => $this->getAreaName($result, 'country'),
+                    "address" => implode(", ", $address_arr),
+                    "locality" => $locality,
+                    "state"    => $state,
+                    "country"  => $country,
                 ];
             }
         }
-        return $locations;
+
+        $this->locations = $locations;
     }
 
     private function getAreaName($array, $key)
@@ -73,11 +101,30 @@ class SearchProductForm extends Component
             return data_get($arr, 'types.0') === $key;
         });
 
-        return data_get($result, '0.long_name');
+        if (count($result))
+            return data_get($result, '*.long_name')[0];
+
+        return null;
     }
 
     public function changeType(int $type)
     {
         $this->activeType = $type;
+    }
+
+    public function chooseLocation($index)
+    {
+        $this->location = $this->locations[$index];
+        $this->searchLocation = $this->location['address'];
+    }
+
+    public function chooseResult($result)
+    {
+        $this->search = $result;
+    }
+
+    public function chooseCategory($category)
+    {
+        $this->category = $category;
     }
 }

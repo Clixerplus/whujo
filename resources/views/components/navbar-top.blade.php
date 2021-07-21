@@ -46,8 +46,8 @@
             </div>
 
             {{-- button side menu --}}
-            <button @click="open_side_menu = ! open_side_menu" class="text-secondary focus:outline-none lg:hidden">
-                <svg class="w-8 h-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <button @click="open_side_menu = ! open_side_menu" class="w-12 h-12 p-2 text-white bg-white bg-opacity-25 focus:outline-none lg:hidden">
+                <svg class="w-full h-full" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>

@@ -12,12 +12,12 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
             {{-- mask container --}}
             <div class="relative w-full h-full px-4 bg-opacity-75 bg-secondary">
-                <div class="flex items-center justify-center h-full ">
-                    <div class="w-full h-auto mb-16 max-w-screen lg:text-center md:max-w-4xl">
+                <div class="flex items-center justify-center h-full pt-16">
+                    <div class="w-full max-w-screen lg:text-center md:max-w-2xl lg:max-w-5xl">
 
                         {{-- hero title --}}
                         <h2 class="mb-8 text-5xl font-semibold text-white md:mb-16 lg:text-center">
-                            Creando Momentos <br><span class="text-primary">y Soluciones</span>
+                            Creamos Momentos <br><span class="text-primary">Ofrecemos Soluciones</span>
                         </h2>
 
                         {{-- form search component --}}

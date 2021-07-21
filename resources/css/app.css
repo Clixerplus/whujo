@@ -49,7 +49,7 @@
 
     /*------ Navbar ----------*/
     .navbar {
-        @apply flex items-center justify-between bg-white text-primary ;
+        @apply flex items-center justify-between bg-transparent text-primary ;
     }
 
     .navbar-transparent {

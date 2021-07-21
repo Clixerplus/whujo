@@ -1,43 +1,36 @@
-@php
-    $locations = [
-        ['address'=> 'Address 1'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 2'],
-        ['address'=> 'Address 3'],
-    ];
-@endphp
-<div x-data="{open:true}"
-    class="relative w-full h-10 z-10   md:w-4/12 bg-white rounded-md">
+<div class="relative w-full p-2 bg-white rounded shadow-xl lg:w-4/12 group" x-data="{open:false}">
+    <input wire:model="searchLocation" x-ref="searchLocation"
+        x-on:keydown="$nextTick(()=> { if (( $refs.searchLocation.value.length > 0) && (open !== true)) { open = true}})"
+        x-on:click="$nextTick(()=> { if (( $refs.searchLocation.value.length > 0) && (open !== true)) { open = true}})"
+        x-on:click.away="open=false"
+        class="w-full h-12 placeholder-gray-400 outline-none "
+        autocomplete="error" placeholder="Location" />
+    <x-icon-location class="absolute top-0 right-0 w-auto h-16 p-4 text-gray-400" />
 
-    <div class="w-full h-full flex items-center px-2">
-        <input wire:model.debounce.500ms="location" x-ref="location" placeholder="Location" x-on:keydown="open=true"
-            class="w-full h-full focus:outline-none rounded-md " />
-        <x-icon-location class="w-auto h-7 text-gray-300" />
-    </div>
+    <div class="absolute inset-x-0 z-10 -mt-1 overflow-y-auto bg-white border-t rounded-b shadow-xl top-full max-h-64 lg:max-h-48"
+        x-cloak x-show="$refs.search.value.length > 0 && open" x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100"
+        x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100"
+        x-transition:leave-end="opacity-0 transform scale-90">
 
-    <div class="w-full bg-white shadow mt-1 rounded-md max-h-64 overflow-y-auto" x-cloak x-show="open">
-        <ul>
-            @foreach ($locations as $local)
-                <li x-on:click="$refs.location.value = '{{ $local['address'] }}'; open=false"
-                    class="flex items-center p-3 space-x-3 text-left transition-all duration-500 ease-in-out cursor-pointer group hover:bg-gray-100">
-                    <span class="inline-block w-4 h-4 p-0.5 border border-secondary  rounded-lg flex-shrink-0">
-                        <span class="block w-full h-full bg-transparent rounded-lg group-hover:bg-secondary"></span>
-                    </span>
+        <div wire:loading.delay class="w-full p-4">
+            <x-icon-spinner class="w-6 h-6 mx-auto text-gray-400 animate-spin" />
+        </div>
 
-                    <span class="text-sm font-light">{{ $local['address'] }}</span>
+        <ul wire:loading.remove class="w-full ">
+            @forelse ($locations as $key => $local )
+                <li class="p-4 text-left text-gray-600 transition-colors duration-500 ease-in-out hover:bg-gray-200 hover:cursor-pointer"
+                    @click="$wire.chooseLocation({{ $key }})">
+                    {{ $local['address'] }}
                 </li>
-            @endforeach
+            @empty
+                <li class="p-4 text-gray-600">There isn't results</li>
+            @endforelse
         </ul>
+
     </div>
 
-
-    <input name="locality" type="hidden" />
+    <input type="hidden" wire:model="location.country" name="country" />
+    <input type="hidden" wire:model="location.locality" name="locality" />
+    <input type="hidden" wire:model="location.state" name="state" />
 </div>

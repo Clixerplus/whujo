@@ -3,7 +3,7 @@
         $attributes->merge([ 'ring ring-danger focus:ring-danger ring-opacity-75']);
     }
 @endphp
-<div class="relative w-full my-2">
+<div class="relative w-full">
     <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-600 border-l pointer-events-none">
         <x-icon-caret-down-outline class="w-6 h-6 fill-current" />
     </div>
