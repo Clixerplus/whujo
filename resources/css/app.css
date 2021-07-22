@@ -7,6 +7,13 @@
 
 @layer components {
     :root {
+        --service: #45a1c3;
+        --experience: #e0a837;
+        --share-a-coffee: ##E31118;
+
+        --online:#04A3EE;
+        --onsite:#F74974;
+
         --color-primary-light: #ff2e31;
         --color-primary: #e32a2e;
         --color-primary-dark: #bd2225;
@@ -49,7 +56,7 @@
 
     /*------ Navbar ----------*/
     .navbar {
-        @apply flex items-center justify-between bg-transparent text-primary ;
+        @apply flex items-center justify-between bg-transparent text-primary;
     }
 
     .navbar-transparent {
@@ -195,7 +202,7 @@
     }
 
     .embla__viewport {
-        @apply w-full h-full overflow-hidden ;
+        @apply w-full h-full overflow-hidden;
     }
 
     .embla__viewport.is-draggable {
@@ -217,7 +224,6 @@
 
     .embla__slide {
         @apply relative w-full h-full max-w-full min-w-full md:w-1/2 md:max-w-[50%] md:min-w-[50%] lg:w-1/4 lg:max-w-[25%] lg:min-w-[25%];
-
     }
 
     .embla__slide__inner {
@@ -230,6 +236,4 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
-
 }

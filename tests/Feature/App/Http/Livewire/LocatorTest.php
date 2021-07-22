@@ -15,11 +15,17 @@ class LocatorTest extends TestCase
 
     public function test_example()
     {
-
-
         Livewire::test(Locator::class)
         ->call('search');
-
-        //$response->assertStatus(200);
+    }
+    public function test_example_2()
+    {
+        Livewire::test(Locator::class)
+        ->call('search2');
+    }
+    public function test_example_3()
+    {
+        Livewire::test(Locator::class)
+        ->call('search3');
     }
 }

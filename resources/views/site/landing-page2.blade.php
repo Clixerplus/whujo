@@ -99,10 +99,9 @@
             <div class="max-w-5xl px-6 py-16 mx-auto">
                 <div class="px-8 py-12 rounded-md bg-secondary md:px-20 md:flex md:items-center md:justify-between">
                     <div>
-                        <h3 class="text-2xl font-semibold text-white">Lorem ipsum dolor sit amet</h3>
+                        <h3 class="text-2xl font-semibold text-white">Es sencillo!</h3>
                         <p class="max-w-md mt-4 text-gray-400">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing Acaliquam ac volutpat, viverra magna
-                            risus aliquam massa.
+                            Ven y ofrece tu servicio, tu experiencia o solo un momento de tu tiempo
                         </p>
                     </div>
 
@@ -132,7 +131,8 @@
                         src="{{ asset('images/landing01/share-a-coffee-02.jpg') }}">
                 </div>
 
-                <h2 class="absolute text-[24rem] text-gray-100 opacity-100 " style="left:-30%; top:-15%; z-index:-1">Share</h2>
+                <h2 class="absolute text-[24rem] text-gray-100 opacity-100 " style="left:-30%; top:-15%; z-index:-1">
+                    Share</h2>
             </div>
         </section>
 
@@ -165,8 +165,6 @@
                     </x-section-title>
                 </div>
 
-
-
             </div>
         </section>
 
@@ -179,9 +177,9 @@
                                 Todo en tres simples pasos!
                             </h2>
                             <p class="mb-8 leading-loose text-gray-700 font-extralight">
-                                Puedes buscar entre varios tipo de servicio, temática, educación, online, presencial,
-                                aplicar filtros y ajustar la busqueda a tus necesidades .
-                                Contrata o guardarla en tus preferencias, !No dejes que se te escape!
+                                Explora entre los distintos tipos de servicios, tematicas, experiencias, modalidades,
+                                filtros y ajusta tu busqueda a tus necesidades. Contrata o guarda en favoritos! No dejes
+                                que se te escape! Si quieres saber mas contactanos.
                             </p>
                             <div class="hidden w-full gap-8 md:flex">
                                 <x-ui.link-button href="#"
@@ -209,11 +207,8 @@
                                     <h3 class="text-xl font-semibold ">
                                         Busca
                                     </h3>
-                                    <p class="leading-loose text-gray-500 font-extralight">
-                                        Empiece por explorar servicios, experiencias o comparte un momento.
-                                        {{-- Aplique filtros
-                                        que tipo de servicio, temática, educación, online, presencial. También puedes
-                                        guardar tus preferencias . --}}
+                                    <p class="mt-2 leading-relaxed text-gray-500 font-extralight">
+                                        Empieza por explorar servicios, experiencias o comparte un momento.
                                     </p>
                                 </div>
                             </li>
@@ -228,9 +223,9 @@
                                     <h3 class="text-xl font-semibold ">
                                         Agenda
                                     </h3>
-                                    <p class="leading-loose text-gray-500 font-extralight">
-                                        Ya que hayas conseguido lo que necesitabas, lee sobre
-                                        los mismos, busca reseñas, ve calendarios y agenda!
+                                    <p class="mt-2 leading-relaxed text-gray-500 font-extralight">
+                                        Conseguiste lo que necesitabas, lee sovre los mismos, busca reseñas, ve
+                                        calendarios y agenda!
                                     </p>
                                 </div>
                             </li>
@@ -245,10 +240,11 @@
                                     <h3 class="text-xl font-semibold ">
                                         Vive la experiencia o el momento Whujo
                                     </h3>
-                                    <p class="leading-loose text-gray-500 font-extralight">
+                                    <p class="mt-2 leading-relaxed text-gray-500 font-extralight">
                                         <strong>¡Ya está todo listo!</strong> Conéctate a través de la aplicación para
                                         recibir sugerencias, preguntas o consejos locales.
                                     </p>
+                                    <p class="mt-8 text-right">... conectate y recibe ...</p>
                                 </div>
                             </li>
                         </ul>

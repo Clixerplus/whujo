@@ -23,8 +23,9 @@
             <button wire:click="changeType(1)" type="button" class="w-32 py-2 text-xs text-white bg-white bg-opacity-25 rounded-md">
                 Experience
             </button>
-            <button wire:click="changeType(2)" type="button" class="w-32 py-2 text-xs text-white bg-white bg-opacity-25 rounded-md">
-                Share a Coffee
+            <button wire:click="changeType(2)" type="button" class="flex w-32 p-2 space-x-2 text-xs text-white bg-white bg-opacity-25 rounded-md">
+                <x-icon-coffee class="w-3 h-3"/>
+                <span>Share a Coffee</span>
             </button>
         </div>
 
