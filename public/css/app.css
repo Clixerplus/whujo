@@ -1559,6 +1559,9 @@ input[name="search"]:focus + #productType {
 .min-h-screen {
 	min-height: 100vh;
 }
+.min-h-full {
+	min-height: 100%;
+}
 .w-16 {
 	width: 4rem;
 }
@@ -2682,6 +2685,9 @@ input[name="search"]:focus + #productType {
 .bg-cover {
 	background-size: cover;
 }
+.bg-contain {
+	background-size: contain;
+}
 .bg-fixed {
 	background-attachment: fixed;
 }
@@ -2993,6 +2999,24 @@ input[name="search"]:focus + #productType {
 }
 .pb-10 {
 	padding-bottom: 2.5rem;
+}
+.pt-\[24\] {
+	padding-top: 24;
+}
+.pt-\[10vh\] {
+	padding-top: 10vh;
+}
+.pt-\[10\%\] {
+	padding-top: 10%;
+}
+.pt-\[15\%\] {
+	padding-top: 15%;
+}
+.pt-28 {
+	padding-top: 7rem;
+}
+.pt-32 {
+	padding-top: 8rem;
 }
 .text-left {
 	text-align: left;
@@ -5345,8 +5369,14 @@ input[name="search"]:focus + #productType {
 	.md\:mt-8 {
 		margin-top: 2rem;
 	}
+	.md\:ml-auto {
+		margin-left: auto;
+	}
 	.md\:block {
 		display: block;
+	}
+	.md\:inline {
+		display: inline;
 	}
 	.md\:flex {
 		display: flex;
@@ -5449,6 +5479,9 @@ input[name="search"]:focus + #productType {
 	}
 	.md\:max-w-full {
 		max-width: 100%;
+	}
+	.md\:max-w-xl {
+		max-width: 36rem;
 	}
 	.md\:flex-1 {
 		flex: 1 1 0%;
@@ -5622,6 +5655,14 @@ input[name="search"]:focus + #productType {
 	.md\:px-8 {
 		padding-left: 2rem;
 		padding-right: 2rem;
+	}
+	.md\:py-16 {
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+	.md\:py-24 {
+		padding-top: 6rem;
+		padding-bottom: 6rem;
 	}
 	.md\:pr-16 {
 		padding-right: 4rem;
@@ -5974,6 +6015,9 @@ input[name="search"]:focus + #productType {
 	.lg\:max-w-sm {
 		max-width: 24rem;
 	}
+	.lg\:max-w-3xl {
+		max-width: 48rem;
+	}
 	.lg\:flex-1 {
 		flex: 1 1 0%;
 	}
@@ -6280,6 +6324,9 @@ input[name="search"]:focus + #productType {
 	}
 	.xl\:max-w-screen-2xl {
 		max-width: 1536px;
+	}
+	.xl\:max-w-5xl {
+		max-width: 64rem;
 	}
 	.xl\:text-sm {
 		font-size: 0.875rem;

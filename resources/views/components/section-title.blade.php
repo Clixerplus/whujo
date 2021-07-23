@@ -2,10 +2,10 @@
     'separator' => false
 ])
 <div>
-    <h1 class="w-full text-4xl font-bold md:text-5xl text-secondary">{{ $slot }}</h1>
+    <h1 class="w-full text-4xl font-bold leading-tight md:text-5xl text-secondary">{{ $slot }}</h1>
 
     @isset($subtitle)
-    <h3 class="w-3/5 w-full mt-4 text-lg font-light text-gray-700 md:text-xl">{{$subtitle}}</h3>
+    <h3 class="w-full mt-4 text-lg font-light text-gray-700 md:w-3/5 md:text-xl">{{$subtitle}}</h3>
     @endisset
 
     @if ($separator)

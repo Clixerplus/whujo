@@ -35,7 +35,7 @@ class SearchProductForm extends Component
     {
         $model = $this->getModel();
         return !empty($this->search)
-            ? TagModel::search($this->search, $model)
+            ? TagModel::search(strtolower($this->search), $model)
             : collect();
     }
     private function getCategories()
