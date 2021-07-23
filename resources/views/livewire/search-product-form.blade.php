@@ -1,7 +1,7 @@
 <div class="w-full">
     <form action="{{ route('search') }}" class="w-full">
 
-        <div class="flex flex-wrap w-full space-y-2 rounded-md lg:bg-white lg:space-y-0">
+        <div class="flex flex-wrap w-full my-8 space-y-2 rounded-md lg:bg-white lg:space-y-0">
             <x-search-tag :tags="$tags"  />
             <x-search-locator :locations="$locations"  />
             <x-search-category :categories="$categories"  />
@@ -11,12 +11,10 @@
                     {{ __('Search') }}
                 </button>
             </div>
+            <input type="hidden" wire:model="type" name="type"/>
         </div>
 
-        <input type="hidden" wire:model="type" name="type"/>
-
-
-        <div class="flex justify-center w-full gap-2 pt-4 md:pt-6">
+        <div class="flex justify-center w-full gap-2 ">
             <button wire:click="changeType(0)" type="button" class="w-32 py-2 text-xs text-white bg-white bg-opacity-25 rounded-md">
                 Services
             </button>

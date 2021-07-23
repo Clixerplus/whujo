@@ -2,7 +2,7 @@
     <input wire:model="searchLocation" x-ref="searchLocation"
         x-on:keydown="$nextTick(()=> { if (( $refs.searchLocation.value.length > 0) && (open !== true)) { open = true}})"
         x-on:click="$nextTick(()=> { if (( $refs.searchLocation.value.length > 0) && (open !== true)) { open = true}})"
-        x-on:click.away="open=false" class="w-full h-12 placeholder-gray-400 outline-none " autocomplete="error"
+        x-on:click.away="open=false" class="w-full h-12 px-4 placeholder-gray-400 outline-none" autocomplete="error"
         placeholder="Location" />
     <x-icon-location class="absolute top-0 right-0 w-auto h-16 p-4 text-gray-400" />
 

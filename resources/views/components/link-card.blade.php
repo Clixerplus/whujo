@@ -6,7 +6,7 @@
 
 <div class="relative w-full h-full overflow-hidden rounded-md group">
     <img src="{{ $img }}"
-    class="absolute inset-0 object-cover w-full h-full transition-all ease-in-out rounded-xl group-hover:scale-110 group-hover:transform"
+    class="absolute inset-0 object-cover w-full h-full transition-all ease-in-out transform rounded-xl group-hover:scale-110"
     alt="{{ $alt }}" />
 
     <a href="{{ $link }}"

@@ -1,10 +1,22 @@
-<div class="relative w-full p-2 bg-white rounded lg:w-4/12 " x-data="{open:false}">
-    <input wire:model="search" name="search"
-        x-on:keydown="$nextTick(()=> open = $refs.search.value.length > 0 )"
+<div class="relative w-full p-2 bg-white rounded lg:w-4/12 " x-data="{
+    open:false,
+    placeholder(){
+        let placeholder = 'What are you looking for?  ';
+        if($wire.activeType === 0){
+            placeholder = 'ej. Contaduría';
+        }else if ($wire.activeType === 1){
+            placeholder = 'ej. Aprende cocina tailandesa';
+        }else if ($wire.activeType === 2){
+            placeholder = 'ej. Conversemos de emprendimiento';
+        }
+        return placeholder;
+    }
+}">
+    <input wire:model="search" name="search" x-on:keydown="$nextTick(()=> open = $refs.search.value.length > 0 )"
         x-on:click="$nextTick(()=> open = $refs.search.value.length > 0 )" x-on:click.away="open=false" x-ref="search"
-        class="w-full h-12 placeholder-gray-400 outline-none " autocomplete="error"
-        placeholder="What are you looking for?" />
-    <x-icon-search class="absolute top-0 right-0 w-auto h-16 p-4 text-gray-400 lg:p-5" />
+        class="w-full h-12 px-3 placeholder-gray-400 outline-none" autocomplete="error"
+        x-bind:placeholder="placeholder()" />
+    <x-icon-search class="absolute top-0 right-0 w-auto h-16 p-4 text-gray-400 bg-white lg:p-5" />
 
     <div class="absolute inset-x-0 z-10 -mt-1 overflow-y-auto bg-white border-t rounded-b shadow-xl top-full max-h-64 lg:max-h-48"
         x-cloak x-show="$refs.search.value.length > 0 && open" x-transition:enter="transition ease-out duration-300"

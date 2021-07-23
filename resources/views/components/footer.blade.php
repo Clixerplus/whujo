@@ -1,16 +1,42 @@
 {{-- Footer --}}
-<footer {{ $attributes->merge(['class' => 'relative pb-4 ']) }}>
-    <div class="px-4 pt-12 mx-auto border-t sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+<footer {{ $attributes->merge(['class' => 'relative pb-4 bg-gray-100 border-t']) }}>
+    <x-section-container class="pt-8">
         <div class="grid gap-16 row-gap-10 mb-8 lg:grid-cols-6">
             <div class="md:max-w-md lg:col-span-2">
                 <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                    <span class="font-bold text-8xl whujo-brand">whujo</span>
+                    <span class="text-5xl font-bold whujo-brand">whujo</span>
                 </a>
             </div>
             <div class="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
                 <div>
                     <p class="font-semibold tracking-wide text-secondary">
-                        Conócenos
+                        Nosotros
+                    </p>
+                    <ul class="mt-2 space-y-2">
+                        <li>
+                            <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
+                                {{ __('Conócenos') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/"
+                                class="transition-colors duration-300 text-disabled hover:text-secondary">Landing2</a>
+                        </li>
+                        <li>
+                            <a href="/"
+                                class="transition-colors duration-300 text-disabled hover:text-secondary">Landing3</a>
+                        </li>
+                        <li>
+                            <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
+                                {{ __('Work with us') }}
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div>
+                    <p class="font-semibold tracking-wide text-secondary">
+                        Explora
                     </p>
                     <ul class="mt-2 space-y-2">
                         <li>
@@ -28,10 +54,23 @@
                                 {{ __('Share a coffee') }}
                             </a>
                         </li>
+                        <li>
+                            <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
+                                {{ __('Online') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
+                                {{ __('Onsite') }}
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
                 <div>
-                    <p class="font-semibold tracking-wide text-secondary">Ayuda</p>
+                    <p class="font-semibold tracking-wide text-secondary">
+                        Asistencia
+                    </p>
                     <ul class="mt-2 space-y-2">
                         <li>
                             <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
@@ -40,17 +79,12 @@
                         </li>
                         <li>
                             <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
-                                {{ __('Work with us') }}
+                                {{ __('Help Center') }}
                             </a>
                         </li>
                         <li>
                             <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
-                                {{ __('About us') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/" class="transition-colors duration-300 text-disabled hover:text-secondary">
-                                {{ __('Help') }}
+                                {{ __('Customer Service') }}
                             </a>
                         </li>
                     </ul>
@@ -76,26 +110,6 @@
 
                     </ul>
                 </div>
-               {{--  <div>
-                    <p class="font-semibold tracking-wide text-secondary">
-                        whujo
-                    </p>
-                    <ul class="mt-2 space-y-2">
-                        <li>
-                            <a href="/"
-                                class="transition-colors duration-300 text-disabled hover:text-secondary">Landing1</a>
-                        </li>
-                        <li>
-                            <a href="/"
-                                class="transition-colors duration-300 text-disabled hover:text-secondary">Landing2</a>
-                        </li>
-                        <li>
-                            <a href="/"
-                                class="transition-colors duration-300 text-disabled hover:text-secondary">Landing3</a>
-                        </li>
-
-                    </ul>
-                </div> --}}
             </div>
         </div>
         <div class="flex flex-col justify-between pt-5 border-t sm:flex-row">
@@ -127,5 +141,5 @@
                 </a>
             </div>
         </div>
-    </div>
+    </x-section-container>
 </footer>

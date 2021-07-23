@@ -29,7 +29,7 @@
                 @auth
                     <x-dropdown-avatar />
                 @else
-                    <div class="relative w-auto mx-4" x-data="{lang:'es'}">
+                    <div class="relative hidden w-auto mx-4" x-data="{lang:'es'}">
                         <button href="{{ route('login') }}"
                             class="flex items-center px-4 space-x-1 text-gray-200 transition-colors duration-500 ease-in-out rounded hover:bg-white hover:text-secondary hover:bg-opacity-50">
                             <x-icon-world class="w-auto h-4" />

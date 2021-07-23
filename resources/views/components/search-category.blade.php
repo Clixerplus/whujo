@@ -1,7 +1,7 @@
 <div class="relative w-full p-2 bg-white rounded shadow-xl cursor-pointer lg:w-3/12 group"
     x-data="{ open:false, category:@entangle('category') }" @click.away="open=false">
     <div @click="open=!open"
-        class="flex items-center w-full h-12 placeholder-gray-400 transition-all duration-300 ease-in-out outline-none focus:p-2 focus:shadow-xl">
+        class="flex items-center w-full h-12 px-4 placeholder-gray-400 transition-all duration-300 ease-in-out outline-none focus:p-2 focus:shadow-xl">
         <span x-show="category" x-text="category"></span>
         <span x-show="category == '' " class="text-gray-400">All Categories</span>
     </div>
