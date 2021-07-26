@@ -3,7 +3,7 @@
 
         {{-- stepPanel --}}
         <div id="stepsPanel"
-            class="fixed z-10 flex-shrink-0 h-full transform -translate-x-full shadow lg:border-r lg:static w-96 lg:w-64 lg:transform-none lg:shadow-none transition-500">
+            class="fixed z-10 flex-shrink-0 h-full transform -translate-x-full shadow-xl lg:border-r lg:static w-96 lg:w-64 lg:transform-none lg:shadow-none transition-500 bg-gray-50">
 
             <div class="flex flex-col h-full">
 
@@ -99,14 +99,14 @@
                 {{-- Barra Inferior | Botones - Contador de Pasos --}}
                 <div class="flex-shrink-0 h-16 px-4 border-t bg-gray-50 ">
                     <div class="flex items-center justify-between p-3">
-                        <x-ui::button wire:click="previous" :disabled="$currentStep==0"
+                        <x-ui::button wire:click="backward" :disabled="$currentStep==0"
                             class="text-sm border border-secondary text-secondary active:bg-secondary active:text-white hover:bg-secondary hover:text-white">
                             Anterior
                         </x-ui::button>
 
                         <p>{{ $currentStep + 1 }}/{{ $totalSteps }}</p>
 
-                        <x-ui::button wire:click="next"
+                        <x-ui::button wire:click="forward"
                             class="text-sm text-white border border-primary-light bg-primary hover:bg-primary-light active:bg-primary-light">
                             Siguiente
                         </x-ui::button>

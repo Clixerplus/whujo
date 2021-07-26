@@ -1,7 +1,7 @@
 <div class="text-gray-800">
 
     <h1 class="mb-2 text-3xl font-extrabold">
-        Dale un nombre a tu experiencia
+        Dale un nombre a tu servicio
     </h1>
     <p class="mb-4 text-sm">
         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -11,7 +11,7 @@
     <div class="my-8">
 
         <label for="input_name" class="block mb-2 font-semibold">
-            Titulo de la experiencia
+            Titulo de la Servicio
         </label>
 
         <x-ui::input id="input_name"
@@ -38,3 +38,6 @@
     </p>
 
 </div>
+@section('suggestPanel')
+<div>ñldsajasjldal</div>
+@endsection

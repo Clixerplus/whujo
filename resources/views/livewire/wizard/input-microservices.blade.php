@@ -61,16 +61,16 @@
         </h2>
 
         <div class="pl-2">
-            @empty($product->microservices)
+            @empty($service->microservices)
             <div class="py-2 text-sm text-gray-400">
                 {{ __('The list is empty') }}
             </div>
             @else
             <ol class="mt-1 text-sm list-decimal list-inside">
-                @foreach ($product->microservices as $item)
+                @foreach ($service->microservices as $item)
                 <li class="flex py-2 pl-2 mb-4 border-b ">
                     <div class="w-4/5">
-                        <span>{{ $item }}</span>
+                        <span>{{ $item->name }}: {{ $item->name }}</span>
                     </div>
                     <div class="flex w-1/5">
                         <button wire:click="removeFeatureFromList({{ $loop->index }})"

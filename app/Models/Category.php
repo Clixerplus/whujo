@@ -29,4 +29,9 @@ class Category extends Model
     {
         return $this->all();
     }
+
+    public function scopeForType($query, string $type)
+    {
+        return $query->where('product_type', $type);
+    }
 }

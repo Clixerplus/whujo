@@ -1,15 +1,15 @@
- @php
+ {{-- @php
     if ($errors->has($key)){
         $attributes->merge([ 'ring ring-danger focus:ring-danger ring-opacity-75']);
     }
-@endphp
-<div class="relative w-full">
-    <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-600 border-l pointer-events-none">
+@endphp --}}
+<div class="relative w-full py-4 mt-2 border rounded-md">
+    <div class="absolute inset-y-0 right-0 flex items-center px-2 border-l pointer-events-none">
         <x-icon-caret-down-outline class="w-6 h-6 fill-current" />
     </div>
 
     <select {{ $attributes->merge([
-                    'class' => 'w-full rounded-md pl-2 pr-16 appearance-none focus:outline-none ',
+                    'class' => 'w-full  pl-2 pr-16 appearance-none focus:outline-none bg-white',
                     'name'  => $key
                 ])}}>
 

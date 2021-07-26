@@ -15,8 +15,10 @@ class InputFeatures extends Component
     public $feature;
 
     protected $listeners  = [
-        'canChangeStep'
+        'stepForward' => 'canChangeStep',
+        'stepBackward',
     ];
+
 
     protected $rules = [
         'feature' => 'required|string|min:' . self::MINIMUM_CHARS
@@ -40,8 +42,8 @@ class InputFeatures extends Component
         );
 
         $this->service->save();
-
         $this->reset('feature');
+
     }
 
     public function removeFeatureFromList($index)
@@ -64,6 +66,6 @@ class InputFeatures extends Component
 
     public function canChangeStep()
     {
-        $this->emit('dataIsValid', true);
+        $this->emitUp('next');
     }
 }

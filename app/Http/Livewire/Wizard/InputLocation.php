@@ -28,7 +28,7 @@ class InputLocation extends StepBuilderWizard
 
     public function rules()
     {
-        return [];
+        return ['search' => 'nullable'];
     }
 
     public function searchUpdate()
@@ -82,7 +82,6 @@ class InputLocation extends StepBuilderWizard
 
     public function chooseLocation($index)
     {
-        //
-
+        $this->search = $this->locations[$index]['address'];
     }
 }

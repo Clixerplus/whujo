@@ -227,6 +227,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('service.create');
     Route::get('/service/{service}/edit', ServiceBuilderWizard::class)->name('service.edit');
     Route::get('/service/index/', ServiceController::class)->name('service.index');
+    Route::post('/service/{service}/delete', function (Service $service) {
+        $service->delete();
+        return back()->with('isDeleted', true);
+    })->name('service.delete');
 
     Route::get('/experience/create', ServiceBuilderWizard::class)->name('experience.create');
     Route::get('/experience/{experience}/edit', ExperienceBuilderWizard::class)->name('experience.edit');

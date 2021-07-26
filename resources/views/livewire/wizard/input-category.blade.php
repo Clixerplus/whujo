@@ -18,24 +18,19 @@
             Elige una opción
         </label>
 
-        <x-ui::select id="input_category"
-                  :key="'product.category_id'"
-                  wire:model="product.category_id"
-                  class="w-full">
+        <x-ui::select id="input_category" :key="'product.category_id'" wire:model="product.category_id">
             <option value="" @empty($product->category_id) selected @else disabled @endempty >
                 {{ __('Choose an option') }}
             </option>
 
-            @foreach ($categories as $category)
-            <option value="{{ $category->id }}">
-                {{ $category->name }}
-            </option>
+            @foreach ($categories as $key => $category)
+                <option value="{{ $key }}">
+                    {{ $category }}
+                </option>
             @endforeach
         </x-ui::select>
 
         <x-ui::error :key="'product.category_id'" />
 
     </div>
-
-
 </div>

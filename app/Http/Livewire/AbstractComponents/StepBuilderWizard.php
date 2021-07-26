@@ -12,7 +12,9 @@ abstract class StepBuilderWizard extends Component
     public $product;
 
     protected $listeners  = [
-        'canChangeStep'
+        'canChangeStep',
+        'stepForward' => 'save',
+        'stepBackward',
     ];
 
     public function __construct($id)
@@ -30,6 +32,7 @@ abstract class StepBuilderWizard extends Component
     public function save()
     {
         $this->product->save($this->validateData());
+        $this->emitUp('next');
     }
 
     public function validateData()
