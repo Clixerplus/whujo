@@ -10,33 +10,6 @@ use Illuminate\Support\Facades\Validator;
 
 class ServiceBuilderWizard extends Component
 {
-    public $step;
-
-    public $totalSteps;
-
-    public $stepsMenu;
-
-    public $product;
-
-    public $component;
-
-    public $title;
-
-    public $field;
-
-    public $item;
-
-    protected $rules = [
-        'product.name' => 'nullable',
-        'product.category_id' => 'nullable',
-        'product.description' => 'nullable',
-        'product.state_id' => 'nullable',
-        'product.price' => 'nullable',
-        'product.features' => 'nullable',
-        'product.photos' => 'nullable',
-        'product.city_id' => 'nullable',
-
-    ];
 
     private $steps =  [
         [
@@ -83,118 +56,32 @@ class ServiceBuilderWizard extends Component
         ],
     ];
 
-    public function mount(Service $service)
-    {
-        $this->step = 1;
-        $this->totalSteps = count($this->steps);
-        $this->product = $service;
-        $this->setStepsMenu();
-    }
+    public $currentStep = 0;
+    public $product;
 
-    public function getStepData($index)
+    public function mount(Service $product)
     {
-        return $this->steps[$index - 1];
+        $this->product = $product;
+    }
+    public function render()
+    {
+        return view('livewire.service-builder-wizard', [
+            'totalSteps' => count($this->steps),
+            'stepsMenu'  => [],
+            'title'      => '',
+            'component'  => data_get($this->steps, "{$this->currentStep}.component")
+        ])->layout('layouts.main');
     }
 
     public function next()
     {
-
-        $this->validateOnly('product.' . $this->field);
-
-        $this->save();
-
-        $this->step = ($this->step < count($this->steps))
-            ? $this->step + 1
-            : 4;
+        if ($this->currentStep < count($this->steps))
+            $this->currentStep = $this->currentStep + 1;
     }
 
     public function previous()
     {
-        $this->validateOnly('product.' . $this->field);
-
-        $this->save();
-
-        $this->step = ($this->step > 1)
-            ? $this->step - 1
-            : 1;
-    }
-
-    public function goto($step)
-    {
-        $this->validateOnly('product.' . $this->field);
-
-        $this->save();
-
-        $this->step = $step;
-    }
-
-    public function save()
-    {
-        $this->product->update([
-            $this->field => $this->product->{$this->field}
-        ]);
-    }
-
-    public function addToList()
-    {
-
-        if (!empty($this->item)) {
-
-            $array = $this->product->{$this->field} ?? [];
-
-            $this->product->{$this->field} = array_merge(
-                $array,
-                [$this->item]
-            );
-
-            $this->item = "";
-
-            $this->save();
-        }
-    }
-
-    public function deleteFromList(int $index)
-    {
-        $array = $this->product->{$this->field};
-
-        unset($array[$index]);
-
-        $this->product->{$this->field} = $array;
-
-        $this->save();
-    }
-
-    public function setStepsMenu()
-    {
-        foreach ($this->steps as $step) {
-            if ($step['field'] == 'microservices') {
-                $this->stepsMenu[] = [
-                    'title'  => 'Microservicios',
-                    'status' => true
-                ];
-            } elseif ($step['field'] == 'category') {
-                $this->stepsMenu[] = [
-                    'title'  => 'Categrorias',
-                    'status' => true
-                ];
-            } else {
-                $this->stepsMenu[] = [
-                    'title' => $step['title'],
-                    'status' => !Validator::make([$step['field'] => $this->product->{$step['field']}], [$step['field'] => $this->rules['product.' . $step['field']]])->fails()
-                ];
-            }
-        }
-    }
-
-    public function render()
-    {
-        $data = $this->getStepData($this->step);
-
-        $this->component = $data['component'];
-        $this->field = $data['field'];
-        $this->title = $data['title'];
-        $this->{$this->field} = $this->product->{$this->field};
-
-        return view('livewire.service-builder-wizard')->layout('layouts.main');
+        if ($this->currentStep > 0)
+            $this->currentStep = $this->currentStep - 1;
     }
 }

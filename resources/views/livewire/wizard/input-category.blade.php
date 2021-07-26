@@ -1,10 +1,10 @@
 <div class="pb-8">
 
-    <h1 class="font-extrabold text-3xl mb-2">
+    <h1 class="mb-2 text-3xl font-extrabold">
         Ellige una categoría
     </h1>
 
-    <p class="text-sm mb-4 px-1">
+    <p class="px-1 mb-4 text-sm">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit.
         Facilis pariatur dolor deleniti quisquam soluta libero
         excepturi, mollitia atque, aperiam officia ab cumque dicta
@@ -14,11 +14,11 @@
 
     <div class="w-full md:w-3/5">
 
-        <label for="input_category" class="font-semibold px-1">
+        <label for="input_category" class="px-1 font-semibold">
             Elige una opción
         </label>
 
-        <x-select id="input_category"
+        <x-ui::select id="input_category"
                   :key="'product.category_id'"
                   wire:model="product.category_id"
                   class="w-full">
@@ -31,9 +31,9 @@
                 {{ $category->name }}
             </option>
             @endforeach
-        </x-select>
+        </x-ui::select>
 
-        <x-error :key="'product.category_id'" />
+        <x-ui::error :key="'product.category_id'" />
 
     </div>
 

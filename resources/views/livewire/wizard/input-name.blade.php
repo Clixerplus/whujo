@@ -10,7 +10,7 @@
 
     <div class="my-8">
 
-        <label for="input_name" class="font-semibold">
+        <label for="input_name" class="block mb-2 font-semibold">
             Titulo de la experiencia
         </label>
 

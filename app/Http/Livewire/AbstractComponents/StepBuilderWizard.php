@@ -4,7 +4,6 @@ namespace App\Http\Livewire\AbstractComponents;
 
 use App\Http\Livewire\Traits\CanValidateStepChange;
 use Livewire\Component;
-use Illuminate\Database\Eloquent\Model as ProductModel;
 
 abstract class StepBuilderWizard extends Component
 {
@@ -23,7 +22,7 @@ abstract class StepBuilderWizard extends Component
         $this->setValidationRules();
     }
 
-    public function mount(ProductModel $product)
+    public function mount($product = null)
     {
         $this->product = $product;
     }
