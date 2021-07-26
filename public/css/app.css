@@ -2690,6 +2690,9 @@ input[name="search"]:focus + #productType {
 .bg-center {
 	background-position: center;
 }
+.bg-top {
+	background-position: top;
+}
 .fill-current {
 	fill: currentColor;
 }
