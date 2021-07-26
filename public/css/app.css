@@ -2866,6 +2866,11 @@ input[name="search"]:focus + #productType {
 	padding-top: 7rem;
 	padding-bottom: 7rem;
 }
+.py-1\.5 {
+	padding-top: 0.375rem;
+	padding-bottom: 0.375rem;
+}
+
 .pt-6 {
 	padding-top: 1.5rem;
 }
@@ -5390,6 +5395,29 @@ input[name="search"]:focus + #productType {
 	.md\:w-40 {
 		width: 10rem;
 	}
+
+	.md\:w-28 {
+		width: 7rem;
+	}
+	.md\:w-44 {
+		width: 11rem;
+	}
+	.md\:w-1\/4 {
+		width: 25%;
+	}
+	.md\:w-16 {
+		width: 4rem;
+	}
+	.md\:w-56 {
+		width: 14rem;
+	}
+	.md\:w-64 {
+		width: 16rem;
+	}
+	.md\:w-40 {
+		width: 10rem;
+	}
+
 	.md\:w-3\/4 {
 		width: 75%;
 	}
@@ -6045,6 +6073,9 @@ input[name="search"]:focus + #productType {
 	}
 	.lg\:border-l-4 {
 		border-left-width: 4px;
+	}
+	.lg\:border-t-4 {
+		border-top-width: 4px;
 	}
 	.lg\:border-gray-200 {
 		--tw-border-opacity: 1;
