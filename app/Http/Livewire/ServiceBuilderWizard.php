@@ -85,13 +85,9 @@ class ServiceBuilderWizard extends Component
 
     public function mount(Service $service)
     {
-
         $this->step = 1;
-
         $this->totalSteps = count($this->steps);
-
         $this->product = $service;
-
         $this->setStepsMenu();
     }
 
