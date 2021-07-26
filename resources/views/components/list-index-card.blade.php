@@ -2,7 +2,7 @@
     <div class="flex-none lg:flex">
 
         <div class="w-full h-full mb-3 lg:h-36 lg:w-32 lg:mb-0">
-            <img src="{{ $product->coverPhoto }}" alt="{{ $product->coverPhoto }}"
+            <img src="{{ $product->coverPhoto }} " alt="{{ $product->coverPhoto }}"
                 class="object-scale-down w-full lg:object-center lg:object-cover lg:h-44 rounded-2xl">
         </div>
 
