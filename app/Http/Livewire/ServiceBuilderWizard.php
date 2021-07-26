@@ -59,9 +59,9 @@ class ServiceBuilderWizard extends Component
     public $currentStep = 0;
     public $product;
 
-    public function mount(Service $product)
+    public function mount(Service $service)
     {
-        $this->product = $product;
+        $this->product = $service;
     }
     public function render()
     {

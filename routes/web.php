@@ -220,9 +220,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('/admin/security', 'backoffice.security')->name('admin.security');
 
     Route::get('/service/create',  function () {
-        return redirect(route('service.edit', \App\Models\Service::create([
+        $product = \App\Models\Service::create([
             'user_id' => auth()->id()
-        ])));
+        ]);
+        return redirect(route('service.edit', $product->id));
     })->name('service.create');
     Route::get('/service/{service}/edit', ServiceBuilderWizard::class)->name('service.edit');
     Route::get('/service/index/', ServiceController::class)->name('service.index');

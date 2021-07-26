@@ -14,43 +14,40 @@
     <div class="w-full my-4">
         <div class="flex flex-col justify-between space-y-2 md:flex-row lg:space-y-0 lg:space-x-2">
 
-            {{-- Estados --}}
-            <div>
-                <label for="product_state">{{ __('States') }}</label>
-                <x-ui::select id="product_state" :key="'product.state'" wire:model="selectedState">
-                    <option value="" selected>{{ __('Choose state') }}</option>
-                    @foreach ($states as $state)
-                        <option value="{{ $state->id }}">{{ $state->name }}</option>
-                    @endforeach
-                </x-ui::select>
-            </div>
+            <div class="relative w-full group" x-data="{open:false}">
+                <x-ui::input wire:model="search" x-ref="search"
+                    x-on:keydown="$nextTick(()=> { if (( $refs.search.value.length > 0) && (open !== true)) { open = true}})"
+                    x-on:click="$nextTick(()=> { if (( $refs.search.value.length > 0) && (open !== true)) { open = true}})"
+                    x-on:click.away="open=false" class="w-full"
+                    autocomplete="error" placeholder="Location" />
+                <x-icon-location class="absolute w-auto h-8 text-gray-400 right-1 top-2" />
 
-            {{-- Ciudades --}}
-            <div>
-                <label for="product_city">{{ __('Cities') }}</label>
-                <x-ui::select id="product_city" :key="'product.city'" wire:model="selectedCity">
-                    <option value="" selected>{{ __('Choose city') }}</option>
-                    @if (!is_null($selectedState))
-                        @foreach ($cities as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                        @endforeach
-                    @endif
-                </x-ui::select>
-            </div>
+                <div class="absolute inset-x-0 z-10 -mt-1 overflow-y-auto bg-white border-t rounded-b shadow-xl top-full max-h-64 lg:max-h-48"
+                    x-cloak x-show="$refs.search.value.length > 0 && open"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform scale-90"
+                    x-transition:enter-end="opacity-100 transform scale-100"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 transform scale-100"
+                    x-transition:leave-end="opacity-0 transform scale-90">
 
-            {{-- Localidades --}}
-            <div>
-                <label for="product_locality">{{ __('Localities') }}</label>
-                <x-ui::select id="product_locality" :key="'product.locality'" wire:model="selectedLocality">
-                    <option value="" selected>{{ __('Choose locality') }}</option>
-                    @if (!is_null($selectedCity))
-                        @foreach ($localities as $locality)
-                            <option value="{{ $locality->id }}">{{ $locality->name }}</option>
-                        @endforeach
-                    @endif
-                </x-ui::select>
-            </div>
+                    <div wire:loading class="w-full p-4">
+                        <x-icon-spinner class="w-6 h-6 mx-auto text-gray-400 animate-spin" />
+                    </div>
 
+                    <ul wire:loading.remove class="w-full ">
+                        @forelse ($locations as $key => $local )
+                            <li class="p-4 text-left text-gray-600 transition-colors duration-500 ease-in-out hover:bg-gray-200 hover:cursor-pointer"
+                                @click="$wire.chooseLocation({{ $key }})">
+                                {{ $local['address'] }}
+                            </li>
+                        @empty
+                            <li class="p-4 text-gray-600">There isn't results</li>
+                        @endforelse
+                    </ul>
+
+                </div>
+            </div>
         </div>
     </div>
 

@@ -100,10 +100,7 @@
                 <div class="flex-shrink-0 h-16 px-4 border-t bg-gray-50 ">
                     <div class="flex items-center justify-between p-3">
                         <x-ui::button wire:click="previous" :disabled="$currentStep==0"
-                            @class([ 'text-sm border border-secondary text-secondary active:bg-secondary active:text-white'
-                            , 'hover:bg-secondary hover:text-white'=> true
-                            ])
-                            >
+                            class="text-sm border border-secondary text-secondary active:bg-secondary active:text-white hover:bg-secondary hover:text-white">
                             Anterior
                         </x-ui::button>
 

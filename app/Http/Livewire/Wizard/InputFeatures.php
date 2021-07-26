@@ -22,19 +22,20 @@ class InputFeatures extends Component
         'feature' => 'required|string|min:' . self::MINIMUM_CHARS
     ];
 
-    public function mount(Service $service)
+    public function mount(Service $product)
     {
-        $this->service = $service;
+        $this->service = $product;
     }
 
     public function addFeatureToList()
     {
         $this->validate();
-
-        $tempFeatures = $this->service->features;
+        if (!$this->service->features) {
+            $this->service->features = [];
+        };
 
         $this->service->features = array_merge(
-            $tempFeatures,
+            $this->service->features,
             [$this->feature]
         );
 
