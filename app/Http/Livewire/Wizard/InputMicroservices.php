@@ -10,21 +10,17 @@ use App\Http\Livewire\Traits\CanValidateStepChange;
 class InputMicroservices extends Component
 {
     const MIN_NAME_LENGHT = 5;
-
     const MAX_NAME_LENGHT = 50;
-
     const MIN_DESCRIPTION_LENGHT = 30;
-
     const MAX_DESCRIPTION_LENGHT = 300;
-
     const MINIMUM_PRICE = 500;
+
+
 
     public $service;
 
     public $name;
-
     public $description;
-
     public $price;
 
     protected $rules = [
@@ -34,7 +30,8 @@ class InputMicroservices extends Component
     ];
 
     protected $listeners  = [
-        'canChangeStep'
+        'stepForward' => 'canChangeStep',
+        'stepBackward',
     ];
 
     public function mount(Service $service)
@@ -58,7 +55,7 @@ class InputMicroservices extends Component
 
     public function canChangeStep()
     {
-        $this->emit('dataIsValid', true);
+        $this->emitUp('next');
     }
 
     public function render()

@@ -20,7 +20,8 @@ class InputPhotoUpload extends Component
     ];
 
     protected $listeners  = [
-        'canChangeStep'
+        'stepForward' => 'canChangeStep',
+        'stepBackward',
     ];
 
     public function mount(Model $product)
@@ -59,8 +60,6 @@ class InputPhotoUpload extends Component
 
     public function canChangeStep()
     {
-        (count($this->product->photos) >= 4)
-            ? $this->emit('dataIsValid', true)
-            : $this->addError('photoCount', 'Debe tener al menos 4 imagenes de las 6 requeridas');
+        $this->emitUp('next');
     }
 }

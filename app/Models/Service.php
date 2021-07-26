@@ -69,7 +69,7 @@ class Service extends Model
     }
     public function getCoverPhotoAttribute()
     {
-        return $this->photos[0];
+        return $this->photos[0] ?? null;
     }
 
     public function getRouteAttribute()

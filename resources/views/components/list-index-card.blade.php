@@ -2,7 +2,7 @@
     <div class="flex-none lg:flex">
 
         <div class="w-full h-full mb-3 lg:h-36 lg:w-32 lg:mb-0">
-            <img src="{{ $product->coverPhoto }}" alt="{{ $product->coverPhoto }}"
+            <img src="{{ $product->coverPhoto }} " alt="{{ $product->coverPhoto }}"
                 class="object-scale-down w-full lg:object-center lg:object-cover lg:h-44 rounded-2xl">
         </div>
 
@@ -29,14 +29,21 @@
                     </span>
                 </div>
                 <div class="flex items-center space-x-4 text-xs text-gray-500">
-                    <a href="{{ route( Str::of($productType)->singular()->lower()->camel() .'.edit', $product) }}"
+                    <a href="{{ route(
+    Str::of($productType)->singular()->lower()->camel() . '.edit',
+    $product,
+) }}"
                         class="hover:text-gray-700 hover:underline focus:outline-none">
                         {{ __('Edit') }}
                     </a>
 
-                    <button class="hover:text-gray-700 hover:underline focus:outline-none">
-                        {{ __('Delete') }}
-                    </button>
+
+                    <form method="POST" action="{{ route('service.delete', $product->id) }}">
+                        @csrf
+                        <button type="submit" class="hover:text-gray-700 hover:underline focus:outline-none">
+                            {{ __('Delete') }}
+                        </button>
+                    </form>
 
                     @if (!$product->isPublished())
                         <button class="hover:text-gray-700 hover:underline focus:outline-none">

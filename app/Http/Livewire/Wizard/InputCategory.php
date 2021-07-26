@@ -21,7 +21,8 @@ class InputCategory extends StepBuilderWizard
         return view(
             'livewire.wizard.input-category',
             [
-                'categories' => Category::all(['id', 'name']),
+                'categories' => Category::forType(get_class($this->product))
+                    ->get()->pluck('name', 'id')
             ]
         );
     }

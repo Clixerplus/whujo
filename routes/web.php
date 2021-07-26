@@ -219,9 +219,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::view('/admin/bookings', 'backoffice.bookings')->name('admin.bookings');
     Route::view('/admin/security', 'backoffice.security')->name('admin.security');
 
-    Route::get('/service/create', ServiceBuilderWizard::class)->name('service.create');
+    Route::get('/service/create',  function () {
+        $product = \App\Models\Service::create([
+            'user_id' => auth()->id()
+        ]);
+        return redirect(route('service.edit', $product->id));
+    })->name('service.create');
     Route::get('/service/{service}/edit', ServiceBuilderWizard::class)->name('service.edit');
     Route::get('/service/index/', ServiceController::class)->name('service.index');
+    Route::post('/service/{service}/delete', function (Service $service) {
+        $service->delete();
+        return back()->with('isDeleted', true);
+    })->name('service.delete');
 
     Route::get('/experience/create', ServiceBuilderWizard::class)->name('experience.create');
     Route::get('/experience/{experience}/edit', ExperienceBuilderWizard::class)->name('experience.edit');

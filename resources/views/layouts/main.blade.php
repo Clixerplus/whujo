@@ -24,12 +24,8 @@
 
         {{ $slot }}
 
-
         @stack('scripts')
-        
+
         @livewireScripts
-
-
-    </body>
-
+   </body>
 </html>

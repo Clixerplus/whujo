@@ -1,9 +1,9 @@
-<div class="pb-8 max-w-xl mx-auto">
+<div class="max-w-xl pb-8 mx-auto">
 
-    <h1 class="font-extrabold text-3xl mb-2">
+    <h1 class="mb-2 text-3xl font-extrabold">
         Caracterírsticas Resaltantes del Servicio
     </h1>
-    <p class="text-sm mb-4 px-1">
+    <p class="px-1 mb-4 text-sm">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit.
         Facilis pariatur dolor deleniti quisquam soluta libero
         excepturi, mollitia atque, aperiam officia ab cumque dicta
@@ -11,57 +11,46 @@
     </p>
 
     <div class="mt-8">
-        <label for="input_feature" class="font-semibold px-1">
+        <label for="input_feature" class="px-1 font-semibold">
             Elabora tu listado
         </label>
-        <div class="relative mt-2 h-14 w-full">
-            <x-input id="input_feature"
-                     class="h-full"
-                     :key="'feature'"
-                     wire:model.debounce.500ms="feature"
-                     placeholder="Agrega los items que deben traer" />
+        <div class="relative w-full mt-2 h-14">
+            <x-ui::input id="input_feature" class="h-full" :key="'feature'" wire:model.debounce.500ms="feature"
+                placeholder="Agrega los items que deben traer" />
 
-            <x-error :key="'feature'" />
+            <x-ui::error :key="'feature'" />
 
-            <button wire:click="addFeatureToList"
-                    title="Agregar"
-                    class="block absolute inset-y-0 right-4
-                           p-1 m-auto h-10 w-10 rounded-full
-                           outline-none hover:shadow-w1
-                           transition ease-in-out
-                           text-white bg-success">
-                <x-icon-add-outline />
-            </button>
+            <div class="absolute inset-y-0 w-10 h-10 bg-white right-4">
+                <button wire:click="addFeatureToList" title="Agregar"
+                    class="block w-full h-full p-1 m-auto text-white transition ease-in-out rounded-full outline-none hover:shadow-w1 bg-success">
+                    <x-icon-add-outline />
+                </button>
+            </div>
         </div>
 
     </div>
 
-    <h2 class="mt-8 font-semibold text-xl border-b pb-2">
+    <h2 class="pb-2 mt-8 text-xl font-semibold border-b">
         Lista de Características
     </h2>
 
-    <div class="pl-2">
+    <div class="">
         @empty($features)
-        <div class="text-gray-400 text-sm py-2">
-            {{ __('The list is empty') }}
-        </div>
+            <div class="py-2 text-sm text-gray-400">
+                {{ __('The list is empty') }}
+            </div>
         @else
-        <ol class="list-decimal list-inside text-sm mt-1">
-            @foreach ($features as $item)
-            <li class="flex py-2 pl-2 mb-4 border-b ">
-                <div class="w-4/5">
-                    <span>{{ $item }}</span>
-                </div>
-                <div class="w-1/5 flex">
-                    <button wire:click="removeFeatureFromList({{ $loop->index }})"
-                            class="ml-auto mb-auto mr-2
-                                 text-gray-500 hover:text-secondary">
-                        {{ __('Remove') }}
-                    </button>
-                </div>
-            </li>
-            @endforeach
-        </ol>
+            <ol class="text-sm list-decimal list-inside">
+                @foreach ($features as $item)
+                    <li class="flex px-2 py-2 rounded hover:bg-gray-100">
+                        <span class="flex-1">{{ $item }}</span>
+                        <button wire:click="removeFeatureFromList({{ $loop->index }})"
+                            class="flex-grow-0 mb-auto ml-auto mr-2 text-xs text-gray-500 hover:text-secondary hover:underline">
+                            {{ __('Remove') }}
+                        </button>
+                    </li>
+                @endforeach
+            </ol>
         @endempty
 
     </div>

@@ -16,8 +16,15 @@ class InputName extends StepBuilderWizard
     {
         $rule = sprintf('required|string|between:%s,%s', self::MIN_NAME_LENGTH, self::MAX_NAME_LENGTH);
 
-        $this->rules = [
+      /*   $this->rules = [
             'product.name' => $rule
+        ]; */
+    }
+
+    public function rules()
+    {
+        return [
+            'product.name' =>  sprintf('required|string|between:%s,%s', self::MIN_NAME_LENGTH, self::MAX_NAME_LENGTH)
         ];
     }
 

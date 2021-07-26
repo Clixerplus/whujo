@@ -9,10 +9,8 @@ use SKAgarwal\GoogleApi\PlacesApi;
 
 class Locator extends Component
 {
-    public function locate()
-    {
-        //
-    }
+
+
 
     public function search()
     {
@@ -64,4 +62,6 @@ class Locator extends Component
         //$api_key = env('GOOGLE_API_KEY');
         return view('livewire.locator');
     }
+
+
 }

@@ -21,7 +21,7 @@
                     {{ __('Name') }}
                 </label>
 
-                <x-input id="input_name" :key="'name'" wire:model.debounce.500ms="name" class="w-full h-full"
+                <x-ui::input id="input_name" :key="'name'" wire:model.debounce.500ms="name" class="w-full h-full"
                     placeholder="Nombre de tu Servicio" />
             </div>
 
@@ -31,7 +31,7 @@
                     {{ __('Price') }}
                 </label>
 
-                <x-input id="input_price" :key="'price'" wire:model.debounce.500ms="price" class="w-full h-full"
+                <x-ui::input id="input_price" :key="'price'" wire:model.debounce.500ms="price" class="w-full h-full"
                     placeholder="$0.00" />
             </div>
 
@@ -39,9 +39,9 @@
                 <label for="input_descripcion" class="w-full font-semibold">
                     {{ __('Description') }}
                 </label>
-                <x-textarea id="input_description" :key="'description'" wire:model.debounce.500ms="description"
+                <x-ui::textarea id="input_description" :key="'description'" wire:model.debounce.500ms="description"
                     class="h-full" placeholder="Breve descripcion del servicio">
-                </x-textarea>
+                </x-ui::textarea>
             </div>
 
         </div>
@@ -49,7 +49,7 @@
         <div class="flex justify-center flex-shrink h-full p-4">
             <button title="Agregar a la lista" wire:click="addMicroserviceToList"
                 class="px-4 py-2 text-white rounded-md outline-none bg-success hover:shadow-w1 transition-500">
-                {{-- <x-icon-add-outline /> --}}
+                {{-- <x-ui::icon-add-outline /> --}}
                 Agregar
             </button>
         </div>
@@ -61,16 +61,16 @@
         </h2>
 
         <div class="pl-2">
-            @empty($product->microservices)
+            @empty($service->microservices)
             <div class="py-2 text-sm text-gray-400">
                 {{ __('The list is empty') }}
             </div>
             @else
             <ol class="mt-1 text-sm list-decimal list-inside">
-                @foreach ($product->microservices as $item)
+                @foreach ($service->microservices as $item)
                 <li class="flex py-2 pl-2 mb-4 border-b ">
                     <div class="w-4/5">
-                        <span>{{ $item }}</span>
+                        <span>{{ $item->name }}: {{ $item->name }}</span>
                     </div>
                     <div class="flex w-1/5">
                         <button wire:click="removeFeatureFromList({{ $loop->index }})"

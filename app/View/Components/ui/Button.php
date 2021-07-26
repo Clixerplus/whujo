@@ -7,15 +7,17 @@ use Illuminate\View\Component;
 class Button extends Component
 {
     public $size;
+    public $disabled;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $size = 'md')
+    public function __construct(string $size = 'md', $disabled = false)
     {
         $this->size = $size;
+        $this->disabled = $disabled;
     }
 
     /**
@@ -26,5 +28,10 @@ class Button extends Component
     public function render()
     {
         return view('components.ui.button');
+    }
+
+    public function disabled()
+    {
+        return $this->disabled ? 'disabled' : ' ';
     }
 }

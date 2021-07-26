@@ -5,78 +5,83 @@ namespace App\Http\Livewire\Wizard;
 use App\Models\City;
 use App\Models\State;
 use App\Models\Locality;
-use Illuminate\Database\Eloquent\Model as ProductModel;
+use Spatie\Geocoder\Geocoder;
 use App\Http\Livewire\AbstractComponents\StepBuilderWizard;
 
 class InputLocation extends StepBuilderWizard
 {
-    protected $rules;
-
-    public $states;
-    public $cities;
-    public $localities;
-
-    public $selectedState = null;
-    public $selectedCity = null;
-    public $selectedLocality = null;
-
-    public function mount(ProductModel $model)
-    {
-        parent::mount($model);
-
-        $this->states = State::all();
-        $this->cities = collect();
-        $this->localities = collect();
-
-        $this->selectedLocality = $model->locality_id;
-
-        if (!is_null($this->selectedLocality)) {
-            $locality = Locality::with('city.state')->find($this->selectedLocality);
-            if ($locality) {
-                $this->localities = Locality::where('city_id', $locality->city_id)->get();
-                $this->cities = City::where('state_id', $locality->city->state_id)->get();
-                $this->selectedState = $locality->city->state_id;
-                $this->selectedCity = $locality->city_id;
-            }
-        }
-    }
-    public function updatedSelectedState($state)
-    {
-        $this->cities = City::where('state_id', $state)->get();
-        $this->selectedCity = NULL;
-    }
-
-    public function updatedSelectedCity($city)
-    {
-        if (!is_null($city)) {
-            $this->localities = Locality::where('city_id', $city)->get();
-        }
-    }
-
-    protected function setValidationRules(): void
-    {
-        $this->rules = [
-            'selectedState' => 'required|exists:states,id',
-            'selectedCity' => 'required|exists:cities,id',
-            'selectedLocality' => 'required|exists:localities,id'
-        ];
-    }
-
-    public function save()
-    {
-        $this->validateData();
-
-        $this->product->update([
-            'state_id' => $this->selectedState,
-            'city_id' => $this->selectedCity,
-            'locality_id' => $this->selectedLocality
-        ]);
-    }
-
-
+    public $locations = [];
+    public $search = '';
 
     public function render()
     {
+        $this->searchUpdate();
         return view('livewire.wizard.input-location');
+    }
+
+
+
+    protected function setValidationRules(): void
+    {
+        //
+    }
+
+    public function rules()
+    {
+        return ['search' => 'nullable'];
+    }
+
+    public function searchUpdate()
+    {
+        $locations = [];
+        if (strlen($this->search) > 3) {
+            $client = new \GuzzleHttp\Client();
+            $geocoder = new Geocoder($client);
+            $geocoder->setApiKey(config('geocoder.key'));
+            $results = $geocoder->getAllCoordinatesForAddress($this->search);
+
+            foreach ($results as $result) {
+                $address_arr = [];
+                $locality = $this->getAreaName($result, 'locality');
+                $state    = $this->getAreaName($result, 'administrative_area_level_1');
+                $country  = $this->getAreaName($result, 'country');
+
+                if (!is_null($locality)) {
+                    $address_arr[] = $locality;
+                }
+                if (!is_null($state)) {
+                    $address_arr[] = $state;
+                }
+                if (!is_null($locality)) {
+                    $address_arr[] = $country;
+                }
+
+                $locations[] = [
+                    "address" => implode(", ", $address_arr),
+                    "locality" => $locality,
+                    "state"    => $state,
+                    "country"  => $country,
+                ];
+            }
+        }
+
+        $this->locations = $locations;
+    }
+
+    private function getAreaName($array, $key)
+    {
+        $result = array_filter(data_get($array, 'address_components'), function ($arr) use ($key) {
+            return data_get($arr, 'types.0') === $key;
+        });
+
+        if (count($result))
+            return data_get($result, '*.long_name')[0];
+
+        return null;
+    }
+
+    public function chooseLocation($index)
+    {
+        $this->search = $this->locations[$index]['address'];
     }
 }
