@@ -8,26 +8,21 @@ services:
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.0/app
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
         ports:
             - '${APP_PORT:-80}:80'
-            - 3000:3000
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
         volumes:
             - '.:/var/www/html'
         networks:
             - sail
         depends_on:
             - mysql
-            - redis
-         #   - phpmyadmin
-    # selenium:
-    #     image: 'selenium/standalone-chrome'
-    #     volumes:
-    #         - '/dev/shm:/dev/shm'
-    #     networks:
-    #
     mysql:
         image: 'mysql:8.0'
         ports:
@@ -43,35 +38,12 @@ services:
         networks:
             - sail
         healthcheck:
-          test: ["CMD", "mysqladmin", "ping"]
-    redis:
-        image: 'redis:alpine'
-        ports:
-            - '${FORWARD_REDIS_PORT:-6379}:6379'
-        volumes:
-            - 'sailredis:/data'
-        networks:
-            - sail
-        healthcheck:
-          test: ["CMD", "redis-cli", "ping"]
-    #phpmyadmin:
-    #    image: phpmyadmin/phpmyadmin
-    #    links:
-    #      - mysql
-    #    environment:
-    #        PMA_HOST: mysql
-    #        PMA_PORT: 3306
-    #        PMA_ARBITRARY: 1
-    #    restart: always
-    #    networks:
-    #        - sail
-    #    ports:
-    #      - 8081:80
+          test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+          retries: 3
+          timeout: 5s
 networks:
     sail:
         driver: bridge
 volumes:
     sailmysql:
-        driver: local
-    sailredis:
         driver: local
