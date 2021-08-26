@@ -1,17 +1,10 @@
 {
-    "conventionalCommits.scopes": [
-        "Auth",
-        "UI",
-        "wizard",
-        "composer",
-        "lang",
-        "npm"
-    ],
     "better-phpunit.docker.enable": true,
-    "better-phpunit.docker.command": "docker exec whujow_laravel.test_1",
+    "better-phpunit.docker.command": "docker exec whujo-1_laravel.test_1",
     "better-phpunit.docker.paths": {
-        "/home/johanso/Proyectos/Development/whujow": "/var/www/html"
+        "/home/jhso/Webprojects/whujo-1": "/var/www/html"
     },
     "tailwindCSS.emmetCompletions": true,
-    "atlascode.bitbucket.enabled": false
+    "atlascode.bitbucket.enabled": false,
+    "atlascode.jira.enabled": false
 }
