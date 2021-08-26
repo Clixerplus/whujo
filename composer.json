@@ -33,7 +33,7 @@
         "barryvdh/laravel-debugbar": "^3.5",
         "brianium/paratest": "^6.2",
         "facade/ignition": "^2.5",
-        "laravel/sail": "^1.4",
+        "laravel/sail": "^1.10",
         "mockery/mockery": "^1.4.2",
         "morrislaptop/laravel-route-menu": "^0.2.1",
         "nunomaduro/collision": "^5.0",
