@@ -14,7 +14,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                 <h2 class="text-5xl font-bold leading-tight text-white md:text-center"
                     style="text-shadow: rgba(255,255,255,.5) 0 0 2px">
 
-                    Creamos Momentos <br><span class="text-primary">y Soluciones</span>
+                    @lang('website.home.title.0')<br><span class="text-primary">@lang('website.home.title.1')</span>
                 </h2>
 
                 <livewire:search-product-form />
@@ -26,11 +26,10 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
     <x-section-container class="py-16 md:py-24">
 
         <x-section-title :separator="false">
-            Ven, ofrece, crea <span class="block text-primary md:inline">y comparte</span>
+            @lang('website.home.product_title.0') <span class="block text-primary md:inline">@lang('website.home.product_title.1')</span>
 
             <x-slot name="subtitle">
-                Conoce una nueva cultura, aprende algo nuevo, experimenta la vida desde otros ojos, ven
-                y conoce el mundo <span class="whujo-brand">whujo</span>
+                @lang('website.home.product_description')<span class="whujo-brand"> whujo</span>
             </x-slot>
         </x-section-title>
 
@@ -40,24 +39,24 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
             <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/services-04.jpg')"
                     class="transition-opacity duration-700 ease-in from-secondary bg-gradient-to-t group-hover:via-transparent">
-                    <h2 class="text-2xl font-bold text-accent-aqua">Servicios</h2>
-                    <p class="w-full font-light text-white ">Vive y aprende mirando a los ojos</p>
+                    <h2 class="text-2xl font-bold text-accent-aqua">@lang('Services')</h2>
+                    <p class="w-full font-light text-white ">@lang('website.home.service_description')</p>
                 </x-link-card>
             </div>
 
             <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/share-a-coffee-02.jpg')"
                     class="transition-opacity duration-500 ease-in from-secondary bg-gradient-to-t group-hover:via-transparent">
-                    <h2 class="text-2xl font-bold text-accent-orange">Comparte un momento</h2>
-                    <p class="w-full font-light text-white ">Vive la experiencia no importa donde estés</p>
+                    <h2 class="text-2xl font-bold text-accent-orange">@lang('Share a moment')</h2>
+                    <p class="w-full font-light text-white ">@lang('website.home.share_moment_description')</p>
                 </x-link-card>
             </div>
 
             <div class="w-full md:w-1/2 h-80 ">
                 <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/landing01/experiences-01.jpg')"
                     class="transition-opacity duration-500 ease-in from-secondary bg-gradient-to-t group-hover:via-transparent">
-                    <h2 class="text-2xl font-bold text-duolingo">Experiencias</h2>
-                    <p class="w-full font-light text-white ">Vive la experiencia no importadonde estés</p>
+                    <h2 class="text-2xl font-bold text-duolingo">@lang('Experiences')</h2>
+                    <p class="w-full font-light text-white ">@lang('website.home.experience_description')</p>
                 </x-link-card>
             </div>
         </div>
@@ -68,25 +67,25 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
     <div class="bg-gray-100">
         <x-section-container class="py-16 md:py-24">
             <x-section-title>
-                Desde donde quieras
-                <span class="text-primary ">vive
-                    <span class="whujo-brand">whujo</span>
+                @lang('website.home.modality_title.0')
+                <span class="text-primary ">@lang('website.home.modality_title.1')
+                    <span class="whujo-brand"> whujo</span>
                 </span>
             </x-section-title>
             <div class="flex flex-col items-center justify-center mt-8 space-y-4 md:space-x-8 md:flex-row md:space-y-0">
                 <div class="w-full md:w-1/2 h-80 ">
                     <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/experience-category-01.jpeg')"
                         class="transition-opacity duration-700 ease-in from-secondary bg-gradient-to-t group-hover:via-transparent">
-                        <h2 class="text-3xl font-bold text-duolingo ">Presencial</h2>
-                        <p class="w-full text-white ">Vive y aprende mirando a los ojos</p>
+                        <h2 class="text-3xl font-bold text-duolingo ">@lang('Onsite')</h2>
+                        <p class="w-full text-white ">@lang('website.home.onsite_description')</p>
                     </x-link-card>
                 </div>
                 <div class="w-full md:w-1/2 h-80">
                     <x-link-card :link="'#'" :alt="'alt'" :img="asset('images/experience-category-02.jpeg')"
                         class="transition-opacity duration-700 ease-in from-secondary bg-gradient-to-t group-hover:via-transparent">
-                        <h2 class="text-3xl font-bold text-skype ">Online</h2>
+                        <h2 class="text-3xl font-bold text-skype ">@lang('Online')</h2>
                         <p class="text-white md:w-4/5 ">
-                            Vive la experiencia no importa donde estés
+                            @lang('website.home.online_description')
                         </p>
                     </x-link-card>
                 </div>
@@ -137,13 +136,12 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                 <div class="py-16 space-y-4 lg:w-1/2 ">
 
                     <x-section-title>
-                        <span class="text-white">Brinda las mejores experiencias, servicios y momentos, abre un mundo de
-                            posibilidades</span>
+                        <span class="text-white">@lang('website.home.cta_title')</span>
 
                         <x-slot name="call_to_action">
                             <x-ui::button class="bg-accent-aqua hover:ring hover:ring-accent-aqua hover:ring-opacity-50"
                                 size="lg">
-                                {{ __('Let\'s go') }}
+                                @lang("Let's go")
                             </x-ui::button>
                         </x-slot>
                     </x-section-title>
