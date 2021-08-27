@@ -14,7 +14,8 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
                 <h2 class="text-5xl font-bold leading-tight text-white md:text-center"
                     style="text-shadow: rgba(255,255,255,.5) 0 0 2px">
 
-                    Creamos Momentos <br><span class="text-primary">y Soluciones</span>
+                    @lang('home_page.title1') <br>
+                    <span class="text-primary">@lang('home_page.title2')</span>
                 </h2>
 
                 <livewire:search-product-form />
