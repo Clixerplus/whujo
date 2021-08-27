@@ -26,7 +26,7 @@ class MicroserviceFactory extends Factory
             'service_id' => Service::factory(),
             'name' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(rand(3, 6)),
-            'price' => rand(25,999) * 100,
+            'price' => rand(25, 999) * 100,
         ];
     }
 
@@ -35,11 +35,11 @@ class MicroserviceFactory extends Factory
      *
      * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function related()
+    public function related($service = null)
     {
-        return $this->state(function (array $attributes) {
+        return $this->state(function (array $attributes) use ($service) {
             return [
-                'service_id' => Service::all()->random()->id,
+                'service_id' => $service?->id ?? Service::all()->random()->id,
             ];
         });
     }

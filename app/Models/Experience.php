@@ -27,6 +27,10 @@ class Experience extends Model
     use HasRating;
     use HasPublish;
 
+    const CATEGORIES = [
+        'Thematic'
+    ];
+
     protected $fillable = [
         'user_id', 'category_id', 'name', 'location', 'description',
         'toProvide', 'toBring', 'photos', 'minimumAge', 'skillLevel',

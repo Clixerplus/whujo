@@ -17,46 +17,52 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        /** Service */
-        Category::factory()->create([
-            'name' => 'Professional',
-            'product_type' => Service::class
-        ]);
+        $categories = [
+            'Professional/Occupations' => [
+                'Accounting',
+                'Design',
+                'Photography',
+                'Analysis',
+                'Architecture',
+                'Teaching',
+                'Hairdresser',
+                'Manicurist',
+                'Painter',
+                'Bricklayer',
+                'Repair',
+                'Baby Sister',
+                'Cleaning Staff'
+            ],
+            'Lifestyle' => [
+                'Trainer',
+                'Yoga classes',
+                'Art Lessons',
+                'Meditation',
+                'Astrology'
+            ],
+            'Thematic' => [
+                'Culture, Society and Science',
+                'Entertainment',
+                'History and Literature',
+                'Art and Design',
+                'Gastronomy (Food and Drink)',
+                'Nature, Open Spaces and Animals',
+                'Sports',
+                'Wellness',
+                'Surprise yourself'
+            ]
+        ];
 
-        Category::factory()->create([
-            'name' => 'Make it easy',
-            'product_type' => Service::class
-        ]);
+        foreach ($categories as $parent => $childs) {
+            $category = Category::factory()->create([
+                'name' => $parent
+            ]);
 
-        Category::factory()->create([
-            'name' => 'Learning',
-            'product_type' => Service::class
-        ]);
-
-
-        /** Experience */
-        Category::factory()->create([
-            'name' => 'Tourism',
-            'product_type' => Experience::class
-        ]);
-
-        Category::factory()->create([
-            'name' => 'Explore',
-            'product_type' => Experience::class
-        ]);
-
-
-
-
-        /** Share a coffee -> abrierta */
-        Category::factory()->create([
-            'name' => 'Learning',
-            'product_type' => ShareACoffee::class
-        ]);
-
-        Category::factory()->create([
-            'name' => 'Sharing Experiences',
-            'product_type' => ShareACoffee::class
-        ]);
+            foreach ($childs as $child) {
+                Category::factory()->childOf($category)->create([
+                    'name' => $child,
+                ]);
+            }
+        }
     }
 }

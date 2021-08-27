@@ -2,10 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Service;
 use App\Models\Category;
-use App\Models\Experience;
-use App\Models\ShareACoffee;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CategoryFactory extends Factory
@@ -24,12 +21,26 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $product_type = ($this->faker->randomElement([Experience::class, Service::class, ShareACoffee::class]));
-        
         return [
-            'name' => $this->faker->sentence(2),
-            'product_type' => $product_type,
-
+            'name' => $this->faker->sentence(2)
         ];
+    }
+
+    public function childOf(Category $parent)
+    {
+        return $this->state(function (array $attr) use ($parent) {
+            return [
+                'parent_id' => $parent->id
+            ];
+        });
+    }
+
+    public function deactivate()
+    {
+        return $this->state(function (array $attr) {
+            return [
+                'active' => false
+            ];
+        });
     }
 }

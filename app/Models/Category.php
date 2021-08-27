@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Experience;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ class Category extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name'
+        'name', 'parent_id', 'active'
     ];
 
     public function experiences()
@@ -25,13 +26,18 @@ class Category extends Model
         $this->hasMany(Service::class);
     }
 
-    public function scopeOnlyActive($query)
+    public function scopeActivated($query)
     {
-        return $this->all();
+        return $query->where('active', true);
     }
 
-    public function scopeForType($query, string $type)
+    public function scopeDeactivated($query)
     {
-        return $query->where('product_type', $type);
+        return $query->where('active', false);
+    }
+
+    public function childs()
+    {
+        return self::where('parent_id', $this->id)->get();
     }
 }

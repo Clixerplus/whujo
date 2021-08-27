@@ -24,6 +24,9 @@ class Service extends Model
     use HasRating;
     use HasPublish;
 
+    const CATEGORIES = [
+        'Professional/Occupations', 'Lifestyle'
+    ];
 
     protected $fillable = [
         'user_id', 'category_id', 'state_id', 'city_id', 'locality_id',

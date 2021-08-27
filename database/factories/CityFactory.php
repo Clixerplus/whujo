@@ -24,7 +24,7 @@ class CityFactory extends Factory
     public function definition()
     {
         return [
-            'id'   => $this->faker->randomElement(['A', 'B', 'C']) . rand(1000, 9999),
+            'id'   => $this->faker->randomElement(['A', 'B', 'C']) . rand(1000, 99999),
             'state_id' => State::factory(),
             'name' => $this->faker->city(),
         ];

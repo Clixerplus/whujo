@@ -23,7 +23,7 @@ class StateFactory extends Factory
     public function definition()
     {
         return [
-            'id'   => $this->faker->randomElement(['A', 'B', 'C']) . rand(1000, 9999),
+            'id'   => $this->faker->randomElement(['A', 'B', 'C']) . rand(1000,99999),
             'name' => $this->faker->state(),
         ];
     }

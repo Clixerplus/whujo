@@ -26,14 +26,11 @@ class DatabaseSeeder extends Seeder
         $superadmin = Role::create(['name' => config('roles.super_admin')]);
 
 
-        State::factory()->times(10)->create();
-        City::factory(10)->related()->create();
-        Locality::factory(10)->related()->create();
+        State::factory()->times(5)->create();
+        City::factory(5)->related()->create();
+        Locality::factory(5)->related()->create();
 
         User::factory()
-            ->hasServices(2)
-            ->hasExperiences(2)
-            ->hasShareACoffees(2)
             ->create([
                 'name' => 'User Test',
                 'email' => 'usuario@email.test'

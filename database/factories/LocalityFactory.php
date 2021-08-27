@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class LocalityFactory extends Factory
 {
 
-    
+
     /**
      * The name of the factory's corresponding model.
      *
@@ -25,7 +25,7 @@ class LocalityFactory extends Factory
     public function definition()
     {
         return [
-            'id'   => $this->faker->randomElement(['A','B','C']) . rand(1000, 9999),
+            'id'   => $this->faker->randomElement(['A','B','C']) . rand(1000, 99999),
             'city_id' => City::factory(),
             'name' => $this->faker->streetName,
         ];

@@ -128,7 +128,7 @@ class ShareACoffeeFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'category_id'    => Category::where('product_type', $this->model)->get()->random()->id,
+                'category_id'    => Category::whereIn('name', $this->model::CATEGORIES)->get()->random()->childs()->random()->id,
                 'state_id'       => State::all()->random()->id,
                 'city_id'        => City::all()->random()->id,
                 'locality_id'    => Locality::all()->random()->id,
