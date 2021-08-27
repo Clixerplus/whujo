@@ -101,7 +101,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
             <span class="text-primary ">Anfitrión</span>
         </x-section-title>
         <div class="relative mt-8 bg-cover rounded-xl"
-            style="background-image: url('https://images.pexels.com/photos/4491461/pexels-photo-4491461.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');">
+            style="background-image: url({{ asset('images/landing01/hero-banner2.jpeg') }});">
 
             <div class="w-full h-full bg-opacity-50 rounded-xl bg-secondary">
                 <x-section-container class="py-16">
@@ -130,7 +130,7 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
 
     {{-- cta: conversion V1 --}}
     <div class="relative bg-fixed bg-top bg-cover"
-        style="background-image: url('https://images.pexels.com/photos/4491461/pexels-photo-4491461.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260');">
+        style="background-image: url({{ asset('images/landing01/hero-banner2.jpeg') }}); background-position:top;">
 
         <div class="w-full h-full bg-opacity-50 bg-secondary">
             <x-section-container>

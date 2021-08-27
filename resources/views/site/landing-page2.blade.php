@@ -10,7 +10,7 @@
             <div class="relative w-full px-4 pb-8 m-auto pt-28 max-w-screen md:max-w-xl lg:max-w-3xl xl:max-w-5xl">
                 <h2 class="text-2xl font-bold leading-tight text-center text-white md:text-4xl lg:text-5xl"
                     style="text-shadow: rgba(255,255,255,.5) 0 0 2px">
-                    Devolviéndole la importancia a la presencialidad
+                    Devolviéndole la importancia a los momentos
                 </h2>
 
 
@@ -120,7 +120,7 @@
     <x-section-container class="py-16">
         <div class="px-8 py-12 rounded-md bg-secondary md:px-20 md:flex md:items-center md:justify-between">
             <div>
-                <h3 class="text-3xl font-semibold text-white uppercase">Es sencillo!</h3>
+                <h3 class="text-3xl font-bold text-white uppercase">Es sencillo!</h3>
                 <p class="max-w-md mt-4 text-2xl text-gray-300">
                     Ven y ofrece tu servicio, tu experiencia o solo un momento de tu tiempo
                 </p>
@@ -260,7 +260,7 @@
                                     Agenda
                                 </h3>
                                 <p class="mt-2 font-light leading-relaxed">
-                                    Conseguiste lo que necesitabas, lee sovre los mismos, busca reseñas, ve
+                                    Conseguiste lo que necesitabas, lee sobre los mismos, busca reseñas, ve
                                     calendarios y agenda!
                                 </p>
                             </div>
