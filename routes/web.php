@@ -39,7 +39,7 @@ use App\Http\Controllers\Site\ListinPageController;
 |
 */
 
-
+Route::view('testl', 'testl');
 
 Route::get('/', HomePageController::class);
 Route::get('/home', HomePageController::class)->name('home');
@@ -138,7 +138,7 @@ Route::get('authorization', function (Request $request) {
 
 Route::get('product-test', function () {
     //TODO: Eliminar luego de pruebas
-    $product = Service::findOrFail(100);
+    $product = Service::findOrFail(10);
     return view("pages.services", compact('product'));
 })->name('product-service-test');
 

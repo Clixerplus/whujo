@@ -2,11 +2,9 @@
 
 namespace App\Http\Livewire;
 
-
 use Livewire\Component;
 use Spatie\Geocoder\Geocoder;
 use App\Models\Tag as TagModel;
-
 
 class SearchProductForm extends Component
 {
@@ -41,7 +39,8 @@ class SearchProductForm extends Component
     private function getCategories()
     {
         $model = $this->getModel();
-        return \App\Models\Category::where('product_type', $model)->get();
+        $parents = \App\Models\Category::whereIn('name', $model::CATEGORIES)->select('id')->get()->toArray();
+        return \App\Models\Category::whereIn('parent_id', $parents)->get();
     }
     private function getModel()
     {
