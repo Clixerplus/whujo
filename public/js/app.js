@@ -485,7 +485,7 @@ var require_reactivity_cjs = __commonJS((exports) => {
   function createReactiveEffect(fn, options) {
     const effect4 = function reactiveEffect() {
       if (!effect4.active) {
-        return fn();
+        return options.scheduler ? void 0 : fn();
       }
       if (!effectStack.includes(effect4)) {
         cleanup(effect4);
@@ -787,8 +787,6 @@ var require_reactivity_cjs = __commonJS((exports) => {
       return wrap(target.get(key));
     } else if (has2.call(rawTarget, rawKey)) {
       return wrap(target.get(rawKey));
-    } else if (target !== rawTarget) {
-      target.get(key);
     }
   }
   function has$1(key, isReadonly2 = false) {
@@ -1343,32 +1341,32 @@ function elementBoundEffect(el) {
 }
 
 // packages/alpinejs/src/mutation.js
+var onAttributeRemoveds = new WeakMap();
 var onAttributeAddeds = [];
+var onElRemovedByEl = new WeakMap();
 var onElRemoveds = [];
 var onElAddeds = [];
 function onElAdded(callback) {
   onElAddeds.push(callback);
 }
-function onElRemoved(callback) {
-  onElRemoveds.push(callback);
+function onElRemoved(el, callback) {
+  if (typeof el === "function" && callback === void 0) {
+    onElRemoveds.push(el);
+  } else {
+    if (!onElRemovedByEl.has(el))
+      onElRemovedByEl.set(el, []);
+    onElRemovedByEl.get(el).push(callback);
+  }
 }
 function onAttributesAdded(callback) {
   onAttributeAddeds.push(callback);
 }
 function onAttributeRemoved(el, name, callback) {
-  if (!el._x_attributeCleanups)
-    el._x_attributeCleanups = {};
-  if (!el._x_attributeCleanups[name])
-    el._x_attributeCleanups[name] = [];
-  el._x_attributeCleanups[name].push(callback);
-}
-function cleanupAttributes(el, names) {
-  if (!el._x_attributeCleanups)
-    return;
-  Object.entries(el._x_attributeCleanups).forEach(([name, value]) => {
-    (names === void 0 || names.includes(name)) && value.forEach((i) => i());
-    delete el._x_attributeCleanups[name];
-  });
+  if (!onAttributeRemoveds.has(el))
+    onAttributeRemoveds.set(el, {});
+  if (!onAttributeRemoveds.get(el)[name])
+    onAttributeRemoveds.get(el)[name] = [];
+  onAttributeRemoveds.get(el)[name].push(callback);
 }
 var observer = new MutationObserver(onMutate);
 var currentlyObserving = false;
@@ -1442,7 +1440,13 @@ function onMutate(mutations) {
     }
   }
   removedAttributes.forEach((attrs, el) => {
-    cleanupAttributes(el, attrs);
+    if (onAttributeRemoveds.get(el)) {
+      attrs.forEach((name) => {
+        if (onAttributeRemoveds.get(el)[name]) {
+          onAttributeRemoveds.get(el)[name].forEach((i) => i());
+        }
+      });
+    }
   });
   addedAttributes.forEach((attrs, el) => {
     onAttributeAddeds.forEach((i) => i(el, attrs));
@@ -1455,6 +1459,16 @@ function onMutate(mutations) {
   for (let node of removedNodes) {
     if (addedNodes.includes(node))
       continue;
+    if (onAttributeRemoveds.has(node)) {
+      Object.entries(onAttributeRemoveds.get(node)).forEach(([key, value]) => {
+        value.forEach((i) => i());
+      });
+      onAttributeRemoveds.delete(node);
+    }
+    if (onElRemovedByEl.has(node)) {
+      onElRemovedByEl.get(node).forEach((i) => i());
+      onElRemovedByEl.delete(node);
+    }
     onElRemoveds.forEach((i) => i(node));
   }
   addedNodes = null;
@@ -1849,7 +1863,6 @@ function warn(message, ...args) {
 function start() {
   if (!document.body)
     warn("Unable to initialize. Trying to load Alpine before `<body>` is available. Did you forget to add `defer` in Alpine's `<script>` tag?");
-  dispatch(document, "alpine:init");
   dispatch(document, "alpine:initializing");
   startObservingMutations();
   onElAdded((el) => initTree(el, walk));
@@ -1858,24 +1871,17 @@ function start() {
     directives(el, attrs).forEach((handle) => handle());
   });
   let outNestedComponents = (el) => !closestRoot(el.parentNode || closestRoot(el));
-  Array.from(document.querySelectorAll(allSelectors())).filter(outNestedComponents).forEach((el) => {
+  Array.from(document.querySelectorAll(rootSelectors())).filter(outNestedComponents).forEach((el) => {
     initTree(el);
   });
   dispatch(document, "alpine:initialized");
 }
 var rootSelectorCallbacks = [];
-var initSelectorCallbacks = [];
 function rootSelectors() {
   return rootSelectorCallbacks.map((fn) => fn());
 }
-function allSelectors() {
-  return rootSelectorCallbacks.concat(initSelectorCallbacks).map((fn) => fn());
-}
 function addRootSelector(selectorCallback) {
   rootSelectorCallbacks.push(selectorCallback);
-}
-function addInitSelector(selectorCallback) {
-  initSelectorCallbacks.push(selectorCallback);
 }
 function closestRoot(el) {
   if (rootSelectors().some((selector) => el.matches(selector)))
@@ -1895,8 +1901,13 @@ function initTree(el, walker = walk) {
     });
   });
 }
+var onDestroys = new WeakMap();
 function destroyTree(root) {
-  walk(root, (el) => cleanupAttributes(el));
+  walk(root, (el) => {
+    let callbacks = onDestroys.get(el);
+    callbacks && callbacks.forEach((callback) => callback());
+    onDestroys.delete(el);
+  });
 }
 
 // packages/alpinejs/src/plugin.js
@@ -1915,10 +1926,10 @@ function store(name, value) {
   if (value === void 0) {
     return stores[name];
   }
-  stores[name] = value;
   if (typeof value === "object" && value !== null && value.hasOwnProperty("init") && typeof value.init === "function") {
-    stores[name].init();
+    value.init();
   }
+  stores[name] = value;
 }
 function getStores() {
   return stores;
@@ -1966,18 +1977,8 @@ var datas = {};
 function data(name, callback) {
   datas[name] = callback;
 }
-function injectDataProviders(obj, context) {
-  Object.entries(datas).forEach(([name, callback]) => {
-    Object.defineProperty(obj, name, {
-      get() {
-        return (...args) => {
-          return callback.bind(context)(...args);
-        };
-      },
-      enumerable: false
-    });
-  });
-  return obj;
+function getNamedDataProvider(name) {
+  return datas[name];
 }
 
 // packages/alpinejs/src/alpine.js
@@ -1994,7 +1995,7 @@ var Alpine = {
   get raw() {
     return raw;
   },
-  version: "3.2.2",
+  version: "3.0.6",
   disableEffectScheduling,
   setReactivityEngine,
   addRootSelector,
@@ -2006,7 +2007,6 @@ var Alpine = {
   mutateDom,
   directive,
   evaluate,
-  initTree,
   nextTick,
   prefix: setPrefix,
   plugin,
@@ -2035,14 +2035,9 @@ magic("watch", (el) => (key, callback) => {
   effect(() => evaluate2((value) => {
     let div = document.createElement("div");
     div.dataset.throwAway = value;
-    if (!firstTime) {
-      queueMicrotask(() => {
-        callback(value, oldValue);
-        oldValue = value;
-      });
-    } else {
-      oldValue = value;
-    }
+    if (!firstTime)
+      callback(value, oldValue);
+    oldValue = value;
     firstTime = false;
   }));
 });
@@ -2062,8 +2057,6 @@ function setClasses(el, value) {
     return setClassesFromString(el, value.join(" "));
   } else if (typeof value === "object" && value !== null) {
     return setClassesFromObject(el, value);
-  } else if (typeof value === "function") {
-    return setClasses(el, value());
   }
   return setClassesFromString(el, value);
 }
@@ -2085,21 +2078,21 @@ function setClassesFromObject(el, classObject) {
   let forRemove = Object.entries(classObject).flatMap(([classString, bool]) => !bool ? split(classString) : false).filter(Boolean);
   let added = [];
   let removed = [];
-  forRemove.forEach((i) => {
-    if (el.classList.contains(i)) {
-      el.classList.remove(i);
-      removed.push(i);
-    }
-  });
   forAdd.forEach((i) => {
     if (!el.classList.contains(i)) {
       el.classList.add(i);
       added.push(i);
     }
   });
+  forRemove.forEach((i) => {
+    if (el.classList.contains(i)) {
+      el.classList.remove(i);
+      removed.push(i);
+    }
+  });
   return () => {
-    removed.forEach((i) => el.classList.add(i));
     added.forEach((i) => el.classList.remove(i));
+    removed.forEach((i) => el.classList.add(i));
   };
 }
 
@@ -2148,9 +2141,7 @@ function once(callback, fallback = () => {
 }
 
 // packages/alpinejs/src/directives/x-transition.js
-directive("transition", (el, {value, modifiers, expression}, {evaluate: evaluate2}) => {
-  if (typeof expression === "function")
-    expression = evaluate2(expression);
+directive("transition", (el, {value, modifiers, expression}) => {
   if (!expression) {
     registerTransitionsFromHelper(el, modifiers, value);
   } else {
@@ -2246,7 +2237,7 @@ function registerTransitionObject(el, setFunction, defaultValue = {}) {
       in(before = () => {
       }, after = () => {
       }) {
-        transition(el, setFunction, {
+        return transition(el, setFunction, {
           during: this.enter.during,
           start: this.enter.start,
           end: this.enter.end,
@@ -2256,7 +2247,7 @@ function registerTransitionObject(el, setFunction, defaultValue = {}) {
       out(before = () => {
       }, after = () => {
       }) {
-        transition(el, setFunction, {
+        return transition(el, setFunction, {
           during: this.leave.during,
           start: this.leave.start,
           end: this.leave.end,
@@ -2312,11 +2303,6 @@ function transition(el, setFunction, {during, start: start2, end, entering} = {}
 }) {
   if (el._x_transitioning)
     el._x_transitioning.cancel();
-  if (Object.keys(during).length === 0 && Object.keys(start2).length === 0 && Object.keys(end).length === 0) {
-    before();
-    after();
-    return;
-  }
   let undoStart, undoDuring, undoEnd;
   performTransition(el, {
     start() {
@@ -2771,30 +2757,20 @@ function isNumeric2(subject) {
 }
 
 // packages/alpinejs/src/directives/x-cloak.js
-directive("cloak", (el) => queueMicrotask(() => mutateDom(() => el.removeAttribute(prefix("cloak")))));
+directive("cloak", (el) => nextTick(() => mutateDom(() => el.removeAttribute(prefix("cloak")))));
 
 // packages/alpinejs/src/directives/x-init.js
-addInitSelector(() => `[${prefix("init")}]`);
+addRootSelector(() => `[${prefix("init")}]`);
 directive("init", skipDuringClone((el, {expression}) => evaluate(el, expression, {}, false)));
 
 // packages/alpinejs/src/directives/x-text.js
-directive("text", (el, {expression}, {effect: effect3, evaluateLater: evaluateLater2}) => {
-  let evaluate2 = evaluateLater2(expression);
+directive("text", (el, {expression}, {effect: effect3}) => {
+  let evaluate2 = evaluateLater(el, expression);
   effect3(() => {
     evaluate2((value) => {
       mutateDom(() => {
         el.textContent = value;
       });
-    });
-  });
-});
-
-// packages/alpinejs/src/directives/x-html.js
-directive("html", (el, {expression}, {effect: effect3, evaluateLater: evaluateLater2}) => {
-  let evaluate2 = evaluateLater2(expression);
-  effect3(() => {
-    evaluate2((value) => {
-      el.innerHTML = value;
     });
   });
 });
@@ -2808,8 +2784,6 @@ directive("bind", (el, {value, modifiers, expression, original}, {effect: effect
     return storeKeyForXFor(el, expression);
   let evaluate2 = evaluateLater(el, expression);
   effect3(() => evaluate2((result) => {
-    if (result === void 0 && expression.match(/\./))
-      result = "";
     mutateDom(() => bind(el, value, result, modifiers));
   }));
 });
@@ -2836,11 +2810,14 @@ function storeKeyForXFor(el, expression) {
 addRootSelector(() => `[${prefix("data")}]`);
 directive("data", skipDuringClone((el, {expression}, {cleanup}) => {
   expression = expression === "" ? "{}" : expression;
-  let magicContext = {};
-  injectMagics(magicContext, el);
-  let dataProviderContext = {};
-  injectDataProviders(dataProviderContext, magicContext);
-  let data2 = evaluate(el, expression, {scope: dataProviderContext});
+  let dataProvider = getNamedDataProvider(expression);
+  let data2 = {};
+  if (dataProvider) {
+    let magics2 = injectMagics({}, el);
+    data2 = dataProvider.bind(magics2)();
+  } else {
+    data2 = evaluate(el, expression);
+  }
   injectMagics(data2, el);
   let reactiveData = reactive(data2);
   initInterceptors(reactiveData);
@@ -2981,13 +2958,10 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
       let key = keys[index];
       let clone2 = document.importNode(templateEl.content, true).firstElementChild;
       addScopeToNode(clone2, reactive(scope), templateEl);
+      initTree(clone2);
       mutateDom(() => {
         lastEl.after(clone2);
-        initTree(clone2);
       });
-      if (typeof key === "object") {
-        warn("x-for key cannot be an object, it must be a string or an integer", templateEl);
-      }
       lookup[key] = clone2;
     }
     for (let i = 0; i < sames.length; i++) {
@@ -2998,14 +2972,14 @@ function loop(el, iteratorNames, evaluateItems, evaluateKey) {
 }
 function parseForExpression(expression) {
   let forIteratorRE = /,([^,\}\]]*)(?:,([^,\}\]]*))?$/;
-  let stripParensRE = /^\s*\(|\)\s*$/g;
+  let stripParensRE = /^\(|\)$/g;
   let forAliasRE = /([\s\S]*?)\s+(?:in|of)\s+([\s\S]*)/;
   let inMatch = expression.match(forAliasRE);
   if (!inMatch)
     return;
   let res = {};
   res.items = inMatch[2].trim();
-  let item = inMatch[1].replace(stripParensRE, "").trim();
+  let item = inMatch[1].trim().replace(stripParensRE, "");
   let iteratorMatch = item.match(forIteratorRE);
   if (iteratorMatch) {
     res.item = item.replace(forIteratorRE, "").trim();
@@ -3051,17 +3025,13 @@ handler2.inline = (el, {expression}, {cleanup}) => {
 directive("ref", handler2);
 
 // packages/alpinejs/src/directives/x-if.js
-directive("if", (el, {expression}, {effect: effect3, cleanup}) => {
+directive("if", (el, {modifiers, expression}, {effect: effect3, cleanup}) => {
   let evaluate2 = evaluateLater(el, expression);
   let show = () => {
     if (el._x_currentIfEl)
       return el._x_currentIfEl;
     let clone2 = el.content.cloneNode(true).firstElementChild;
-    addScopeToNode(clone2, {}, el);
-    mutateDom(() => {
-      el.after(clone2);
-      initTree(clone2);
-    });
+    el.after(clone2);
     el._x_currentIfEl = clone2;
     el._x_undoIf = () => {
       clone2.remove();
@@ -3069,12 +3039,7 @@ directive("if", (el, {expression}, {effect: effect3, cleanup}) => {
     };
     return clone2;
   };
-  let hide = () => {
-    if (!el._x_undoIf)
-      return;
-    el._x_undoIf();
-    delete el._x_undoIf;
-  };
+  let hide = () => el._x_undoIf?.() || delete el._x_undoIf;
   effect3(() => evaluate2((value) => {
     value ? show() : hide();
   }));

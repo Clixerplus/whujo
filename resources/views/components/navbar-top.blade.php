@@ -18,32 +18,40 @@
             {{-- landing page links --}}
             <div class="mx-auto">
                 <ul class="hidden space-x-8 lg:flex">
-                    <li class=""><a href="{{ route('about-landing') }}">Conócenos</a></li>
-                    <li class=""><a href="{{ route('about-landing2') }}">Conócenos</a></li>
-                    <li class=""><a href="#">Landing page 3</a></li>
+                    <li ><a class="link" href="{{ route('about-landing') }}">
+                        @lang('website.navbar.landing_1')
+                    </a></li>
+                    <li ><a class="link" href="{{ route('about-landing2') }}">
+                        @lang('website.navbar.landing_2')
+                    </a></li>
+                    <li ><a class="link" href="#">
+                        @lang('website.navbar.landing_3')
+                    </a></li>
                 </ul>
             </div>
 
             {{-- auth section --}}
             <div class="items-center justify-center hidden w-auto h-20 lg:flex">
                 @auth
-                    <x-dropdown-avatar />
+                <x-dropdown-avatar />
                 @else
-                    <livewire:localization />
-                    <ul class="flex items-center ml-auto space-x-4">
 
-                        <li>
-                            <a href="{{ route('login') }}" class="capitalize">
-                                {{ __('login') }}
-                            </a>
-                        </li>
+                <livewire:localization />
 
-                        <li>
-                            <a href="{{ route('login') }}" class="px-4 py-2 font-semibold rounded btn-join">
-                                {{ __('Join whujo') }}
-                            </a>
-                        </li>
-                    </ul>
+                <ul class="flex items-center ml-auto space-x-4">
+
+                    <li>
+                        <a href="{{ route('login') }}" class="link">
+                            {{ __('Login') }}
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('login') }}" class="px-4 py-2 font-semibold rounded btn-join link">
+                            {{ __('Join whujo') }}
+                        </a>
+                    </li>
+                </ul>
                 @endauth
             </div>
 
@@ -79,8 +87,7 @@
                     {{-- TODO: Cambiar maquetacion por el componente sidebar de https://merakiui.com/ --}}
                     {{-- register side menu --}}
                     <div class="flex justify-between">
-                        <a href="{{ route('login') }}"
-                            class="px-4 py-2 font-semibold text-white rounded-md bg-primary">
+                        <a href="{{ route('login') }}" class="px-4 py-2 font-semibold text-white rounded-md bg-primary">
                             {{ __('Join whujo') }}
                         </a>
                         <button @click="open_side_menu = false" class="text-secondary focus:outline-none">
@@ -143,8 +150,8 @@
 </div>
 
 @push('scripts')
-    <script>
-        const navbar = document.getElementById('navbar')
+<script>
+    const navbar = document.getElementById('navbar')
         window.onscroll = function() {
             if (window.outerWidth >= 1024) {
                 if (window.scrollY > 80) {
@@ -157,5 +164,5 @@
                 }
             }
         };
-    </script>
+</script>
 @endpush

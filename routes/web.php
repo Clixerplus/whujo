@@ -39,6 +39,13 @@ use App\Http\Controllers\Site\ListinPageController;
 |
 */
 
+Route::get('change-lang/{lang}', function ($lang) {
+    if (in_array($lang, ['es', 'en'])) {
+        session()->put('locale', $lang);
+    }
+
+    return back();
+})->name('change-lang');
 
 Route::prefix('{locale?}')->group(function () {
     Route::view('testl', 'testl');

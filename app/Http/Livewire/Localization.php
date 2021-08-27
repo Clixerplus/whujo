@@ -12,12 +12,16 @@ class Localization extends Component
     public function __construct($id)
     {
         parent::__construct($id);
-        $this->lang = App::getLocale();
+
+        if (!session()->has('locale')) {
+            session()->put('locale', config('app.locale'));
+        }
+
+        $this->lang = session()->get('locale');
     }
 
     public function render()
     {
-        App::setLocale($this->lang);
         session()->put('locale', $this->lang);
         return view('livewire.localization');
     }

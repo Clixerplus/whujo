@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class Localization
 {
@@ -17,19 +16,11 @@ class Localization
      */
     public function handle(Request $request, Closure $next)
     {
-        $session_locale = session()->get('locale');
-        $current_locale = app()->get('locale');
-
-        if (!session()->has('locale')) {
-            $session_locale = app()->get('locale');
-            $current_locale = app()->get('locale');
+        if (session()->has('locale')) {
+            if (app()->getLocale() !== session()->get('locale')) {
+                app()->setLocale(session()->get('locale'));
+            }
         }
-
-        if ($session_locale !== $current_locale) {
-            $current_locale = $session_locale;
-        }
-
-        app()->setLocale($current_locale);
 
         return $next($request);
     }

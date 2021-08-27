@@ -2,7 +2,7 @@
     "E-Mail Address": "Correo electrónico",
     "Password": "Contraseña",
     "Remember Me": "Recuérdame",
-    "Login": "Acceder",
+    "Login": "Ingresa",
     "Sign in": "Iniciar sesión",
     "Forgot your password?": "¿Olvidaste tu contraseña?",
     "Register": "Registro",
@@ -62,6 +62,10 @@
     "Continue": "Continuar",
     "Choose an option": "Escoge una opción",
     "No results for your search": "No se encontraron resultados para su búsqueda",
-    "You can try a new search or modify the filters used": "Puede intentar una nueva búsqueda o modificar los filtros utilizados"
-
+    "You can try a new search or modify the filters used": "Puede intentar una nueva búsqueda o modificar los filtros utilizados",
+    "Let's go": "Vamos",
+    "Services": "Servicios",
+    "Experiences": "Experiencias",
+    "Share a moment": "Comparte un momento",
+    "Join whujo":"Únete a whujo"
 }

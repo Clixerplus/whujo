@@ -40,4 +40,9 @@ class Category extends Model
     {
         return self::where('parent_id', $this->id)->get();
     }
+
+    public function scopeForType($query, string $type)
+    {
+        return $query->where('product_type', $type);
+    }
 }

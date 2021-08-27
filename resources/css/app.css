@@ -63,8 +63,8 @@
         @apply transition-colors duration-500 ease-in-out lg:bg-transparent;
     }
 
-    .navbar-transparent a {
-        @apply font-semibold text-white hover:text-primary;
+    .navbar-transparent a.link {
+        @apply font-semibold text-white hover:text-gray-200;
     }
 
     .navbar-transparent .btn-join {
@@ -75,11 +75,11 @@
         @apply transition-colors duration-500 ease-in-out bg-white shadow;
     }
 
-    .navbar-dark a {
+    .navbar-dark a.link {
         @apply font-semibold text-secondary hover:text-primary;
     }
 
-    .navbar-dark .btn-join {
+    .navbar-dark a.link.btn-join {
         @apply text-white bg-primary hover:bg-primary-light hover:text-gray-50 hover:ring hover:ring-primary hover:ring-opacity-50;
     }
 

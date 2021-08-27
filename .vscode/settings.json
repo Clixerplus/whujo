@@ -4,6 +4,8 @@
     "better-phpunit.docker.paths": {
         "/home/jhso/Webprojects/whujo-1": "/var/www/html"
     },
+
+
     "tailwindCSS.emmetCompletions": true,
     "atlascode.bitbucket.enabled": false,
     "atlascode.jira.enabled": false
