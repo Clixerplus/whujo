@@ -47,15 +47,15 @@ Route::get('change-lang/{lang}', function ($lang) {
     return back();
 })->name('change-lang');
 
-Route::prefix('{locale?}')->group(function () {
+
     Route::view('testl', 'testl');
 
     Route::get('/', HomePageController::class);
     Route::get('/home', HomePageController::class)->name('home');
     Route::get('/listing', ListinPageController::class)->name('listing-product');
 
-    Route::view('/about', 'site.landing-page1')->name('about-landing');
-    Route::view('/about/2', 'site.landing-page2')->name('about-landing2');
+    Route::view('/about', 'site.landing-page2')->name('about-landing');
+    Route::view('/share-a-moment', 'site.landing-page1')->name('about-landing2');
 
     Route::get('/meet/room/{link}', function ($link) {
         return view('site.meet-room', ['link' => $link]);
@@ -305,4 +305,4 @@ Route::prefix('{locale?}')->group(function () {
         Route::get('notification', [AccountDashboard::class, 'dashboard']);
     });
      */
-});
+
