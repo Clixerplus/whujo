@@ -17,15 +17,11 @@ class Localization
     public function handle(Request $request, Closure $next)
     {
 
-        if (session()->has('locale')) {
-            if (app()->getLocale() !== session()->get('locale')) {
-                app()->setLocale(session()->get('locale'));
-            }
+        if (session()->has('locale') && app()->getLocale() !== session()->get('locale')) {
+            app()->setLocale(session()->get('locale'));
         }
 
-        if (!$request->secure() && app()->environment('production')) {
-            return redirect()->secure($request->getRequestUri());
-        }
+
 
         return $next($request);
     }
