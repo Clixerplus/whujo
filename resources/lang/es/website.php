@@ -1,7 +1,7 @@
 <?php
 
 return [
-    
+
     'navbar'=>[
         'landing_1' => 'Nosotros',
         'landing_2' => 'Comparte un momento',
@@ -25,5 +25,10 @@ return [
 
         'cta_title' => 'Brinda las mejores experiencias, servicios y momentos, abre un mundo de posibilidades',
 
+    ],
+    'misc' => [
+        'title_service'=>"Encuentra la ayuda que necesites",
+        'title_experience'=>"Descubre un mundo de cosas nuevas",
+        'title_share'=>"Comparte y disfruta valiosos momentos",
     ]
 ];

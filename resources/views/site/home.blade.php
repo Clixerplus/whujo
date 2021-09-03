@@ -11,11 +11,11 @@ https://www.pexels.com/es-es/foto/mujer-camara-escritorio-internet-4491461/ --}}
             <div class="absolute inset-0 bg-opacity-75 bg-secondary"></div>
 
             <div class="relative w-full px-4 pb-8 m-auto pt-28 max-w-screen md:max-w-xl lg:max-w-3xl xl:max-w-5xl">
-                <h2 class="text-5xl font-bold leading-tight text-white md:text-center"
+                {{-- <h2 class="text-4xl font-bold leading-tight text-white md:text-center"
                     style="text-shadow: rgba(255,255,255,.5) 0 0 2px">
 
                     @lang('website.home.title.0')<br><span class="text-primary">@lang('website.home.title.1')</span>
-                </h2>
+                </h2> --}}
 
                 <livewire:search-product-form />
             </div>

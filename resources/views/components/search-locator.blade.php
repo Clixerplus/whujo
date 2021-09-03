@@ -1,8 +1,8 @@
-<div class="relative w-full p-2 bg-white rounded shadow-xl lg:w-4/12 group" x-data="{open:false}">
+<div class="relative w-full p-2 bg-gray-200 rounded shadow-xl group hover:bg-white" x-data="{open:false}">
     <input wire:model="searchLocation" x-ref="searchLocation"
         x-on:keydown="$nextTick(()=> { if (( $refs.searchLocation.value.length > 0) && (open !== true)) { open = true}})"
         x-on:click="$nextTick(()=> { if (( $refs.searchLocation.value.length > 0) && (open !== true)) { open = true}})"
-        x-on:click.away="open=false" class="w-full h-12 px-4 placeholder-gray-400 outline-none" autocomplete="error"
+        x-on:click.away="open=false" class="w-full h-12 px-4 placeholder-gray-600 bg-gray-200 outline-none group-hover:bg-white group-hover:text-secondary" autocomplete="error"
         placeholder="Location" />
     <x-icon-location class="absolute top-0 right-0 w-auto h-16 p-4 text-gray-400" />
 

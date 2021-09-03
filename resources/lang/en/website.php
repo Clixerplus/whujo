@@ -23,5 +23,10 @@ return [
 
         'cta_title' => 'Provide the best experiences, services and moments, open a world of possibilities',
 
+    ],
+    'misc' => [
+        'title_service' => "Find all the help you need",
+        'title_experience' => "Discover a world of new things",
+        'title_share' => "Share and enjoy precious moments",
     ]
 ];
