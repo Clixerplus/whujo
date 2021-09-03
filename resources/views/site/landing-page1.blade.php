@@ -24,17 +24,17 @@
             <x-section-title :separator="false">
                 ¿Que es comparte un momento?
                 <x-slot name="subtitle">
-                    Es hacer de lo comun algo divertido
+                    Hagamos de lo comun algo divertido
                 </x-slot>
             </x-section-title>
 
-            <div class="flex gap-4 mt-8">
+            <div class="flex gap-4 mt-12">
                 <div class="w-1/2">
                     <img src="{{ asset('images/bg/section-bg-share-a-coffe.jpeg') }}"
                         alt="valores whujo -Humanidad, Diversidad, Innovación y Transparencia"
                         class="object-cover rounded-md shadow-xl" />
                 </div>
-                <div class="flex flex-col items-center justify-between w-1/2">
+                <div class="flex flex-col items-center justify-around w-1/2">
                     <ul class="space-y-4 text-2xl text-left list-disc list-inside">
                         <li>¿Quieres aprender algo nuevo?</li>
                         <li>¿Quieres compartir unos mates?</li>
@@ -52,7 +52,7 @@
         </x-section-container>
     </div>
 
-    <x-section-container class="flex h-screen gap-x-12">
+    <x-section-container class="flex h-screen py-16 gap-x-12">
         <x-section-title class="flex flex-col justify-center w-1/2 ">
             Por qué <br> unirte a <span class="text-primary font-whujo">whujo?</span>
             <x-slot name="subtitle">
