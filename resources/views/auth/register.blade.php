@@ -40,6 +40,7 @@
         </div>
 
         <div class="py-6">
+        <x-jet-checkbox name="terms" id="terms"/>
             <p class="text-xs">
                 Al registrarme, acepto las <a href="#"
                     class="font-semibold text-blue-600 hover:underline">{{ __('Terms of Service') }}</a>
